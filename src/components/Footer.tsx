@@ -43,17 +43,15 @@ export default function Footer() {
             <h4 className="text-white text-xs uppercase tracking-wider font-bold relative pb-2">
               Corporate Headquarters
               <span className="absolute bottom-0 left-0 w-8 h-[2px] bg-white/30" />
-              <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#B3401F]/60" />
+              <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#1F5FA8]/60" />
             </h4>
           </div>
 
           <div className="flex items-center gap-4 group">
-            <div className="p-2 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 shadow-sm transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/25">
-              <Logo className="w-12 h-10 shrink-0" />
-            </div>
+            <Logo className="w-14 h-12 shrink-0" />
             <div className="flex flex-col justify-center">
               <span className="font-heading font-black text-[15px] sm:text-base text-white tracking-normal block leading-none">
-                Thermal <span className="text-[#D65A32]">Engitech</span> Pvt. Ltd.
+                Thermal <span className="text-[#2E76C9]">Engitech</span> Pvt. Ltd.
               </span>
               <span className="text-[9px] font-mono font-bold tracking-widest text-slate-400 uppercase block mt-1.5 leading-none">
                 Engineering & Thermal Dynamics
@@ -71,7 +69,7 @@ export default function Footer() {
           <h4 className="text-white text-xs uppercase tracking-wider font-bold relative pb-2">
             Quick Links
             <span className="absolute bottom-0 left-0 w-8 h-[2px] bg-white/30" />
-            <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#B3401F]/60" />
+            <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#1F5FA8]/60" />
           </h4>
           <ul className="space-y-2.5">
             {quickLinks.map((link) => (
@@ -93,7 +91,7 @@ export default function Footer() {
           <h4 className="text-white text-xs uppercase tracking-wider font-bold relative pb-2">
             Core Products
             <span className="absolute bottom-0 left-0 w-8 h-[2px] bg-white/30" />
-            <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#B3401F]/60" />
+            <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#1F5FA8]/60" />
           </h4>
           <ul className="space-y-2.5">
             {productCategories.map((item) => (
@@ -115,7 +113,7 @@ export default function Footer() {
           <h4 className="text-white text-xs uppercase tracking-wider font-bold relative pb-2">
             Contact Details
             <span className="absolute bottom-0 left-0 w-8 h-[2px] bg-white/30" />
-            <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#B3401F]/60" />
+            <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#1F5FA8]/60" />
           </h4>
           <div className="space-y-4 text-slate-300 font-medium">
             <div className="flex items-start gap-3 group">

@@ -10,18 +10,23 @@
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   /* ---- Core palette ---- */
-  --color-ink: #0D1B2A;        /* primary dark — panels, nav, footer */
-  --color-ink-2: #16283C;      /* secondary dark, gradients */
-  --color-ink-3: #0A141F;      /* deepest dark, gradient end */
+  --color-ink: #0A1424;        /* primary dark — panels, nav, footer */
+  --color-ink-2: #13233B;      /* secondary dark, gradients */
+  --color-ink-3: #070E19;      /* deepest dark, gradient end */
   --color-slate: #4B5A6B;      /* body copy on light */
   --color-slate-soft: #7C8A9A; /* muted / secondary copy */
   --color-line: #E1E4E3;       /* hairline borders */
-  --color-paper: #F7F7F4;      /* page background, warm-neutral */
-  --color-panel: #F1F1ED;      /* secondary panel background */
-  --color-ember: #B3401F;      /* primary accent — brick/rust red, ties to real boiler paint */
-  --color-ember-2: #D65A32;    /* ember hover / lighter */
-  --color-ember-dark: #7C2A14; /* ember pressed / deep */
-  --color-amber: #C9862C;      /* secondary accent — brass, used sparingly for certification/quality marks */
+  --color-paper: #F7F8FA;      /* page background */
+  --color-panel: #EFF2F5;      /* secondary panel background */
+
+  /* Primary accent — professional blue, does the job ember used to do */
+  --color-blue: #1F5FA8;
+  --color-blue-2: #2E76C9;     /* hover / lighter */
+  --color-blue-dark: #123056;  /* pressed / deep */
+  --color-sky: #5B9BD9;        /* light accent for use on dark ink backgrounds */
+
+  /* Ember kept only as a rare, deliberate accent — never for chrome/UI */
+  --color-ember: #B3401F;
 }
 
 @layer utilities {
@@ -74,7 +79,7 @@
   position: absolute;
   width: 14px;
   height: 14px;
-  border-color: var(--color-ember);
+  border-color: var(--color-blue);
   border-style: solid;
   opacity: 0.55;
 }

@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -24,11 +24,11 @@ import { MessageCircle, Phone } from 'lucide-react';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       {/* Scroll restorer handles page switches */}
       <ScrollToTop />
 
-      <div className="min-h-screen bg-[#F7F7F4] text-[#17222E] flex flex-col justify-between select-text scroll-smooth selection:bg-[#C1502B]/30">
+      <div className="min-h-screen bg-[#F7F7F4] text-[#17222E] flex flex-col justify-between select-text scroll-smooth selection:bg-[#2E76C9]/30">
         
         {/* Persistent Sticky Header / Navbar */}
         <Navbar />
@@ -54,10 +54,10 @@ export default function App() {
           {/* Call Now button */}
           <a 
             href="tel:+919825014820"
-            className="flex items-center gap-2 px-3 py-2 bg-[#0D1B2A] hover:bg-[#B3401F] text-white text-xs font-bold rounded-full shadow-lg transition-all duration-200 group border border-white/20"
+            className="flex items-center gap-2 px-3 py-2 bg-[#0D1B2A] hover:bg-[#1F5FA8] text-white text-xs font-bold rounded-full shadow-lg transition-all duration-200 group border border-white/20"
             title="Call Engineering Coordinator"
           >
-            <Phone className="w-4 h-4 text-[#C1502B]" />
+            <Phone className="w-4 h-4 text-[#2E76C9]" />
             <span className="max-w-0 overflow-hidden group-hover:max-w-[145px] transition-all duration-300 ease-in-out whitespace-nowrap">
               +91 98250 14820
             </span>
@@ -80,6 +80,6 @@ export default function App() {
         <Footer />
 
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

@@ -18,7 +18,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
       <div className="absolute inset-0 grid-blueprint opacity-40" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A141F] via-[#0D1B2A] to-[#0D1B2A]" />
       {/* Warm glow seated behind the product photo */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[640px] h-[640px] rounded-full bg-[#B3401F]/20 blur-[120px] pointer-events-none" />
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[640px] h-[640px] rounded-full bg-[#1F5FA8]/20 blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-4 pt-28 pb-16 lg:pt-32 lg:pb-0 lg:min-h-[88vh]">
@@ -27,14 +27,14 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
           <div className="lg:col-span-7 space-y-7 text-left">
 
             <div className="inline-flex items-center gap-2 pl-2.5 pr-3.5 py-1.5 border border-white/15 text-slate-200 text-[11px] font-mono tracking-wide uppercase">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#D65A32]" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#2E76C9]" />
               <span>ISO 9001:2015 · ASME · IBR 1950 Compliant</span>
             </div>
 
             <div className="space-y-5">
               <h1 className="text-[13vw] leading-[0.95] sm:text-6xl lg:text-[4.6rem] xl:text-[5rem] font-heading font-black tracking-tight uppercase">
                 Engineering<br />
-                <span className="text-[#D65A32]">Industrial Heat</span>
+                <span className="text-[#2E76C9]">Industrial Heat</span>
               </h1>
 
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl">
@@ -47,7 +47,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
             <div className="flex flex-col sm:flex-row gap-3.5 pt-1">
               <button
                 onClick={onViewProducts}
-                className="px-7 py-4 bg-[#B3401F] hover:bg-[#D65A32] text-white font-bold text-xs tracking-[0.08em] uppercase transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                className="px-7 py-4 bg-[#1F5FA8] hover:bg-[#2E76C9] text-white font-bold text-xs tracking-[0.08em] uppercase transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>Explore the Catalogue</span>
                 <ArrowRight className="w-4 h-4" />
@@ -86,7 +86,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
               />
               {/* Spec callout tag, corner-frame device ties to the blueprint motif */}
               <div className="corner-frame absolute -bottom-2 left-0 right-8 sm:right-16 bg-[#0D1B2A]/90 backdrop-blur-sm border border-white/10 px-4 py-3">
-                <p className="text-[10px] font-mono uppercase tracking-widest text-[#D65A32]">Field unit — Dhamatwan facility</p>
+                <p className="text-[10px] font-mono uppercase tracking-widest text-[#2E76C9]">Field unit — Dhamatwan facility</p>
                 <p className="text-xs text-slate-300 mt-1">Multi-fuel fired combi-thermal system, factory-assembled and dispatch-ready</p>
               </div>
             </div>

@@ -18,9 +18,9 @@ export default function CompanyMap({ className = '' }: CompanyMapProps) {
     <div className={`bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-sm flex flex-col ${className}`} id="company-location-map">
       
       {/* Header section of the Map Container */}
-      <div className="bg-[#0D1B2A] text-white p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[#B3401F]/20">
+      <div className="bg-[#0D1B2A] text-white p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[#1F5FA8]/20">
         <div className="flex items-start sm:items-center gap-3">
-          <div className="p-2 bg-[#C1502B]/10 rounded-lg text-[#C1502B] shrink-0 mt-0.5 sm:mt-0">
+          <div className="p-2 bg-[#2E76C9]/10 rounded-lg text-[#2E76C9] shrink-0 mt-0.5 sm:mt-0">
             <MapPin className="w-5 h-5" />
           </div>
           <div className="text-left">
@@ -34,7 +34,7 @@ export default function CompanyMap({ className = '' }: CompanyMapProps) {
           href={directionsUrl}
           target="_blank" 
           rel="noopener noreferrer"
-          className="px-4 py-2 bg-[#B3401F] hover:bg-[#B3401F]/85 text-white font-bold text-xs uppercase tracking-wide rounded-lg flex items-center justify-center gap-1.5 transition whitespace-nowrap self-stretch sm:self-auto"
+          className="px-4 py-2 bg-[#1F5FA8] hover:bg-[#1F5FA8]/85 text-white font-bold text-xs uppercase tracking-wide rounded-lg flex items-center justify-center gap-1.5 transition whitespace-nowrap self-stretch sm:self-auto"
         >
           <span>Get Directions</span>
           <ExternalLink className="w-3.5 h-3.5" />
@@ -54,7 +54,7 @@ export default function CompanyMap({ className = '' }: CompanyMapProps) {
         
         {/* Subtle decorative overlay label for modern industrial aesthetics */}
         <div className="absolute bottom-4 left-4 bg-[#0D1B2A]/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-[10px] font-mono tracking-wider uppercase shadow-md flex items-center gap-1.5">
-          <Navigation className="w-3 h-3 text-[#C1502B] animate-pulse" />
+          <Navigation className="w-3 h-3 text-[#2E76C9] animate-pulse" />
           <span>Dhamatwan Heavy Industrial Facility</span>
         </div>
       </div>

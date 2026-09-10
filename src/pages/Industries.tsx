@@ -62,9 +62,9 @@ export default function Industries() {
     <div className="space-y-0 text-left bg-slate-50 min-h-screen">
       
       {/* Banner */}
-      <div className="bg-[#0D1B2A] text-white py-16 px-4 sm:px-6 lg:px-8 border-b border-[#B3401F]/25">
+      <div className="bg-[#0D1B2A] text-white py-16 px-4 sm:px-6 lg:px-8 border-b border-[#1F5FA8]/25">
         <div className="max-w-7xl mx-auto space-y-4">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#E2793D] uppercase">
+          <span className="text-xs font-mono font-bold tracking-widest text-[#5B9BD9] uppercase">
             Global Applications
           </span>
           <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
@@ -83,15 +83,15 @@ export default function Industries() {
           {detailedIndustries.map((ind, idx) => (
             <div 
               key={idx}
-              className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-sm hover:border-[#B3401F]/30 transition grid grid-cols-1 md:grid-cols-12"
+              className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-sm hover:border-[#1F5FA8]/30 transition grid grid-cols-1 md:grid-cols-12"
             >
               
               {/* Sidebar color accent with industry icon */}
               <div className="md:col-span-1 bg-[#F1F1ED] border-r border-[#E1E4E3] p-6 flex flex-col items-center justify-start text-slate-400">
-                <span className="text-xs font-mono font-bold text-[#B3401F] bg-white px-2 py-1 rounded shadow-xs mb-4">
+                <span className="text-xs font-mono font-bold text-[#1F5FA8] bg-white px-2 py-1 rounded shadow-xs mb-4">
                   0{idx + 1}
                 </span>
-                <div className="p-3 bg-white rounded-xl text-[#B3401F] shadow-xs">
+                <div className="p-3 bg-white rounded-xl text-[#1F5FA8] shadow-xs">
                   <Building className="w-6 h-6" />
                 </div>
               </div>
@@ -102,7 +102,7 @@ export default function Industries() {
                   <h3 className="font-heading font-extrabold text-xl text-[#0D1B2A]">
                     {ind.name} Division
                   </h3>
-                  <p className="text-[#B3401F] text-xs font-semibold uppercase tracking-wider font-mono">
+                  <p className="text-[#1F5FA8] text-xs font-semibold uppercase tracking-wider font-mono">
                     Target Thermal Goal: {ind.specs.split(' | ')[0]}
                   </p>
                 </div>
@@ -114,14 +114,14 @@ export default function Industries() {
                       <p className="text-slate-600 leading-relaxed">{ind.useCase}</p>
                     </div>
                     <div>
-                      <b className="text-[#8C3216] font-bold block uppercase tracking-wide mb-1">Thermal & Load Challenge</b>
+                      <b className="text-[#1B3A63] font-bold block uppercase tracking-wide mb-1">Thermal & Load Challenge</b>
                       <p className="text-slate-600 leading-relaxed italic">"{ind.challenge}"</p>
                     </div>
                   </div>
 
                   <div className="space-y-3 font-sans bg-slate-50 p-4 rounded-xl border border-slate-100">
                     <div>
-                      <b className="text-[#B3401F] font-bold block uppercase tracking-wide mb-1">Engineered Solution Blueprint</b>
+                      <b className="text-[#1F5FA8] font-bold block uppercase tracking-wide mb-1">Engineered Solution Blueprint</b>
                       <p className="text-slate-600 leading-relaxed">{ind.solutions}</p>
                     </div>
                     <div>
@@ -138,7 +138,7 @@ export default function Industries() {
                   </span>
                   <Link 
                     to={`/products?category=${encodeURIComponent(idx === 1 || idx === 2 ? 'Steam Boilers' : idx === 0 || idx === 4 ? 'Thermic Fluid Heaters' : 'All')}`}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-[#B3401F] hover:underline"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#1F5FA8] hover:underline"
                   >
                     <span>Inspect suitable models</span>
                     <ChevronRight className="w-4 h-4" />
@@ -162,7 +162,7 @@ export default function Industries() {
           <div className="md:col-span-3 text-right">
             <Link 
               to="/request-quote"
-              className="inline-block w-full text-center px-4 py-2.5 bg-[#B3401F] hover:bg-[#C1502B] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow transition"
+              className="inline-block w-full text-center px-4 py-2.5 bg-[#1F5FA8] hover:bg-[#2E76C9] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow transition"
             >
               Start layout consultation
             </Link>

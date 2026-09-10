@@ -118,19 +118,19 @@ function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'g
         <polygon points="298,225 330,225 324,215 304,215" fill="url(#chimney-grad)" stroke="#7C8A9A" strokeWidth="1" />
 
         {/* Blue Valves and Controls on Top of Boiler */}
-        <rect x="210" y="123" width="6" height="15" fill="#B3401F" stroke="#1B2A3D" strokeWidth="0.8" />
-        <circle cx="213" cy="120" r="4" fill="#C1502B" />
-        <rect x="235" y="117" width="6" height="15" fill="#B3401F" stroke="#1B2A3D" strokeWidth="0.8" />
-        <circle cx="238" cy="114" r="4" fill="#C1502B" />
-        <rect x="185" y="115" width="8" height="20" fill="#B3401F" stroke="#1B2A3D" strokeWidth="0.8" />
-        <ellipse cx="189" cy="112" rx="7" ry="3" fill="#C1502B" stroke="#B3401F" strokeWidth="1" />
+        <rect x="210" y="123" width="6" height="15" fill="#1F5FA8" stroke="#1B2A3D" strokeWidth="0.8" />
+        <circle cx="213" cy="120" r="4" fill="#2E76C9" />
+        <rect x="235" y="117" width="6" height="15" fill="#1F5FA8" stroke="#1B2A3D" strokeWidth="0.8" />
+        <circle cx="238" cy="114" r="4" fill="#2E76C9" />
+        <rect x="185" y="115" width="8" height="20" fill="#1F5FA8" stroke="#1B2A3D" strokeWidth="0.8" />
+        <ellipse cx="189" cy="112" rx="7" ry="3" fill="#2E76C9" stroke="#1F5FA8" strokeWidth="1" />
 
         {/* Feed Water Pumps assembly */}
         <path d="M 255,162 V 220 H 270" fill="none" stroke="#33383E" strokeWidth="3" strokeLinecap="round" />
         <rect x="264" y="210" width="12" height="22" fill="#33383E" rx="1" stroke="#0D1B2A" strokeWidth="1" />
         <rect x="278" y="208" width="12" height="22" fill="#33383E" rx="1" stroke="#0D1B2A" strokeWidth="1" />
-        <rect x="266" y="202" width="8" height="8" fill="#B3401F" rx="1" />
-        <rect x="280" y="200" width="8" height="8" fill="#B3401F" rx="1" />
+        <rect x="266" y="202" width="8" height="8" fill="#1F5FA8" rx="1" />
+        <rect x="280" y="200" width="8" height="8" fill="#1F5FA8" rx="1" />
       </svg>
     );
   }
@@ -140,85 +140,85 @@ function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'g
       return (
         <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-72 drop-shadow-lg">
           {/* Main Boiler Saturated Shell Cylinder */}
-          <rect x="50" y="45" width="220" height="110" rx="55" fill="#0D1B2A" stroke="#B3401F" strokeWidth="4.5" />
+          <rect x="50" y="45" width="220" height="110" rx="55" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4.5" />
           <rect x="58" y="53" width="204" height="94" rx="47" fill="#0D1B2A" opacity="0.9" />
           
-          <line x1="68" y1="80" x2="252" y2="80" stroke="#C1502B" strokeWidth="3" strokeDasharray="6 6" />
-          <line x1="68" y1="100" x2="252" y2="100" stroke="#C1502B" strokeWidth="3" />
-          <line x1="68" y1="120" x2="252" y2="120" stroke="#C1502B" strokeWidth="3" strokeDasharray="6 6" />
+          <line x1="68" y1="80" x2="252" y2="80" stroke="#2E76C9" strokeWidth="3" strokeDasharray="6 6" />
+          <line x1="68" y1="100" x2="252" y2="100" stroke="#2E76C9" strokeWidth="3" />
+          <line x1="68" y1="120" x2="252" y2="120" stroke="#2E76C9" strokeWidth="3" strokeDasharray="6 6" />
 
           {/* Drum steam release nozzle */}
-          <rect x="145" y="15" width="30" height="30" fill="#17222E" stroke="#B3401F" strokeWidth="2.5" />
-          <line x1="145" y1="24" x2="175" y2="24" stroke="#C1502B" strokeWidth="2" />
+          <rect x="145" y="15" width="30" height="30" fill="#17222E" stroke="#1F5FA8" strokeWidth="2.5" />
+          <line x1="145" y1="24" x2="175" y2="24" stroke="#2E76C9" strokeWidth="2" />
           <path d="M160 5 V15" stroke="#EF4444" strokeWidth="3" />
 
-          <rect x="80" y="155" width="25" height="15" fill="#1B2A3D" stroke="#B3401F" strokeWidth="2.5" />
-          <rect x="215" y="155" width="25" height="15" fill="#1B2A3D" stroke="#B3401F" strokeWidth="2.5" />
-          <line x1="65" y1="170" x2="255" y2="170" stroke="#B3401F" strokeWidth="5" />
+          <rect x="80" y="155" width="25" height="15" fill="#1B2A3D" stroke="#1F5FA8" strokeWidth="2.5" />
+          <rect x="215" y="155" width="25" height="15" fill="#1B2A3D" stroke="#1F5FA8" strokeWidth="2.5" />
+          <line x1="65" y1="170" x2="255" y2="170" stroke="#1F5FA8" strokeWidth="5" />
         </svg>
       );
     case 'heater':
       return (
         <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-72 drop-shadow-lg">
-          <rect x="50" y="50" width="220" height="100" rx="14" fill="#0D1B2A" stroke="#B3401F" strokeWidth="4.5" />
-          <path d="M70 70 Q90 55 110 70 T150 70 T190 70 T230 70" fill="none" stroke="#B3401F" strokeWidth="4" />
-          <path d="M70 95 Q90 80 110 95 T150 95 T190 95 T230 95" fill="none" stroke="#B3401F" strokeWidth="4" />
-          <path d="M70 120 Q90 105 110 120 T150 120 T190 120 T230 120" fill="none" stroke="#8C3216" strokeWidth="4" />
+          <rect x="50" y="50" width="220" height="100" rx="14" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4.5" />
+          <path d="M70 70 Q90 55 110 70 T150 70 T190 70 T230 70" fill="none" stroke="#1F5FA8" strokeWidth="4" />
+          <path d="M70 95 Q90 80 110 95 T150 95 T190 95 T230 95" fill="none" stroke="#1F5FA8" strokeWidth="4" />
+          <path d="M70 120 Q90 105 110 120 T150 120 T190 120 T230 120" fill="none" stroke="#1B3A63" strokeWidth="4" />
 
-          <rect x="25" y="70" width="25" height="60" fill="#1B2A3D" stroke="#B3401F" strokeWidth="4" />
+          <rect x="25" y="70" width="25" height="60" fill="#1B2A3D" stroke="#1F5FA8" strokeWidth="4" />
           <line x1="10" y1="100" x2="25" y2="100" stroke="#EF4444" strokeWidth="5" />
         </svg>
       );
     case 'generator':
       return (
         <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-72 drop-shadow-lg">
-          <rect x="90" y="20" width="140" height="160" rx="10" fill="#0D1B2A" stroke="#B3401F" strokeWidth="4.5" />
+          <rect x="90" y="20" width="140" height="160" rx="10" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4.5" />
           <rect x="100" y="30" width="120" height="140" rx="6" fill="#0D1B2A" opacity="0.91" />
-          <path d="M120 50 C120 62 200 62 200 75 C200 88 120 88 120 101 C120 114 200 114 200 127 C200 140 120 140 120 152" fill="none" stroke="#B3401F" strokeWidth="4" strokeLinecap="round" />
+          <path d="M120 50 C120 62 200 62 200 75 C200 88 120 88 120 101 C120 114 200 114 200 127 C200 140 120 140 120 152" fill="none" stroke="#1F5FA8" strokeWidth="4" strokeLinecap="round" />
         </svg>
       );
     case 'exchanger':
       return (
         <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-72 drop-shadow-lg">
-          <rect x="40" y="55" width="240" height="90" rx="10" fill="#0D1B2A" stroke="#B3401F" strokeWidth="4.5" />
-          <line x1="48" y1="80" x2="272" y2="80" stroke="#E2793D" strokeWidth="3" />
-          <line x1="48" y1="100" x2="272" y2="100" stroke="#B3401F" strokeWidth="2" />
-          <line x1="48" y1="120" x2="272" y2="120" stroke="#E2793D" strokeWidth="3" />
+          <rect x="40" y="55" width="240" height="90" rx="10" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4.5" />
+          <line x1="48" y1="80" x2="272" y2="80" stroke="#5B9BD9" strokeWidth="3" />
+          <line x1="48" y1="100" x2="272" y2="100" stroke="#1F5FA8" strokeWidth="2" />
+          <line x1="48" y1="120" x2="272" y2="120" stroke="#5B9BD9" strokeWidth="3" />
         </svg>
       );
     case 'prs':
       return (
         <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-72 drop-shadow-lg">
-          <path d="M30 100 H290" stroke="#B3401F" strokeWidth="6" />
-          <path d="M70 100 V50 H250 V100" fill="none" stroke="#B3401F" strokeWidth="6" />
-          <circle cx="160" cy="100" r="20" fill="#0D1B2A" stroke="#B3401F" strokeWidth="4" />
+          <path d="M30 100 H290" stroke="#1F5FA8" strokeWidth="6" />
+          <path d="M70 100 V50 H250 V100" fill="none" stroke="#1F5FA8" strokeWidth="6" />
+          <circle cx="160" cy="100" r="20" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4" />
           <rect x="145" y="55" width="30" height="25" fill="#EF4444" stroke="#0D1B2A" strokeWidth="2.5" />
-          <line x1="160" y1="75" x2="160" y2="120" stroke="#E2793D" strokeWidth="3" />
+          <line x1="160" y1="75" x2="160" y2="120" stroke="#5B9BD9" strokeWidth="3" />
         </svg>
       );
     case 'preheater':
       return (
         <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-72 drop-shadow-lg">
-          <rect x="70" y="30" width="180" height="140" fill="#0D1B2A" stroke="#B3401F" strokeWidth="4" />
+          <rect x="70" y="30" width="180" height="140" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4" />
           <rect x="78" y="38" width="164" height="124" fill="#0D1B2A" opacity="0.95" />
-          <line x1="105" y1="50" x2="105" y2="150" stroke="#E2793D" strokeWidth="4" strokeDasharray="4 4" />
-          <line x1="135" y1="50" x2="135" y2="150" stroke="#E2793D" strokeWidth="4" />
-          <line x1="165" y1="50" x2="165" y2="150" stroke="#E2793D" strokeWidth="4" strokeDasharray="4 4" />
-          <line x1="195" y1="50" x2="195" y2="150" stroke="#E2793D" strokeWidth="4" />
+          <line x1="105" y1="50" x2="105" y2="150" stroke="#5B9BD9" strokeWidth="4" strokeDasharray="4 4" />
+          <line x1="135" y1="50" x2="135" y2="150" stroke="#5B9BD9" strokeWidth="4" />
+          <line x1="165" y1="50" x2="165" y2="150" stroke="#5B9BD9" strokeWidth="4" strokeDasharray="4 4" />
+          <line x1="195" y1="50" x2="195" y2="150" stroke="#5B9BD9" strokeWidth="4" />
         </svg>
       );
     case 'pollution':
       return (
         <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-72 drop-shadow-lg">
-          <rect x="100" y="25" width="120" height="70" fill="#0D1B2A" stroke="#B3401F" strokeWidth="4" />
-          <polygon points="100,95 220,95 180,170 140,170" fill="#0D1B2A" stroke="#B3401F" strokeWidth="4" />
+          <rect x="100" y="25" width="120" height="70" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4" />
+          <polygon points="100,95 220,95 180,170 140,170" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4" />
           <circle cx="160" cy="178" r="12" fill="#17222E" stroke="#5B6472" strokeWidth="2.5" />
         </svg>
       );
     case 'other':
       return (
         <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-72">
-          <rect x="80" y="45" width="160" height="90" rx="45" fill="#0D1B2A" stroke="#B3401F" strokeWidth="5" />
+          <rect x="80" y="45" width="160" height="90" rx="45" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="5" />
           <rect x="88" y="53" width="144" height="74" rx="37" fill="#0D1B2A" opacity="0.9" />
           <rect x="110" y="15" width="22" height="30" fill="#17222E" stroke="#5B6472" strokeWidth="2.5" />
           <rect x="149" y="15" width="22" height="30" fill="#17222E" stroke="#5B6472" strokeWidth="2.5" />
@@ -252,7 +252,7 @@ export default function ProductDetails() {
         </p>
         <Link 
           to="/products"
-          className="inline-block px-5 py-2.5 bg-[#0D1B2A] text-white hover:bg-[#B3401F] font-bold text-xs uppercase tracking-wider rounded-lg transition"
+          className="inline-block px-5 py-2.5 bg-[#0D1B2A] text-white hover:bg-[#1F5FA8] font-bold text-xs uppercase tracking-wider rounded-lg transition"
         >
           Return to Catalog
         </Link>
@@ -292,14 +292,14 @@ export default function ProductDetails() {
       {/* Breadcrumbs bar with navigation shortcuts */}
       <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans">
         <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-500 font-semibold">
-          <Link to="/products" className="flex items-center gap-1.5 text-[#B3401F] hover:underline">
+          <Link to="/products" className="flex items-center gap-1.5 text-[#1F5FA8] hover:underline">
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Products</span>
           </Link>
           <div className="flex items-center gap-2">
             <span>Products</span>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-[#B3401F]">{product.category}</span>
+            <span className="text-[#1F5FA8]">{product.category}</span>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-slate-700 font-extrabold truncate max-w-[120px] sm:max-w-none">{product.name}</span>
           </div>
@@ -313,13 +313,13 @@ export default function ProductDetails() {
           
           {/* Header */}
           <div className="space-y-3">
-            <span className="text-xs font-mono font-bold tracking-wider text-[#B3401F] bg-[#B3401F]/10 px-3 py-1.5 rounded-full uppercase">
+            <span className="text-xs font-mono font-bold tracking-wider text-[#1F5FA8] bg-[#1F5FA8]/10 px-3 py-1.5 rounded-full uppercase">
               {product.category}
             </span>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold text-[#0D1B2A] tracking-tight leading-tight">
               {product.name}
             </h1>
-            <p className="text-[#B3401F] text-sm md:text-base font-semibold font-sans leading-relaxed">
+            <p className="text-[#1F5FA8] text-sm md:text-base font-semibold font-sans leading-relaxed">
               "{product.tagline}"
             </p>
           </div>
@@ -368,13 +368,13 @@ export default function ProductDetails() {
           {/* Features and standards ticks */}
           <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg space-y-6">
             <h3 className="text-sm uppercase font-mono font-bold tracking-wider text-[#0D1B2A] border-b border-slate-100 pb-3 flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-[#B3401F]" />
+              <Cpu className="w-4 h-4 text-[#1F5FA8]" />
               <span>Key Performance Features</span>
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {product.features?.map((feat, idx) => (
                 <div key={idx} className="flex gap-2.5 items-start">
-                  <CheckCircle2 className="w-4 h-4 text-[#B3401F] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#1F5FA8] shrink-0 mt-0.5" />
                   <span className="text-xs text-slate-600 font-sans leading-relaxed">{feat}</span>
                 </div>
               ))}
@@ -392,14 +392,14 @@ export default function ProductDetails() {
           <div className="bg-[#0D1B2A] text-white p-6 rounded-lg space-y-4 border border-white/5 relative overflow-hidden shadow-md">
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
             <div className="relative z-10 space-y-3 text-left">
-              <span className="text-[10px] uppercase font-mono font-extrabold text-[#E2793D] tracking-wider">
+              <span className="text-[10px] uppercase font-mono font-extrabold text-[#5B9BD9] tracking-wider">
                 Engineering Authority
               </span>
               <h4 className="text-lg font-heading font-extrabold">IBR 1950 & ASME Certified</h4>
               <p className="text-slate-300 text-xs leading-relaxed font-sans">
                 Our plant is approved to engineer and test up to 32kg/cm² configurations. Mill source testing certifications accompany raw and finished boiler components.
               </p>
-              <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-[#B3401F] pt-2 border-t border-white/10 font-mono">
+              <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-[#1F5FA8] pt-2 border-t border-white/10 font-mono">
                 <ShieldCheck className="w-4 h-4 shrink-0" />
                 <span>Guaranteed joint radiography audits</span>
               </div>
@@ -454,7 +454,7 @@ export default function ProductDetails() {
                       placeholder="e.g. Gujarat Synthetics Ltd."
                       value={formData.companyName}
                       onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#B3401F] transition"
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#1F5FA8] transition"
                     />
                   </div>
 
@@ -466,7 +466,7 @@ export default function ProductDetails() {
                       placeholder="e.g. Mr. S. K. Mehta"
                       value={formData.contactPerson}
                       onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#B3401F] transition"
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#1F5FA8] transition"
                     />
                   </div>
                 </div>
@@ -480,7 +480,7 @@ export default function ProductDetails() {
                       placeholder="name@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#B3401F] transition"
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#1F5FA8] transition"
                     />
                   </div>
 
@@ -492,7 +492,7 @@ export default function ProductDetails() {
                       placeholder="+91 98XXX XXXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#B3401F] transition"
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#1F5FA8] transition"
                     />
                   </div>
                 </div>
@@ -502,7 +502,7 @@ export default function ProductDetails() {
                   <select
                     value={formData.capacity}
                     onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-                    className="w-full px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-semibold focus:outline-none focus:border-[#B3401F] transition"
+                    className="w-full px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-semibold focus:outline-none focus:border-[#1F5FA8] transition"
                   >
                     <option value="Under 1.0 Ton / Hour">Under 1.0 Ton / Hour</option>
                     <option value="1.0 - 5.0 Tons / Hour">1.0 - 5.0 Tons / Hour</option>
@@ -519,13 +519,13 @@ export default function ProductDetails() {
                     placeholder="Provide space limitations, operational hours, or biomass briquette calorific values..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#B3401F] transition resize-none"
+                    className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#1F5FA8] transition resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3 bg-[#B3401F] hover:bg-[#0D1B2A] text-white font-bold uppercase tracking-wider rounded-lg shadow-sm transition cursor-pointer text-xs"
+                  className="w-full py-3 bg-[#1F5FA8] hover:bg-[#0D1B2A] text-white font-bold uppercase tracking-wider rounded-lg shadow-sm transition cursor-pointer text-xs"
                 >
                   Submit Sizing Enquiry
                 </button>
@@ -539,11 +539,11 @@ export default function ProductDetails() {
             <h5 className="font-heading font-bold text-xs text-[#0D1B2A] uppercase tracking-wider">Helpline</h5>
             <div className="space-y-3 font-sans text-xs">
               <div className="flex items-center gap-2 text-slate-600">
-                <Phone className="w-4 h-4 text-[#B3401F] shrink-0" />
+                <Phone className="w-4 h-4 text-[#1F5FA8] shrink-0" />
                 <span>Sales: +91 79 4005 5280</span>
               </div>
               <div className="flex items-center gap-2 text-slate-600">
-                <Mail className="w-4 h-4 text-[#B3401F] shrink-0" />
+                <Mail className="w-4 h-4 text-[#1F5FA8] shrink-0" />
                 <span>sales@thermalengitech.com</span>
               </div>
             </div>

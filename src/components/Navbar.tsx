@@ -69,7 +69,7 @@ export default function Navbar() {
         {/* Layer 1: Accent Red Glass Line */}
         <div 
           className={`absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500 ${
-            scrolled ? 'bg-[#DC2626]/80' : 'bg-[#DC2626]/60'
+            scrolled ? 'bg-[#1F5FA8]/80' : 'bg-[#1F5FA8]/60'
           }`} 
           style={{ 
             clipPath: 'polygon(50px 0, 100% 0, 100% 100%, 0% 100%)',
@@ -126,13 +126,10 @@ export default function Navbar() {
             to="/"
             className="flex min-w-0 items-center gap-3.5 py-2 group shrink-0"
           >
-            {/* White frosted border box for high visibility */}
-            <div className="p-1.5 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-sm transition-all duration-300 group-hover:border-white/40 group-hover:bg-white/15">
-              <Logo className="h-12 w-16 shrink-0 transition-transform duration-300 group-hover:scale-105" />
-            </div>
+            <Logo className="h-14 w-16 shrink-0 transition-transform duration-300 group-hover:scale-105" />
             <div className="flex min-w-0 flex-col justify-center">
               <span className="truncate font-heading font-black text-[21px] tracking-tight text-white leading-none xl:text-[23px] 2xl:text-[25px]">
-                Thermal <span className="text-[#D65A32]">Engitech</span>
+                Thermal <span className="text-[#2E76C9]">Engitech</span>
               </span>
             </div>
           </Link>
@@ -153,7 +150,7 @@ export default function Navbar() {
                 >
                   {item.label}
                   {active && (
-                    <span className="absolute bottom-[-10px] left-2.5 right-2.5 h-[3px] bg-[#B3401F] rounded-full shadow-[0_0_8px_rgba(37,99,235,0.6)]" />
+                    <span className="absolute bottom-[-10px] left-2.5 right-2.5 h-[3px] bg-[#1F5FA8] rounded-full shadow-[0_0_8px_rgba(37,99,235,0.6)]" />
                   )}
                 </Link>
               );
@@ -168,7 +165,7 @@ export default function Navbar() {
               className="flex items-center gap-2 text-white/95 hover:text-white transition-all duration-150 font-sans font-bold text-[11px] xl:text-[12px] uppercase tracking-wider whitespace-nowrap group"
             >
               <span className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center transition-colors group-hover:bg-white/20">
-                <Phone className="w-3.5 h-3.5 text-[#E2793D] fill-[#E2793D]" />
+                <Phone className="w-3.5 h-3.5 text-[#5B9BD9] fill-[#5B9BD9]" />
               </span>
               <span className="border-b border-white/20 group-hover:border-white/50 pb-0.5">
                 +91 79 4005 5280
@@ -223,7 +220,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className={`w-full text-left px-3.5 py-3 font-sans font-semibold text-xs uppercase tracking-wider rounded-xl transition-all block ${
                   active
-                    ? 'text-white bg-white/10 border-l-4 border-[#B3401F]'
+                    ? 'text-white bg-white/10 border-l-4 border-[#1F5FA8]'
                     : 'text-slate-200 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -237,7 +234,7 @@ export default function Navbar() {
               href="tel:+917940055280" 
               className="flex items-center justify-center gap-2 text-xs font-bold text-white bg-white/5 p-3.5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors"
             >
-              <Phone className="w-4 h-4 text-[#E2793D]" />
+              <Phone className="w-4 h-4 text-[#5B9BD9]" />
               <span>Call Support: +91 79 4005 5280</span>
             </a>
             <Link
