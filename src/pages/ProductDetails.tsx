@@ -239,11 +239,11 @@ export default function ProductDetails() {
         <p className="text-slate-500 max-w-sm mx-auto text-xs leading-normal">
           The requested system schematic could not be loaded. It may have been archived or updated.
         </p>
-        <Link 
+        <Link
           to="/products"
-          className="inline-block px-5 py-2.5 bg-[#0D1B2A] text-white hover:bg-[#1F5FA8] font-bold text-xs uppercase tracking-wider rounded-lg transition"
+          className="inline-flex items-center justify-center rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] px-5 py-3 text-sm font-semibold text-white transition-colors"
         >
-          Return to Catalog
+          Return to catalog
         </Link>
       </div>
     );
@@ -328,7 +328,7 @@ export default function ProductDetails() {
 
           {/* Sizing description breakdown */}
           <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg space-y-4">
-            <h3 className="text-sm uppercase font-mono font-bold tracking-wider text-[#0D1B2A] border-b border-slate-100 pb-3">
+            <h3 className="text-base font-heading font-bold tracking-tight text-[#0D1B2A] border-b border-slate-100 pb-3">
               Design & Operations Overview
             </h3>
             <p className="text-xs text-slate-600 leading-relaxed font-sans">
@@ -338,7 +338,7 @@ export default function ProductDetails() {
 
           {/* Technical specifications — the data existed but was never surfaced before */}
           <div className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden">
-            <h3 className="text-sm uppercase font-mono font-bold tracking-wider text-[#0D1B2A] border-b border-slate-100 px-6 pt-6 pb-3">
+            <h3 className="text-base font-heading font-bold tracking-tight text-[#0D1B2A] border-b border-slate-100 px-6 pt-6 pb-3">
               Technical Specifications
             </h3>
             <div>
@@ -356,7 +356,7 @@ export default function ProductDetails() {
 
           {/* Features and standards ticks */}
           <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg space-y-6">
-            <h3 className="text-sm uppercase font-mono font-bold tracking-wider text-[#0D1B2A] border-b border-slate-100 pb-3 flex items-center gap-2">
+            <h3 className="text-base font-heading font-bold tracking-tight text-[#0D1B2A] border-b border-slate-100 pb-3 flex items-center gap-2">
               <Cpu className="w-4 h-4 text-[#1F5FA8]" />
               <span>Key Performance Features</span>
             </h3>
@@ -514,9 +514,9 @@ export default function ProductDetails() {
 
                 <button
                   type="submit"
-                  className="w-full py-3 bg-[#1F5FA8] hover:bg-[#0D1B2A] text-white font-bold uppercase tracking-wider rounded-lg shadow-sm transition cursor-pointer text-xs"
+                  className="w-full inline-flex items-center justify-center rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] py-3.5 text-sm font-semibold text-white shadow-sm transition-colors cursor-pointer"
                 >
-                  Submit Sizing Enquiry
+                  Submit sizing enquiry
                 </button>
 
               </form>
