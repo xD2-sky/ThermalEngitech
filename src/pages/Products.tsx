@@ -7,17 +7,7 @@ import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PRODUCTS } from '../data';
 import { Product } from '../types';
-import { 
-  ArrowRight, 
-  Layers, 
-  Compass, 
-  Cpu, 
-  ExternalLink,
-  ChevronRight,
-  ShieldCheck,
-  CheckCircle2,
-  PackageCheck
-} from 'lucide-react';
+import { ChevronRight, ShieldCheck, PackageCheck } from 'lucide-react';
 
 // Highly detailed SVG CAD Graphics representing the product images
 function ProductImage({ type }: { type: 'boiler' | 'heater' | 'generator' | 'exchanger' | 'prs' | 'preheater' | 'pollution' | 'other' }) {

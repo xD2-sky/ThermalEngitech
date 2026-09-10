@@ -66,16 +66,6 @@ h1 { letter-spacing: -0.028em; }
   font-weight: 700;
 }
 
-/* Small kicker / eyebrow labels: quiet, spaced, sentence of the section */
-.eyebrow {
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-blue-2);
-}
-
 /* The "typewriter caps" kicker pattern (font-mono + uppercase) reads as a
    stage prop. Where it's used as a label — not for figures — set it in the
    body face with calm tracking. Numeric spec data uses font-mono WITHOUT
@@ -122,36 +112,11 @@ h1 { letter-spacing: -0.028em; }
 }
 
 /* ------------------------------------------------------------------ *
- *  Scrollbars — neutral, unobtrusive
- * ------------------------------------------------------------------ */
-.scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: rgba(11, 27, 43, 0.06);
-}
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(71, 86, 106, 0.35);
-  border-radius: 99px;
-}
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: rgba(71, 86, 106, 0.55);
-}
-
-/* ------------------------------------------------------------------ *
- *  Texture — kept only as a whisper, never a motif
+ *  Texture — a faint engineering grid, only on the dark hero
  * ------------------------------------------------------------------ */
 .grid-blueprint {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
-}
-
-/* The drafting-bracket device was doing too much — retire it,
-   keep the class inert so existing markup stays valid. */
-.corner-frame::before,
-.corner-frame::after {
-  display: none !important;
 }

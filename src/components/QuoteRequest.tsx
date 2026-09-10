@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Inquiry } from '../types';
 import { PRODUCTS } from '../data';
-import { Mail, Phone, MapPin, Building, ChevronRight, Clipboard, ShieldCheck, CheckCircle } from 'lucide-react';
+import { ChevronRight, Clipboard, ShieldCheck, CheckCircle } from 'lucide-react';
 
 interface QuoteRequestProps {
   presetProductName: string | null;

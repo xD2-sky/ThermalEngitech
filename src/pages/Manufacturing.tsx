@@ -4,19 +4,8 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { MANUFACTURING_STEPS } from '../data';
-import { 
-  Factory, 
-  Settings, 
-  Layers, 
-  Wrench, 
-  ShieldCheck, 
-  Workflow, 
-  Activity,
-  HeartPulse,
-  HardHat
-} from 'lucide-react';
+import { ShieldCheck, HardHat } from 'lucide-react';
 
 export default function Manufacturing() {
   const shopCapacities = [

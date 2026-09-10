@@ -5,16 +5,7 @@
 
 import React from 'react';
 import CompanyMap from '../components/CompanyMap';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Building, 
-  Clock, 
-  ShieldCheck, 
-  ChevronRight,
-  MessageSquare
-} from 'lucide-react';
+import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 
 export default function ContactUs() {
   const contacts = [

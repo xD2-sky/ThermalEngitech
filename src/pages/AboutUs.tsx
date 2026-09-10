@@ -5,18 +5,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Building, 
-  Users, 
-  Target, 
-  Compass, 
-  Factory, 
-  CheckCircle, 
-  ArrowRight,
-  Sparkles,
-  Award,
-  BookOpen
-} from 'lucide-react';
+import { Building, Target, Compass, Factory, ArrowRight, Sparkles, Award, BookOpen } from 'lucide-react';
 
 export default function AboutUs() {
   const leadership = [

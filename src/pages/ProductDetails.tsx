@@ -7,18 +7,7 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS } from '../data';
 import ProductVideoShowcase from '../components/ProductVideoShowcase';
-import { 
-  ArrowLeft, 
-  ShieldCheck, 
-  Cpu, 
-  Settings, 
-  CheckCircle, 
-  Mail, 
-  Phone,
-  Building,
-  CheckCircle2,
-  ChevronRight
-} from 'lucide-react';
+import { ArrowLeft, ShieldCheck, Cpu, CheckCircle, Mail, Phone, CheckCircle2, ChevronRight } from 'lucide-react';
 
 // Re-using CAD layout illustrations for high-contrast detail views
 function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'generator' | 'exchanger' | 'prs' | 'preheater' | 'pollution' | 'other'; productId?: string }) {

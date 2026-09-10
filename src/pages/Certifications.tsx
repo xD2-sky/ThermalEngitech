@@ -5,15 +5,7 @@
 
 import React from 'react';
 import { CERTIFICATIONS } from '../data';
-import { 
-  BadgeCheck, 
-  ShieldCheck, 
-  CheckCircle, 
-  FileCheck, 
-  Award, 
-  Globe2,
-  FileSpreadsheet
-} from 'lucide-react';
+import { BadgeCheck, ShieldCheck, FileCheck, Award } from 'lucide-react';
 
 export default function Certifications() {
   const auditAgencies = [

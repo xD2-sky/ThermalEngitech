@@ -5,18 +5,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { INDUSTRIES } from '../data';
-import { 
-  Building, 
-  Settings, 
-  TrendingUp, 
-  Droplet, 
-  ShieldAlert, 
-  ChevronRight,
-  Flame,
-  Award,
-  Globe
-} from 'lucide-react';
+import { Building, ChevronRight } from 'lucide-react';
 
 export default function Industries() {
   // Enhanced detailed attributes for each industry to show high-fidelity design
