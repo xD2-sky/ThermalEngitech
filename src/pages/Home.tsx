@@ -83,7 +83,7 @@ export default function Home() {
               key={i}
               className={`flex items-start gap-4 p-7 ${i > 0 ? 'sm:border-l border-[#E1E4E3]' : ''} ${i === 2 ? 'lg:border-l' : ''}`}
             >
-              <t.icon className="w-5 h-5 text-[#1F5FA8] shrink-0 mt-0.5" strokeWidth={1.75} />
+              <t.icon className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
               <div className="text-left">
                 <h4 className="font-heading font-bold text-sm text-[#0D1B2A] tracking-tight">{t.title}</h4>
                 <p className="text-xs text-slate-500 mt-1 leading-relaxed">{t.desc}</p>
@@ -97,7 +97,7 @@ export default function Home() {
       <div className="bg-white py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E1E4E3]">
         <div className="max-w-7xl mx-auto space-y-14">
           <div className="max-w-2xl space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1F5FA8]">Manufactured systems</p>
+            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">Manufactured systems</p>
             <h2 className="text-3xl md:text-[2.6rem] font-heading font-bold text-[#0D1B2A] tracking-tight leading-[1.05]">
               Our core product range
             </h2>
@@ -112,11 +112,11 @@ export default function Home() {
               <Link
                 key={c.title}
                 to={c.href}
-                className="group bg-white p-7 flex flex-col justify-between text-left transition-colors hover:bg-[#0D1B2A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F5FA8]"
+                className="group bg-white p-7 flex flex-col justify-between text-left transition-colors hover:bg-[#0D1B2A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1C5CA8]"
               >
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <div className="w-11 h-11 rounded-lg border border-[#E1E4E3] group-hover:border-white/20 flex items-center justify-center text-[#1F5FA8] group-hover:text-[#7FB2E4] transition-colors">
+                    <div className="w-11 h-11 rounded-lg border border-[#E1E4E3] group-hover:border-white/20 flex items-center justify-center text-[#1C5CA8] group-hover:text-[#7FB2E4] transition-colors">
                       <c.icon className="w-5 h-5" strokeWidth={1.75} />
                     </div>
                     <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-200" />
@@ -126,7 +126,7 @@ export default function Home() {
                     {c.desc}
                   </p>
                 </div>
-                <div className="pt-6 mt-6 border-t border-[#E1E4E3] group-hover:border-white/10 flex items-center gap-1.5 text-[13px] font-semibold text-[#1F5FA8] group-hover:text-[#7FB2E4]">
+                <div className="pt-6 mt-6 border-t border-[#E1E4E3] group-hover:border-white/10 flex items-center gap-1.5 text-[13px] font-semibold text-[#1C5CA8] group-hover:text-[#7FB2E4]">
                   <span>{c.cta}</span>
                   <ChevronRight className="w-4 h-4" />
                 </div>
@@ -141,7 +141,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-6 text-left">
-              <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1F5FA8]">Thermal Engitech advantages</p>
+              <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">Thermal Engitech advantages</p>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0D1B2A] tracking-tight leading-[1.05]">
                 High-efficiency process heating, over a decade in the field
               </h2>
@@ -154,14 +154,14 @@ export default function Home() {
 
               <div className="space-y-4 pt-2">
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#1F5FA8] shrink-0 mt-0.5" strokeWidth={1.75} />
+                  <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
                   <div>
                     <h5 className="font-bold text-sm text-[#0D1B2A]">Advanced HTRI sizing calculations</h5>
                     <p className="text-xs text-slate-500 leading-relaxed">Dynamic fluid simulations to guarantee thermal performance without hot spots.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#1F5FA8] shrink-0 mt-0.5" strokeWidth={1.75} />
+                  <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
                   <div>
                     <h5 className="font-bold text-sm text-[#0D1B2A]">Volumetric welder qualifications</h5>
                     <p className="text-xs text-slate-500 leading-relaxed">Every weld root is qualified under ASME Sec IX criteria with 100% radiography scanning.</p>
@@ -189,7 +189,7 @@ export default function Home() {
             {/* Feature grid */}
             <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#E1E4E3] border border-[#E1E4E3]">
               <div className="bg-white p-6 space-y-3.5 text-left">
-                <div className="w-10 h-10 border border-[#E1E4E3] flex items-center justify-center text-[#1F5FA8]">
+                <div className="w-10 h-10 border border-[#E1E4E3] flex items-center justify-center text-[#1C5CA8]">
                   <Flame className="w-5 h-5" strokeWidth={1.75} />
                 </div>
                 <h4 className="font-heading font-bold text-sm text-[#0D1B2A]">Precision firing controls</h4>
@@ -199,7 +199,7 @@ export default function Home() {
               </div>
 
               <div className="bg-white p-6 space-y-3.5 text-left">
-                <div className="w-10 h-10 border border-[#E1E4E3] flex items-center justify-center text-[#1F5FA8]">
+                <div className="w-10 h-10 border border-[#E1E4E3] flex items-center justify-center text-[#1C5CA8]">
                   <Droplets className="w-5 h-5" strokeWidth={1.75} />
                 </div>
                 <h4 className="font-heading font-bold text-sm text-[#0D1B2A]">IBR dry steam output</h4>
@@ -209,7 +209,7 @@ export default function Home() {
               </div>
 
               <div className="bg-white p-6 space-y-3.5 text-left">
-                <div className="w-10 h-10 border border-[#E1E4E3] flex items-center justify-center text-[#1F5FA8]">
+                <div className="w-10 h-10 border border-[#E1E4E3] flex items-center justify-center text-[#1C5CA8]">
                   <Coins className="w-5 h-5" strokeWidth={1.75} />
                 </div>
                 <h4 className="font-heading font-bold text-sm text-[#0D1B2A]">Lower operating costs</h4>
@@ -219,12 +219,12 @@ export default function Home() {
               </div>
 
               <div className="bg-[#0D1B2A] text-white p-6 flex flex-col justify-between items-start text-left">
-                <b className="text-[10px] font-mono tracking-widest text-[#2E76C9] uppercase">Certified works</b>
+                <b className="text-[10px] font-mono tracking-widest text-[#2F7BD4] uppercase">Certified works</b>
                 <div className="space-y-1.5 py-4">
                   <h4 className="text-2xl font-heading font-bold">1,200+</h4>
                   <p className="text-xs text-slate-300">High-dryness steam installations deployed worldwide.</p>
                 </div>
-                <Link to="/certifications" className="text-xs font-bold text-[#2E76C9] hover:underline flex items-center gap-1">
+                <Link to="/certifications" className="text-xs font-bold text-[#2F7BD4] hover:underline flex items-center gap-1">
                   Read compliance roster
                   <ChevronRight className="w-3.5 h-3.5" />
                 </Link>
@@ -238,7 +238,7 @@ export default function Home() {
       <div className="bg-white py-24 px-4 sm:px-6 lg:px-8 border-t border-[#E1E4E3]">
         <div className="max-w-7xl mx-auto space-y-14">
           <div className="max-w-2xl space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1F5FA8]">Global applications</p>
+            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">Global applications</p>
             <h2 className="text-3xl md:text-[2.6rem] font-heading font-bold text-[#0D1B2A] tracking-tight leading-[1.05]">
               Supporting major global industries
             </h2>
@@ -252,11 +252,11 @@ export default function Home() {
             {INDUSTRIES.map((ind, i) => (
               <div key={i} className="bg-white hover:bg-[#F7F7F4] transition-colors p-6 flex flex-col justify-between text-left">
                 <div className="space-y-3">
-                  <span className="text-xs font-mono font-bold text-[#1F5FA8]">0{i + 1}</span>
+                  <span className="text-xs font-mono font-bold text-[#1C5CA8]">0{i + 1}</span>
                   <h4 className="font-heading font-bold text-sm text-[#0D1B2A] leading-tight">{ind.name}</h4>
                   <p className="text-slate-500 text-[11px] leading-relaxed">{ind.useCase}</p>
                 </div>
-                <div className="pt-4 border-t border-[#E1E4E3] mt-4 text-[10px] font-mono font-bold text-[#1F5FA8] uppercase">
+                <div className="pt-4 border-t border-[#E1E4E3] mt-4 text-[10px] font-mono font-bold text-[#1C5CA8] uppercase">
                   {ind.solution.split(' & ')[0]}
                 </div>
               </div>
@@ -266,7 +266,7 @@ export default function Home() {
           <div className="pt-2">
             <Link
               to="/industries"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1F5FA8] hover:text-[#2F7BD4]"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1C5CA8] hover:text-[#2F7BD4]"
             >
               <span>Explore industry solutions</span>
               <ChevronRight className="w-4 h-4" />

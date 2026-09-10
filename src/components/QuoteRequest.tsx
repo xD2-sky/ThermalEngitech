@@ -70,7 +70,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
       
       {/* Intro section */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1F5FA8]">
+        <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
           Industrial Project Integration
         </p>
         <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0D1B2A]">
@@ -88,15 +88,15 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
           
           {submittedTicket && (
             <div className="absolute inset-0 bg-white/98 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 animate-fadeIn">
-              <CheckCircle className="w-16 h-16 text-[#1F5FA8] mb-4" />
+              <CheckCircle className="w-16 h-16 text-[#1C5CA8] mb-4" />
               <h3 className="text-2xl font-heading font-bold text-[#0D1B2A]">Quotation Ticket Dispatched</h3>
               <p className="text-sm text-[#17222E] max-w-md mt-2 leading-relaxed">
-                Thank you! Your thermodynamic specifications ticket <b className="text-[#1F5FA8] font-bold">{submittedTicket}</b> has been queued. Our systems engineers will contact your representative.
+                Thank you! Your thermodynamic specifications ticket <b className="text-[#1C5CA8] font-bold">{submittedTicket}</b> has been queued. Our systems engineers will contact your representative.
               </p>
               
               <button
                 onClick={() => setSubmittedTicket(null)}
-                className="mt-6 px-5 py-2.5 bg-[#0D1B2A] hover:bg-[#1F5FA8] text-white text-xs font-bold rounded-lg transition"
+                className="mt-6 px-5 py-2.5 bg-[#0D1B2A] hover:bg-[#1C5CA8] text-white text-xs font-bold rounded-lg transition"
               >
                 Submit Another Specification Form
               </button>
@@ -105,7 +105,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
           <form onSubmit={handleSubmit} className="space-y-6 text-left">
             <h3 className="text-base font-heading font-semibold text-[#0D1B2A] flex items-center gap-2">
-              <Clipboard className="w-5 h-5 text-[#1F5FA8]" />
+              <Clipboard className="w-5 h-5 text-[#1C5CA8]" />
               Thermal Engineering Spec Sheet
             </h3>
 
@@ -121,7 +121,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   placeholder="e.g. Apex Chemical Processing Pvt Ltd"
                   value={formData.companyName}
                   onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1F5FA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
 
@@ -133,7 +133,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   placeholder="e.g. Dr. Harish Mehta"
                   value={formData.contactPerson}
                   onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1F5FA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   placeholder="name@company.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1F5FA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
 
@@ -159,7 +159,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   placeholder="e.g. +91 98250 14820"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1F5FA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
             </div>
@@ -171,7 +171,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 <select
                   value={formData.requiredProduct}
                   onChange={(e) => setFormData({ ...formData, requiredProduct: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-semibold focus:outline-none focus:border-[#1F5FA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 >
                   {PRODUCTS.map((prod) => (
                     <option key={prod.id} value={prod.name}>
@@ -189,7 +189,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   placeholder="e.g. 5.0 Tons/hr or 1,200,000 kcal/hr"
                   value={formData.capacity}
                   onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1F5FA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
             </div>
@@ -202,13 +202,13 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 placeholder="List targeted continuous runtime, specific construction grades (e.g. SS316, ASTM A516 Gr.70), statutory IBR layout requirements, design fuel (Natural Gas, bio-briquettes), or space boundary constraints..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1F5FA8] focus:bg-white transition leading-relaxed"
+                className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition leading-relaxed"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-[#0D1B2A] hover:bg-[#1F5FA8] text-white font-heading font-semibold text-xs uppercase tracking-wider rounded-lg shadow-md hover:shadow-lg transition duration-200 cursor-pointer flex items-center justify-center gap-2"
+              className="w-full py-3.5 bg-[#0D1B2A] hover:bg-[#1C5CA8] text-white font-heading font-semibold text-xs uppercase tracking-wider rounded-lg shadow-md hover:shadow-lg transition duration-200 cursor-pointer flex items-center justify-center gap-2"
             >
               <span>Submit Sizing Specs to Engineering Division</span>
               <ChevronRight className="w-4 h-4 stroke-[2.5]" />
@@ -222,7 +222,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
           
           <div className="bg-white border border-[#E1E4E3] rounded-xl p-6 space-y-5 text-left">
             <h3 className="text-md font-heading font-bold text-[#0D1B2A] flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-[#1F5FA8]" />
+              <ShieldCheck className="w-5 h-5 text-[#1C5CA8]" />
               Quality Inspection Mandates
             </h3>
             <p className="text-xs text-slate-600 leading-relaxed">
@@ -263,8 +263,8 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 {savedInquiries.map((inq) => (
                   <div key={inq.id} className="bg-[#F7F7F4] border border-[#E1E4E3] p-4 rounded-lg space-y-2 text-xs">
                     <div className="flex justify-between items-center">
-                      <span className="font-mono text-[#1F5FA8] font-bold text-[11px]">{inq.id}</span>
-                      <span className="px-2 py-0.5 bg-[#1F5FA8]/10 text-[#1F5FA8] rounded-full text-[9px] font-bold">
+                      <span className="font-mono text-[#1C5CA8] font-bold text-[11px]">{inq.id}</span>
+                      <span className="px-2 py-0.5 bg-[#1C5CA8]/10 text-[#1C5CA8] rounded-full text-[9px] font-bold">
                         RECEIVED
                       </span>
                     </div>

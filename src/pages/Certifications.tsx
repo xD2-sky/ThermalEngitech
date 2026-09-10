@@ -24,7 +24,7 @@ export default function Certifications() {
       <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-5 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:2.5rem_2.5rem]" />
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#5B9BD9] uppercase">
+          <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
             Compliance Standards
           </span>
           <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
@@ -43,13 +43,13 @@ export default function Certifications() {
           {CERTIFICATIONS.map((cert, i) => (
             <div 
               key={i}
-              className="bg-white border border-[#E1E4E3] p-6 md:p-8 rounded-lg shadow-sm hover:shadow transition duration-200 flex flex-col justify-between h-full group hover:border-[#1F5FA8]/35"
+              className="bg-white border border-[#E1E4E3] p-6 md:p-8 rounded-lg shadow-sm hover:shadow transition duration-200 flex flex-col justify-between h-full group hover:border-[#1C5CA8]/35"
             >
               <div className="space-y-4">
-                <div className="w-12 h-12 bg-[#1F5FA8]/10 rounded-xl flex items-center justify-center text-[#1F5FA8]">
+                <div className="w-12 h-12 bg-[#1C5CA8]/10 rounded-xl flex items-center justify-center text-[#1C5CA8]">
                   <BadgeCheck className="w-6 h-6" />
                 </div>
-                <h3 className="font-heading font-extrabold text-lg text-[#0D1B2A] leading-snug group-hover:text-[#1F5FA8] transition duration-200">
+                <h3 className="font-heading font-extrabold text-lg text-[#0D1B2A] leading-snug group-hover:text-[#1C5CA8] transition duration-200">
                   {cert.title}
                 </h3>
                 <p className="text-xs text-slate-500 font-sans leading-relaxed">
@@ -59,7 +59,7 @@ export default function Certifications() {
 
               <div className="pt-4 border-t border-slate-100 mt-6 flex items-center justify-between text-[10px] font-mono font-bold text-slate-400">
                 <span>GOVERNING BODY:</span>
-                <span className="text-[#1F5FA8] text-[11px] font-bold">{cert.authority}</span>
+                <span className="text-[#1C5CA8] text-[11px] font-bold">{cert.authority}</span>
               </div>
             </div>
           ))}
@@ -69,7 +69,7 @@ export default function Certifications() {
         <div className="bg-white border border-[#E1E4E3] rounded-lg p-6 md:p-8 space-y-8 shadow-xs text-left">
           <div className="space-y-2 border-b border-slate-100 pb-4">
             <h3 className="font-heading font-extrabold text-lg text-[#0D1B2A] flex items-center gap-2">
-              <FileCheck className="w-5 h-5 text-[#1F5FA8]" />
+              <FileCheck className="w-5 h-5 text-[#1C5CA8]" />
               <span>Third-Party Physical Testing Agencies</span>
             </h3>
             <p className="text-xs text-slate-500 font-sans leading-relaxed">
@@ -80,7 +80,7 @@ export default function Certifications() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-sans">
             {auditAgencies.map((agency, i) => (
               <div key={i} className="flex gap-3.5 items-start p-4 bg-[#F1F1ED] border border-slate-100 rounded-xl hover:bg-slate-50 transition">
-                <div className="p-2 bg-white rounded-lg border border-slate-200 text-[#1F5FA8] shrink-0 font-mono text-xs font-bold shadow-xs">
+                <div className="p-2 bg-white rounded-lg border border-slate-200 text-[#1C5CA8] shrink-0 font-mono text-xs font-bold shadow-xs">
                   0{i + 1}
                 </div>
                 <div className="space-y-0.5 text-left">
@@ -97,13 +97,13 @@ export default function Certifications() {
           <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]" />
           <div className="relative z-10 max-w-4xl space-y-4 text-left">
             <h4 className="font-heading font-extrabold text-lg text-white flex items-center gap-1.5 uppercase tracking-wide">
-              <Award className="w-5 h-5 text-[#5B9BD9]" />
+              <Award className="w-5 h-5 text-[#7FB2E4]" />
               <span>Statutory Compliance Declaration</span>
             </h4>
             <p className="text-xs text-slate-300 leading-relaxed font-sans">
               "Thermal Engitech Pvt. Ltd. certifies that all high-pressure steam boilers, thermic heaters, and pressure reducing manifolds are manufactured under continuous inspection by either state-appointed Boiler Inspectors or customer-approved international inspect agencies. Rigorous volumetric joints radiography, mechanical hydrotesting, and thickness verifications stand standard on our plant floor."
             </p>
-            <div className="pt-2 flex flex-wrap gap-x-8 gap-y-2 text-[10px] font-mono tracking-wider font-bold uppercase text-[#5B9BD9]">
+            <div className="pt-2 flex flex-wrap gap-x-8 gap-y-2 text-[10px] font-mono tracking-wider font-bold uppercase text-[#7FB2E4]">
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> Form VI certified</span>
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> Class 1 IBR boiler standards</span>
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> ASME U & S compliance capabilities</span>

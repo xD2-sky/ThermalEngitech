@@ -33,7 +33,7 @@ export default function AboutUs() {
       <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-5 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:3rem_3rem]" />
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#2E76C9] uppercase">
+          <span className="text-xs font-mono font-bold tracking-widest text-[#2F7BD4] uppercase">
             Corporate Footprint
           </span>
           <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
@@ -52,7 +52,7 @@ export default function AboutUs() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-7 space-y-6">
-              <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1F5FA8]">
+              <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
                 Our History & Vision
               </p>
               <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0D1B2A]">
@@ -74,19 +74,19 @@ export default function AboutUs() {
               {/* Plant stats counts */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 border-t border-[#E1E4E3] text-center sm:text-left">
                 <div>
-                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1F5FA8]">1,200+</span>
+                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1C5CA8]">1,200+</span>
                   <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold font-mono">Commissioned Plants</span>
                 </div>
                 <div>
-                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1F5FA8]">15,000 m²</span>
+                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1C5CA8]">15,000 m²</span>
                   <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold font-mono">Dhamatwan Workshop</span>
                 </div>
                 <div>
-                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1F5FA8]">100%</span>
+                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1C5CA8]">100%</span>
                   <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold font-mono">IBR & ASME Compliant</span>
                 </div>
                 <div>
-                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1F5FA8]">12+ Years</span>
+                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1C5CA8]">12+ Years</span>
                   <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold font-mono">Industry Presence</span>
                 </div>
               </div>
@@ -108,7 +108,7 @@ export default function AboutUs() {
               
               <div className="space-y-5">
                 <div className="flex gap-4">
-                  <div className="p-2 bg-[#1F5FA8]/10 rounded-lg text-[#1F5FA8] shrink-0 h-10 w-10 flex items-center justify-center">
+                  <div className="p-2 bg-[#1C5CA8]/10 rounded-lg text-[#1C5CA8] shrink-0 h-10 w-10 flex items-center justify-center">
                     <Target className="w-5 h-5" />
                   </div>
                   <div className="space-y-1">
@@ -120,7 +120,7 @@ export default function AboutUs() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="p-2 bg-[#1F5FA8]/10 rounded-lg text-[#1F5FA8] shrink-0 h-10 w-10 flex items-center justify-center">
+                  <div className="p-2 bg-[#1C5CA8]/10 rounded-lg text-[#1C5CA8] shrink-0 h-10 w-10 flex items-center justify-center">
                     <Compass className="w-5 h-5" />
                   </div>
                   <div className="space-y-1">
@@ -132,7 +132,7 @@ export default function AboutUs() {
                 </div>
 
                 <div className="flex gap-4">
-                  <div className="p-2 bg-[#1F5FA8]/10 rounded-lg text-[#1F5FA8] shrink-0 h-10 w-10 flex items-center justify-center">
+                  <div className="p-2 bg-[#1C5CA8]/10 rounded-lg text-[#1C5CA8] shrink-0 h-10 w-10 flex items-center justify-center">
                     <Sparkles className="w-5 h-5" />
                   </div>
                   <div className="space-y-1">
@@ -155,7 +155,7 @@ export default function AboutUs() {
         <div className="max-w-7xl mx-auto space-y-12">
           
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1F5FA8]">
+            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
               Leadership Team
             </p>
             <h2 className="text-3xl font-heading font-bold text-[#0D1B2A]">
@@ -173,17 +173,17 @@ export default function AboutUs() {
                 className="bg-white border border-[#E1E4E3] rounded-xl p-6 shadow-sm space-y-4 flex flex-col justify-between"
               >
                 <div className="space-y-3 text-left">
-                  <div className="h-12 w-12 rounded-full bg-[#1F5FA8]/10 text-[#1F5FA8] flex items-center justify-center font-bold font-heading text-lg">
+                  <div className="h-12 w-12 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] flex items-center justify-center font-bold font-heading text-lg">
                     {lead.name.split(' ')[1][0]}
                   </div>
                   <div>
                     <h4 className="font-heading font-extrabold text-sm text-[#0D1B2A]">{lead.name}</h4>
-                    <span className="text-[10px] uppercase font-mono font-bold text-[#1F5FA8]">{lead.role}</span>
+                    <span className="text-[10px] uppercase font-mono font-bold text-[#1C5CA8]">{lead.role}</span>
                   </div>
                   <p className="text-xs text-slate-500 font-sans leading-relaxed">{lead.description}</p>
                 </div>
 
-                <div className="pt-4 border-t border-[#E1E4E3] text-[10px] font-bold text-[#1F5FA8] flex items-center gap-1.5 font-mono">
+                <div className="pt-4 border-t border-[#E1E4E3] text-[10px] font-bold text-[#1C5CA8] flex items-center gap-1.5 font-mono">
                   <Award className="w-3.5 h-3.5" />
                   <span>ISO Audit Representative</span>
                 </div>
@@ -197,7 +197,7 @@ export default function AboutUs() {
       {/* Corporate Philosophy Section */}
       <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-10">
-          <BookOpen className="w-12 h-12 text-[#1F5FA8] mx-auto opacity-80" />
+          <BookOpen className="w-12 h-12 text-[#1C5CA8] mx-auto opacity-80" />
           
           <div className="space-y-4">
             <h3 className="text-2xl font-heading font-bold text-[#0D1B2A]">Our Ongoing Mission</h3>
@@ -209,7 +209,7 @@ export default function AboutUs() {
           <div className="pt-4 flex justify-center gap-4">
             <Link 
               to="/products"
-              className="px-5 py-2.5 bg-[#0D1B2A] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow hover:bg-[#1F5FA8] transition flex items-center gap-1.5"
+              className="px-5 py-2.5 bg-[#0D1B2A] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow hover:bg-[#1C5CA8] transition flex items-center gap-1.5"
             >
               <span>View our products</span>
               <ArrowRight className="w-3.5 h-3.5" />

@@ -20,12 +20,12 @@ export default function Manufacturing() {
     <div className="space-y-0 text-left bg-[#F1F1ED] min-h-screen">
       
       {/* Banner */}
-      <div className="bg-[#0D1B2A] text-white border-b border-[#1F5FA8]/25 relative overflow-hidden">
+      <div className="bg-[#0D1B2A] text-white border-b border-[#1C5CA8]/25 relative overflow-hidden">
         {/* Subtle industrial blueprint network line */}
         <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:4rem_4rem]" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#5B9BD9]">
+            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#7FB2E4]">
               Dhamatwan Workshop Facility
             </p>
             <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
@@ -51,7 +51,7 @@ export default function Manufacturing() {
         {/* Left Column (Narrative and equipment table) */}
         <div className="lg:col-span-7 space-y-10">
           <div className="space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1F5FA8]">
+            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
               Production Machinery
             </p>
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0D1B2A]">
@@ -65,14 +65,14 @@ export default function Manufacturing() {
           <div className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs">
             <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
               <h3 className="text-xs uppercase font-mono font-bold text-[#0D1B2A] flex items-center gap-2">
-                <HardHat className="w-4 h-4 text-[#1F5FA8]" />
+                <HardHat className="w-4 h-4 text-[#1C5CA8]" />
                 <span>Shop Floor Equipment & Roster Limits</span>
               </h3>
             </div>
             <div className="divide-y divide-slate-100">
               {shopCapacities.map((cap, idx) => (
                 <div key={idx} className="p-6 grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-6 hover:bg-slate-50 transition">
-                  <span className="text-xs font-mono font-bold text-[#1F5FA8] uppercase sm:col-span-1 leading-tight">
+                  <span className="text-xs font-mono font-bold text-[#1C5CA8] uppercase sm:col-span-1 leading-tight">
                     {cap.label}
                   </span>
                   <span className="text-xs text-slate-600 leading-relaxed font-sans sm:col-span-3">
@@ -86,7 +86,7 @@ export default function Manufacturing() {
 
         {/* Right Column (Standard Quality Assurance Accreditations summary) */}
         <div className="lg:col-span-5 bg-white border border-[#E1E4E3] rounded-lg p-6 md:p-8 space-y-6 self-start shadow-xs text-left">
-          <div className="p-3 bg-[#1F5FA8]/10 rounded-xl text-[#1F5FA8] w-12 h-12 flex items-center justify-center">
+          <div className="p-3 bg-[#1C5CA8]/10 rounded-xl text-[#1C5CA8] w-12 h-12 flex items-center justify-center">
             <ShieldCheck className="w-6 h-6" />
           </div>
           
@@ -101,15 +101,15 @@ export default function Manufacturing() {
 
           <ul className="space-y-3.5 text-xs text-slate-600 font-sans">
             <li className="flex items-start gap-2.5">
-              <span className="text-[#1F5FA8] font-bold">✓</span>
+              <span className="text-[#1C5CA8] font-bold">✓</span>
               <span><strong>MTR Verification:</strong> Mill Test Reports proving absolute chemical composition & yield stress properties from steel manufacturers.</span>
             </li>
             <li className="flex items-start gap-2.5">
-              <span className="text-[#1F5FA8] font-bold">✓</span>
+              <span className="text-[#1C5CA8] font-bold">✓</span>
               <span><strong>NDT Radiography:</strong> Full joint longitudinal and circumferential weld scans to eliminate root voids.</span>
             </li>
             <li className="flex items-start gap-2.5">
-              <span className="text-[#1F5FA8] font-bold">✓</span>
+              <span className="text-[#1C5CA8] font-bold">✓</span>
               <span><strong>Form VI Approval:</strong> Official statutory Certificate issued directly by State Boiler Inspectors after physical hydrostatic pressure testing.</span>
             </li>
           </ul>
@@ -121,7 +121,7 @@ export default function Manufacturing() {
       <div className="bg-slate-100 py-20 px-4 sm:px-6 lg:px-8 border-t border-[#E1E4E3]">
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1F5FA8]">
+            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
               Production Steps
             </p>
             <h2 className="text-3xl font-heading font-bold text-[#0D1B2A]">
@@ -136,11 +136,11 @@ export default function Manufacturing() {
             {MANUFACTURING_STEPS.map((step, i) => (
               <div 
                 key={i}
-                className="bg-white border border-[#E1E4E3] p-6 rounded-lg hover:border-[#1F5FA8]/35 transition shadow-sm space-y-3.5 flex flex-col justify-between"
+                className="bg-white border border-[#E1E4E3] p-6 rounded-lg hover:border-[#1C5CA8]/35 transition shadow-sm space-y-3.5 flex flex-col justify-between"
               >
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="font-mono text-xs font-bold text-[#1F5FA8] uppercase tracking-wider">
+                    <span className="font-mono text-xs font-bold text-[#1C5CA8] uppercase tracking-wider">
                       Stage {step.step}
                     </span>
                     <span className="text-[10px] uppercase font-mono text-slate-400">Section GIDC</span>
