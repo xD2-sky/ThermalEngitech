@@ -13,83 +13,83 @@ interface HeroProps {
 
 export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
   return (
-    <section id="hero" className="relative bg-[#0D1B2A] text-white overflow-hidden font-sans">
-      {/* Fine blueprint grid, dark ink base */}
-      <div className="absolute inset-0 grid-blueprint opacity-40" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A141F] via-[#0D1B2A] to-[#0D1B2A]" />
-      {/* Warm glow seated behind the product photo */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[640px] h-[640px] rounded-full bg-[#1F5FA8]/20 blur-[120px] pointer-events-none" />
+    <section id="hero" className="relative bg-[#0B1B2B] text-white overflow-hidden font-sans">
+      {/* Depth: soft vertical gradient + one quiet light source behind the unit */}
+      <div className="absolute inset-0 grid-blueprint" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#081420] via-[#0B1B2B] to-[#0B1B2B]" />
+      <div className="absolute right-[-6rem] top-1/2 -translate-y-1/2 w-[620px] h-[620px] rounded-full bg-[#1C5CA8]/18 blur-[130px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-4 pt-28 pb-16 lg:pt-32 lg:pb-0 lg:min-h-[88vh]">
+      <div className="relative z-10 max-w-[1320px] mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-12 lg:gap-8 pt-32 pb-20 lg:pt-36 lg:pb-24">
 
           {/* ---------------- Text column ---------------- */}
-          <div className="lg:col-span-7 space-y-7 text-left">
+          <div className="lg:col-span-7 max-w-2xl">
 
-            <div className="inline-flex items-center gap-2 pl-2.5 pr-3.5 py-1.5 border border-white/15 text-slate-200 text-[11px] font-mono tracking-wide uppercase">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#2E76C9]" />
-              <span>ISO 9001:2015 · ASME · IBR 1950 Compliant</span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] pl-2.5 pr-3.5 py-1.5 text-slate-200 text-xs font-medium tracking-wide">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#7FB2E4]" />
+              <span>ISO 9001:2015 &nbsp;·&nbsp; ASME &nbsp;·&nbsp; IBR 1950 Compliant</span>
             </div>
 
-            <div className="space-y-5">
-              <h1 className="text-[13vw] leading-[0.95] sm:text-6xl lg:text-[4.6rem] xl:text-[5rem] font-heading font-black tracking-tight uppercase">
-                Engineering<br />
-                <span className="text-[#2E76C9]">Industrial Heat</span>
-              </h1>
+            <h1 className="mt-7 text-4xl sm:text-5xl lg:text-[3.4rem] font-heading font-extrabold leading-[1.06] text-white">
+              Industrial heat systems,
+              <span className="block text-[#7FB2E4]">built to keep running</span>
+            </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl">
-                Thermal Engitech designs and manufactures steam boilers, thermic fluid heaters and
-                process heat systems for plants that cannot afford downtime — built in Dhamatwan,
-                Gujarat, and certified for both Indian and export standards.
-              </p>
-            </div>
+            <p className="mt-6 text-base sm:text-lg text-slate-300/90 leading-relaxed max-w-xl">
+              Thermal Engitech designs and manufactures steam boilers, thermic fluid heaters and
+              process-heat systems for plants where unplanned downtime is not an option — built in
+              Dhamatwan, Gujarat, and certified to both Indian and export standards.
+            </p>
 
-            <div className="flex flex-col sm:flex-row gap-3.5 pt-1">
+            <div className="mt-9 flex flex-col sm:flex-row gap-3">
               <button
                 onClick={onViewProducts}
-                className="px-7 py-4 bg-[#1F5FA8] hover:bg-[#2E76C9] text-white font-bold text-xs tracking-[0.08em] uppercase transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-colors duration-200 cursor-pointer"
               >
-                <span>Explore the Catalogue</span>
+                <span>Explore the catalogue</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
               <button
                 onClick={onRequestQuote}
-                className="px-7 py-4 bg-transparent text-white border border-white/25 hover:border-white/60 font-bold text-xs tracking-[0.08em] uppercase transition-colors duration-200 cursor-pointer"
+                className="inline-flex items-center justify-center rounded-md border border-white/25 hover:border-white/50 hover:bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-200 cursor-pointer"
               >
-                Request a Quote
+                Request a quote
               </button>
             </div>
 
-            {/* Metrics — set as a spec strip, not a stat-card grid */}
-            <div className="pt-8 border-t border-white/10 grid grid-cols-3 max-w-lg">
+            {/* Metrics — a quiet spec strip */}
+            <dl className="mt-12 grid grid-cols-3 gap-6 max-w-lg border-t border-white/10 pt-7">
               {[
-                ['12+', 'Years engineering'],
+                ['12+', 'Years in the field'],
                 ['1,200+', 'Systems installed'],
                 ['100%', 'IBR-certified builds'],
               ].map(([value, label], i) => (
-                <div key={i} className={`py-1 ${i > 0 ? 'border-l border-white/10 pl-5 ml-5' : ''}`}>
-                  <div className="text-2xl sm:text-3xl font-heading font-bold text-white">{value}</div>
-                  <div className="text-[11px] text-slate-400 uppercase tracking-wide mt-1">{label}</div>
+                <div key={i}>
+                  <dt className="text-2xl sm:text-[1.7rem] font-heading font-bold text-white">{value}</dt>
+                  <dd className="mt-1.5 text-xs text-slate-400 leading-snug">{label}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
 
           {/* ---------------- Product photo column ---------------- */}
-          <div className="lg:col-span-5 relative flex items-center justify-center py-6 lg:py-0">
-            <div className="relative w-full max-w-md">
-              <img
-                src={`${import.meta.env.BASE_URL}images/products/multi-fuel-system.png`}
-                alt="Thermal Engitech multi-fuel fired boiler system"
-                className="relative z-10 w-full h-auto drop-shadow-[0_30px_50px_rgba(0,0,0,0.55)]"
-              />
-              {/* Spec callout tag, corner-frame device ties to the blueprint motif */}
-              <div className="corner-frame absolute -bottom-2 left-0 right-8 sm:right-16 bg-[#0D1B2A]/90 backdrop-blur-sm border border-white/10 px-4 py-3">
-                <p className="text-[10px] font-mono uppercase tracking-widest text-[#2E76C9]">Field unit — Dhamatwan facility</p>
-                <p className="text-xs text-slate-300 mt-1">Multi-fuel fired combi-thermal system, factory-assembled and dispatch-ready</p>
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <figure className="w-full max-w-sm">
+              <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5 sm:p-6">
+                <img
+                  src={`${import.meta.env.BASE_URL}images/products/multi-fuel-system.png`}
+                  alt="Thermal Engitech multi-fuel fired combi-thermal boiler system"
+                  className="w-full h-auto drop-shadow-[0_30px_50px_rgba(0,0,0,0.45)]"
+                />
               </div>
-            </div>
+              <figcaption className="mt-3 flex items-baseline gap-2 text-xs">
+                <span className="font-semibold tracking-wide text-[#7FB2E4] whitespace-nowrap">Field unit</span>
+                <span className="text-slate-400 leading-snug">
+                  Multi-fuel fired combi-thermal system, factory-assembled at Dhamatwan
+                </span>
+              </figcaption>
+            </figure>
           </div>
 
         </div>

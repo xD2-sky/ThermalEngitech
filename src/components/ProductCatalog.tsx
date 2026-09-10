@@ -16,7 +16,7 @@ interface ProductCatalogProps {
 function ProductImage({ type, productId }: { type: 'boiler' | 'heater' | 'generator' | 'exchanger' | 'prs' | 'preheater' | 'pollution' | 'other'; productId?: string }) {
   if (productId === 'oil-gas-3pass-wetback') {
     return (
-      <svg viewBox="0 0 450 300" fill="none" className="w-full h-full max-h-60 drop-shadow-lg transition-transform duration-350 group-hover:scale-105">
+      <svg viewBox="0 0 450 300" fill="none" className="w-full h-full max-h-52 drop-shadow-sm opacity-90">
         {/* Base Stone Tiled Isometric Platform */}
         <path d="M 50,210 L 220,270 L 400,210 L 230,150 Z" fill="url(#base-grad)" stroke="#455A64" strokeWidth="1.5" />
         
@@ -135,7 +135,7 @@ function ProductImage({ type, productId }: { type: 'boiler' | 'heater' | 'genera
   switch (type) {
     case 'boiler':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Main Boiler Drum / Shell */}
           <rect x="50" y="40" width="220" height="120" rx="60" fill="#0D1B2A" stroke="#B3401F" strokeWidth="4" />
           <rect x="58" y="48" width="204" height="104" rx="52" fill="#0D1B2A" opacity="0.8" />
@@ -178,7 +178,7 @@ function ProductImage({ type, productId }: { type: 'boiler' | 'heater' | 'genera
       );
     case 'heater':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Thermal Insulation outer cover */}
           <rect x="80" y="30" width="160" height="145" rx="16" fill="#0D1B2A" stroke="#B3401F" strokeWidth="3.5" />
           
@@ -206,7 +206,7 @@ function ProductImage({ type, productId }: { type: 'boiler' | 'heater' | 'genera
       );
     case 'generator':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Vertical Heat cylinder */}
           <rect x="100" y="25" width="120" height="150" rx="20" fill="#0D1B2A" stroke="#E2793D" strokeWidth="4" />
           <rect x="108" y="33" width="104" height="134" rx="12" fill="#0D1B2A" opacity="0.9" />
@@ -232,7 +232,7 @@ function ProductImage({ type, productId }: { type: 'boiler' | 'heater' | 'genera
       );
     case 'exchanger':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Shell outer cylinder */}
           <rect x="65" y="55" width="190" height="90" rx="10" fill="#0D1B2A" stroke="#B3401F" strokeWidth="3.5" />
           <rect x="73" y="63" width="174" height="74" fill="#0D1B2A" opacity="0.8" />
@@ -270,7 +270,7 @@ function ProductImage({ type, productId }: { type: 'boiler' | 'heater' | 'genera
       );
     case 'prs':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Bottom structural steel frame skid */}
           <rect x="35" y="155" width="250" height="15" fill="#0D1B2A" stroke="#B3401F" strokeWidth="3" />
           <line x1="60" y1="170" x2="60" y2="185" stroke="#B3401F" strokeWidth="3.5" />
@@ -310,7 +310,7 @@ function ProductImage({ type, productId }: { type: 'boiler' | 'heater' | 'genera
       );
     case 'preheater':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Air Pre Heater (APH) Outer Steel Panel Casing */}
           <rect x="80" y="35" width="160" height="130" fill="#0D1B2A" stroke="#B3401F" strokeWidth="3.5" />
           <rect x="88" y="43" width="144" height="114" fill="#0D1B2A" opacity="0.95" />
@@ -341,7 +341,7 @@ function ProductImage({ type, productId }: { type: 'boiler' | 'heater' | 'genera
       );
     case 'pollution':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Centrifugal Cone Dust Collector Separator */}
           {/* Upper Cylindrical Chamber */}
           <rect x="110" y="30" width="100" height="60" fill="#0D1B2A" stroke="#B3401F" strokeWidth="3.5" />
@@ -372,7 +372,7 @@ function ProductImage({ type, productId }: { type: 'boiler' | 'heater' | 'genera
       );
     case 'other':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Main Distribution Steam Header Manifold or Flash Tank */}
           <rect x="90" y="55" width="140" height="70" rx="35" fill="#0D1B2A" stroke="#B3401F" strokeWidth="4.5" />
           <rect x="98" y="63" width="124" height="54" rx="27" fill="#0D1B2A" opacity="0.85" />

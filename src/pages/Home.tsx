@@ -116,20 +116,19 @@ export default function Home() {
               >
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-[#1F5FA8] group-hover:text-[#2E76C9]">{c.n}</span>
-                    <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-white opacity-0 group-hover:opacity-100 -translate-y-1 translate-x-1 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-200" />
-                  </div>
-                  <div className="w-11 h-11 border border-[#E1E4E3] group-hover:border-white/20 flex items-center justify-center text-[#1F5FA8] group-hover:text-[#2E76C9] transition-colors">
-                    <c.icon className="w-5 h-5" strokeWidth={1.75} />
+                    <div className="w-11 h-11 rounded-lg border border-[#E1E4E3] group-hover:border-white/20 flex items-center justify-center text-[#1F5FA8] group-hover:text-[#7FB2E4] transition-colors">
+                      <c.icon className="w-5 h-5" strokeWidth={1.75} />
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-200" />
                   </div>
                   <h4 className="font-heading font-bold text-lg text-[#0D1B2A] group-hover:text-white transition-colors">{c.title}</h4>
-                  <p className="text-slate-500 group-hover:text-slate-300 text-xs leading-relaxed transition-colors">
+                  <p className="text-slate-500 group-hover:text-slate-300 text-[13px] leading-relaxed transition-colors">
                     {c.desc}
                   </p>
                 </div>
-                <div className="pt-6 mt-6 border-t border-[#E1E4E3] group-hover:border-white/10 flex items-center gap-1.5 text-xs font-bold text-[#1F5FA8] group-hover:text-[#2E76C9] uppercase tracking-wide">
+                <div className="pt-6 mt-6 border-t border-[#E1E4E3] group-hover:border-white/10 flex items-center gap-1.5 text-[13px] font-semibold text-[#1F5FA8] group-hover:text-[#7FB2E4]">
                   <span>{c.cta}</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <ChevronRight className="w-4 h-4" />
                 </div>
               </Link>
             ))}
@@ -170,17 +169,17 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="pt-4 flex flex-wrap gap-4">
+              <div className="pt-4 flex flex-wrap gap-3">
                 <Link
                   to="/about"
-                  className="px-5 py-3 bg-[#0D1B2A] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#1F5FA8] transition-colors flex items-center gap-1.5"
+                  className="inline-flex items-center gap-2 rounded-md bg-[#0D1B2A] hover:bg-[#1C5CA8] px-5 py-3 text-sm font-semibold text-white transition-colors"
                 >
                   <span>Learn more about us</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   to="/products"
-                  className="px-5 py-3 border border-[#0D1B2A]/15 bg-white text-[#17222E] hover:border-[#0D1B2A] text-xs font-bold uppercase tracking-wider transition-colors"
+                  className="inline-flex items-center rounded-md border border-[#0D1B2A]/15 bg-white hover:border-[#0D1B2A]/40 px-5 py-3 text-sm font-semibold text-[#17222E] transition-colors"
                 >
                   View product range
                 </Link>
@@ -267,9 +266,9 @@ export default function Home() {
           <div className="pt-2">
             <Link
               to="/industries"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1F5FA8] hover:text-[#2E76C9] uppercase tracking-wider"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1F5FA8] hover:text-[#2F7BD4]"
             >
-              <span>Explore precise industry solutions</span>
+              <span>Explore industry solutions</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
@@ -279,7 +278,7 @@ export default function Home() {
       {/* Call to action panel */}
       <div className="bg-[#F1F1ED] py-16 px-4 sm:px-6 lg:px-8 border-t border-[#E1E4E3]">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-[#0D1B2A] text-white p-8 md:p-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div className="bg-[#0D1B2A] text-white rounded-xl p-8 md:p-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-9 space-y-2 text-left">
               <h4 className="font-heading font-bold text-xl text-white">Ready to consult on a custom plant layout?</h4>
               <p className="text-xs text-slate-300 leading-relaxed max-w-3xl">
@@ -290,7 +289,7 @@ export default function Home() {
             <div className="md:col-span-3 md:text-right">
               <Link
                 to="/request-quote"
-                className="inline-block w-full text-center px-5 py-3.5 bg-[#1F5FA8] hover:bg-[#2E76C9] text-white font-bold text-xs uppercase tracking-wider transition-colors"
+                className="inline-flex w-full items-center justify-center rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] px-5 py-3.5 text-sm font-semibold text-white transition-colors"
               >
                 Start a consultation
               </Link>

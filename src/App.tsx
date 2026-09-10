@@ -28,7 +28,7 @@ export default function App() {
       {/* Scroll restorer handles page switches */}
       <ScrollToTop />
 
-      <div className="min-h-screen bg-[#F7F7F4] text-[#17222E] flex flex-col justify-between select-text scroll-smooth selection:bg-[#2E76C9]/30">
+      <div className="min-h-screen bg-[#FBFBFC] text-[#17222E] flex flex-col justify-between select-text scroll-smooth selection:bg-[#2F7BD4]/25">
         
         {/* Persistent Sticky Header / Navbar */}
         <Navbar />
@@ -50,27 +50,27 @@ export default function App() {
 
         {/* ================= FIXED FLOATING LEAD GENERATION WIDGETS ================= */}
         <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-2.5 items-end font-sans">
-          
+
           {/* Call Now button */}
-          <a 
+          <a
             href="tel:+919825014820"
-            className="flex items-center gap-2 px-3 py-2 bg-[#0D1B2A] hover:bg-[#1F5FA8] text-white text-xs font-bold rounded-full shadow-lg transition-all duration-200 group border border-white/20"
-            title="Call Engineering Coordinator"
+            className="flex items-center gap-2 px-3.5 py-2.5 bg-[#0B1B2B] hover:bg-[#1C5CA8] text-white text-xs font-semibold rounded-full shadow-lg transition-colors duration-200 group border border-white/15"
+            title="Call our engineering coordinator"
           >
-            <Phone className="w-4 h-4 text-[#2E76C9]" />
+            <Phone className="w-4 h-4 text-[#7FB2E4]" />
             <span className="max-w-0 overflow-hidden group-hover:max-w-[145px] transition-all duration-300 ease-in-out whitespace-nowrap">
               +91 98250 14820
             </span>
           </a>
 
-          {/* Sticky WhatsApp button (REQUIRED MOBILE & DESKTOP) */}
-          <a 
+          {/* Sticky WhatsApp button */}
+          <a
             href="https://wa.me/919825014820?text=Hello%20Thermal%20Engitech%20team,%20I%2527m%20interested%20in%20a%20technical%20sizing%20discussion%20for%20our%20plant."
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2.5 px-4 py-3 bg-[#128C4A] hover:bg-[#128C4A]/90 text-white font-bold text-xs uppercase tracking-wide rounded-full shadow-xl transition-all duration-300 group"
+            className="flex items-center gap-2.5 px-4 py-3 bg-[#1F9D57] hover:bg-[#1B8B4D] text-white font-semibold text-sm rounded-full shadow-lg transition-colors duration-200"
           >
-            <MessageCircle className="w-5 h-5 text-white animate-pulse" />
+            <MessageCircle className="w-5 h-5 text-white" />
             <span>Chat on WhatsApp</span>
           </a>
 

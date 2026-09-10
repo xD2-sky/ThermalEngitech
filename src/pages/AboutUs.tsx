@@ -41,7 +41,7 @@ export default function AboutUs() {
     <div className="space-y-0 text-left bg-[#F1F1ED]">
       
       {/* Page Header Banner */}
-      <div className="bg-[#0D1B2A] text-white py-16 px-4 sm:px-6 lg:px-8 border-b border-[#1F5FA8]/25 relative overflow-hidden">
+      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-5 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:3rem_3rem]" />
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-[#2E76C9] uppercase">
@@ -51,7 +51,8 @@ export default function AboutUs() {
             About Thermal Engitech
           </h1>
           <p className="text-slate-300 text-sm max-w-3xl leading-relaxed">
-            Dedicating high-precision fabrication expertise to the chemical, textile, and cleanroom food production grids since inception in Gujarat, India.
+            A Gujarat-based engineering and fabrication company supplying process-heat equipment to the
+            chemical, textile, food and pharmaceutical industries.
           </p>
         </div>
       </div>
@@ -66,7 +67,7 @@ export default function AboutUs() {
                 Our History & Vision
               </p>
               <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0D1B2A]">
-                Engineering Superior Saturated Process Heat Since 2012
+                Building dependable process-heat systems since 2012
               </h2>
               
               <div className="space-y-4 text-sm text-slate-600 leading-relaxed font-sans">

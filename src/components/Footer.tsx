@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ShieldCheck, ChevronRight } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import Logo from './Logo';
 
 export default function Footer() {
   const quickLinks = [
     { label: 'Home', path: '/' },
-    { label: 'About Us', path: '/about' },
+    { label: 'About', path: '/about' },
     { label: 'Industries', path: '/industries' },
     { label: 'Manufacturing', path: '/manufacturing' },
-    { label: 'Contact Us', path: '/contact' },
-    { label: 'Certifications', path: '/certifications' }
+    { label: 'Certifications', path: '/certifications' },
+    { label: 'Contact', path: '/contact' },
   ];
 
   const productCategories = [
@@ -19,132 +19,97 @@ export default function Footer() {
     { label: 'Pressure Reducing Stations', path: '/products?category=Pressure+Reducing+Stations' },
     { label: 'Air Pre Heaters', path: '/products?category=Air+Pre+Heaters' },
     { label: 'Heat Exchangers', path: '/products?category=Heat+Exchangers' },
-    { label: 'Hot Water Generators', path: '/products?category=Hot+Water+Generators' }
+    { label: 'Hot Water Generators', path: '/products?category=Hot+Water+Generators' },
   ];
 
+  const year = new Date().getFullYear();
+
+  const heading = 'text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400';
+  const linkClass =
+    'text-slate-300 hover:text-white transition-colors duration-200 text-[13px]';
+
   return (
-    <footer 
-      className="text-slate-200 py-16 text-xs font-sans relative z-10 border-t border-white/10 shadow-[0_-15px_30px_rgba(0,0,0,0.3)] overflow-hidden"
-      style={{
-        backgroundColor: 'rgba(13, 27, 42, 0.9)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)'
-      }}
-    >
-      
-      {/* Decorative Top Accent Border */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+    <footer className="bg-[#0B1B2B] text-slate-300 border-t border-white/10 font-sans">
+      <div className="max-w-[1320px] mx-auto px-5 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-10 md:gap-8">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10 items-start relative z-10">
-        
-        {/* Company Column */}
-        <div className="md:col-span-4 space-y-5 text-left">
-          <div className="space-y-2">
-            <h4 className="text-white text-xs uppercase tracking-wider font-bold relative pb-2">
-              Corporate Headquarters
-              <span className="absolute bottom-0 left-0 w-8 h-[2px] bg-white/30" />
-              <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#1F5FA8]/60" />
-            </h4>
+          {/* Company */}
+          <div className="col-span-2 md:col-span-4 space-y-5">
+            <div className="flex items-center gap-3">
+              <Logo className="w-12 h-11 shrink-0" />
+              <div className="leading-tight">
+                <span className="font-heading font-extrabold text-[15px] text-white block">
+                  Thermal <span className="text-[#7FB2E4]">Engitech</span> Pvt. Ltd.
+                </span>
+                <span className="text-[11px] text-slate-400 block mt-1">
+                  Industrial boilers &amp; process-heat systems
+                </span>
+              </div>
+            </div>
+            <p className="text-[13px] leading-relaxed text-slate-400 max-w-sm">
+              We design, manufacture and support steam boilers, thermic fluid heaters and
+              heat-recovery equipment for process plants across India and export markets.
+            </p>
           </div>
 
-          <div className="flex items-center gap-4 group">
-            <Logo className="w-14 h-12 shrink-0" />
-            <div className="flex flex-col justify-center">
-              <span className="font-heading font-black text-[15px] sm:text-base text-white tracking-normal block leading-none">
-                Thermal <span className="text-[#2E76C9]">Engitech</span> Pvt. Ltd.
-              </span>
-              <span className="text-[9px] font-mono font-bold tracking-widest text-slate-400 uppercase block mt-1.5 leading-none">
-                Engineering & Thermal Dynamics
-              </span>
+          {/* Company links */}
+          <div className="md:col-span-2 space-y-4">
+            <h4 className={heading}>Company</h4>
+            <ul className="space-y-2.5">
+              {quickLinks.map((link) => (
+                <li key={link.path}>
+                  <Link to={link.path} className={linkClass}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Products */}
+          <div className="md:col-span-3 space-y-4">
+            <h4 className={heading}>Products</h4>
+            <ul className="space-y-2.5">
+              {productCategories.map((item) => (
+                <li key={item.path}>
+                  <Link to={item.path} className={linkClass}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="col-span-2 md:col-span-3 space-y-4">
+            <h4 className={heading}>Contact</h4>
+            <div className="space-y-3.5 text-[13px] text-slate-300">
+              <div className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 text-[#7FB2E4] shrink-0 mt-0.5" />
+                <span className="leading-relaxed text-slate-400">
+                  12B, Shrey Industrial Park Road, Dhamatwan, Undrel, Gujarat 382435
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail className="w-4 h-4 text-[#7FB2E4] shrink-0 mt-0.5" />
+                <span className="leading-relaxed">
+                  <a href="mailto:sales@thermalengitech.com" className="hover:text-white transition-colors">sales@thermalengitech.com</a><br />
+                  <a href="mailto:info@thermalengitech.com" className="hover:text-white transition-colors">info@thermalengitech.com</a>
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Phone className="w-4 h-4 text-[#7FB2E4] shrink-0 mt-0.5" />
+                <span className="leading-relaxed">
+                  <a href="tel:+917940055280" className="hover:text-white transition-colors">+91 79 4005 5280</a><br />
+                  <a href="tel:+919825014820" className="hover:text-white transition-colors">+91 98250 14820</a>
+                </span>
+              </div>
             </div>
           </div>
 
-          <p className="text-slate-300 leading-relaxed max-w-sm text-xs font-medium">
-            Thermal Engitech Pvt. Ltd. manufactures and supplies a range of high-quality Industrial Boilers and Heaters globally.
-          </p>
         </div>
 
-        {/* Quick Links Column */}
-        <div className="md:col-span-2 space-y-4 text-left">
-          <h4 className="text-white text-xs uppercase tracking-wider font-bold relative pb-2">
-            Quick Links
-            <span className="absolute bottom-0 left-0 w-8 h-[2px] bg-white/30" />
-            <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#1F5FA8]/60" />
-          </h4>
-          <ul className="space-y-2.5">
-            {quickLinks.map((link) => (
-              <li key={link.path}>
-                <Link 
-                  to={link.path}
-                  className="group text-slate-300 hover:text-white transition-all duration-200 flex items-center gap-1.5 font-semibold hover:translate-x-1"
-                >
-                  <ChevronRight className="w-3.5 h-3.5 text-white/40 group-hover:text-white transition-colors shrink-0" />
-                  <span>{link.label}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+        {/* Bottom bar */}
+        <div className="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-slate-500">
+          <p>© {year} Thermal Engitech Pvt. Ltd. All rights reserved.</p>
+          <p className="text-slate-500">ISO 9001:2015 · ASME · IBR 1950 certified</p>
         </div>
-
-        {/* Core Products Column */}
-        <div className="md:col-span-3 space-y-4 text-left">
-          <h4 className="text-white text-xs uppercase tracking-wider font-bold relative pb-2">
-            Core Products
-            <span className="absolute bottom-0 left-0 w-8 h-[2px] bg-white/30" />
-            <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#1F5FA8]/60" />
-          </h4>
-          <ul className="space-y-2.5">
-            {productCategories.map((item) => (
-              <li key={item.path}>
-                <Link 
-                  to={item.path}
-                  className="group text-slate-300 hover:text-white transition-all duration-200 flex items-center gap-1.5 font-semibold hover:translate-x-1"
-                >
-                  <ChevronRight className="w-3.5 h-3.5 text-white/40 group-hover:text-white transition-colors shrink-0" />
-                  <span className="truncate">{item.label}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contact Information Column */}
-        <div className="md:col-span-3 space-y-4 text-left">
-          <h4 className="text-white text-xs uppercase tracking-wider font-bold relative pb-2">
-            Contact Details
-            <span className="absolute bottom-0 left-0 w-8 h-[2px] bg-white/30" />
-            <span className="absolute bottom-0 left-8 w-2.5 h-[2px] bg-[#1F5FA8]/60" />
-          </h4>
-          <div className="space-y-4 text-slate-300 font-medium">
-            <div className="flex items-start gap-3 group">
-              <span className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center shrink-0 border border-white/10 transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/25">
-                <MapPin className="w-3.5 h-3.5 text-white/75" />
-              </span>
-              <span className="leading-relaxed text-[11.5px]">
-                12B, Shrey Industrial Park, Road, Dhamatwan, Undrel, Gujarat 382435
-              </span>
-            </div>
-            <div className="flex items-start gap-3 group">
-              <span className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center shrink-0 border border-white/10 transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/25">
-                <Mail className="w-3.5 h-3.5 text-white/75" />
-              </span>
-              <span className="break-all text-[11px] leading-relaxed self-center">
-                sales@thermalengitech.com<br />
-                info@thermalengitech.com
-              </span>
-            </div>
-            <div className="flex items-start gap-3 group">
-              <span className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center shrink-0 border border-white/10 transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/25">
-                <Phone className="w-3.5 h-3.5 text-white/75" />
-              </span>
-              <span className="text-[11.5px] leading-relaxed self-center font-mono font-bold text-white">
-                +91 79 4005 5280<br />
-                +91 98250 14820
-              </span>
-            </div>
-          </div>
-        </div>
-
       </div>
     </footer>
   );

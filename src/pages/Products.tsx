@@ -24,7 +24,7 @@ function ProductImage({ type }: { type: 'boiler' | 'heater' | 'generator' | 'exc
   switch (type) {
     case 'boiler':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Main Boiler Saturated Shell Cylinder */}
           <rect x="70" y="55" width="180" height="90" rx="45" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4" />
           <rect x="78" y="63" width="164" height="74" rx="37" fill="#0D1B2A" opacity="0.9" />
@@ -52,7 +52,7 @@ function ProductImage({ type }: { type: 'boiler' | 'heater' | 'generator' | 'exc
       );
     case 'heater':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Double Concentric Helical Coiled Thermic Heater Tube Shell */}
           <rect x="60" y="60" width="200" height="80" rx="12" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4" />
           
@@ -75,7 +75,7 @@ function ProductImage({ type }: { type: 'boiler' | 'heater' | 'generator' | 'exc
       );
     case 'generator':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Compact Vertical Package Hot Water Generator */}
           <rect x="100" y="30" width="120" height="140" rx="8" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4" />
           <rect x="110" y="40" width="100" height="120" rx="4" fill="#0D1B2A" opacity="0.9" />
@@ -96,7 +96,7 @@ function ProductImage({ type }: { type: 'boiler' | 'heater' | 'generator' | 'exc
       );
     case 'exchanger':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Shell & Tube thermodynamic Exchange system */}
           <rect x="50" y="65" width="220" height="70" rx="8" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4" />
           <rect x="58" y="73" width="204" height="54" rx="4" fill="#0D1B2A" opacity="0.9" />
@@ -119,7 +119,7 @@ function ProductImage({ type }: { type: 'boiler' | 'heater' | 'generator' | 'exc
       );
     case 'prs':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Pressure Reducing Stations (PRS) Fluid bypass loops */}
           {/* Main pipe loop line */}
           <path d="M40 100 H280" stroke="#1F5FA8" strokeWidth="4.5" />
@@ -148,7 +148,7 @@ function ProductImage({ type }: { type: 'boiler' | 'heater' | 'generator' | 'exc
       );
     case 'preheater':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Air Pre Heater (APH) Outer Steel Panel Casing */}
           <rect x="80" y="35" width="160" height="130" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="3.5" />
           <rect x="88" y="43" width="144" height="114" fill="#0D1B2A" opacity="0.95" />
@@ -172,7 +172,7 @@ function ProductImage({ type }: { type: 'boiler' | 'heater' | 'generator' | 'exc
       );
     case 'pollution':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Centrifugal Cone Dust Collector Separator */}
           <rect x="110" y="30" width="100" height="60" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="3.5" />
           <rect x="118" y="38" width="84" height="44" fill="#0D1B2A" opacity="0.9" />
@@ -185,7 +185,7 @@ function ProductImage({ type }: { type: 'boiler' | 'heater' | 'generator' | 'exc
       );
     case 'other':
       return (
-        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-52 drop-shadow-md transition-transform duration-350 group-hover:scale-105">
+        <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-48 drop-shadow-sm opacity-90">
           {/* Main Distribution Steam Header Manifold or Flash Tank */}
           <rect x="90" y="55" width="140" height="70" rx="35" fill="#0D1B2A" stroke="#1F5FA8" strokeWidth="4.5" />
           <rect x="98" y="63" width="124" height="54" rx="27" fill="#0D1B2A" opacity="0.85" />
@@ -234,7 +234,7 @@ export default function Products() {
     <div className="space-y-0 text-left bg-slate-50 min-h-screen">
       
       {/* Banner */}
-      <div className="bg-[#0D1B2A] text-white py-16 px-4 sm:px-6 lg:px-8 border-b border-[#1F5FA8]/25">
+      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-5 sm:px-6 lg:px-8 border-b border-white/10">
         <div className="max-w-7xl mx-auto space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-[#5B9BD9] uppercase">
             Product Catalog
@@ -257,10 +257,10 @@ export default function Products() {
             <button
               key={cat}
               onClick={() => handleCategorySelect(cat)}
-              className={`px-4 py-2 border rounded-full text-xs font-bold uppercase tracking-wider transition cursor-pointer ${
+              className={`px-4 py-2 border rounded-full text-[13px] font-medium tracking-tight transition cursor-pointer ${
                 activeCategory === cat
-                  ? 'bg-[#1F5FA8] border-[#1F5FA8] text-white shadow-sm'
-                  : 'bg-white border-[#E1E4E3] text-slate-600 hover:border-slate-500'
+                  ? 'bg-[#1C5CA8] border-[#1C5CA8] text-white shadow-sm'
+                  : 'bg-white border-[#E1E4E3] text-slate-600 hover:border-slate-400 hover:text-[#0D1B2A]'
               }`}
             >
               {cat}
@@ -287,42 +287,39 @@ export default function Products() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProducts.map((prod) => (
-                <div 
-                  key={prod.id} 
+                <div
+                  key={prod.id}
                   onClick={() => navigate(`/products/${prod.id}`)}
-                  className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:border-[#1F5FA8]/50 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+                  className="bg-white border border-[#E1E4E3] rounded-xl overflow-hidden shadow-sm hover:shadow-md hover:border-[#1C5CA8]/40 transition-all duration-200 flex flex-col justify-between group cursor-pointer"
                 >
-                  
-                  {/* Top CAD illustration stage */}
-                  <div className="p-6 bg-[#F1F1ED] border-b border-slate-100 flex items-center justify-center relative min-h-[220px]">
+
+                  {/* Top schematic illustration stage */}
+                  <div className="p-6 bg-gradient-to-b from-slate-50 to-slate-100 border-b border-slate-100 flex items-center justify-center relative min-h-[200px]">
                     <ProductImage type={prod.imageType} />
-                    <span className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm border border-slate-200 px-2.5 py-1 text-[9px] font-mono font-extrabold text-[#1F5FA8] uppercase rounded shadow-xs tracking-wider">
+                    <span className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm border border-slate-200 px-2.5 py-1 text-[10px] font-semibold text-[#1C5CA8] rounded-md tracking-wide">
                       {prod.category}
                     </span>
                   </div>
 
                   {/* Body textual specs */}
-                  <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                  <div className="p-6 space-y-3.5 flex-1 flex flex-col justify-between">
                     <div className="space-y-2 text-left">
-                      <h3 className="font-heading font-extrabold text-[#0D1B2A] text-base group-hover:text-[#1F5FA8] transition duration-200 line-clamp-2 leading-snug">
+                      <h3 className="font-heading font-bold text-[#0D1B2A] text-[15px] group-hover:text-[#1C5CA8] transition-colors duration-200 line-clamp-2 leading-snug">
                         {prod.name}
                       </h3>
-                      <p className="text-xs text-slate-500 font-medium font-sans italic">
-                        "{prod.tagline}"
-                      </p>
-                      <p className="text-slate-500 text-[11px] leading-relaxed line-clamp-3 pt-1">
+                      <p className="text-[13px] text-slate-500 leading-relaxed line-clamp-3">
                         {prod.description}
                       </p>
                     </div>
 
                     {/* Miniature horizontal spec summary */}
-                    <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-left">
+                    <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-3 text-left">
                       {prod.specifications?.slice(0, 2).map((sp, idx) => (
                         <div key={idx} className="space-y-0.5">
-                          <span className="block text-[8.5px] font-mono font-bold text-slate-400 uppercase tracking-tight">
+                          <span className="block text-[10px] font-medium text-slate-400 tracking-wide">
                             {sp.label}
                           </span>
-                          <span className="block text-[10.5px] font-sans font-bold text-[#17222E] truncate" title={sp.value}>
+                          <span className="block text-[12px] font-semibold text-[#17222E] truncate" title={sp.value}>
                             {sp.value}
                           </span>
                         </div>
@@ -332,20 +329,20 @@ export default function Products() {
 
                   {/* Bottom links and action strip */}
                   <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[10px] uppercase font-mono font-bold text-[#1F5FA8] flex items-center gap-1">
-                      <ShieldCheck className="w-3.5 h-3.5" />
-                      Premium Quality
+                    <span className="text-[12px] font-medium text-slate-500 flex items-center gap-1.5">
+                      <ShieldCheck className="w-4 h-4 text-[#1C5CA8]" />
+                      IBR certified
                     </span>
-                    
+
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         navigate(`/products/${prod.id}`);
                       }}
-                      className="px-3.5 py-2 bg-[#0D1B2A] text-white hover:bg-[#1F5FA8] font-bold text-[11px] uppercase tracking-wider rounded-lg shadow-sm transition flex items-center gap-1.5 cursor-pointer"
+                      className="inline-flex items-center gap-1.5 rounded-md bg-[#0D1B2A] hover:bg-[#1C5CA8] px-3.5 py-2 text-[12px] font-semibold text-white transition-colors cursor-pointer"
                     >
-                      <span>Full Specifications</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
+                      <span>View specifications</span>
+                      <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>
 

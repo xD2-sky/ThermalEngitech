@@ -14,9 +14,8 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 15);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 12);
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -25,174 +24,101 @@ export default function Navbar() {
 
   const navItems = [
     { path: '/', label: 'Home' },
-    { path: '/about', label: 'About Us' },
+    { path: '/about', label: 'About' },
     { path: '/products', label: 'Products' },
     { path: '/industries', label: 'Industries' },
     { path: '/manufacturing', label: 'Manufacturing' },
-    { path: '/contact', label: 'Contact Us' }
+    { path: '/contact', label: 'Contact' },
   ] as const;
 
-  const isActive = (path: string) => {
-    if (path === '/') {
-      return location.pathname === '/';
-    }
-    return location.pathname.startsWith(path);
-  };
+  const isActive = (path: string) =>
+    path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
 
-  // Glassmorphic navigation classes
-  const navClass = isHome
-    ? scrolled
-      ? "fixed top-0 left-0 right-0 z-50 text-white border-b border-white/10 shadow-lg transition-all duration-300"
-      : "absolute top-0 left-0 right-0 z-50 bg-transparent text-white border-b border-white/5 transition-all duration-300"
-    : "sticky top-0 z-50 text-white border-b border-white/10 shadow-md transition-all duration-300";
+  // Transparent only while sitting over the top of the hero; solid ink otherwise.
+  const solid = !isHome || scrolled;
 
-  const navStyle = isHome
+  // On the home page the bar floats over the hero (absolute, then fixed once
+  // scrolled). On inner pages it is sticky so it reserves its own layout height
+  // and the page's dark header band starts cleanly beneath it.
+  const positionClass = isHome
     ? scrolled
-      ? {
-          background: 'linear-gradient(135deg, rgba(13, 27, 42, 0.96) 0%, rgba(22, 40, 60, 0.96) 50%, rgba(10, 20, 31, 0.96) 100%)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-        }
-      : {}
-    : {
-        background: 'linear-gradient(135deg, rgba(13, 27, 42, 0.96) 0%, rgba(22, 40, 60, 0.96) 50%, rgba(10, 20, 31, 0.96) 100%)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-      };
+      ? 'fixed top-0 left-0 right-0'
+      : 'absolute top-0 left-0 right-0'
+    : 'sticky top-0';
 
   return (
-    <nav className={`${navClass} font-sans overflow-visible`} style={navStyle}>
-      
-      {/* Multi-layered Geometric Background for Desktop (Design 4 Angled Blue Element converted to beautiful translucent glass layers) */}
-      <div className="absolute inset-y-0 right-0 left-[62%] xl:left-[66%] 2xl:left-[70%] hidden lg:block overflow-visible pointer-events-none z-0">
-        
-        {/* Layer 1: Accent Red Glass Line */}
-        <div 
-          className={`absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500 ${
-            scrolled ? 'bg-[#1F5FA8]/80' : 'bg-[#1F5FA8]/60'
-          }`} 
-          style={{ 
-            clipPath: 'polygon(50px 0, 100% 0, 100% 100%, 0% 100%)',
-            left: '0px',
-            backdropFilter: 'blur(2px)',
-            WebkitBackdropFilter: 'blur(2px)'
-          }} 
-        />
-        
-        {/* Layer 2: Secondary Deep Blue Glass Line */}
-        <div 
-          className="absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500" 
-          style={{ 
-            clipPath: 'polygon(50px 0, 100% 0, 100% 100%, 0% 100%)',
-            left: '10px',
-            background: scrolled
-              ? 'linear-gradient(135deg, rgba(22, 40, 60, 0.9) 0%, rgba(13, 27, 42, 0.9) 100%)'
-              : 'linear-gradient(135deg, rgba(22, 40, 60, 0.6) 0%, rgba(13, 27, 42, 0.6) 100%)',
-            backdropFilter: 'blur(6px)',
-            WebkitBackdropFilter: 'blur(6px)'
-          }} 
-        />
-        
-        {/* Layer 3: Primary Industrial Gradient Main Block */}
-        <div 
-          className="absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500 shadow-xl" 
-          style={{ 
-            clipPath: 'polygon(50px 0, 100% 0, 100% 100%, 0% 100%)',
-            left: '20px',
-            background: scrolled
-              ? 'linear-gradient(135deg, #0A141F 0%, #16283C 50%, #0A0F1F 100%)'
-              : 'linear-gradient(135deg, rgba(13, 27, 42, 0.8) 0%, rgba(22, 40, 60, 0.8) 50%, rgba(10, 20, 31, 0.8) 100%)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)'
-          }} 
-        />
-        
-        {/* Industrial decorative highlight grid line inside the blue block */}
-        <div 
-          className="absolute inset-y-0 w-[1px] bg-white/10" 
-          style={{ 
-            left: '120px',
-            transform: 'skewX(-26.5deg)'
-          }} 
-        />
-      </div>
+    <nav
+      className={`${positionClass} z-50 font-sans text-white transition-colors duration-300 ${
+        solid
+          ? 'bg-[#0B1B2B]/95 backdrop-blur-md border-b border-white/10 shadow-[0_1px_0_rgba(255,255,255,0.04),0_8px_24px_-12px_rgba(0,0,0,0.5)]'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-[1320px] mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="flex h-[76px] items-center justify-between gap-4">
 
-      {/* Navbar Container */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-        <div className="flex h-[88px] items-center justify-between">
-          
-          {/* Logo Brand / Identity - Left Block with slightly increased visibility */}
-          <Link
-            to="/"
-            className="flex min-w-0 items-center gap-3.5 py-2 group shrink-0"
-          >
-            <Logo className="h-14 w-16 shrink-0 transition-transform duration-300 group-hover:scale-105" />
-            <div className="flex min-w-0 flex-col justify-center">
-              <span className="truncate font-heading font-black text-[21px] tracking-tight text-white leading-none xl:text-[23px] 2xl:text-[25px]">
-                Thermal <span className="text-[#2E76C9]">Engitech</span>
-              </span>
-            </div>
+          {/* Brand */}
+          <Link to="/" className="flex min-w-0 items-center gap-3 shrink-0 group">
+            <Logo className="h-11 w-14 shrink-0" />
+            <span className="truncate font-heading font-extrabold text-[19px] tracking-tight text-white leading-none">
+              Thermal <span className="text-[#7FB2E4]">Engitech</span>
+            </span>
           </Link>
 
-          {/* Desktop Navigation Links (Centered, Uppercase, Semi-bold, Modern industrial appearance) */}
-          <div className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 mx-4">
+          {/* Desktop nav */}
+          <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => {
               const active = isActive(item.path);
               return (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`px-2.5 py-2.5 font-sans text-[11px] xl:text-[12px] font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-200 relative ${
-                    active
-                      ? 'text-white font-bold'
-                      : 'text-slate-200 hover:text-white hover:scale-105'
+                  className={`relative px-3.5 py-2 text-[13px] font-medium tracking-tight whitespace-nowrap transition-colors duration-200 ${
+                    active ? 'text-white' : 'text-slate-300 hover:text-white'
                   }`}
                 >
                   {item.label}
                   {active && (
-                    <span className="absolute bottom-[-10px] left-2.5 right-2.5 h-[3px] bg-[#1F5FA8] rounded-full shadow-[0_0_8px_rgba(37,99,235,0.6)]" />
+                    <span className="absolute -bottom-5 left-3.5 right-3.5 h-[2px] bg-[#2F7BD4] rounded-full" />
                   )}
                 </Link>
               );
             })}
           </div>
 
-          {/* Right Block - Overlaid on the beautiful diagonal blue design */}
-          <div className="hidden lg:flex items-center gap-4 xl:gap-6 shrink-0 pl-12 xl:pl-16 relative z-10">
-            {/* Phone link on dark blue background */}
-            <a 
-              href="tel:+917940055280" 
-              className="flex items-center gap-2 text-white/95 hover:text-white transition-all duration-150 font-sans font-bold text-[11px] xl:text-[12px] uppercase tracking-wider whitespace-nowrap group"
+          {/* Right cluster */}
+          <div className="hidden lg:flex items-center gap-5 shrink-0">
+            <a
+              href="tel:+917940055280"
+              className="flex items-center gap-2 text-[13px] font-medium text-slate-200 hover:text-white transition-colors group"
             >
-              <span className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center transition-colors group-hover:bg-white/20">
-                <Phone className="w-3.5 h-3.5 text-[#5B9BD9] fill-[#5B9BD9]" />
+              <span className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center transition-colors group-hover:bg-white/15">
+                <Phone className="w-3.5 h-3.5 text-[#7FB2E4]" />
               </span>
-              <span className="border-b border-white/20 group-hover:border-white/50 pb-0.5">
-                +91 79 4005 5280
-              </span>
+              <span>+91 79 4005 5280</span>
             </a>
 
-            {/* Request a Quote Button - Semi-transparent frosted glass design with white border and white text */}
             <Link
               to="/request-quote"
-              className="px-5 py-3 bg-white/10 backdrop-blur-md text-white border-2 border-white/30 hover:border-white/100 hover:bg-white hover:text-[#0A141F] text-[11px] xl:text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-300 whitespace-nowrap shadow-sm hover:shadow-xl hover:scale-[1.03] active:scale-95 cursor-pointer flex items-center gap-1.5"
+              className="rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] px-4 py-2.5 text-[13px] font-semibold text-white shadow-sm transition-colors duration-200 whitespace-nowrap"
             >
-              <span>Request a Quote</span>
+              Request a quote
             </Link>
           </div>
 
-          {/* Mobile Hamburger & Collapse Controls */}
-          <div className="flex items-center lg:hidden gap-3">
+          {/* Mobile controls */}
+          <div className="flex items-center lg:hidden gap-2.5">
             <Link
               to="/request-quote"
-              className="px-3.5 py-2 bg-white/10 backdrop-blur-md text-white border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-lg shadow-sm hover:bg-white/20 transition-all duration-200"
+              className="rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] px-3.5 py-2 text-xs font-semibold text-white transition-colors"
             >
               Quote
             </Link>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 rounded-xl text-white hover:bg-white/10 transition-colors"
+              className="p-2 rounded-md text-white hover:bg-white/10 transition-colors"
               aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -201,16 +127,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Panel */}
+      {/* Mobile menu */}
       {mobileOpen && (
-        <div 
-          className="lg:hidden border-t border-white/10 px-4 py-4 space-y-2 animate-fadeIn text-left shadow-lg relative z-50"
-          style={{
-            background: 'linear-gradient(135deg, rgba(13, 27, 42, 0.98) 0%, rgba(22, 40, 60, 0.98) 50%, rgba(10, 20, 31, 0.98) 100%)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)'
-          }}
-        >
+        <div className="lg:hidden bg-[#0B1B2B] border-t border-white/10 px-5 py-4 space-y-1 animate-fadeIn shadow-lg">
           {navItems.map((item) => {
             const active = isActive(item.path);
             return (
@@ -218,36 +137,35 @@ export default function Navbar() {
                 key={item.path}
                 to={item.path}
                 onClick={() => setMobileOpen(false)}
-                className={`w-full text-left px-3.5 py-3 font-sans font-semibold text-xs uppercase tracking-wider rounded-xl transition-all block ${
+                className={`block px-3.5 py-3 text-sm font-medium rounded-md transition-colors ${
                   active
-                    ? 'text-white bg-white/10 border-l-4 border-[#1F5FA8]'
-                    : 'text-slate-200 hover:text-white hover:bg-white/5'
+                    ? 'text-white bg-white/[0.06] border-l-2 border-[#2F7BD4]'
+                    : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
                 }`}
               >
                 {item.label}
               </Link>
             );
           })}
-          
-          <div className="pt-4 border-t border-white/10 space-y-2.5">
-            <a 
-              href="tel:+917940055280" 
-              className="flex items-center justify-center gap-2 text-xs font-bold text-white bg-white/5 p-3.5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors"
+
+          <div className="pt-4 mt-2 border-t border-white/10 space-y-2.5">
+            <a
+              href="tel:+917940055280"
+              className="flex items-center justify-center gap-2 text-sm font-medium text-white bg-white/[0.04] p-3.5 rounded-md border border-white/10 hover:bg-white/[0.08] transition-colors"
             >
-              <Phone className="w-4 h-4 text-[#5B9BD9]" />
-              <span>Call Support: +91 79 4005 5280</span>
+              <Phone className="w-4 h-4 text-[#7FB2E4]" />
+              <span>Call: +91 79 4005 5280</span>
             </a>
             <Link
               to="/request-quote"
               onClick={() => setMobileOpen(false)}
-              className="w-full py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/30 text-xs font-bold uppercase tracking-wider rounded-xl text-center block shadow-md font-sans transition-all duration-200"
+              className="block w-full py-3.5 bg-[#1C5CA8] hover:bg-[#2F7BD4] text-white text-sm font-semibold rounded-md text-center transition-colors"
             >
-              Request a Quote
+              Request a quote
             </Link>
           </div>
         </div>
       )}
-
     </nav>
   );
 }

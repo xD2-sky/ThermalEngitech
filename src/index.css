@@ -1,96 +1,157 @@
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  /* Display face for headlines & the wordmark — condensed, structural, signage-like */
-  --font-heading: "Big Shoulders Display", "Archivo Narrow", sans-serif;
-  /* Working body face — engineering-associated, clean at small sizes */
-  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  /* Reserved for spec figures, model codes, data labels only */
+  /* Headline face — modern, structural, trustworthy (replaces the condensed poster face) */
+  --font-heading: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  /* Working body face — neutral, highly legible at every size */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Reserved for spec figures, model codes and data labels only — used sparingly */
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   /* ---- Core palette ---- */
-  --color-ink: #0A1424;        /* primary dark — panels, nav, footer */
-  --color-ink-2: #13233B;      /* secondary dark, gradients */
-  --color-ink-3: #070E19;      /* deepest dark, gradient end */
-  --color-slate: #4B5A6B;      /* body copy on light */
-  --color-slate-soft: #7C8A9A; /* muted / secondary copy */
-  --color-line: #E1E4E3;       /* hairline borders */
-  --color-paper: #F7F8FA;      /* page background */
-  --color-panel: #EFF2F5;      /* secondary panel background */
+  --color-ink: #0B1B2B;        /* primary dark — panels, nav, footer */
+  --color-ink-2: #12293E;      /* secondary dark, gradients */
+  --color-ink-3: #081420;      /* deepest dark, gradient end */
+  --color-slate: #47566A;      /* body copy on light */
+  --color-slate-soft: #78889B; /* muted / secondary copy */
+  --color-line: #E4E7EC;       /* hairline borders */
+  --color-paper: #FBFBFC;      /* page background */
+  --color-panel: #F2F4F7;      /* secondary panel background */
 
-  /* Primary accent — professional blue, does the job ember used to do */
-  --color-blue: #1F5FA8;
-  --color-blue-2: #2E76C9;     /* hover / lighter */
-  --color-blue-dark: #123056;  /* pressed / deep */
-  --color-sky: #5B9BD9;        /* light accent for use on dark ink backgrounds */
+  /* Primary accent — professional blue */
+  --color-blue: #1C5CA8;
+  --color-blue-2: #2F7BD4;     /* hover / lighter */
+  --color-blue-dark: #103E72;  /* pressed / deep */
+  --color-sky: #7FB2E4;        /* light accent for use on dark ink backgrounds */
 
-  /* Ember kept only as a rare, deliberate accent — never for chrome/UI */
+  /* Kept only as a rare, deliberate accent — never for chrome/UI */
   --color-ember: #B3401F;
 }
 
+/* ------------------------------------------------------------------ *
+ *  Base typography & rendering
+ * ------------------------------------------------------------------ */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+html, body {
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #17222E;
+  font-feature-settings: "cv05" 1, "ss01" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.021em;
+  line-height: 1.12;
+}
+
+h1 { letter-spacing: -0.028em; }
+
+/* Condensed poster caps are gone — where a heading is still set in caps,
+   give it the positive tracking that capital letters actually need. */
+.font-heading.uppercase {
+  letter-spacing: 0.012em;
+  font-weight: 700;
+}
+
+/* Small kicker / eyebrow labels: quiet, spaced, sentence of the section */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-blue-2);
+}
+
+/* The "typewriter caps" kicker pattern (font-mono + uppercase) reads as a
+   stage prop. Where it's used as a label — not for figures — set it in the
+   body face with calm tracking. Numeric spec data uses font-mono WITHOUT
+   uppercase and is left untouched. */
+.font-mono.uppercase {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+/* Links inside prose */
+::selection {
+  background: rgba(47, 123, 212, 0.22);
+}
+
+/* Consistent, visible focus treatment for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-blue-2);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Motion
+ * ------------------------------------------------------------------ */
 @layer utilities {
   .animate-fadeIn {
-    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* Custom scrollbar styling for terminal containers */
+/* ------------------------------------------------------------------ *
+ *  Scrollbars — neutral, unobtrusive
+ * ------------------------------------------------------------------ */
 .scrollbar-thin::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
+  height: 6px;
 }
 .scrollbar-thin::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.3);
+  background: rgba(11, 27, 43, 0.06);
 }
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(245, 158, 11, 0.2);
+  background: rgba(71, 86, 106, 0.35);
   border-radius: 99px;
 }
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: rgba(245, 158, 11, 0.5);
+  background: rgba(71, 86, 106, 0.55);
 }
 
-/* Fine blueprint-style grid, used sparingly on dark panels */
+/* ------------------------------------------------------------------ *
+ *  Texture — kept only as a whisper, never a motif
+ * ------------------------------------------------------------------ */
 .grid-blueprint {
   background-image:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
-/* Drafting-style corner brackets — echoes technical drawing frames */
-.corner-frame {
-  position: relative;
-}
+/* The drafting-bracket device was doing too much — retire it,
+   keep the class inert so existing markup stays valid. */
 .corner-frame::before,
 .corner-frame::after {
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: var(--color-blue);
-  border-style: solid;
-  opacity: 0.55;
+  display: none !important;
 }
-.corner-frame::before {
-  top: -1px;
-  left: -1px;
-  border-width: 2px 0 0 2px;
-}
-.corner-frame::after {
-  bottom: -1px;
-  right: -1px;
-  border-width: 0 2px 2px 0;
-}
-
