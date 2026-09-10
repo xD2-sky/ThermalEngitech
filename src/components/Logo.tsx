@@ -35,7 +35,7 @@ export default function Logo({ className = "h-11 w-14" }: LogoProps) {
 
   return (
     <img
-      src="/images/brand/logo-mark.png"
+      src={`${import.meta.env.BASE_URL}images/brand/logo-mark.png`}
       alt="Thermal Engitech Logo"
       className={`${className} object-contain`}
       referrerPolicy="no-referrer"

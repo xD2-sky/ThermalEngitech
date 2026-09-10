@@ -48,7 +48,7 @@ export default function Manufacturing() {
           </div>
           <div className="lg:col-span-5 hidden lg:flex justify-center">
             <img
-              src="/images/products/steam-boiler-skid.png"
+              src={`${import.meta.env.BASE_URL}images/products/steam-boiler-skid.png`}
               alt="Completed steam boiler skid on the Dhamatwan shop floor"
               className="w-full max-w-sm h-auto drop-shadow-[0_25px_40px_rgba(0,0,0,0.5)]"
             />

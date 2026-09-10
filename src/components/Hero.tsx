@@ -80,7 +80,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
           <div className="lg:col-span-5 relative flex items-center justify-center py-6 lg:py-0">
             <div className="relative w-full max-w-md">
               <img
-                src="/images/products/multi-fuel-system.png"
+                src={`${import.meta.env.BASE_URL}images/products/multi-fuel-system.png`}
                 alt="Thermal Engitech multi-fuel fired boiler system"
                 className="relative z-10 w-full h-auto drop-shadow-[0_30px_50px_rgba(0,0,0,0.55)]"
               />

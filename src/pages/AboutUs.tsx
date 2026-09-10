@@ -106,7 +106,7 @@ export default function AboutUs() {
             <div className="lg:col-span-5 bg-slate-50 border border-[#E1E4E3] rounded-lg overflow-hidden">
               <div className="bg-[#0D1B2A] p-6 flex justify-center">
                 <img
-                  src="/images/products/packaged-boiler-unit.png"
+                  src={`${import.meta.env.BASE_URL}images/products/packaged-boiler-unit.png`}
                   alt="Factory-assembled packaged boiler unit ready for dispatch"
                   className="w-full max-w-[240px] h-auto"
                 />
