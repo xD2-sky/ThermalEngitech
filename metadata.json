@@ -1,0 +1,6 @@
+{
+  "name": "Thermal Engitech Portfolio",
+  "description": "A highly professional, static corporate industrial engineering website for Thermal Engitech Pvt. Ltd., displaying premium boilers, thermic heaters, heat exchangers, and certified manufacturing details.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

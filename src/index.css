@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Display face for headlines & the wordmark — condensed, structural, signage-like */
+  --font-heading: "Big Shoulders Display", "Archivo Narrow", sans-serif;
+  /* Working body face — engineering-associated, clean at small sizes */
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  /* Reserved for spec figures, model codes, data labels only */
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* ---- Core palette ---- */
+  --color-ink: #0D1B2A;        /* primary dark — panels, nav, footer */
+  --color-ink-2: #16283C;      /* secondary dark, gradients */
+  --color-ink-3: #0A141F;      /* deepest dark, gradient end */
+  --color-slate: #4B5A6B;      /* body copy on light */
+  --color-slate-soft: #7C8A9A; /* muted / secondary copy */
+  --color-line: #E1E4E3;       /* hairline borders */
+  --color-paper: #F7F7F4;      /* page background, warm-neutral */
+  --color-panel: #F1F1ED;      /* secondary panel background */
+  --color-ember: #B3401F;      /* primary accent — brick/rust red, ties to real boiler paint */
+  --color-ember-2: #D65A32;    /* ember hover / lighter */
+  --color-ember-dark: #7C2A14; /* ember pressed / deep */
+  --color-amber: #C9862C;      /* secondary accent — brass, used sparingly for certification/quality marks */
+}
+
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar styling for terminal containers */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.3);
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.2);
+  border-radius: 99px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.5);
+}
+
+/* Fine blueprint-style grid, used sparingly on dark panels */
+.grid-blueprint {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Drafting-style corner brackets — echoes technical drawing frames */
+.corner-frame {
+  position: relative;
+}
+.corner-frame::before,
+.corner-frame::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--color-ember);
+  border-style: solid;
+  opacity: 0.55;
+}
+.corner-frame::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+.corner-frame::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
