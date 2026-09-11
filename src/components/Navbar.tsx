@@ -39,6 +39,7 @@ export default function Navbar() {
     return location.pathname.startsWith(path);
   };
 
+  // Glassmorphic navigation classes
   const navClass = isHome
     ? scrolled
       ? "fixed top-0 left-0 right-0 z-50 text-white border-b border-white/10 shadow-lg transition-all duration-300"
@@ -61,27 +62,39 @@ export default function Navbar() {
 
   return (
     <nav className={`${navClass} font-sans overflow-visible`} style={navStyle}>
-
+      
       {/* Diagonal glass-panel accent — the angled geometric motif from the original brand design */}
       <div className="absolute inset-y-0 right-0 left-[62%] xl:left-[66%] 2xl:left-[70%] hidden lg:block overflow-visible pointer-events-none z-0">
-
+        
         {/* Layer 1: Accent Blue Glass Line */}
-        <div
+        <div 
           className={`absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500 ${
             scrolled ? 'bg-[#1C5CA8]/80' : 'bg-[#1C5CA8]/60'
-          }`}
-          style={{
+          }`} 
+          style={{ 
             clipPath: 'polygon(50px 0, 100% 0, 100% 100%, 0% 100%)',
             left: '0px',
             backdropFilter: 'blur(2px)',
             WebkitBackdropFilter: 'blur(2px)'
-          }}
+          }} 
         />
 
-        {/* Layer 2: Secondary Deep Blue Glass Line */}
+        {/* Glowing edge-highlight — light catching the diagonal cut, gives it presence over photo backgrounds */}
         <div
-          className="absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500"
+          className="absolute inset-y-0 w-[2px] transition-opacity duration-500"
           style={{
+            left: '-2px',
+            transform: 'skewX(-26.5deg)',
+            background: 'linear-gradient(180deg, rgba(127,178,228,0.95) 0%, rgba(47,123,212,0.7) 50%, rgba(127,178,228,0.95) 100%)',
+            boxShadow: '0 0 12px 1px rgba(47,123,212,0.85), 0 0 24px 4px rgba(47,123,212,0.35)',
+            opacity: scrolled ? 0.9 : 1,
+          }}
+        />
+        
+        {/* Layer 2: Secondary Deep Blue Glass Line */}
+        <div 
+          className="absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500" 
+          style={{ 
             clipPath: 'polygon(50px 0, 100% 0, 100% 100%, 0% 100%)',
             left: '10px',
             background: scrolled
@@ -89,13 +102,13 @@ export default function Navbar() {
               : 'linear-gradient(135deg, rgba(18, 41, 62, 0.6) 0%, rgba(11, 27, 43, 0.6) 100%)',
             backdropFilter: 'blur(6px)',
             WebkitBackdropFilter: 'blur(6px)'
-          }}
+          }} 
         />
-
+        
         {/* Layer 3: Primary Industrial Gradient Main Block */}
-        <div
-          className="absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500 shadow-xl"
-          style={{
+        <div 
+          className="absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500 shadow-xl" 
+          style={{ 
             clipPath: 'polygon(50px 0, 100% 0, 100% 100%, 0% 100%)',
             left: '20px',
             background: scrolled
@@ -103,22 +116,24 @@ export default function Navbar() {
               : 'linear-gradient(135deg, rgba(11, 27, 43, 0.8) 0%, rgba(18, 41, 62, 0.8) 50%, rgba(8, 20, 32, 0.8) 100%)',
             backdropFilter: 'blur(10px)',
             WebkitBackdropFilter: 'blur(10px)'
-          }}
+          }} 
         />
-
+        
         {/* Industrial decorative highlight grid line inside the blue block */}
-        <div
-          className="absolute inset-y-0 w-[1px] bg-white/10"
-          style={{
+        <div 
+          className="absolute inset-y-0 w-[1px] bg-white/10" 
+          style={{ 
             left: '120px',
             transform: 'skewX(-26.5deg)'
-          }}
+          }} 
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Navbar Container */}
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
         <div className="flex h-[88px] items-center justify-between">
-
+          
+          {/* Logo Brand / Identity - Left Block with slightly increased visibility */}
           <Link
             to="/"
             className="flex min-w-0 items-center gap-3.5 py-2 group shrink-0"
@@ -131,6 +146,7 @@ export default function Navbar() {
             </div>
           </Link>
 
+          {/* Desktop Navigation Links (Centered, Uppercase, Semi-bold, Modern industrial appearance) */}
           <div className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 mx-4">
             {navItems.map((item) => {
               const active = isActive(item.path);
@@ -153,9 +169,11 @@ export default function Navbar() {
             })}
           </div>
 
+          {/* Right Block - Overlaid on the beautiful diagonal blue design */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-6 shrink-0 pl-12 xl:pl-16 relative z-10">
-            <a
-              href="tel:+917940055280"
+            {/* Phone link on dark blue background */}
+            <a 
+              href="tel:+917940055280" 
               className="flex items-center gap-2 text-white/90 hover:text-white transition-colors font-sans font-medium text-[13px] xl:text-sm whitespace-nowrap group"
             >
               <span className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center transition-colors group-hover:bg-white/20">
@@ -164,6 +182,7 @@ export default function Navbar() {
               <span>+91 79 4005 5280</span>
             </a>
 
+            {/* Request a Quote Button */}
             <Link
               to="/request-quote"
               className="inline-flex items-center justify-center gap-2 rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors whitespace-nowrap cursor-pointer"
@@ -172,6 +191,7 @@ export default function Navbar() {
             </Link>
           </div>
 
+          {/* Mobile Hamburger & Collapse Controls */}
           <div className="flex items-center lg:hidden gap-3">
             <Link
               to="/request-quote"
@@ -191,8 +211,9 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Menu Panel */}
       {mobileOpen && (
-        <div
+        <div 
           className="lg:hidden border-t border-white/10 px-4 py-4 space-y-2 animate-fadeIn text-left shadow-lg relative z-50"
           style={{
             background: 'linear-gradient(135deg, rgba(11, 27, 43, 0.98) 0%, rgba(18, 41, 62, 0.98) 50%, rgba(8, 20, 32, 0.98) 100%)',
@@ -217,10 +238,10 @@ export default function Navbar() {
               </Link>
             );
           })}
-
+          
           <div className="pt-4 border-t border-white/10 space-y-2.5">
-            <a
-              href="tel:+917940055280"
+            <a 
+              href="tel:+917940055280" 
               className="flex items-center justify-center gap-2 text-sm font-medium text-white bg-white/5 p-3.5 rounded-md border border-white/10 hover:bg-white/10 transition-colors"
             >
               <Phone className="w-4 h-4 text-[#7FB2E4]" />
