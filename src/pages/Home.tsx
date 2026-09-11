@@ -6,8 +6,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
-import { INDUSTRIES } from '../data';
+import { INDUSTRIES_SERVED } from '../data';
 import {
+  Factory,
   Wrench,
   Award,
   ChevronRight,
@@ -17,8 +18,27 @@ import {
   Flame,
   Droplets,
   Coins,
-  Layers
+  Layers,
+  FlaskConical,
+  Milk,
+  Wine,
+  UtensilsCrossed,
+  Package,
+  Newspaper,
+  Pill,
+  TreePine,
+  Wheat,
+  CircleDot,
+  Beaker,
+  Candy,
+  Shirt
 } from 'lucide-react';
+
+// Explicit map (not a wildcard import) so unused lucide icons still tree-shake out of the bundle.
+const INDUSTRY_ICONS: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
+  FlaskConical, Milk, Wine, UtensilsCrossed, Package, Newspaper, Pill,
+  TreePine, Wheat, CircleDot, Flame, Beaker, Candy, Shirt
+};
 
 const PRODUCT_CATEGORIES = [
   {
@@ -207,44 +227,38 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Industries Overview */}
-      <div className="bg-white py-24 px-4 sm:px-6 lg:px-8 border-t border-[#E1E4E3]">
-        <div className="max-w-7xl mx-auto space-y-14">
-          <div className="text-center max-w-3xl mx-auto space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">Global applications</p>
-            <h2 className="text-3xl md:text-[2.6rem] font-heading font-bold text-[#0D1B2A] tracking-tight leading-[1.05]">
-              Supporting major global industries
+      {/* Industries We Serve — real list, fresh design */}
+      <div className="bg-[#0D1B2A] py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:3rem_3rem]" />
+        <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+          <div className="max-w-2xl space-y-4 text-center mx-auto">
+            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#7FB2E4]">Where our systems run</p>
+            <h2 className="text-3xl md:text-[2.6rem] font-heading font-bold text-white tracking-tight leading-[1.05]">
+              Industries we serve
             </h2>
-            <p className="text-slate-600 text-sm leading-relaxed max-w-2xl mx-auto">
-              Our process systems meet strict temperature demands and heavy structural loads across
-              diverse industrial grids.
+            <p className="text-slate-300 text-sm leading-relaxed">
+              Fourteen industries, one requirement in common: heat that can't fail.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-px bg-[#E1E4E3] border border-[#E1E4E3]">
-            {INDUSTRIES.map((ind, i) => (
-              <div key={i} className="bg-white hover:bg-[#F7F7F4] transition-colors p-6 flex flex-col justify-between text-left">
-                <div className="space-y-3">
-                  <span className="text-xs font-mono font-bold text-[#1C5CA8]">0{i + 1}</span>
-                  <h4 className="font-heading font-bold text-sm text-[#0D1B2A] leading-tight">{ind.name}</h4>
-                  <p className="text-slate-500 text-[11px] leading-relaxed">{ind.useCase}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
+            {INDUSTRIES_SERVED.map((ind, i) => {
+              const Icon = INDUSTRY_ICONS[ind.icon] ?? Factory;
+              return (
+                <div
+                  key={i}
+                  className="bg-white rounded-md p-5 flex flex-col items-center text-center gap-3 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200"
+                >
+                  <Icon className="w-7 h-7 text-[#1C5CA8]" strokeWidth={1.5} />
+                  <span className="font-heading font-bold text-xs text-[#0D1B2A] leading-tight">{ind.name}</span>
                 </div>
-                <div className="pt-4 border-t border-[#E1E4E3] mt-4 text-[10px] font-mono font-bold text-[#1C5CA8] uppercase">
-                  {ind.solution.split(' & ')[0]}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          <div className="pt-2">
-            <Link
-              to="/industries"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1C5CA8] hover:text-[#2F7BD4]"
-            >
-              <span>Explore industry solutions</span>
-              <ChevronRight className="w-4 h-4" />
-            </Link>
-          </div>
+          <p className="text-center text-slate-400 text-xs pt-2">
+            Plus other industries and units where direct and indirect heating is essential.
+          </p>
         </div>
       </div>
 

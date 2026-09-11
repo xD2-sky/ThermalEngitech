@@ -450,6 +450,26 @@ export const INDUSTRIES = [
   }
 ];
 
+// The real, complete list of industries served — sourced from the company's
+// own live site, not a generic AI-invented shortlist. Icon keys map to
+// lucide-react icons in the component that renders this.
+export const INDUSTRIES_SERVED = [
+  { name: 'Chemical Plants', icon: 'FlaskConical' },
+  { name: 'Dairy Units', icon: 'Milk' },
+  { name: 'Distillery Plants', icon: 'Wine' },
+  { name: 'Food Industry', icon: 'UtensilsCrossed' },
+  { name: 'Packaging Units', icon: 'Package' },
+  { name: 'Paper Mills', icon: 'Newspaper' },
+  { name: 'Pharma Industry', icon: 'Pill' },
+  { name: 'Plywood Industry', icon: 'TreePine' },
+  { name: 'Rice Mills', icon: 'Wheat' },
+  { name: 'Rubber Industry', icon: 'CircleDot' },
+  { name: 'Sponge Iron Units', icon: 'Flame' },
+  { name: 'Solvent Plants', icon: 'Beaker' },
+  { name: 'Sugar Mill & Industry', icon: 'Candy' },
+  { name: 'Textile Units', icon: 'Shirt' }
+];
+
 export const CERTIFICATIONS = [
   {
     title: 'Indian Boiler Regulations (IBR 1950)',
