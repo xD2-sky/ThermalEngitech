@@ -8,9 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
 import { INDUSTRIES } from '../data';
 import {
-  Factory,
   Wrench,
-  BadgeCheck,
   Award,
   ChevronRight,
   ArrowRight,
@@ -57,13 +55,6 @@ const PRODUCT_CATEGORIES = [
   },
 ];
 
-const TRUST_MARKS = [
-  { icon: Factory, title: 'ISO Certified Plant', desc: 'Global audit approved plant operations & structural testing rules.' },
-  { icon: Wrench, title: 'ASME Approved', desc: 'High-pressure boilers certified matching Section I & VIII guidelines.' },
-  { icon: BadgeCheck, title: 'IBR Compliance', desc: 'Strict adherence to Indian Boiler Regulations, 1950.' },
-  { icon: Award, title: 'Export Standard', desc: 'Supplying verified materials to chemical networks globally.' },
-];
-
 export default function Home() {
   const navigate = useNavigate();
 
@@ -75,26 +66,8 @@ export default function Home() {
         onViewProducts={() => navigate('/products')}
       />
 
-      {/* Trust Marks Strip */}
-      <div className="bg-white border-b border-[#E1E4E3]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-          {TRUST_MARKS.map((t, i) => (
-            <div
-              key={i}
-              className={`flex items-start gap-4 p-7 ${i > 0 ? 'sm:border-l border-[#E1E4E3]' : ''} ${i === 2 ? 'lg:border-l' : ''}`}
-            >
-              <t.icon className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
-              <div className="text-left">
-                <h4 className="font-heading font-bold text-sm text-[#0D1B2A] tracking-tight">{t.title}</h4>
-                <p className="text-xs text-slate-500 mt-1 leading-relaxed">{t.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {/* Core Product Range — every card is a single clickable link to its category */}
-      <div className="bg-white py-24 px-4 sm:px-6 lg:px-8 border-b border-[#E1E4E3]">
+      <div className="bg-white pt-28 pb-24 px-4 sm:px-6 lg:px-8 border-b border-[#E1E4E3]">
         <div className="max-w-7xl mx-auto space-y-14">
           <div className="max-w-2xl space-y-4">
             <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">Manufactured systems</p>
