@@ -64,7 +64,7 @@ export default function Navbar() {
     <nav className={`${navClass} font-sans overflow-visible`} style={navStyle}>
       
       {/* Diagonal glass-panel accent — the angled geometric motif from the original brand design */}
-      <div className="absolute inset-y-0 right-0 left-[62%] xl:left-[66%] 2xl:left-[70%] hidden lg:block overflow-visible pointer-events-none z-0">
+      <div className="absolute inset-y-0 right-0 left-[62%] xl:left-[66%] 2xl:left-[calc(50vw_+_235.5px)] hidden lg:block overflow-visible pointer-events-none z-0">
         
         {/* Layer 1: Accent Blue Glass Line */}
         <div 
