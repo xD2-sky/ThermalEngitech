@@ -138,7 +138,7 @@ export default function Navbar() {
           </Link>
 
           {/* Everything else — nav links, phone, CTA — grouped hard right */}
-          <div className="hidden lg:flex items-center gap-8 xl:gap-10 shrink-0 relative z-10">
+          <div className="hidden lg:flex items-center shrink-0 relative z-10">
             <div className="flex items-center gap-1 xl:gap-2">
               {navItems.map((item) => {
                 const active = isActive(item.path);
@@ -161,24 +161,27 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* Phone link on dark blue background */}
-            <a 
-              href="tel:+917940055280" 
-              className="flex items-center gap-2 text-white/90 hover:text-white transition-colors font-sans font-medium text-[13px] xl:text-sm whitespace-nowrap group"
-            >
-              <span className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center transition-colors group-hover:bg-white/20">
-                <Phone className="w-3.5 h-3.5 text-[#7FB2E4]" />
-              </span>
-              <span>+91 79 4005 5280</span>
-            </a>
+            {/* Phone + CTA — pushed right so they sit inside the blue diagonal panel */}
+            <div className="flex items-center gap-4 xl:gap-6 pl-10 xl:pl-14">
+              {/* Phone link on dark blue background */}
+              <a
+                href="tel:+917940055280"
+                className="flex items-center gap-2 text-white/90 hover:text-white transition-colors font-sans font-medium text-[13px] xl:text-sm whitespace-nowrap group"
+              >
+                <span className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center transition-colors group-hover:bg-white/20">
+                  <Phone className="w-3.5 h-3.5 text-[#7FB2E4]" />
+                </span>
+                <span>+91 79 4005 5280</span>
+              </a>
 
-            {/* Request a Quote Button */}
-            <Link
-              to="/request-quote"
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors whitespace-nowrap cursor-pointer"
-            >
-              <span>Request a quote</span>
-            </Link>
+              {/* Request a Quote Button */}
+              <Link
+                to="/request-quote"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors whitespace-nowrap cursor-pointer"
+              >
+                <span>Request a quote</span>
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Hamburger & Collapse Controls */}
