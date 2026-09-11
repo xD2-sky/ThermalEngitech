@@ -453,23 +453,23 @@ export const INDUSTRIES = [
 export const CERTIFICATIONS = [
   {
     title: 'Indian Boiler Regulations (IBR 1950)',
-    description: 'Approved boiler and pressure vessel manufacturing facilities since inception. Certified to build, weld, and heat-treat IBR boilers that are backed by Form VI compliance Certificates.',
+    description: 'Approved boiler and pressure vessel manufacturing facility, certified to build, weld, and heat-treat IBR boilers with Latest Amendments, backed by Form VI compliance certificates.',
     authority: 'Directorate of Boilers, India'
   },
   {
-    title: 'ASME Section I & Section VIII Compliance',
-    description: 'Skilled in high-temp thickness calculations, weld joint radiography testing, and hydrostatic testing to global ASME Boiler & Pressure Vessel standards.',
+    title: 'ASME Section VIII Division 1 & 2',
+    description: 'Design and fabrication of pressure vessels and boiler components to ASME Boiler & Pressure Vessel Code, alongside IS-2825 for unfired pressure vessels.',
     authority: 'American Society of Mechanical Engineers'
   },
   {
-    title: 'ISO 9001:2015 Safety Certification',
-    description: 'Rigorous implementation of complete quality management systems covering all stages from raw structural steel receipt to volumetric testing and delivery.',
-    authority: 'TUV SUD Certified'
+    title: 'ISO 9001:2015 Quality Management',
+    description: 'Quality management systems covering every stage from raw structural steel receipt through volumetric testing and delivery.',
+    authority: 'ISO 9001:2015 Standard'
   },
   {
-    title: 'Export Ready Fabrication Standards',
-    description: 'Full compatibility with international marine shipping clearances and strict quality testing for East Africa, Gulf, and Southeast Asian chemical grids.',
-    authority: 'EEPC India Industrial Division'
+    title: 'Design Codes for Pressure Parts & Heat Exchangers',
+    description: 'Combustion equipment, pressure part, and heat exchanger design referenced against ISO-R-831, BS-2970, and TEMA standards.',
+    authority: 'International Design Standards'
   }
 ];
 
@@ -504,4 +504,60 @@ export const MANUFACTURING_STEPS = [
     title: 'Final Commissioning & PLC Integration',
     description: 'Pre-firing simulation checks burner fuel-air gas mixing metrics and audits alarm safety configurations before shipping.'
   }
+];
+
+// Real shop-floor equipment specifications, sourced from the facility's own
+// documented infrastructure — not generic filler copy.
+export const SHOP_CAPABILITIES = [
+  {
+    label: 'Welding',
+    value: 'MIG/TIG/ERW welding processes. Rectifiers rated 400 Amps. Argon Arc welding set with suppressor (TIG). CO2 welding set, 600 Amps.'
+  },
+  {
+    label: 'Plate Bending',
+    value: 'Pyramid-type plate bending machine. Minimum diameter 700mm. Length up to 2500mm. Thickness up to 32mm, in-house.'
+  },
+  {
+    label: 'Cutting',
+    value: 'Mechanically operated shearing up to 6mm. Power-operated hacksaw. Flame cutting up to 150mm thickness. CNC plasma profile cutting.'
+  },
+  {
+    label: 'Tube Bending',
+    value: 'Job length up to 2m, job size up to 500mm diameter. Bend saw for angle & channel sections up to 12mm thick. Carbon arc gouging, abrasive cutting.'
+  },
+  {
+    label: 'Material Handling',
+    value: 'Shop equipped with electrically operated overhead crane, plus a pneumatic testing machine rated up to 100 PSI.'
+  },
+  {
+    label: 'Surface Finish & Painting',
+    value: 'Sand blasting and spray painting. 3-phase power connection with 160 KVA / 415V diesel generator backup for power failure.'
+  }
+];
+
+// Engineering & design capabilities
+export const DESIGN_CAPABILITIES = {
+  equipmentDesign: [
+    'Thermal design',
+    'Pressure part design',
+    'Combustion equipment design — coal firing, gas & oil firing, agro-waste fuel firing',
+    'Welding joints design',
+    'Stress analysis'
+  ],
+  auxiliaries: [
+    'Structural & ducting',
+    'Instrumentation',
+    'Pneumatic, electro-mechanical, electronic, electrical, process & utility pipeline'
+  ],
+  cadTools: ['AutoCAD', 'Thermal design software', 'Stress calculations & CAD drafting', 'ProE / CREO', 'STAAD analysis']
+};
+
+// Design codes and standards actually referenced in engineering — not aspirational claims.
+export const DESIGN_CODES = [
+  { code: 'ASME Sec. VIII Div. 1 & 2', note: 'Pressure vessel design' },
+  { code: 'IS-2825', note: 'Unfired pressure vessels' },
+  { code: 'IBR 1950, with Latest Amendments', note: 'Indian Boiler Regulations' },
+  { code: 'ISO-R-831', note: 'Boiler design recommendations' },
+  { code: 'BS-2970', note: 'Steel tubes for boilers' },
+  { code: 'TEMA', note: 'Heat exchanger standards' }
 ];

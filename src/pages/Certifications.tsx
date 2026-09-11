@@ -4,24 +4,20 @@
  */
 
 import React from 'react';
-import { CERTIFICATIONS } from '../data';
-import { BadgeCheck, ShieldCheck, FileCheck, Award } from 'lucide-react';
+import { CERTIFICATIONS, DESIGN_CODES } from '../data';
+import { 
+  BadgeCheck, 
+  ShieldCheck, 
+  FileCheck, 
+  Award
+} from 'lucide-react';
 
 export default function Certifications() {
-  const auditAgencies = [
-    { name: 'Lloyds Register of Shipping', role: 'Export vessel compliance' },
-    { name: 'TUV SUD Group', role: 'ISO 9001 quality audits' },
-    { name: 'Bureau Veritas', role: 'ASME Sec I & VIII third-party inspection' },
-    { name: 'Directorate of Boilers, Gujarat', role: 'Statutory IBR 1950 certification' },
-    { name: 'SGS India', role: 'Raw material chemical analysis verification' },
-    { name: 'RITES Limited', role: 'Government infrastructure project inspections' }
-  ];
-
   return (
     <div className="space-y-0 text-left bg-slate-50 min-h-screen">
       
       {/* Page Header */}
-      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
+      <div className="bg-[#0B1B2B] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-[#1C5CA8]/25 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:2.5rem_2.5rem]" />
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
@@ -49,7 +45,7 @@ export default function Certifications() {
                 <div className="w-12 h-12 bg-[#1C5CA8]/10 rounded-xl flex items-center justify-center text-[#1C5CA8]">
                   <BadgeCheck className="w-6 h-6" />
                 </div>
-                <h3 className="font-heading font-extrabold text-lg text-[#0D1B2A] leading-snug group-hover:text-[#1C5CA8] transition duration-200">
+                <h3 className="font-heading font-extrabold text-lg text-[#0B1B2B] leading-snug group-hover:text-[#1C5CA8] transition duration-200">
                   {cert.title}
                 </h3>
                 <p className="text-xs text-slate-500 font-sans leading-relaxed">
@@ -65,27 +61,27 @@ export default function Certifications() {
           ))}
         </div>
 
-        {/* Third-party audit roster */}
+        {/* Design codes & standards actually referenced in engineering */}
         <div className="bg-white border border-[#E1E4E3] rounded-lg p-6 md:p-8 space-y-8 shadow-xs text-left">
           <div className="space-y-2 border-b border-slate-100 pb-4">
-            <h3 className="font-heading font-extrabold text-lg text-[#0D1B2A] flex items-center gap-2">
+            <h3 className="font-heading font-extrabold text-lg text-[#0B1B2B] flex items-center gap-2">
               <FileCheck className="w-5 h-5 text-[#1C5CA8]" />
-              <span>Third-Party Physical Testing Agencies</span>
+              <span>Design Codes & Standards Referenced</span>
             </h3>
             <p className="text-xs text-slate-500 font-sans leading-relaxed">
-              We frequently coordinate onsite welds scanning, plate coupon tensile failures investigations, and hydraulic test witnessings with global inspectors as mandated by clients or statutory codes.
+              Every system is engineered against a specific set of design codes — not a general claim of "international standards," but the actual codes our design and stress-analysis work is checked against.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-sans">
-            {auditAgencies.map((agency, i) => (
+            {DESIGN_CODES.map((dc, i) => (
               <div key={i} className="flex gap-3.5 items-start p-4 bg-[#F1F1ED] border border-slate-100 rounded-xl hover:bg-slate-50 transition">
                 <div className="p-2 bg-white rounded-lg border border-slate-200 text-[#1C5CA8] shrink-0 font-mono text-xs font-bold shadow-xs">
                   0{i + 1}
                 </div>
                 <div className="space-y-0.5 text-left">
-                  <h4 className="font-bold text-xs text-[#0D1B2A] leading-tight">{agency.name}</h4>
-                  <span className="text-[10.5px] text-slate-500 font-medium">{agency.role}</span>
+                  <h4 className="font-bold text-xs text-[#0B1B2B] leading-tight">{dc.code}</h4>
+                  <span className="text-[10.5px] text-slate-500 font-medium">{dc.note}</span>
                 </div>
               </div>
             ))}
@@ -93,7 +89,7 @@ export default function Certifications() {
         </div>
 
         {/* Compliance checklist declarations */}
-        <div className="bg-[#0D1B2A] text-white rounded-lg p-6 md:p-8 space-y-6 relative overflow-hidden border border-white/5 shadow-md">
+        <div className="bg-[#0B1B2B] text-white rounded-lg p-6 md:p-8 space-y-6 relative overflow-hidden border border-white/5 shadow-md">
           <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]" />
           <div className="relative z-10 max-w-4xl space-y-4 text-left">
             <h4 className="font-heading font-extrabold text-lg text-white flex items-center gap-1.5 uppercase tracking-wide">

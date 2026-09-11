@@ -4,23 +4,16 @@
  */
 
 import React from 'react';
-import { MANUFACTURING_STEPS } from '../data';
-import { ShieldCheck, HardHat } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MANUFACTURING_STEPS, SHOP_CAPABILITIES, DESIGN_CAPABILITIES } from '../data';
+import { Settings, ShieldCheck, HardHat, PenTool, Cpu } from 'lucide-react';
 
 export default function Manufacturing() {
-  const shopCapacities = [
-    { label: 'Plate Rolling Limit', value: 'Sustains cold rolling of up to 32mm thick high-tensile boiler grade SA 516 Gr 70 plates.' },
-    { label: 'Tube Bending Rigs', value: 'Automatic pneumatic bending blocks ensuring unified concentric helixes without tube narrowing.' },
-    { label: 'Weld Stations', value: '14 state-approved welding bays utilizing advanced pulse GTAW and automatic submerged arc welding (SAW).' },
-    { label: 'Radiography Bunker', value: 'In-house high-energy radioactive isotope testing enclosure to scan weld longitudinal roots.' },
-    { label: 'Hydrostatic Beds', value: 'Dual high-pressure hydrostatic pumps equipped with calibrated, certified digital pressure graphs.' }
-  ];
-
   return (
     <div className="space-y-0 text-left bg-[#F1F1ED] min-h-screen">
       
       {/* Banner */}
-      <div className="bg-[#0D1B2A] text-white border-b border-[#1C5CA8]/25 relative overflow-hidden">
+      <div className="bg-[#0B1B2B] text-white border-b border-[#1C5CA8]/25 relative overflow-hidden">
         {/* Subtle industrial blueprint network line */}
         <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:4rem_4rem]" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -54,7 +47,7 @@ export default function Manufacturing() {
             <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
               Production Machinery
             </p>
-            <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0D1B2A]">
+            <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0B1B2B]">
               Precision Heavy Fabrication Capacity
             </h2>
             <p className="text-xs text-slate-600 leading-relaxed font-sans">
@@ -64,13 +57,13 @@ export default function Manufacturing() {
 
           <div className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs">
             <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
-              <h3 className="text-xs uppercase font-mono font-bold text-[#0D1B2A] flex items-center gap-2">
+              <h3 className="text-xs uppercase font-mono font-bold text-[#0B1B2B] flex items-center gap-2">
                 <HardHat className="w-4 h-4 text-[#1C5CA8]" />
-                <span>Shop Floor Equipment & Roster Limits</span>
+                <span>Shop Floor Equipment</span>
               </h3>
             </div>
             <div className="divide-y divide-slate-100">
-              {shopCapacities.map((cap, idx) => (
+              {SHOP_CAPABILITIES.map((cap, idx) => (
                 <div key={idx} className="p-6 grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-6 hover:bg-slate-50 transition">
                   <span className="text-xs font-mono font-bold text-[#1C5CA8] uppercase sm:col-span-1 leading-tight">
                     {cap.label}
@@ -82,6 +75,46 @@ export default function Manufacturing() {
               ))}
             </div>
           </div>
+
+          {/* Design & Engineering Capabilities — real data from the facility's documented infrastructure */}
+          <div className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs">
+            <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
+              <h3 className="text-xs uppercase font-mono font-bold text-[#0B1B2B] flex items-center gap-2">
+                <PenTool className="w-4 h-4 text-[#1C5CA8]" />
+                <span>Design & Engineering Capabilities</span>
+              </h3>
+            </div>
+            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div className="space-y-3">
+                <h4 className="text-xs font-bold text-[#0B1B2B] uppercase tracking-wide flex items-center gap-1.5">
+                  <Settings className="w-3.5 h-3.5 text-[#1C5CA8]" />
+                  Equipment Design
+                </h4>
+                <ul className="space-y-2">
+                  {DESIGN_CAPABILITIES.equipmentDesign.map((item, i) => (
+                    <li key={i} className="text-xs text-slate-600 leading-relaxed flex items-start gap-2">
+                      <span className="text-[#1C5CA8] mt-0.5">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="space-y-3">
+                <h4 className="text-xs font-bold text-[#0B1B2B] uppercase tracking-wide flex items-center gap-1.5">
+                  <Cpu className="w-3.5 h-3.5 text-[#1C5CA8]" />
+                  Computer Aided Design
+                </h4>
+                <ul className="space-y-2">
+                  {DESIGN_CAPABILITIES.cadTools.map((item, i) => (
+                    <li key={i} className="text-xs text-slate-600 leading-relaxed flex items-start gap-2">
+                      <span className="text-[#1C5CA8] mt-0.5">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Right Column (Standard Quality Assurance Accreditations summary) */}
@@ -91,7 +124,7 @@ export default function Manufacturing() {
           </div>
           
           <div className="space-y-2">
-            <h4 className="font-heading font-extrabold text-sm uppercase text-[#0D1B2A] tracking-wider">
+            <h4 className="font-heading font-extrabold text-sm uppercase text-[#0B1B2B] tracking-wider">
               Quality Assurance Directives
             </h4>
             <p className="text-xs text-slate-500 leading-relaxed font-sans">
@@ -124,7 +157,7 @@ export default function Manufacturing() {
             <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
               Production Steps
             </p>
-            <h2 className="text-3xl font-heading font-bold text-[#0D1B2A]">
+            <h2 className="text-3xl font-heading font-bold text-[#0B1B2B]">
               The Six-Stage Assembly Pipeline
             </h2>
             <p className="text-slate-600 text-sm">
@@ -132,7 +165,7 @@ export default function Manufacturing() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
             {MANUFACTURING_STEPS.map((step, i) => (
               <div 
                 key={i}
@@ -145,7 +178,7 @@ export default function Manufacturing() {
                     </span>
                     <span className="text-[10px] uppercase font-mono text-slate-400">Section GIDC</span>
                   </div>
-                  <h4 className="font-heading font-extrabold text-base text-[#0D1B2A]">{step.title}</h4>
+                  <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">{step.title}</h4>
                   <p className="text-xs text-slate-500 leading-relaxed font-sans">{step.description}</p>
                 </div>
                 <div className="pt-3 border-t border-slate-100 mt-2 text-[10px] font-mono text-slate-500 uppercase tracking-tight">
