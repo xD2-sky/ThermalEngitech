@@ -13,14 +13,17 @@ interface HeroProps {
 
 export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
   return (
-    <section id="hero" className="relative bg-[#0B1B2B] text-white overflow-hidden font-sans">
+    <section
+      id="hero"
+      className="relative bg-[#0B1B2B] text-white overflow-hidden font-sans min-h-[100dvh] md:min-h-screen flex items-center"
+    >
       {/* Depth: soft vertical gradient + one quiet light source behind the unit */}
       <div className="absolute inset-0 grid-blueprint" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#081420] via-[#0B1B2B] to-[#0B1B2B]" />
       <div className="absolute right-[-6rem] top-1/2 -translate-y-1/2 w-[620px] h-[620px] rounded-full bg-[#1C5CA8]/18 blur-[130px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-[1320px] mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-12 lg:gap-8 pt-32 pb-20 lg:pt-36 lg:pb-24">
+      <div className="relative z-10 w-full max-w-[1320px] mx-auto px-5 sm:px-6 lg:px-8 py-24 lg:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-12 lg:gap-8">
 
           {/* ---------------- Text column ---------------- */}
           <div className="lg:col-span-7 max-w-2xl">
@@ -75,7 +78,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
 
           {/* ---------------- Product photo column ---------------- */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <figure className="w-full max-w-sm">
+            <figure className="w-full max-w-lg">
               <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5 sm:p-6">
                 <img
                   src={`${import.meta.env.BASE_URL}images/products/multi-fuel-system.png`}
