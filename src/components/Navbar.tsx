@@ -118,59 +118,49 @@ export default function Navbar() {
             WebkitBackdropFilter: 'blur(10px)'
           }} 
         />
-        
-        {/* Industrial decorative highlight grid line inside the blue block */}
-        <div 
-          className="absolute inset-y-0 w-[1px] bg-white/10" 
-          style={{ 
-            left: '120px',
-            transform: 'skewX(-26.5deg)'
-          }} 
-        />
       </div>
 
       {/* Navbar Container */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
         <div className="flex h-[88px] items-center justify-between">
           
-          {/* Logo Brand / Identity - Left Block with slightly increased visibility */}
+          {/* Logo Brand / Identity — pinned hard left */}
           <Link
             to="/"
             className="flex min-w-0 items-center gap-3.5 py-2 group shrink-0"
           >
             <Logo className="h-14 w-16 shrink-0 transition-transform duration-300 group-hover:scale-105" />
             <div className="flex min-w-0 flex-col justify-center">
-              <span className="truncate font-heading font-extrabold text-[20px] tracking-tight text-white leading-none xl:text-[22px] 2xl:text-[24px]">
+              <span className="whitespace-nowrap font-heading font-extrabold text-[20px] tracking-tight text-white leading-snug xl:text-[22px] 2xl:text-[24px]">
                 Thermal <span className="text-[#2F7BD4]">Engitech</span>
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links (Centered, Uppercase, Semi-bold, Modern industrial appearance) */}
-          <div className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 mx-4">
-            {navItems.map((item) => {
-              const active = isActive(item.path);
-              return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`px-2.5 py-2.5 font-sans text-[13px] xl:text-sm font-medium whitespace-nowrap transition-all duration-200 relative ${
-                    active
-                      ? 'text-white font-semibold'
-                      : 'text-slate-200 hover:text-white'
-                  }`}
-                >
-                  {item.label}
-                  {active && (
-                    <span className="absolute bottom-[-10px] left-2.5 right-2.5 h-[2px] bg-[#1C5CA8] rounded-full" />
-                  )}
-                </Link>
-              );
-            })}
-          </div>
+          {/* Everything else — nav links, phone, CTA — grouped hard right */}
+          <div className="hidden lg:flex items-center gap-8 xl:gap-10 shrink-0 relative z-10">
+            <div className="flex items-center gap-1 xl:gap-2">
+              {navItems.map((item) => {
+                const active = isActive(item.path);
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`px-2.5 py-2.5 font-sans text-[13px] xl:text-sm font-medium whitespace-nowrap transition-all duration-200 relative ${
+                      active
+                        ? 'text-white font-semibold'
+                        : 'text-slate-200 hover:text-white'
+                    }`}
+                  >
+                    {item.label}
+                    {active && (
+                      <span className="absolute bottom-[-10px] left-2.5 right-2.5 h-[2px] bg-[#1C5CA8] rounded-full" />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
 
-          {/* Right Block - Overlaid on the beautiful diagonal blue design */}
-          <div className="hidden lg:flex items-center gap-4 xl:gap-6 shrink-0 pl-12 xl:pl-16 relative z-10">
             {/* Phone link on dark blue background */}
             <a 
               href="tel:+917940055280" 
