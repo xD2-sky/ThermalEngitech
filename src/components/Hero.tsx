@@ -35,7 +35,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
       <div className="absolute inset-0 bg-[#0B1B2B]/25" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(11,27,43,0.92)_0%,rgba(11,27,43,0.75)_45%,rgba(11,27,43,0.55)_100%)]" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24 lg:pb-16">
         <div className="max-w-2xl">
 
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] pl-2.5 pr-3.5 py-1.5 text-slate-200 text-xs font-medium tracking-wide">
