@@ -54,7 +54,7 @@ export default function Navbar() {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-[1320px] mx-auto px-5 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-[76px] items-center justify-between gap-4">
 
           {/* Brand */}
@@ -129,7 +129,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[#0B1B2B] border-t border-white/10 px-5 py-4 space-y-1 animate-fadeIn shadow-lg">
+        <div className="lg:hidden bg-[#0B1B2B] border-t border-white/10 px-4 py-4 space-y-1 animate-fadeIn shadow-lg">
           {navItems.map((item) => {
             const active = isActive(item.path);
             return (

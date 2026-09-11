@@ -69,12 +69,12 @@ export default function Home() {
       {/* Core Product Range — every card is a single clickable link to its category */}
       <div className="bg-white pt-28 pb-24 px-4 sm:px-6 lg:px-8 border-b border-[#E1E4E3]">
         <div className="max-w-7xl mx-auto space-y-14">
-          <div className="max-w-2xl space-y-4">
+          <div className="text-center max-w-3xl mx-auto space-y-4">
             <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">Manufactured systems</p>
             <h2 className="text-3xl md:text-[2.6rem] font-heading font-bold text-[#0D1B2A] tracking-tight leading-[1.05]">
               Our core product range
             </h2>
-            <p className="text-slate-600 text-sm leading-relaxed">
+            <p className="text-slate-600 text-sm leading-relaxed max-w-2xl mx-auto">
               Heavy-duty process heating equipment, designed and fabricated in-house to the standards your
               plant is audited against. Select a category to see models, capacities and specifications.
             </p>
@@ -110,7 +110,7 @@ export default function Home() {
       </div>
 
       {/* Featured Capabilities Section */}
-      <div className="bg-[#F1F1ED] py-24 px-4 sm:px-6 lg:px-8">
+      <div className="bg-[#F1F1ED] py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-6 text-left">
@@ -142,7 +142,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="pt-4 flex flex-wrap gap-3">
+              <div className="pt-4 flex flex-wrap items-center gap-3">
                 <Link
                   to="/about"
                   className="inline-flex items-center gap-2 rounded-md bg-[#0D1B2A] hover:bg-[#1C5CA8] px-5 py-3 text-sm font-semibold text-white transition-colors"
@@ -210,12 +210,12 @@ export default function Home() {
       {/* Industries Overview */}
       <div className="bg-white py-24 px-4 sm:px-6 lg:px-8 border-t border-[#E1E4E3]">
         <div className="max-w-7xl mx-auto space-y-14">
-          <div className="max-w-2xl space-y-4">
+          <div className="text-center max-w-3xl mx-auto space-y-4">
             <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">Global applications</p>
             <h2 className="text-3xl md:text-[2.6rem] font-heading font-bold text-[#0D1B2A] tracking-tight leading-[1.05]">
               Supporting major global industries
             </h2>
-            <p className="text-slate-600 text-sm leading-relaxed">
+            <p className="text-slate-600 text-sm leading-relaxed max-w-2xl mx-auto">
               Our process systems meet strict temperature demands and heavy structural loads across
               diverse industrial grids.
             </p>

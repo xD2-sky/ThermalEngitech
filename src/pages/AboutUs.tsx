@@ -30,7 +30,7 @@ export default function AboutUs() {
     <div className="space-y-0 text-left bg-[#F1F1ED]">
       
       {/* Page Header Banner */}
-      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-5 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
+      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:3rem_3rem]" />
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-[#2F7BD4] uppercase">
@@ -47,7 +47,7 @@ export default function AboutUs() {
       </div>
 
       {/* Main Narrative Block & Company Journey */}
-      <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white py-16 md:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -206,7 +206,7 @@ export default function AboutUs() {
             </p>
           </div>
 
-          <div className="pt-4 flex justify-center gap-4">
+          <div className="pt-4 flex items-center justify-center gap-3">
             <Link 
               to="/products"
               className="px-5 py-2.5 bg-[#0D1B2A] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow hover:bg-[#1C5CA8] transition flex items-center gap-1.5"

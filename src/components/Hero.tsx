@@ -22,7 +22,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
       <div className="absolute inset-0 bg-gradient-to-b from-[#081420] via-[#0B1B2B] to-[#0B1B2B]" />
       <div className="absolute right-[-6rem] top-1/2 -translate-y-1/2 w-[620px] h-[620px] rounded-full bg-[#1C5CA8]/18 blur-[130px] pointer-events-none" />
 
-      <div className="relative z-10 w-full max-w-[1320px] mx-auto px-5 sm:px-6 lg:px-8 py-24 lg:py-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-12 lg:gap-8">
 
           {/* ---------------- Text column ---------------- */}

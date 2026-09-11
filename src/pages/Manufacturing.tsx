@@ -23,7 +23,7 @@ export default function Manufacturing() {
       <div className="bg-[#0D1B2A] text-white border-b border-[#1C5CA8]/25 relative overflow-hidden">
         {/* Subtle industrial blueprint network line */}
         <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:4rem_4rem]" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-4">
             <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#7FB2E4]">
               Dhamatwan Workshop Facility
@@ -46,7 +46,7 @@ export default function Manufacturing() {
       </div>
 
       {/* Workshop Equipment & Slabs */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
         
         {/* Left Column (Narrative and equipment table) */}
         <div className="lg:col-span-7 space-y-10">
@@ -132,7 +132,7 @@ export default function Manufacturing() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
             {MANUFACTURING_STEPS.map((step, i) => (
               <div 
                 key={i}

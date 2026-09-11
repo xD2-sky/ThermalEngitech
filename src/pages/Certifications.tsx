@@ -21,7 +21,7 @@ export default function Certifications() {
     <div className="space-y-0 text-left bg-slate-50 min-h-screen">
       
       {/* Page Header */}
-      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-5 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
+      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:2.5rem_2.5rem]" />
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
@@ -37,7 +37,7 @@ export default function Certifications() {
       </div>
 
       {/* Grid of certifications */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 space-y-16">
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
           {CERTIFICATIONS.map((cert, i) => (

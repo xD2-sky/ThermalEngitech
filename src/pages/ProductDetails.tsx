@@ -234,7 +234,7 @@ export default function ProductDetails() {
 
   if (!product) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-20 text-center space-y-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center space-y-6">
         <h2 className="text-2xl font-bold font-heading text-[#0D1B2A]">Product Configuration Not Found</h2>
         <p className="text-slate-500 max-w-sm mx-auto text-xs leading-normal">
           The requested system schematic could not be loaded. It may have been archived or updated.
@@ -295,13 +295,13 @@ export default function ProductDetails() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
         
         {/* Left Column (Product Spec, Features, CAD View) */}
         <div className="lg:col-span-7 space-y-10">
           
           {/* Header */}
-          <div className="space-y-3">
+          <div className="space-y-4">
             <span className="text-xs font-mono font-bold tracking-wider text-[#1C5CA8] bg-[#1C5CA8]/10 px-3 py-1.5 rounded-full uppercase">
               {product.category}
             </span>

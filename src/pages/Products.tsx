@@ -224,7 +224,7 @@ export default function Products() {
     <div className="space-y-0 text-left bg-slate-50 min-h-screen">
       
       {/* Banner */}
-      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-5 sm:px-6 lg:px-8 border-b border-white/10">
+      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-white/10">
         <div className="max-w-7xl mx-auto space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
             Product Catalog
@@ -239,7 +239,7 @@ export default function Products() {
       </div>
 
       {/* Main filterable showroom */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         
         {/* Horizontal Category Pill Sliders */}
         <div className="flex flex-wrap items-center justify-start gap-2 pb-8 border-b border-slate-200">

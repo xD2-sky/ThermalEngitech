@@ -33,7 +33,7 @@ export default function ContactUs() {
     <div className="space-y-0 text-left bg-slate-50 min-h-screen">
       
       {/* Banner */}
-      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-5 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
+      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:3rem_3rem]" />
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
@@ -48,7 +48,7 @@ export default function ContactUs() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
         
         {/* Left Column (Coordinates and Hours) */}
         <div className="lg:col-span-4 space-y-8 text-left">
