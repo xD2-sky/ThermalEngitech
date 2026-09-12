@@ -62,69 +62,10 @@ export default function Navbar() {
 
   return (
     <nav className={`${navClass} font-sans overflow-visible`} style={navStyle}>
-      
-      {/* Diagonal glass-panel accent — extends to the true right edge of the viewport */}
-      <div className="absolute inset-0 pointer-events-none hidden lg:block">
-        <div className="absolute inset-y-0 right-0 left-[68%] xl:left-[74%] overflow-visible z-0">
-
-          {/* Layer 1: Accent Blue Glass Line */}
-          <div
-            className={`absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500 ${
-              scrolled ? 'bg-[#1C5CA8]/80' : 'bg-[#1C5CA8]/60'
-            }`}
-            style={{
-              clipPath: 'polygon(50px 0, 100% 0, 100% 100%, 0% 100%)',
-              left: '0px',
-              backdropFilter: 'blur(2px)',
-              WebkitBackdropFilter: 'blur(2px)'
-            }}
-          />
-
-          {/* Glowing edge-highlight — light catching the diagonal cut, gives it presence over photo backgrounds */}
-          <div
-            className="absolute inset-y-0 w-[2px] transition-opacity duration-500"
-            style={{
-              left: '-2px',
-              transform: 'skewX(-26.5deg)',
-              background: 'linear-gradient(180deg, rgba(127,178,228,0.95) 0%, rgba(47,123,212,0.7) 50%, rgba(127,178,228,0.95) 100%)',
-              boxShadow: '0 0 12px 1px rgba(47,123,212,0.85), 0 0 24px 4px rgba(47,123,212,0.35)',
-              opacity: scrolled ? 0.9 : 1,
-            }}
-          />
-
-          {/* Layer 2: Secondary Deep Blue Glass Line */}
-          <div
-            className="absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500"
-            style={{
-              clipPath: 'polygon(50px 0, 100% 0, 100% 100%, 0% 100%)',
-              left: '10px',
-              background: scrolled
-                ? 'linear-gradient(135deg, rgba(18, 41, 62, 0.9) 0%, rgba(11, 27, 43, 0.9) 100%)'
-                : 'linear-gradient(135deg, rgba(18, 41, 62, 0.6) 0%, rgba(11, 27, 43, 0.6) 100%)',
-              backdropFilter: 'blur(6px)',
-              WebkitBackdropFilter: 'blur(6px)'
-            }}
-          />
-
-          {/* Layer 3: Primary Industrial Gradient Main Block */}
-          <div
-            className="absolute inset-y-0 bottom-[-24px] w-full transition-all duration-500 shadow-xl"
-            style={{
-              clipPath: 'polygon(50px 0, 100% 0, 100% 100%, 0% 100%)',
-              left: '20px',
-              background: scrolled
-                ? 'linear-gradient(135deg, #081420 0%, #12293E 50%, #081420 100%)'
-                : 'linear-gradient(135deg, rgba(11, 27, 43, 0.8) 0%, rgba(18, 41, 62, 0.8) 50%, rgba(8, 20, 32, 0.8) 100%)',
-              backdropFilter: 'blur(10px)',
-              WebkitBackdropFilter: 'blur(10px)'
-            }}
-          />
-        </div>
-      </div>
 
       {/* Navbar Container */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
-        <div className="flex h-[88px] items-center justify-between">
+        <div className="flex h-[88px] items-center">
           
           {/* Logo Brand / Identity — pinned hard left */}
           <Link
@@ -139,32 +80,88 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Everything else — nav links, phone, CTA — grouped hard right */}
-          <div className="hidden lg:flex items-center shrink-0 relative z-10">
-            <div className="flex items-center gap-8 xl:gap-10">
-              {navItems.map((item) => {
-                const active = isActive(item.path);
-                return (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className={`px-0 py-2.5 font-sans text-[13px] xl:text-sm font-medium whitespace-nowrap transition-all duration-200 relative ${
-                      active
-                        ? 'text-white font-semibold'
-                        : 'text-slate-200 hover:text-white'
-                    }`}
-                  >
-                    {item.label}
-                    {active && (
-                      <span className="absolute bottom-[-10px] left-2.5 right-2.5 h-[2px] bg-[#1C5CA8] rounded-full" />
-                    )}
-                  </Link>
-                );
-              })}
+          {/* Nav links — anchored close to the logo, not stretched across the bar */}
+          <div className="hidden xl:flex items-center gap-8 xl:gap-10 ml-10 xl:ml-14 shrink-0">
+            {navItems.map((item) => {
+              const active = isActive(item.path);
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`px-0 py-2.5 font-sans text-[13px] xl:text-sm font-medium whitespace-nowrap transition-all duration-200 relative ${
+                    active
+                      ? 'text-white font-semibold'
+                      : 'text-slate-200 hover:text-white'
+                  }`}
+                >
+                  {item.label}
+                  {active && (
+                    <span className="absolute bottom-[-10px] left-2.5 right-2.5 h-[2px] bg-[#1C5CA8] rounded-full" />
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Phone + CTA — pushed to the true right edge via ml-auto, independent of nav-link width.
+              The diagonal blue panel now lives inside this wrapper, so it shrink-wraps exactly to
+              this content and never stretches beyond it on either side. */}
+          <div className="hidden xl:flex items-center ml-auto shrink-0 relative">
+
+            <div className="absolute inset-y-[-20px] left-0 right-0 pointer-events-none overflow-visible z-0">
+              {/* Layer 1: Accent Blue Glass Line */}
+              <div
+                className={`absolute inset-y-0 w-full transition-all duration-500 ${
+                  scrolled ? 'bg-[#1C5CA8]/80' : 'bg-[#1C5CA8]/60'
+                }`}
+                style={{
+                  clipPath: 'polygon(36px 0, 100% 0, 100% 100%, 0% 100%)',
+                  left: '0px',
+                  backdropFilter: 'blur(2px)',
+                  WebkitBackdropFilter: 'blur(2px)'
+                }}
+              />
+              {/* Glowing edge-highlight */}
+              <div
+                className="absolute inset-y-0 w-[2px] transition-opacity duration-500"
+                style={{
+                  left: '-2px',
+                  transform: 'skewX(-26.5deg)',
+                  background: 'linear-gradient(180deg, rgba(127,178,228,0.95) 0%, rgba(47,123,212,0.7) 50%, rgba(127,178,228,0.95) 100%)',
+                  boxShadow: '0 0 12px 1px rgba(47,123,212,0.85), 0 0 24px 4px rgba(47,123,212,0.35)',
+                  opacity: scrolled ? 0.9 : 1,
+                }}
+              />
+              {/* Layer 2: Secondary Deep Blue Glass Line */}
+              <div
+                className="absolute inset-y-0 w-full transition-all duration-500"
+                style={{
+                  clipPath: 'polygon(36px 0, 100% 0, 100% 100%, 0% 100%)',
+                  left: '8px',
+                  background: scrolled
+                    ? 'linear-gradient(135deg, rgba(18, 41, 62, 0.9) 0%, rgba(11, 27, 43, 0.9) 100%)'
+                    : 'linear-gradient(135deg, rgba(18, 41, 62, 0.6) 0%, rgba(11, 27, 43, 0.6) 100%)',
+                  backdropFilter: 'blur(6px)',
+                  WebkitBackdropFilter: 'blur(6px)'
+                }}
+              />
+              {/* Layer 3: Primary Industrial Gradient Main Block */}
+              <div
+                className="absolute inset-y-0 w-full transition-all duration-500 shadow-xl"
+                style={{
+                  clipPath: 'polygon(36px 0, 100% 0, 100% 100%, 0% 100%)',
+                  left: '16px',
+                  background: scrolled
+                    ? 'linear-gradient(135deg, #081420 0%, #12293E 50%, #081420 100%)'
+                    : 'linear-gradient(135deg, rgba(11, 27, 43, 0.8) 0%, rgba(18, 41, 62, 0.8) 50%, rgba(8, 20, 32, 0.8) 100%)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)'
+                }}
+              />
             </div>
 
-            {/* Phone + CTA — sized to fit inside the (deliberately narrow) blue diagonal panel */}
-            <div className="flex items-center gap-1.5 xl:gap-2.5 pl-0 xl:pl-8">
+            {/* Phone + CTA content — this is what the panel above shrink-wraps to */}
+            <div className="relative z-10 flex items-center gap-1.5 xl:gap-2.5 pl-9 pr-5 xl:pl-11 xl:pr-6 py-2">
               {/* Phone link on dark blue background */}
               <a
                 href="tel:+917940055280"
@@ -187,7 +184,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Hamburger & Collapse Controls */}
-          <div className="flex items-center lg:hidden gap-3">
+          <div className="flex items-center xl:hidden gap-3 ml-auto">
             <Link
               to="/request-quote"
               className="px-4 py-2 bg-[#1C5CA8] text-white text-xs font-semibold rounded-md shadow-sm hover:bg-[#2F7BD4] transition-colors"
@@ -209,7 +206,7 @@ export default function Navbar() {
       {/* Mobile Menu Panel */}
       {mobileOpen && (
         <div 
-          className="lg:hidden border-t border-white/10 px-4 py-4 space-y-2 animate-fadeIn text-left shadow-lg relative z-50"
+          className="xl:hidden border-t border-white/10 px-4 py-4 space-y-2 animate-fadeIn text-left shadow-lg relative z-50"
           style={{
             background: 'linear-gradient(135deg, rgba(11, 27, 43, 0.98) 0%, rgba(18, 41, 62, 0.98) 50%, rgba(8, 20, 32, 0.98) 100%)',
             backdropFilter: 'blur(12px)',
