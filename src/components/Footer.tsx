@@ -38,10 +38,13 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <Logo className="w-12 h-11 shrink-0" />
               <div className="leading-tight">
-                <span className="font-heading font-extrabold text-[15px] text-white block">
-                  Thermal <span className="text-[#7FB2E4]">Engitech</span> Pvt. Ltd.
+                <span className="font-heading font-extrabold text-[15px] text-white uppercase tracking-tight block">
+                  Thermal <span className="text-[#2F7BD4]">Engitech</span>
                 </span>
-                <span className="text-[11px] text-slate-400 block mt-1">
+                <span className="text-[10px] tracking-[0.12em] text-slate-400 uppercase block mt-0.5">
+                  Pvt. Ltd.
+                </span>
+                <span className="text-[11px] text-slate-400 block mt-2">
                   Industrial boilers &amp; process-heat systems
                 </span>
               </div>
