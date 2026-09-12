@@ -143,14 +143,14 @@ export default function Navbar() {
 
           {/* Everything else — nav links, phone, CTA — grouped hard right */}
           <div className="hidden lg:flex items-center shrink-0 relative z-10">
-            <div className="flex items-center gap-1 xl:gap-2">
+            <div className="flex items-center gap-5 xl:gap-7">
               {navItems.map((item) => {
                 const active = isActive(item.path);
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`px-1.5 xl:px-2.5 py-2.5 font-sans text-[13px] xl:text-sm font-medium whitespace-nowrap transition-all duration-200 relative ${
+                    className={`px-0 xl:px-2.5 py-2.5 font-sans text-[13px] xl:text-sm font-medium whitespace-nowrap transition-all duration-200 relative ${
                       active
                         ? 'text-white font-semibold'
                         : 'text-slate-200 hover:text-white'
