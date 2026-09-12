@@ -145,7 +145,7 @@ export default function Industries() {
           <div className="md:col-span-9 space-y-2 text-left">
             <h4 className="font-heading font-extrabold text-lg text-white">Ready to consult on a custom plant layout?</h4>
             <p className="text-xs text-slate-300 leading-relaxed font-sans max-w-3xl">
-              Our engineering division collaborates with your technical team to draft efficient steam distribution grids, optimal boiler house piping layouts, and heat recovery integration maps tailored to your exact site layout.
+              We draft steam distribution grids and boiler house layouts tailored to your site.
             </p>
           </div>
           <div className="md:col-span-3 text-right">

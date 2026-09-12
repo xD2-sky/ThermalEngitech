@@ -110,7 +110,7 @@ export default function ContactUs() {
           <div className="bg-[#1C5CA8]/5 border border-[#1C5CA8]/20 p-6 rounded-lg text-left space-y-2.5 font-sans">
             <h5 className="font-bold text-xs text-[#0D1B2A] uppercase tracking-wide">Estimates Response Guarantee</h5>
             <p className="text-xs text-slate-600 leading-normal">
-              We understand the urgency of plant tenders. Sizing calculations and comprehensive corporate bills of material are supplied to verified industrial applicants within 24 working hours.
+              Sizing calculations and a full bill of material — delivered within 24 working hours.
             </p>
           </div>
 

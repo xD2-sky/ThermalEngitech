@@ -139,26 +139,17 @@ export default function Home() {
                 High-efficiency process heating, over a decade in the field
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed">
-                From our facility in Dhamatwan, Gujarat, we design, engineer, and manufacture heavy-duty
-                utility systems that keep manufacturing grids running. Smart preheaters, low-emission
-                combustion, and dense coil configurations bring fuel costs down while holding a high
-                dry-fraction steam output.
+                Engineered in Dhamatwan, Gujarat — built for lower fuel costs and higher dry-fraction steam output.
               </p>
 
-              <div className="space-y-4 pt-2">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
-                  <div>
-                    <h5 className="font-bold text-sm text-[#0D1B2A]">Advanced HTRI sizing calculations</h5>
-                    <p className="text-xs text-slate-500 leading-relaxed">Dynamic fluid simulations to guarantee thermal performance without hot spots.</p>
-                  </div>
+              <div className="space-y-3 pt-2">
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0" strokeWidth={1.75} />
+                  <h5 className="font-bold text-sm text-[#0D1B2A]">Advanced HTRI sizing calculations</h5>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
-                  <div>
-                    <h5 className="font-bold text-sm text-[#0D1B2A]">Volumetric welder qualifications</h5>
-                    <p className="text-xs text-slate-500 leading-relaxed">Every weld root is qualified under ASME Sec IX criteria with 100% radiography scanning.</p>
-                  </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0" strokeWidth={1.75} />
+                  <h5 className="font-bold text-sm text-[#0D1B2A]">Volumetric welder qualifications</h5>
                 </div>
               </div>
 
@@ -187,7 +178,7 @@ export default function Home() {
                 </div>
                 <h4 className="font-heading font-bold text-sm text-[#0D1B2A]">Precision firing controls</h4>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  Engineered with leading burner brands for fuel economy on light diesel oil, gas, or biomass feed.
+                  Fuel economy on diesel, gas, or biomass.
                 </p>
               </div>
 
@@ -197,7 +188,7 @@ export default function Home() {
                 </div>
                 <h4 className="font-heading font-bold text-sm text-[#0D1B2A]">IBR dry steam output</h4>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  Single or dual drum systems hold steady steam release with a high dry-fraction percentage.
+                  Steady release, high dry-fraction.
                 </p>
               </div>
 
@@ -207,7 +198,7 @@ export default function Home() {
                 </div>
                 <h4 className="font-heading font-bold text-sm text-[#0D1B2A]">Lower operating costs</h4>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  Solid-fuel grates are customized for agricultural briquettes, wood chips, and charcoal waste.
+                  Grates customized for agri-waste, wood chips, charcoal.
                 </p>
               </div>
 
@@ -215,7 +206,7 @@ export default function Home() {
                 <b className="text-[10px] font-mono tracking-widest text-[#2F7BD4] uppercase">Certified works</b>
                 <div className="space-y-1.5 py-4">
                   <h4 className="text-2xl font-heading font-bold">1,200+</h4>
-                  <p className="text-xs text-slate-300">High-dryness steam installations deployed worldwide.</p>
+                  <p className="text-xs text-slate-300">Steam installations, deployed worldwide.</p>
                 </div>
                 <Link to="/certifications" className="text-xs font-bold text-[#2F7BD4] hover:underline flex items-center gap-1">
                   Read compliance roster

@@ -77,7 +77,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
           Request Sizing & Technical Quotation
         </h2>
         <p className="text-[#17222E] text-sm max-w-2xl mx-auto leading-relaxed">
-          Submit your thermal specifications to our engineering team. Get a customized, verified schematic proposal and budget estimation within 24 business hours.
+          Submit your specs — get a verified proposal and estimate within 24 business hours.
         </p>
       </div>
 

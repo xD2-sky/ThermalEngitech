@@ -25,7 +25,7 @@ export default function Manufacturing() {
               Inside Our Manufacturing Facility
             </h1>
             <p className="text-slate-300 text-sm max-w-3xl leading-relaxed">
-              Our 15,000 m² manufacturing plant located at Shrey Industrial Park, Dhamatwan, Gujarat, is fully approved under Indian Boiler Regulations (IBR 1950) standards to roll, weld, and inspect heavy-duty thermal systems.
+              15,000 m² in Dhamatwan, Gujarat — approved under IBR 1950 to roll, weld, and inspect heavy-duty thermal systems.
             </p>
           </div>
           <div className="lg:col-span-5 hidden lg:flex justify-center">
@@ -51,7 +51,7 @@ export default function Manufacturing() {
               Precision Heavy Fabrication Capacity
             </h2>
             <p className="text-xs text-slate-600 leading-relaxed font-sans">
-              To guarantee that third-party testing boards approve our products with zero deviations, we invest heavily in standardized fabrication mechanics. Our factory floor operates strictly under clear procedural guidelines, ensuring high material durability, absolute geometric centering, and structural joint unity.
+              Standardized fabrication under clear procedural guidelines — material durability, geometric centering, and structural joint unity on every unit.
             </p>
           </div>
 
@@ -128,22 +128,22 @@ export default function Manufacturing() {
               Quality Assurance Directives
             </h4>
             <p className="text-xs text-slate-500 leading-relaxed font-sans">
-              Every single raw steel plate, seamless boiler tube, and weld segment is monitored by our statutory quality coordinators. No component leaves our facility without the accompanying documentation:
+              Every plate, tube, and weld is monitored by our quality coordinators. Documentation on file for each unit:
             </p>
           </div>
 
           <ul className="space-y-3.5 text-xs text-slate-600 font-sans">
             <li className="flex items-start gap-2.5">
               <span className="text-[#1C5CA8] font-bold">✓</span>
-              <span><strong>MTR Verification:</strong> Mill Test Reports proving absolute chemical composition & yield stress properties from steel manufacturers.</span>
+              <span><strong>MTR Verification:</strong> Mill Test Reports for every steel batch.</span>
             </li>
             <li className="flex items-start gap-2.5">
               <span className="text-[#1C5CA8] font-bold">✓</span>
-              <span><strong>NDT Radiography:</strong> Full joint longitudinal and circumferential weld scans to eliminate root voids.</span>
+              <span><strong>NDT Radiography:</strong> Full weld scans, root to surface.</span>
             </li>
             <li className="flex items-start gap-2.5">
               <span className="text-[#1C5CA8] font-bold">✓</span>
-              <span><strong>Form VI Approval:</strong> Official statutory Certificate issued directly by State Boiler Inspectors after physical hydrostatic pressure testing.</span>
+              <span><strong>Form VI Approval:</strong> Issued by State Boiler Inspectors after hydrostatic testing.</span>
             </li>
           </ul>
         </div>
@@ -161,7 +161,7 @@ export default function Manufacturing() {
               The Six-Stage Assembly Pipeline
             </h2>
             <p className="text-slate-600 text-sm">
-              Explore how raw premium boiler-grade plate steel is transformed into finished certified thermodynamic systems.
+              Raw boiler-grade steel to finished, certified system — six stages.
             </p>
           </div>
 

@@ -61,13 +61,7 @@ export default function AboutUs() {
               
               <div className="space-y-4 text-sm text-slate-600 leading-relaxed font-sans">
                 <p>
-                  Established as a boutique thermal consulting house in Gujarat, Thermal Engitech quickly expanded to a state-of-the-art heavy engineering plant in Shrey Industrial Park, Dhamatwan. Today, we are recognized as a trusted partner across India and export markets for complete boiler assemblies, heaters, and accessories.
-                </p>
-                <p>
-                  We believe that process heating shouldn't be the weakest link in your plant's production cycle. That is why we focus heavily on raw material thickness verification (using continuous non-destructive ultrasonic inspections), generous furnace designs to prevent burner flame impingement, and thermal recuperation systems that optimize burner fuel utilization.
-                </p>
-                <p>
-                  Our workshop is fully qualified under Indian Boiler Regulations (IBR 1950) rules and holds active capacities to roll up to 32mm heavy boiler grade plates, deploy high-grade ASME seamless carbon steel tubes, and commission touch-screen PLC automation packages.
+                  Founded 2012 in Gujarat, now a full heavy-engineering plant in Dhamatwan — trusted across India and export markets for complete boiler assemblies, heaters, and accessories.
                 </p>
               </div>
 
@@ -114,7 +108,7 @@ export default function AboutUs() {
                   <div className="space-y-1">
                     <b className="text-sm font-bold text-[#0D1B2A] block">Client-Centric Custom Sizing</b>
                     <p className="text-xs text-slate-500 leading-relaxed font-sans">
-                      We never force catalog models. Every boiler, heater, or thermodynamic exchanger is scaled to fit your exact footprint, local fuels, and pressure loops.
+                      Scaled to your footprint, fuels, and pressure loops — never a catalog model.
                     </p>
                   </div>
                 </div>
@@ -126,7 +120,7 @@ export default function AboutUs() {
                   <div className="space-y-1">
                     <b className="text-sm font-bold text-[#0D1B2A] block">Extensive Safety Interlocks</b>
                     <p className="text-xs text-slate-500 leading-relaxed font-sans">
-                      Dual Mobrey water level checks, spring-loaded safety relief valves, high flame cut-offs, and critical oil pressure limiters come pre-configured standard.
+                      Dual water level checks, relief valves, flame cut-offs — standard on every unit.
                     </p>
                   </div>
                 </div>
@@ -138,7 +132,7 @@ export default function AboutUs() {
                   <div className="space-y-1">
                     <b className="text-sm font-bold text-[#0D1B2A] block">Absolute Materials Honesty</b>
                     <p className="text-xs text-slate-500 leading-relaxed font-sans">
-                      We use certified ASTM standard materials (like A516 Gr. 70 plates or ASTM A106 Gr. B carbon pipes) backed by original mill test certs.
+                      Certified ASTM materials, backed by original mill test certs.
                     </p>
                   </div>
                 </div>

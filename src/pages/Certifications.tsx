@@ -69,7 +69,7 @@ export default function Certifications() {
               <span>Design Codes & Standards Referenced</span>
             </h3>
             <p className="text-xs text-slate-500 font-sans leading-relaxed">
-              Every system is engineered against a specific set of design codes — not a general claim of "international standards," but the actual codes our design and stress-analysis work is checked against.
+              The actual codes our design and stress-analysis work is checked against — not a generic "international standards" claim.
             </p>
           </div>
 
@@ -97,7 +97,7 @@ export default function Certifications() {
               <span>Statutory Compliance Declaration</span>
             </h4>
             <p className="text-xs text-slate-300 leading-relaxed font-sans">
-              "Thermal Engitech Pvt. Ltd. certifies that all high-pressure steam boilers, thermic heaters, and pressure reducing manifolds are manufactured under continuous inspection by either state-appointed Boiler Inspectors or customer-approved international inspect agencies. Rigorous volumetric joints radiography, mechanical hydrotesting, and thickness verifications stand standard on our plant floor."
+              "All high-pressure boilers, heaters, and pressure manifolds are manufactured under continuous inspection by state-appointed or customer-approved agencies. Radiography, hydrotesting, and thickness verification are standard on every unit."
             </p>
             <div className="pt-2 flex flex-wrap gap-x-8 gap-y-2 text-[10px] font-mono tracking-wider font-bold uppercase text-[#7FB2E4]">
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> Form VI certified</span>

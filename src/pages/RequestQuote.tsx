@@ -52,7 +52,7 @@ export default function RequestQuote() {
             Comprehensive Technical Sizing
           </h1>
           <p className="text-slate-300 text-sm max-w-2xl leading-relaxed font-sans">
-            Submit your localized plant flow-rates and fuel coefficients. Our design division provides verified calculations and drawings customized to your footprint.
+            Submit your flow-rates and fuel type — we'll return verified calculations and drawings.
           </p>
         </div>
       </div>

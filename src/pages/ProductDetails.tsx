@@ -386,7 +386,7 @@ export default function ProductDetails() {
               </span>
               <h4 className="text-lg font-heading font-extrabold">IBR 1950 & ASME Certified</h4>
               <p className="text-slate-300 text-xs leading-relaxed font-sans">
-                Our plant is approved to engineer and test up to 32kg/cm² configurations. Mill source testing certifications accompany raw and finished boiler components.
+                Approved up to 32kg/cm². Mill test certifications accompany every component.
               </p>
               <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-[#1C5CA8] pt-2 border-t border-white/10 font-mono">
                 <ShieldCheck className="w-4 h-4 shrink-0" />
@@ -410,7 +410,7 @@ export default function ProductDetails() {
                 <div className="space-y-1.5">
                   <h4 className="font-heading font-bold text-[#0D1B2A] text-sm">Enquiry Received Successfully</h4>
                   <p className="text-xs text-slate-500 leading-normal">
-                    We have populated a custom ticket under your active local session profile. An engineering assessor will reach out shortly.
+                    An engineering assessor will reach out shortly.
                   </p>
                 </div>
                 <button
@@ -537,7 +537,7 @@ export default function ProductDetails() {
               </div>
             </div>
             <p className="text-[10px] text-slate-500 font-medium leading-relaxed font-sans pt-1 border-t border-slate-200">
-              Technical draft design proposals are completed and returned to verified industrial representatives within 24 business hours.
+              Technical proposals returned within 24 business hours.
             </p>
           </div>
 
