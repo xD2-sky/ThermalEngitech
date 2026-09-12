@@ -63,10 +63,8 @@ export default function Navbar() {
   return (
     <nav className={`${navClass} font-sans overflow-visible`} style={navStyle}>
       
-      {/* Diagonal glass-panel accent — wrapped in the same max-w-[1440px] centering box as the
-          content container, so its right edge tracks the container's edge (not the raw viewport
-          edge) and never bleeds into the empty margin that appears beyond 1440px wide */}
-      <div className="absolute inset-0 max-w-[1440px] mx-auto pointer-events-none hidden lg:block">
+      {/* Diagonal glass-panel accent — extends to the true right edge of the viewport */}
+      <div className="absolute inset-0 pointer-events-none hidden lg:block">
         <div className="absolute inset-y-0 right-0 left-[68%] xl:left-[74%] overflow-visible z-0">
 
           {/* Layer 1: Accent Blue Glass Line */}
@@ -143,14 +141,14 @@ export default function Navbar() {
 
           {/* Everything else — nav links, phone, CTA — grouped hard right */}
           <div className="hidden lg:flex items-center shrink-0 relative z-10">
-            <div className="flex items-center gap-5 xl:gap-7">
+            <div className="flex items-center gap-8 xl:gap-10">
               {navItems.map((item) => {
                 const active = isActive(item.path);
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`px-0 xl:px-2.5 py-2.5 font-sans text-[13px] xl:text-sm font-medium whitespace-nowrap transition-all duration-200 relative ${
+                    className={`px-0 py-2.5 font-sans text-[13px] xl:text-sm font-medium whitespace-nowrap transition-all duration-200 relative ${
                       active
                         ? 'text-white font-semibold'
                         : 'text-slate-200 hover:text-white'
@@ -166,7 +164,7 @@ export default function Navbar() {
             </div>
 
             {/* Phone + CTA — sized to fit inside the (deliberately narrow) blue diagonal panel */}
-            <div className="flex items-center gap-1.5 xl:gap-2.5 pl-2 xl:pl-8">
+            <div className="flex items-center gap-1.5 xl:gap-2.5 pl-0 xl:pl-8">
               {/* Phone link on dark blue background */}
               <a
                 href="tel:+917940055280"
