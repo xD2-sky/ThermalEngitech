@@ -4,10 +4,16 @@
  */
 
 import React from 'react';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { Link } from 'react-router-dom';
 import { Building, Target, Compass, Factory, ArrowRight, Sparkles, Award, BookOpen } from 'lucide-react';
 
 export default function AboutUs() {
+  useDocumentMeta(
+    'About Us',
+    'Founded 2012 in Gujarat — Thermal Engitech designs, engineers and manufactures heavy-duty boilers and heaters from our Dhamatwan facility.'
+  );
+
   const leadership = [
     {
       name: 'Mr. Arvind Patel',

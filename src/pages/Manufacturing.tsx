@@ -4,11 +4,17 @@
  */
 
 import React from 'react';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { Link } from 'react-router-dom';
 import { MANUFACTURING_STEPS, SHOP_CAPABILITIES, DESIGN_CAPABILITIES } from '../data';
 import { Settings, ShieldCheck, HardHat, PenTool, Cpu } from 'lucide-react';
 
 export default function Manufacturing() {
+  useDocumentMeta(
+    'Manufacturing & Infrastructure',
+    '15,000 sq.m facility in Dhamatwan, Gujarat — real shop-floor capabilities in welding, plate bending, CNC cutting and pressure testing.'
+  );
+
   return (
     <div className="space-y-0 text-left bg-[#F1F1ED] min-h-screen">
       

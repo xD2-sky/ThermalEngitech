@@ -4,10 +4,16 @@
  */
 
 import React from 'react';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { Link } from 'react-router-dom';
 import { Building, ChevronRight } from 'lucide-react';
 
 export default function Industries() {
+  useDocumentMeta(
+    'Industries We Serve',
+    'Steam and thermal heating solutions for chemical, pharma, textile, food, paper, sugar and 14+ other process industries.'
+  );
+
   // Enhanced detailed attributes for each industry to show high-fidelity design
   const detailedIndustries = [
     {

@@ -4,10 +4,16 @@
  */
 
 import React from 'react';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import CompanyMap from '../components/CompanyMap';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 
 export default function ContactUs() {
+  useDocumentMeta(
+    'Contact Us',
+    'Reach Thermal Engitech for sizing calculations, quotes, or plant visits. Dhamatwan, Gujarat, India.'
+  );
+
   const contacts = [
     {
       title: 'Operations & Engineering Division',

@@ -6,6 +6,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { INDUSTRIES_SERVED } from '../data';
 import {
   Factory,
@@ -77,6 +78,11 @@ const PRODUCT_CATEGORIES = [
 
 export default function Home() {
   const navigate = useNavigate();
+
+  useDocumentMeta(
+    'Industrial Steam Boilers & Thermic Fluid Heaters',
+    'Steam boilers, thermic fluid heaters and process-heat systems, engineered and manufactured in Dhamatwan, Gujarat. IBR, ASME and ISO 9001:2015 compliant.'
+  );
 
   return (
     <div className="space-y-0 text-left bg-white">

@@ -43,7 +43,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`${!isHome ? 'sticky' : scrolled ? 'fixed' : 'absolute'} top-0 left-0 right-0 z-50 font-sans transition-[background,border-color,backdrop-filter,box-shadow] duration-400 ease-out ${
+      className={`${!isHome ? 'sticky' : 'fixed'} top-0 left-0 right-0 z-50 font-sans transition-[background,border-color,backdrop-filter,box-shadow] duration-400 ease-out ${
         showGlass
           ? 'border-b border-[#7FB2E4]/20 shadow-[0_4px_24px_rgba(0,0,0,0.25)] backdrop-blur-[14px]'
           : 'border-b border-transparent'
@@ -54,16 +54,16 @@ export default function Navbar() {
           : 'transparent'
       }}
     >
-      <div className="flex items-center justify-between h-24 px-6 sm:px-8 lg:px-10">
+      <div className="flex items-center justify-between h-16 sm:h-20 lg:h-24 px-4 sm:px-8 lg:px-10">
 
-        {/* Logo — far left */}
-        <Link to="/" className="flex items-center gap-3.5 shrink-0 group">
-          <Logo className="h-[52px] w-[60px] shrink-0 transition-transform duration-300 group-hover:scale-105" />
-          <div className="flex flex-col leading-tight">
-            <span className="font-heading font-extrabold text-lg text-white tracking-tight uppercase whitespace-nowrap">
+        {/* Logo — far left, sized down on mobile so it never crowds the hamburger button */}
+        <Link to="/" className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 group min-w-0">
+          <Logo className="h-9 w-11 sm:h-[52px] sm:w-[60px] shrink-0 transition-transform duration-300 group-hover:scale-105" />
+          <div className="flex flex-col leading-tight min-w-0">
+            <span className="font-heading font-extrabold text-sm sm:text-lg text-white tracking-tight uppercase truncate">
               Thermal <span className="text-[#2F7BD4]">Engitech</span>
             </span>
-            <span className="text-[10px] tracking-[0.12em] text-slate-400 uppercase mt-0.5">Pvt. Ltd.</span>
+            <span className="hidden sm:block text-[10px] tracking-[0.12em] text-slate-400 uppercase mt-0.5">Pvt. Ltd.</span>
           </div>
         </Link>
 

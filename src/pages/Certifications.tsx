@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { CERTIFICATIONS, DESIGN_CODES } from '../data';
 import { 
   BadgeCheck, 
@@ -13,6 +14,11 @@ import {
 } from 'lucide-react';
 
 export default function Certifications() {
+  useDocumentMeta(
+    'Certifications & Design Codes',
+    'IBR 1950, ASME Section VIII, ISO 9001:2015, and the specific design codes (IS-2825, ISO-R-831, BS-2970, TEMA) our engineering is checked against.'
+  );
+
   return (
     <div className="space-y-0 text-left bg-slate-50 min-h-screen">
       

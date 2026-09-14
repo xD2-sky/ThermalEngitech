@@ -4,11 +4,17 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { useSearchParams } from 'react-router-dom';
 import QuoteRequest from '../components/QuoteRequest';
 import { Inquiry } from '../types';
 
 export default function RequestQuote() {
+  useDocumentMeta(
+    'Request a Quote',
+    'Submit your plant specifications for a sizing calculation and technical quotation within 24 business hours.'
+  );
+
   const [searchParams] = useSearchParams();
   const presetProduct = searchParams.get('product') || undefined;
 

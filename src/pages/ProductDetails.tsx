@@ -4,6 +4,7 @@
  */
 
 import React, { useState } from 'react';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS } from '../data';
 import ProductVideoShowcase from '../components/ProductVideoShowcase';
@@ -220,6 +221,13 @@ function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'g
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
   const product = PRODUCTS.find((p) => p.id === id);
+
+  useDocumentMeta(
+    product ? product.name : 'Product Not Found',
+    product
+      ? `${product.name} — ${product.category}. ${product.description.slice(0, 140)}`
+      : 'The requested product could not be found.'
+  );
 
   // Embedded inquiry form states
   const [inquirySent, setInquirySent] = useState(false);

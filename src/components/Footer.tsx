@@ -86,7 +86,7 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#7FB2E4] shrink-0 mt-0.5" />
                 <span className="leading-relaxed text-slate-400">
-                  12B, Shrey Industrial Park Road, Dhamatwan, Undrel, Gujarat 382435
+                  12B, Shrey Industrial Park, Road, Dhamatwan, Undrel, Gujarat 382435
                 </span>
               </div>
               <div className="flex items-start gap-3">

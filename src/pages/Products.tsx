@@ -4,6 +4,7 @@
  */
 
 import React, { useState } from 'react';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PRODUCTS } from '../data';
 import { Product } from '../types';
@@ -199,6 +200,11 @@ export default function Products() {
   
   // Read category from URL query parameters if present, default to 'Steam Boilers'
   const activeCategory = searchParams.get('category') || 'Steam Boilers';
+
+  useDocumentMeta(
+    activeCategory === 'All' ? 'Product Catalogue' : activeCategory,
+    `Browse our ${activeCategory === 'All' ? 'full product catalogue' : activeCategory.toLowerCase()} — IBR and ASME certified industrial heating equipment, manufactured in Dhamatwan, Gujarat.`
+  );
 
   const categories = [
     'Steam Boilers',
