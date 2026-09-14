@@ -17,13 +17,13 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
       id="hero"
       className="relative bg-[#0B1B2B] text-white overflow-hidden font-sans min-h-[100dvh] md:min-h-screen flex items-center"
     >
-      {/* Background photo — industrial pipes and valves above an open furnace door.
-          Photo by Dave Meckler on Unsplash (unsplash.com), used under the Unsplash License. */}
+      {/* Background photo — "Denks work, 1973," a vintage factory with pipes, 1970s film photograph.
+          Photo by Annie Spratt on Unsplash (unsplash.com), used under the Unsplash License. */}
       <div className="absolute inset-0">
         <picture>
-          <source srcSet={`${import.meta.env.BASE_URL}images/hero-furnace-bg.webp`} type="image/webp" />
+          <source srcSet={`${import.meta.env.BASE_URL}images/hero-furnace-bg-v2.webp`} type="image/webp" />
           <img
-            src={`${import.meta.env.BASE_URL}images/hero-furnace-bg.jpg`}
+            src={`${import.meta.env.BASE_URL}images/hero-furnace-bg-v2.jpg`}
             alt=""
             className="w-full h-full object-cover object-center"
           />
