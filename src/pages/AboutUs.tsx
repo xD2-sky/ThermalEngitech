@@ -37,6 +37,8 @@ export default function AboutUs() {
       
       {/* Page Header Banner */}
       <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
+        <img src={`${import.meta.env.BASE_URL}images/banners/about.webp`} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-[#0D1B2A]/80" />
         <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:3rem_3rem]" />
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-[#2F7BD4] uppercase">
