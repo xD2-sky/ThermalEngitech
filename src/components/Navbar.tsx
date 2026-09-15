@@ -41,11 +41,30 @@ export default function Navbar() {
   const showSolid = !isHome || scrolled;
 
   return (
-    <nav
-      className={`${!isHome ? 'sticky' : 'fixed'} top-0 left-0 right-0 z-50 font-sans transition-[background,border-color] duration-300 ease-out ${
-        showSolid ? 'border-b border-[#1c1c1c] bg-black' : 'border-b border-transparent bg-transparent'
-      }`}
-    >
+    <>
+      {/* Hidden SVG filter: feTurbulence generates noise, feDisplacementMap uses it to
+          refract/bend whatever sits behind the nav — the actual "liquid" part of the effect. */}
+      <svg className="absolute w-0 h-0">
+        <filter id="liquid-glass-nav">
+          <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
+      <nav
+        className={`${!isHome ? 'sticky' : 'fixed'} top-0 left-0 right-0 z-50 font-sans transition-[background,border-color] duration-300 ease-out ${
+          showSolid ? 'border-b border-white/15' : 'border-b border-transparent bg-transparent'
+        }`}
+        style={
+          showSolid
+            ? {
+                background: 'rgba(0,0,0,0.35)',
+                backdropFilter: 'url(#liquid-glass-nav) blur(14px) saturate(160%)',
+                WebkitBackdropFilter: 'blur(14px) saturate(160%)', // Safari: no SVG-filter-in-backdrop support, blur-only fallback
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.12), 0 8px 32px rgba(0,0,0,0.25)',
+              }
+            : undefined
+        }
+      >
       <div className="flex items-center justify-between h-16 sm:h-18 lg:h-20 px-4 sm:px-8 lg:px-10">
 
         {/* Logo — left */}
@@ -130,5 +149,6 @@ export default function Navbar() {
         </div>
       )}
     </nav>
+    </>
   );
 }
