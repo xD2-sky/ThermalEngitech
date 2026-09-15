@@ -144,10 +144,17 @@ components:
     rounded: "{rounded.none}"
     note: "replaces {components.hairline-card}'s solid border in migrated areas; same gap-is-the-border logic, dashed instead of solid"
   nav-void-bar:
-    background: "{colors.void} flat, no gradient, no blur"
-    borderColor: "{colors.void-line}"
+    background: "transparent (unscrolled) → rgba(0,0,0,0.35) liquid-glass (scrolled)"
+    borderColor: "border-transparent (unscrolled) → white/15 (scrolled)"
     layout: "logo left, link row centered (absolute + translate-x-1/2), phone + button-pill-invert cluster right"
     note: "replaces {components.nav-diagonal-panel} and {components.navbar-glass-scrolled} everywhere the navbar renders (it's a single shared component, so this is site-wide, including on unmigrated inner pages) — the diagonal glass panel no longer exists in the codebase"
+  nav-liquid-glass-scrolled:
+    background: "rgba(0,0,0,0.35)"
+    backdropFilter: "url(#liquid-glass-nav) blur(14px) saturate(160%)"
+    webkitBackdropFilter: "blur(14px) saturate(160%) — Safari fallback, no SVG-filter-in-backdrop support there"
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12), 0 8px 32px rgba(0,0,0,0.25)"
+    svgFilter: "feTurbulence(fractalNoise, baseFrequency 0.008 0.012, 2 octaves, seed 7) → feDisplacementMap(scale 18) — a hidden <svg> block rendered once, referenced by id from the nav's backdropFilter"
+    note: "replaces the earlier flat-black scrolled state — see Elevation & Depth below for why this now has a scroll shadow, which the void system previously ruled out"
   # --- Legacy system (still live: footer, Core Product Range, all inner pages) ---
   button-primary:
     backgroundColor: "{colors.primary}"
@@ -322,13 +329,15 @@ Legacy sections alternate white (`{colors.canvas}`) and warm-gray (`{colors.pane
 | 0 (flat) | No shadow, no border | Body text, most surfaces, both systems |
 | 1 (hairline) | 1px grid line, solid (legacy) or dashed (void) | Default card-grid separation |
 | 2 (dark panel) | Solid `{colors.ink}` (legacy) or `{colors.void}` (void) background, no shadow | CTA panels, stat call-outs |
-| 3 (scroll shadow) | Legacy navbar only: `box-shadow: 0 4px 24px rgba(0,0,0,0.25)` | The void navbar has **no** scroll shadow — it's a flat black bar with just a 1px bottom border once scrolled |
+| 3 (scroll shadow) | Legacy: `box-shadow: 0 4px 24px rgba(0,0,0,0.25)`. Void: `inset 0 1px 0 rgba(255,255,255,0.12), 0 8px 32px rgba(0,0,0,0.25)` | Both navbars now use a scroll shadow — see below, this reverses an earlier void-system rule |
+| 4 (liquid glass) | `backdropFilter: url(#liquid-glass-nav) blur(14px) saturate(160%)`, translucent `rgba(0,0,0,0.35)` background | Void navbar only, once scrolled — see `{components.nav-liquid-glass-scrolled}` |
 
-Neither system uses heavy drop-shadow elevation. Depth is carried by surface color change and hairline grid lines in both.
+Neither system uses heavy drop-shadow elevation on cards. The void navbar is now the one exception to "no blur, no shadow" in either system — it deliberately reintroduces both, in service of a glass-refraction effect rather than a soft-SaaS drop shadow. Depth elsewhere is still carried by surface color change and hairline grid lines.
 
 ### Decorative Depth
 
 - **Diagonal glass panel**: **retired.** This device no longer exists anywhere in the codebase — the navbar (shared site-wide) now uses `{components.nav-void-bar}` instead. If a future request asks to "restore" or reference it, that's a real conflict worth flagging, since it would mean reintroducing a component that's been fully removed.
+- **Liquid-glass navbar (scrolled state)**: the void navbar's current signature decorative device — an SVG turbulence/displacement filter refracting page content behind it, plus blur, saturation, and an inset-highlight/drop-shadow. See `{components.nav-liquid-glass-scrolled}`. This is new, deliberately reintroduces blur and shadow that the void system had previously ruled out, and — like the diagonal panel before it — is reserved for the navbar specifically; don't spread it to cards or other panels without a deliberate decision to do so.
 - **Subtle blueprint grid texture**: was reserved for the legacy hero background only; the void-black hero (`Hero.tsx`) no longer includes it — the current hero scrim is a black gradient plus a soft periwinkle radial glow (see below), not the blueprint grid.
 - **Hero scrim (void version)**: a black directional gradient (darkest over the text, lighter right) plus a `blur-[120px]` periwinkle (`{colors.void-accent}`/10) radial glow bottom-right, standing in for the legacy scrim's plain navy gradient.
 
@@ -363,7 +372,8 @@ See the `components` block in the frontmatter above for exact token values. Summ
 - **Legacy — `eyebrow-label` / `eyebrow-label-on-dark`**: unchanged.
 
 ### Navigation
-- **`nav-void-bar`** — current, site-wide. Flat black, no gradient, no blur, no scroll shadow. Logo left; link row centered via `absolute left-1/2 -translate-x-1/2`; a separate phone-number + `button-pill-invert` cluster right. Nav links use Manrope (`{typography.nav-link-void}`), not Inter.
+- **`nav-void-bar`** — current, site-wide. Transparent unscrolled; once scrolled, a translucent liquid-glass panel (`{components.nav-liquid-glass-scrolled}`) — not flat black anymore. Logo left; link row centered via `absolute left-1/2 -translate-x-1/2`; a separate phone-number + `button-pill-invert` cluster right. Nav links use Manrope (`{typography.nav-link-void}`), not Inter.
+- **`nav-liquid-glass-scrolled`** — the scrolled state specifically. An SVG `feTurbulence`/`feDisplacementMap` filter (defined once, hidden, referenced by id) refracts whatever sits behind the bar, layered with `blur(14px) saturate(160%)`, a translucent black background, and an inset-highlight + drop shadow. Safari doesn't support SVG-filter references inside `backdrop-filter`, so it falls through to a separate `WebkitBackdropFilter: blur(14px) saturate(160%)` (blur/saturate only, no refraction) — a deliberate, documented fallback, not a bug.
 - Navbar height is now `h-16` mobile → `h-18` tablet → `h-20` desktop (**reduced from the legacy `h-16`/`h-20`/`h-24` scale** — logo scales down to match: `h-8 w-10` mobile → `h-10 w-12` desktop).
 - The "Pvt. Ltd." subline beneath the wordmark is **removed** in the void navbar (it was present in the legacy version, hidden only below `sm`) — it doesn't appear at any breakpoint now.
 - "Request a quote" is no longer in the main `navItems` array; it's a separate pill button in its own right-side cluster alongside the phone number.
