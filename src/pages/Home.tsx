@@ -136,85 +136,89 @@ export default function Home() {
       </div>
 
       {/* Featured Capabilities Section */}
-      <div className="bg-[#F1F1ED] py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto space-y-16">
+      <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto border border-dashed border-[#1c1c1c]/30 p-8 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-6 text-left">
-              <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">Thermal Engitech advantages</p>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0D1B2A] tracking-tight leading-[1.05]">
+              <p
+                className="text-[11px] uppercase tracking-[0.1em] text-black/60"
+                style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
+              >
+                Thermal Engitech advantages
+              </p>
+              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-black tracking-[-0.02em] leading-[1.05]">
                 High-efficiency process heating, over a decade in the field
               </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <p className="text-sm text-[#4d4d4d] leading-relaxed">
                 Engineered in Dhamatwan, Gujarat — built for lower fuel costs and higher dry-fraction steam output.
               </p>
 
               <div className="space-y-3 pt-2">
                 <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0" strokeWidth={1.75} />
-                  <h5 className="font-bold text-sm text-[#0D1B2A]">Advanced HTRI sizing calculations</h5>
+                  <CheckCircle2 className="w-5 h-5 text-[#7089ba] shrink-0" strokeWidth={1.75} />
+                  <h5 className="font-bold text-sm text-black">Advanced HTRI sizing calculations</h5>
                 </div>
                 <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0" strokeWidth={1.75} />
-                  <h5 className="font-bold text-sm text-[#0D1B2A]">Volumetric welder qualifications</h5>
+                  <CheckCircle2 className="w-5 h-5 text-[#7089ba] shrink-0" strokeWidth={1.75} />
+                  <h5 className="font-bold text-sm text-black">Volumetric welder qualifications</h5>
                 </div>
               </div>
 
               <div className="pt-4 flex flex-wrap items-center gap-3">
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 rounded-md bg-[#0D1B2A] hover:bg-[#1C5CA8] px-5 py-3 text-sm font-semibold text-white transition-colors"
+                  className="inline-flex items-center gap-2 rounded-full border border-black text-black hover:bg-black hover:text-white px-5 py-2.5 text-sm font-medium transition-colors"
                 >
                   <span>Learn more about us</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   to="/products"
-                  className="inline-flex items-center rounded-md border border-[#0D1B2A]/15 bg-white hover:border-[#0D1B2A]/40 px-5 py-3 text-sm font-semibold text-[#17222E] transition-colors"
+                  className="inline-flex items-center rounded-full border border-black/25 hover:border-black px-5 py-2.5 text-sm font-medium text-black transition-colors"
                 >
                   View product range
                 </Link>
               </div>
             </div>
 
-            {/* Feature grid */}
-            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#E1E4E3] border border-[#E1E4E3]">
-              <div className="bg-white p-6 space-y-3.5 text-left">
-                <div className="w-10 h-10 border border-[#E1E4E3] flex items-center justify-center text-[#1C5CA8]">
-                  <Flame className="w-5 h-5" strokeWidth={1.75} />
-                </div>
-                <h4 className="font-heading font-bold text-sm text-[#0D1B2A]">Precision firing controls</h4>
-                <p className="text-xs text-slate-500 leading-relaxed">
+            {/* Feature grid — no fill, no shadow, dashed dividers only */}
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 divide-y divide-dashed sm:divide-y-0 sm:divide-x divide-black/15 border border-dashed border-black/15">
+              <div className="p-6 space-y-3.5 text-left">
+                <Flame className="w-6 h-6 text-[#7089ba]" strokeWidth={1.5} />
+                <h4 className="font-heading font-bold text-sm text-black">Precision firing controls</h4>
+                <p className="text-xs text-[#4d4d4d] leading-relaxed">
                   Fuel economy on diesel, gas, or biomass.
                 </p>
               </div>
 
-              <div className="bg-white p-6 space-y-3.5 text-left">
-                <div className="w-10 h-10 border border-[#E1E4E3] flex items-center justify-center text-[#1C5CA8]">
-                  <Droplets className="w-5 h-5" strokeWidth={1.75} />
-                </div>
-                <h4 className="font-heading font-bold text-sm text-[#0D1B2A]">IBR dry steam output</h4>
-                <p className="text-xs text-slate-500 leading-relaxed">
+              <div className="p-6 space-y-3.5 text-left">
+                <Droplets className="w-6 h-6 text-[#7089ba]" strokeWidth={1.5} />
+                <h4 className="font-heading font-bold text-sm text-black">IBR dry steam output</h4>
+                <p className="text-xs text-[#4d4d4d] leading-relaxed">
                   Steady release, high dry-fraction.
                 </p>
               </div>
 
-              <div className="bg-white p-6 space-y-3.5 text-left">
-                <div className="w-10 h-10 border border-[#E1E4E3] flex items-center justify-center text-[#1C5CA8]">
-                  <Coins className="w-5 h-5" strokeWidth={1.75} />
-                </div>
-                <h4 className="font-heading font-bold text-sm text-[#0D1B2A]">Lower operating costs</h4>
-                <p className="text-xs text-slate-500 leading-relaxed">
+              <div className="p-6 space-y-3.5 text-left">
+                <Coins className="w-6 h-6 text-[#7089ba]" strokeWidth={1.5} />
+                <h4 className="font-heading font-bold text-sm text-black">Lower operating costs</h4>
+                <p className="text-xs text-[#4d4d4d] leading-relaxed">
                   Grates customized for agri-waste, wood chips, charcoal.
                 </p>
               </div>
 
-              <div className="bg-[#0D1B2A] text-white p-6 flex flex-col justify-between items-start text-left">
-                <b className="text-[10px] font-mono tracking-widest text-[#2F7BD4] uppercase">Certified works</b>
+              <div className="bg-black text-white p-6 flex flex-col justify-between items-start text-left">
+                <b
+                  className="text-[10px] tracking-[0.1em] text-[#7089ba] uppercase"
+                  style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
+                >
+                  Certified works
+                </b>
                 <div className="space-y-1.5 py-4">
-                  <h4 className="text-2xl font-heading font-bold">1,200+</h4>
-                  <p className="text-xs text-slate-300">Steam installations, deployed worldwide.</p>
+                  <h4 className="text-2xl font-heading font-extrabold">1,200+</h4>
+                  <p className="text-xs text-[#ababab]">Steam installations, deployed worldwide.</p>
                 </div>
-                <Link to="/certifications" className="text-xs font-bold text-[#2F7BD4] hover:underline flex items-center gap-1">
+                <Link to="/certifications" className="text-xs font-bold text-[#7089ba] hover:underline flex items-center gap-1">
                   Read compliance roster
                   <ChevronRight className="w-3.5 h-3.5" />
                 </Link>
@@ -224,48 +228,52 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Industries We Serve — real list, fresh design */}
-      <div className="bg-[#0D1B2A] py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:3rem_3rem]" />
+      {/* Industries We Serve — Index-style void-black section, no-fill step cards */}
+      <div className="bg-black py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-12 relative z-10">
           <div className="max-w-2xl space-y-4 text-center mx-auto">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#7FB2E4]">Where our systems run</p>
-            <h2 className="text-3xl md:text-[2.6rem] font-heading font-bold text-white tracking-tight leading-[1.05]">
+            <p
+              className="text-[11px] uppercase tracking-[0.1em] text-[#7089ba]"
+              style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
+            >
+              Where our systems run
+            </p>
+            <h2 className="text-3xl md:text-[2.6rem] font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.05]">
               Industries we serve
             </h2>
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <p className="text-[#808080] text-sm leading-relaxed">
               Fourteen industries, one requirement in common: heat that can't fail.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-px border border-dashed border-white/15 bg-white/15">
             {INDUSTRIES_SERVED.map((ind, i) => {
               const Icon = INDUSTRY_ICONS[ind.icon] ?? Factory;
               return (
                 <div
                   key={i}
-                  className="bg-white rounded-md p-5 flex flex-col items-center text-center gap-3 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200"
+                  className="bg-black p-5 flex flex-col items-center text-center gap-3 hover:bg-[#1c1c1c] transition-colors duration-200"
                 >
-                  <Icon className="w-7 h-7 text-[#1C5CA8]" strokeWidth={1.5} />
-                  <span className="font-heading font-bold text-xs text-[#0D1B2A] leading-tight">{ind.name}</span>
+                  <Icon className="w-6 h-6 text-[#7089ba]" strokeWidth={1.5} />
+                  <span className="font-heading font-bold text-xs text-white leading-tight">{ind.name}</span>
                 </div>
               );
             })}
           </div>
 
-          <p className="text-center text-slate-400 text-xs pt-2">
+          <p className="text-center text-[#808080] text-xs pt-2">
             Plus other industries and units where direct and indirect heating is essential.
           </p>
         </div>
       </div>
 
       {/* Call to action panel */}
-      <div className="bg-[#F1F1ED] py-16 px-4 sm:px-6 lg:px-8 border-t border-[#E1E4E3]">
+      <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-[#0D1B2A] text-white rounded-xl p-8 md:p-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div className="bg-black text-white border border-dashed border-white/25 p-8 md:p-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-9 space-y-2 text-left">
-              <h4 className="font-heading font-bold text-xl text-white">Ready to consult on a custom plant layout?</h4>
-              <p className="text-xs text-slate-300 leading-relaxed max-w-3xl">
+              <h4 className="font-heading font-extrabold text-xl text-white">Ready to consult on a custom plant layout?</h4>
+              <p className="text-xs text-[#808080] leading-relaxed max-w-3xl">
                 Our engineering coordinators assess thermal demand, fuel options, and space constraints
                 to hand you a full technical draft — not a generic quote.
               </p>
@@ -273,7 +281,7 @@ export default function Home() {
             <div className="md:col-span-3 md:text-right">
               <Link
                 to="/request-quote"
-                className="inline-flex w-full items-center justify-center rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] px-5 py-3.5 text-sm font-semibold text-white transition-colors"
+                className="inline-flex w-full items-center justify-center rounded-full border border-white hover:bg-white hover:text-black px-5 py-3 text-sm font-medium text-white transition-colors"
               >
                 Start a consultation
               </Link>
