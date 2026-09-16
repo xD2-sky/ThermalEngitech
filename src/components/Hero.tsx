@@ -26,7 +26,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative bg-[#F7F9FC] text-[#0B1B2B] overflow-hidden font-sans pt-28 pb-16 md:pt-36 md:pb-24"
+      className="relative bg-[#F7F9FC] text-[#0B1B2B] overflow-hidden font-sans min-h-[calc(100svh-4rem)] lg:min-h-[calc(100vh-5rem)] flex items-center py-8 lg:py-6"
     >
       {/* Soft light background: faint blueprint grid + gentle blue/steam glows */}
       <div className="absolute inset-0 grid-blueprint-light opacity-[0.5]" aria-hidden="true" />
@@ -100,7 +100,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
 
             <motion.dl
               variants={item}
-              className="mt-10 grid grid-cols-3 gap-[clamp(1rem,1.5vw,1.75rem)] max-w-lg border-t border-[#E4E7EC] pt-7"
+              className="mt-8 grid grid-cols-3 gap-[clamp(1rem,1.5vw,1.75rem)] max-w-lg border-t border-[#E4E7EC] pt-6"
             >
               {[
                 ['12+', 'Years in the field'],
@@ -126,7 +126,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
               <img
                 src={`${import.meta.env.BASE_URL}images/hero-pipes-light.jpg`}
                 alt="Polished stainless-steel steam pipework inside a modern process-heating plant"
-                className="w-full h-[340px] sm:h-[420px] lg:h-[520px] object-cover animate-kenburns"
+                className="w-full h-[260px] sm:h-[320px] lg:h-[400px] object-cover animate-kenburns"
                 loading="eager"
                 fetchPriority="high"
               />
