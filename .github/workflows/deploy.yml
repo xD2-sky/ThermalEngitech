@@ -2,12 +2,15 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [emergent]
   workflow_dispatch:
 
 # Legacy branch-based Pages deploy: build, then publish dist/ to the
 # gh-pages branch. This deliberately avoids actions/deploy-pages, whose
 # server-side deployment subsystem became wedged on an earlier commit.
+#
+# emergent is this repo's only active branch (main was retired) and the
+# sole trigger for the GitHub Pages deploy.
 permissions:
   contents: write
 
