@@ -26,7 +26,7 @@ import { MessageCircle, Phone } from 'lucide-react';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       {/* Scroll restorer handles page switches */}
       <ScrollToTop />
 
