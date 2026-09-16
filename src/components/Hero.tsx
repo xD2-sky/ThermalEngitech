@@ -4,90 +4,152 @@
  */
 
 import React from 'react';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { motion } from 'motion/react';
+import { ArrowRight, ShieldCheck, Phone } from 'lucide-react';
+import { SITE } from '../config/site';
 
 interface HeroProps {
   onRequestQuote: () => void;
   onViewProducts: () => void;
 }
 
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 22 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } },
+};
+
 export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative bg-black text-white overflow-hidden font-sans min-h-[100dvh] md:min-h-screen flex items-center"
+      className="relative bg-[#F7F9FC] text-[#0B1B2B] overflow-hidden font-sans pt-28 pb-16 md:pt-36 md:pb-24"
     >
-      {/* Background photo — "Denks work, 1973," a vintage factory with pipes, 1970s film photograph.
-          Photo by Annie Spratt on Unsplash (unsplash.com), used under the Unsplash License. */}
-      <div className="absolute inset-0">
-        <picture>
-          <source srcSet={`${import.meta.env.BASE_URL}images/hero-furnace-bg-v2.webp`} type="image/webp" />
-          <img
-            src={`${import.meta.env.BASE_URL}images/hero-furnace-bg-v2.jpg`}
-            alt=""
-            className="w-full h-full object-cover object-center grayscale-[15%]"
-          />
-        </picture>
-      </div>
+      {/* Soft light background: faint blueprint grid + gentle blue/steam glows */}
+      <div className="absolute inset-0 grid-blueprint-light opacity-[0.5]" aria-hidden="true" />
+      <div className="absolute -top-32 -right-24 w-[620px] h-[620px] rounded-full bg-[#2F7BD4]/10 blur-[120px] pointer-events-none" aria-hidden="true" />
+      <div className="absolute -bottom-40 -left-24 w-[560px] h-[560px] rounded-full bg-[#7FB2E4]/15 blur-[120px] pointer-events-none" aria-hidden="true" />
 
-      {/* Void-black scrim — darkest over the text, a faint periwinkle wash bottom-right
-          standing in for Index's "desk lamp on a drafting table" radial light. */}
-      <div className="absolute inset-0 bg-black/40" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.94)_0%,rgba(0,0,0,0.8)_45%,rgba(0,0,0,0.6)_100%)]" />
-      <div className="absolute right-0 bottom-0 w-[560px] h-[560px] rounded-full bg-[#7089ba]/10 blur-[120px] pointer-events-none" />
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-[clamp(1rem,3vw,2rem)]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-[clamp(1rem,3vw,2rem)] pt-28 pb-24 lg:pb-16">
-        <div className="max-w-[clamp(20rem,50vw,40rem)]">
-
-          <div
-            className="inline-flex items-center gap-2 rounded-full border border-dashed border-white/40 pl-3 pr-4 py-1.5 text-white text-[11px] font-medium uppercase tracking-[0.08em]"
-            style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
+          {/* Left — copy */}
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="lg:col-span-6 max-w-2xl"
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-[#7089ba] shrink-0" />
-            <span>ISO 9001:2015 · ASME · IBR 1950</span>
-          </div>
-
-          <h1 className="mt-7 text-[clamp(2.1rem,1.5rem+2.25vw,3.75rem)] font-heading font-extrabold leading-[1.05] tracking-[-0.02em] text-white">
-            Industrial heat systems,
-            <span className="block text-[#7089ba]">built to keep running</span>
-          </h1>
-
-          <p className="mt-6 text-[clamp(0.95rem,0.88rem+0.3vw,1.15rem)] text-[#ababab] leading-relaxed max-w-[clamp(20rem,36vw,34rem)]">
-            Thermal Engitech designs and manufactures steam boilers, thermic fluid heaters and
-            process-heat systems for plants where unplanned downtime is not an option — built in
-            Dhamatwan, Gujarat, and certified to both Indian and export standards.
-          </p>
-
-          <div className="mt-9 flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={onViewProducts}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white text-white hover:bg-white hover:text-black px-6 py-3 text-sm font-medium transition-colors duration-200 cursor-pointer"
+            <motion.div
+              variants={item}
+              className="inline-flex items-center gap-2 rounded-full border border-[#1C5CA8]/25 bg-white pl-3 pr-4 py-1.5 text-[#1C5CA8] text-[11px] font-semibold uppercase tracking-[0.08em] shadow-sm"
+              style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
             >
-              <span>Explore the catalogue</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+              <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+              <span>ISO 9001:2015 · ASME · IBR 1950</span>
+            </motion.div>
 
-            <button
-              onClick={onRequestQuote}
-              className="inline-flex items-center justify-center rounded-full border border-white/30 hover:border-white text-white px-6 py-3 text-sm font-medium transition-colors duration-200 cursor-pointer"
+            <motion.h1
+              variants={item}
+              className="mt-7 text-[clamp(2.2rem,1.5rem+2.4vw,4rem)] font-heading font-extrabold leading-[1.04] tracking-[-0.025em] text-[#0B1B2B]"
             >
-              Request a quote
-            </button>
-          </div>
+              Industrial heat systems,
+              <span className="block text-[#1C5CA8]">built to keep running</span>
+            </motion.h1>
 
-          {/* Metrics — a quiet spec strip */}
-          <dl className="mt-12 grid grid-cols-3 gap-[clamp(1rem,1.5vw,1.75rem)] max-w-[clamp(18rem,28vw,32rem)] border-t border-dashed border-white/25 pt-7">
-            {[
-              ['12+', 'Years in the field'],
-              ['1,200+', 'Systems installed'],
-              ['100%', 'IBR-certified builds'],
-            ].map(([value, label], i) => (
-              <div key={i}>
-                <dt className="text-[clamp(1.4rem,1.15rem+0.9vw,2rem)] font-heading font-extrabold text-white">{value}</dt>
-                <dd className="mt-1.5 text-[clamp(0.65rem,0.62rem+0.1vw,0.75rem)] text-[#808080] leading-snug">{label}</dd>
+            <motion.p
+              variants={item}
+              className="mt-6 text-[clamp(0.98rem,0.9rem+0.3vw,1.18rem)] text-[#47566A] leading-relaxed max-w-xl"
+            >
+              Thermal Engitech designs and manufactures steam boilers, thermic fluid heaters and
+              process-heat systems for plants where unplanned downtime is not an option — built in
+              Dhamatwan, Gujarat, and certified to both Indian and export standards.
+            </motion.p>
+
+            <motion.div variants={item} className="mt-9 flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={onViewProducts}
+                data-testid="hero-explore-btn"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#1C5CA8] text-white hover:bg-[#103E72] px-6 py-3.5 text-sm font-semibold shadow-md shadow-[#1C5CA8]/20 transition-colors duration-200 cursor-pointer"
+              >
+                <span>Explore the catalogue</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              </button>
+
+              <button
+                onClick={onRequestQuote}
+                data-testid="hero-quote-btn"
+                className="inline-flex items-center justify-center rounded-full border border-[#0B1B2B]/20 bg-white text-[#0B1B2B] hover:border-[#0B1B2B] px-6 py-3.5 text-sm font-medium transition-colors duration-200 cursor-pointer"
+              >
+                Request a quote
+              </button>
+            </motion.div>
+
+            <motion.div variants={item} className="mt-6">
+              <a
+                href={`tel:${SITE.phonePrimaryTel}`}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-[#47566A] hover:text-[#1C5CA8] transition-colors"
+              >
+                <Phone className="w-4 h-4 text-[#1C5CA8]" />
+                Speak to an engineer — {SITE.phonePrimaryDisplay}
+              </a>
+            </motion.div>
+
+            <motion.dl
+              variants={item}
+              className="mt-10 grid grid-cols-3 gap-[clamp(1rem,1.5vw,1.75rem)] max-w-lg border-t border-[#E4E7EC] pt-7"
+            >
+              {[
+                ['12+', 'Years in the field'],
+                ['1,200+', 'Systems installed'],
+                ['100%', 'IBR-certified builds'],
+              ].map(([value, label]) => (
+                <div key={label}>
+                  <dt className="text-[clamp(1.5rem,1.15rem+0.9vw,2.1rem)] font-heading font-extrabold text-[#0B1B2B]">{value}</dt>
+                  <dd className="mt-1.5 text-[clamp(0.66rem,0.62rem+0.1vw,0.76rem)] text-[#78889B] leading-snug">{label}</dd>
+                </div>
+              ))}
+            </motion.dl>
+          </motion.div>
+
+          {/* Right — image card with subtle steam + float */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 relative"
+          >
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-[#0B1B2B]/15 ring-1 ring-black/5 animate-float">
+              <img
+                src={`${import.meta.env.BASE_URL}images/hero-pipes-light.jpg`}
+                alt="Polished stainless-steel steam pipework inside a modern process-heating plant"
+                className="w-full h-[340px] sm:h-[420px] lg:h-[520px] object-cover animate-kenburns"
+                loading="eager"
+                fetchPriority="high"
+              />
+              {/* light steam wisps drifting over the image */}
+              <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+                <span className="steam-plume steam-1" />
+                <span className="steam-plume steam-3" />
               </div>
-            ))}
-          </dl>
+              {/* floating certification chip */}
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3 rounded-2xl bg-white/85 backdrop-blur-md px-4 py-3 shadow-lg ring-1 ring-black/5">
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#1C5CA8]/10 text-[#1C5CA8]">
+                    <ShieldCheck className="w-5 h-5" />
+                  </span>
+                  <div className="leading-tight">
+                    <p className="text-[11px] font-bold text-[#0B1B2B]">IBR & ASME certified builds</p>
+                    <p className="text-[10px] text-[#78889B]">Up to 32 kg/cm² · dry-steam output</p>
+                  </div>
+                </div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#1C5CA8] hidden sm:block">Est. 2012</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

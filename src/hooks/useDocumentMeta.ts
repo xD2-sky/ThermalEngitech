@@ -1,40 +1,84 @@
 import { useEffect } from 'react';
+import { SITE } from '../config/site';
+
+type JsonLd = Record<string, unknown> | Record<string, unknown>[];
+
+interface MetaOptions {
+  /** Clean path for canonical/og:url. Defaults to the current pathname. */
+  path?: string;
+  /** Absolute or root-relative OG/Twitter image. */
+  image?: string;
+  /** Page-level structured data (JSON-LD). */
+  jsonLd?: JsonLd;
+  /** Open Graph type. */
+  type?: string;
+  noindex?: boolean;
+}
+
+function upsertMeta(selector: string, attr: 'name' | 'property', key: string, content: string) {
+  let el = document.head.querySelector<HTMLMetaElement>(selector);
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute(attr, key);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', content);
+}
+
+function upsertLink(rel: string, href: string) {
+  let el = document.head.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`);
+  if (!el) {
+    el = document.createElement('link');
+    el.setAttribute('rel', rel);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('href', href);
+}
 
 /**
- * Sets document.title and the <meta name="description"> tag for the current page.
- * This is a client-side-only SPA (no server rendering), so this covers what's
- * achievable within that constraint: correct titles/descriptions for browser
- * tabs, bookmarks, browser history, and any crawler that executes JS. It does
- * NOT provide true pre-rendered SEO — that would need a server-rendering or
- * static-generation setup (e.g. Next.js), which is a separate, bigger change.
+ * Client-side head manager for this static SPA. Combined with the build-time
+ * prerender step (each route is rendered by headless Chrome and its resulting
+ * <head> is saved to a static .html file), this delivers real, crawlable
+ * per-page titles, descriptions, canonicals, Open Graph / Twitter cards and
+ * JSON-LD — no server runtime required.
  */
-export function useDocumentMeta(title: string, description: string) {
+export function useDocumentMeta(title: string, description: string, options: MetaOptions = {}) {
+  const { path, image, jsonLd, type = 'website', noindex = false } = options;
+
   useEffect(() => {
-    const fullTitle = `${title} | Thermal Engitech Pvt. Ltd.`;
+    const fullTitle = `${title} | ${SITE.name}`;
     document.title = fullTitle;
 
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', description);
+    const pathname = path ?? window.location.pathname;
+    const canonical = `${SITE.url}${pathname === '/' ? '/' : pathname.replace(/\/$/, '')}`;
+    const rawImage = image ?? SITE.ogImage;
+    const ogImage = rawImage.startsWith('http') ? rawImage : `${SITE.url}${rawImage}`;
 
-    let ogTitle = document.querySelector('meta[property="og:title"]');
-    if (!ogTitle) {
-      ogTitle = document.createElement('meta');
-      ogTitle.setAttribute('property', 'og:title');
-      document.head.appendChild(ogTitle);
-    }
-    ogTitle.setAttribute('content', fullTitle);
+    upsertMeta('meta[name="description"]', 'name', 'description', description);
+    upsertMeta('meta[name="robots"]', 'name', 'robots', noindex ? 'noindex,nofollow' : 'index,follow');
+    upsertLink('canonical', canonical);
 
-    let ogDescription = document.querySelector('meta[property="og:description"]');
-    if (!ogDescription) {
-      ogDescription = document.createElement('meta');
-      ogDescription.setAttribute('property', 'og:description');
-      document.head.appendChild(ogDescription);
+    upsertMeta('meta[property="og:title"]', 'property', 'og:title', fullTitle);
+    upsertMeta('meta[property="og:description"]', 'property', 'og:description', description);
+    upsertMeta('meta[property="og:type"]', 'property', 'og:type', type);
+    upsertMeta('meta[property="og:url"]', 'property', 'og:url', canonical);
+    upsertMeta('meta[property="og:image"]', 'property', 'og:image', ogImage);
+    upsertMeta('meta[property="og:site_name"]', 'property', 'og:site_name', SITE.name);
+    upsertMeta('meta[property="og:locale"]', 'property', 'og:locale', 'en_IN');
+
+    upsertMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
+    upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', fullTitle);
+    upsertMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description);
+    upsertMeta('meta[name="twitter:image"]', 'name', 'twitter:image', ogImage);
+
+    const existing = document.getElementById('page-jsonld');
+    if (existing) existing.remove();
+    if (jsonLd) {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.id = 'page-jsonld';
+      script.textContent = JSON.stringify(jsonLd);
+      document.head.appendChild(script);
     }
-    ogDescription.setAttribute('content', description);
-  }, [title, description]);
+  }, [title, description, path, image, type, noindex, JSON.stringify(jsonLd ?? null)]);
 }

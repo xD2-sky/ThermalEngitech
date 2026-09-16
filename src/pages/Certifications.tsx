@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
+import HeroSteam from '../components/HeroSteam';
 import { CERTIFICATIONS, DESIGN_CODES } from '../data';
 import { 
   BadgeCheck, 
@@ -26,7 +27,8 @@ export default function Certifications() {
       <div className="bg-[#0B1B2B] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-[#1C5CA8]/25 relative overflow-hidden">
         <img src={`${import.meta.env.BASE_URL}images/banners/certifications.webp`} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-[#0B1B2B]/80" />
-        <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:2.5rem_2.5rem]" />
+        <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:22px_22px]" />
+        <HeroSteam />
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
             Compliance Standards

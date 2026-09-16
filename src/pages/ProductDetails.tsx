@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS } from '../data';
+import { slugify, productsInCategory } from '../catalog';
 import ProductVideoShowcase from '../components/ProductVideoShowcase';
 import { ArrowLeft, ShieldCheck, Cpu, CheckCircle, Mail, Phone, CheckCircle2, ChevronRight } from 'lucide-react';
 
@@ -226,7 +227,32 @@ export default function ProductDetails() {
     product ? product.name : 'Product Not Found',
     product
       ? `${product.name} — ${product.category}. ${product.description.slice(0, 140)}`
-      : 'The requested product could not be found.'
+      : 'The requested product could not be found.',
+    product
+      ? {
+          type: 'product',
+          jsonLd: [
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Product',
+              name: product.name,
+              category: product.category,
+              description: product.description,
+              brand: { '@type': 'Brand', name: 'Thermal Engitech Pvt. Ltd.' },
+              manufacturer: { '@type': 'Organization', name: 'Thermal Engitech Pvt. Ltd.' },
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Products', item: 'https://thermalengitech.com/products' },
+                { '@type': 'ListItem', position: 2, name: product.category, item: `https://thermalengitech.com/products/category/${slugify(product.category)}` },
+                { '@type': 'ListItem', position: 3, name: product.name, item: `https://thermalengitech.com/products/${product.id}` },
+              ],
+            },
+          ],
+        }
+      : { noindex: true }
   );
 
   // Embedded inquiry form states
@@ -256,6 +282,10 @@ export default function ProductDetails() {
       </div>
     );
   }
+
+  const categorySiblings = productsInCategory(product.category).length;
+  const backTo = categorySiblings > 1 ? `/products/category/${slugify(product.category)}` : '/products';
+  const backLabel = categorySiblings > 1 ? product.category : 'Products';
 
   const handleInquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -287,16 +317,20 @@ export default function ProductDetails() {
     <div className="bg-slate-50 min-h-screen text-left">
       
       {/* Breadcrumbs bar with navigation shortcuts */}
-      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans">
+      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans sticky top-16 sm:top-18 lg:top-20 z-30">
         <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-500 font-semibold">
-          <Link to="/products" className="flex items-center gap-1.5 text-[#1C5CA8] hover:underline">
+          <Link
+            to={backTo}
+            data-testid="product-back-btn"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#1C5CA8]/8 hover:bg-[#1C5CA8]/15 text-[#1C5CA8] px-3.5 py-2 transition-colors"
+          >
             <ArrowLeft className="w-4 h-4" />
-            <span>Back to Products</span>
+            <span>Back to {backLabel}</span>
           </Link>
-          <div className="flex items-center gap-2">
-            <span>Products</span>
+          <div className="hidden sm:flex items-center gap-2">
+            <Link to="/products" className="hover:text-[#1C5CA8]">Products</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-[#1C5CA8]">{product.category}</span>
+            <Link to={`/products/category/${slugify(product.category)}`} className="text-[#1C5CA8] hover:underline">{product.category}</Link>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-slate-700 font-extrabold truncate max-w-[120px] sm:max-w-none">{product.name}</span>
           </div>
@@ -537,11 +571,11 @@ export default function ProductDetails() {
             <div className="space-y-3 font-sans text-xs">
               <div className="flex items-center gap-2 text-slate-600">
                 <Phone className="w-4 h-4 text-[#1C5CA8] shrink-0" />
-                <span>Sales: +91 79 4005 5280</span>
+                <span>Sales: +91 70693 06431</span>
               </div>
               <div className="flex items-center gap-2 text-slate-600">
                 <Mail className="w-4 h-4 text-[#1C5CA8] shrink-0" />
-                <span>sales@thermalengitech.com</span>
+                <span>info@thermalengitech.com</span>
               </div>
             </div>
             <p className="text-[10px] text-slate-500 font-medium leading-relaxed font-sans pt-1 border-t border-slate-200">

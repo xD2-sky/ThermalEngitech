@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
+import HeroSteam from '../components/HeroSteam';
 import CompanyMap from '../components/CompanyMap';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 
@@ -16,22 +17,18 @@ export default function ContactUs() {
 
   const contacts = [
     {
-      title: 'Operations & Engineering Division',
-      person: 'Mr. Sanjay Patel (Director)',
-      phone: '+91 98250 14820',
+      title: 'Sales & Engineering',
+      person: 'Enquiry Desk',
+      phone: '+91 70693 06431',
+      phoneTel: '+917069306431',
       email: 'info@thermalengitech.com'
     },
     {
-      title: 'Sales & Estimations Department',
-      person: 'Mr. Rajat Sharma (Estimates Liaison)',
-      phone: '+91 79 4005 5280',
-      email: 'sales@thermalengitech.com'
-    },
-    {
-      title: 'After-Sales & Troubleshooting',
-      person: 'Coordinator Help Desk',
-      phone: '+91 98250 14820',
-      email: 'service@thermalengitech.com'
+      title: 'Purchase Department',
+      person: 'Ramesh Samdani (Purchase Manager)',
+      phone: '+91 90330 47272',
+      phoneTel: '+919033047272',
+      email: 'info@thermalengitech.com'
     }
   ];
 
@@ -42,7 +39,7 @@ export default function ContactUs() {
       <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
         <img src={`${import.meta.env.BASE_URL}images/banners/contact.webp`} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-[#0D1B2A]/80" />
-        <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:3rem_3rem]" />
+        <HeroSteam />
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
             Get In Touch
@@ -77,12 +74,12 @@ export default function ContactUs() {
 
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-[#1C5CA8] shrink-0" />
-                <span>+91 79 4005 5280 / +91 98250 14820</span>
+                <span>+91 70693 06431</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-[#1C5CA8] shrink-0" />
-                <span>sales@thermalengitech.com / info@thermalengitech.com</span>
+                <span>info@thermalengitech.com</span>
               </div>
             </div>
           </div>
@@ -137,7 +134,7 @@ export default function ContactUs() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {contacts.map((c, i) => (
                 <div key={i} className="bg-slate-50 border border-slate-100 p-4 rounded-xl space-y-3 font-sans text-xs text-left">
                   <span className="text-[9.5px] font-mono font-bold text-[#1C5CA8] uppercase tracking-wider block border-b border-slate-200 pb-1.5">
@@ -145,10 +142,10 @@ export default function ContactUs() {
                   </span>
                   <div className="space-y-1">
                     <b className="font-bold text-[#0D1B2A] block text-[11px]">{c.person}</b>
-                    <span className="text-slate-600 block">{c.phone}</span>
-                    <span className="text-slate-500 hover:text-[#1C5CA8] transition block break-all font-semibold select-all">
+                    <a href={`tel:${c.phoneTel}`} className="text-slate-600 block hover:text-[#1C5CA8] transition">{c.phone}</a>
+                    <a href={`mailto:${c.email}`} className="text-slate-500 hover:text-[#1C5CA8] transition block break-all font-semibold select-all">
                       {c.email}
-                    </span>
+                    </a>
                   </div>
                 </div>
               ))}

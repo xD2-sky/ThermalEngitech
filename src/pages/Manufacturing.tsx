@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
+import HeroSteam from '../components/HeroSteam';
 import { Link } from 'react-router-dom';
 import { MANUFACTURING_STEPS, SHOP_CAPABILITIES, DESIGN_CAPABILITIES } from '../data';
 import { Settings, ShieldCheck, HardHat, PenTool, Cpu } from 'lucide-react';
@@ -21,7 +22,7 @@ export default function Manufacturing() {
       {/* Banner */}
       <div className="bg-[#0B1B2B] text-white border-b border-[#1C5CA8]/25 relative overflow-hidden">
         {/* Subtle industrial blueprint network line */}
-        <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:4rem_4rem]" />
+        <HeroSteam />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-4">
             <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#7FB2E4]">

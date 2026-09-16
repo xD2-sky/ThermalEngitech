@@ -156,7 +156,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 <input
                   type="tel"
                   required
-                  placeholder="e.g. +91 98250 14820"
+                  placeholder="e.g. +91 70693 06431"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"

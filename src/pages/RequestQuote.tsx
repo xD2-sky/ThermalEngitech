@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
+import HeroSteam from '../components/HeroSteam';
 import { useSearchParams } from 'react-router-dom';
 import QuoteRequest from '../components/QuoteRequest';
 import { Inquiry } from '../types';
@@ -51,7 +52,7 @@ export default function RequestQuote() {
       <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
         <img src={`${import.meta.env.BASE_URL}images/banners/request-quote.webp`} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-[#0D1B2A]/80" />
-        <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:2.5rem_2.5rem]" />
+        <HeroSteam />
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
           <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
             Estimation Request

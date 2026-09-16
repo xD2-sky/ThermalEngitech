@@ -14,12 +14,12 @@ export default function Footer() {
   ];
 
   const productCategories = [
-    { label: 'Steam Boilers', path: '/products?category=Steam+Boilers' },
-    { label: 'Thermic Fluid Heaters', path: '/products?category=Thermic+Fluid+Heaters' },
-    { label: 'Pressure Reducing Stations', path: '/products?category=Pressure+Reducing+Stations' },
-    { label: 'Air Pre Heaters', path: '/products?category=Air+Pre+Heaters' },
-    { label: 'Heat Exchangers', path: '/products?category=Heat+Exchangers' },
-    { label: 'Hot Water Generators', path: '/products?category=Hot+Water+Generators' },
+    { label: 'Steam Boilers', path: '/products/category/steam-boilers' },
+    { label: 'Thermic Fluid Heaters', path: '/products/category/thermic-fluid-heaters' },
+    { label: 'Pressure Reducing Stations', path: '/products/pressure-reducing-station' },
+    { label: 'Air Pre Heaters', path: '/products/air-pre-heater' },
+    { label: 'Heat Exchangers', path: '/products/heat-exchanger-shelltube' },
+    { label: 'Hot Water Generators', path: '/products/hot-water-generator-unit' },
   ];
 
   const year = new Date().getFullYear();
@@ -92,15 +92,14 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-[#7FB2E4] shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
-                  <a href="mailto:sales@thermalengitech.com" className="hover:text-white transition-colors">sales@thermalengitech.com</a><br />
                   <a href="mailto:info@thermalengitech.com" className="hover:text-white transition-colors">info@thermalengitech.com</a>
                 </span>
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-[#7FB2E4] shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
-                  <a href="tel:+917940055280" className="hover:text-white transition-colors">+91 79 4005 5280</a><br />
-                  <a href="tel:+919825014820" className="hover:text-white transition-colors">+91 98250 14820</a>
+                  <a href="tel:+917069306431" className="hover:text-white transition-colors">+91 70693 06431</a><br />
+                  <span className="text-slate-400">Purchase: <a href="tel:+919033047272" className="hover:text-white transition-colors">+91 90330 47272</a></span>
                 </span>
               </div>
             </div>
