@@ -38,8 +38,8 @@ export default function Navbar() {
     <nav
       className={`sticky top-0 left-0 right-0 z-50 font-sans transition-all duration-300 ease-out ${
         scrolled
-          ? 'bg-white/85 backdrop-blur-md border-b border-[#E4E7EC] shadow-[0_4px_20px_rgba(11,27,43,0.06)]'
-          : 'bg-white/70 backdrop-blur-sm border-b border-transparent'
+          ? 'bg-transparent border-b border-[#E4E7EC] shadow-[0_4px_20px_rgba(11,27,43,0.06)]'
+          : 'bg-transparent border-b border-transparent'
       }`}
     >
       <div className="flex items-center justify-between h-16 sm:h-18 lg:h-20 px-4 sm:px-8 lg:px-10">
