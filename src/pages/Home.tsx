@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
+import { useMousePosition } from '../hooks/useMousePosition';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { INDUSTRIES_SERVED } from '../data';
 import {
@@ -76,6 +77,80 @@ const PRODUCT_CATEGORIES = [
   },
 ];
 
+// Card with a 3D tilt-on-hover, tracking cursor position.
+// Effect + timing pattern sourced from animata.design's "GitHub Card - Skew" (MIT licensed):
+// transitions smoothly on enter, drops to instant tracking after 300ms so continuous
+// mouse movement doesn't lag behind the cursor, then transitions smoothly back on exit.
+interface ProductCardProps {
+  category: typeof PRODUCT_CATEGORIES[number];
+}
+
+function ProductCard({ category: c }: ProductCardProps) {
+  const cardRef = useRef<HTMLAnchorElement>(null);
+  const resetRef = useRef<ReturnType<typeof setTimeout>>();
+
+  const update = useCallback(({ x, y }: { x: number; y: number }) => {
+    if (!cardRef.current) return;
+    const { width, height } = cardRef.current.getBoundingClientRect();
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const deltaX = x - centerX;
+    const deltaY = y - centerY;
+    const maxDistance = Math.sqrt(centerX ** 2 + centerY ** 2);
+    const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+    const rotationFactor = distance / maxDistance;
+    const maxRotation = 5;
+    const rotationY = ((-deltaX / centerX) * maxRotation * rotationFactor).toFixed(2);
+    const rotationX = ((deltaY / centerY) * maxRotation * rotationFactor).toFixed(2);
+    cardRef.current.style.setProperty('--tilt-x', `${rotationX}deg`);
+    cardRef.current.style.setProperty('--tilt-y', `${rotationY}deg`);
+  }, []);
+
+  useMousePosition(cardRef, update);
+
+  return (
+    <Link
+      ref={cardRef}
+      to={c.href}
+      className="group relative bg-white p-7 flex flex-col justify-between text-left transition-colors duration-200 will-change-transform hover:bg-[#0D1B2A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1C5CA8]"
+      style={{
+        transform: 'perspective(800px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))',
+        transitionDuration: '120ms',
+      }}
+      onMouseEnter={() => {
+        resetRef.current = setTimeout(() => {
+          if (cardRef.current) cardRef.current.style.transitionDuration = '0ms';
+        }, 300);
+      }}
+      onMouseLeave={() => {
+        clearTimeout(resetRef.current);
+        if (cardRef.current) {
+          cardRef.current.style.transitionDuration = '120ms';
+          cardRef.current.style.setProperty('--tilt-x', '0deg');
+          cardRef.current.style.setProperty('--tilt-y', '0deg');
+        }
+      }}
+    >
+      <div className="space-y-5">
+        <div className="flex items-center justify-between">
+          <div className="w-14 h-14 rounded-lg border border-[#E1E4E3] group-hover:border-white/20 bg-[#F7F7F5] group-hover:bg-white/5 flex items-center justify-center text-[#1C5CA8] group-hover:text-[#7FB2E4] transition-colors">
+            <c.icon className="w-6 h-6" strokeWidth={1.75} />
+          </div>
+          <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-200" />
+        </div>
+        <h4 className="font-heading font-bold text-lg text-[#0D1B2A] group-hover:text-white transition-colors">{c.title}</h4>
+        <p className="text-slate-500 group-hover:text-slate-300 text-[13px] leading-relaxed transition-colors">
+          {c.desc}
+        </p>
+      </div>
+      <div className="pt-6 mt-6 border-t border-[#E1E4E3] group-hover:border-white/10 flex items-center gap-1.5 text-[13px] font-semibold text-[#1C5CA8] group-hover:text-[#7FB2E4]">
+        <span>{c.cta}</span>
+        <ChevronRight className="w-4 h-4" />
+      </div>
+    </Link>
+  );
+}
+
 export default function Home() {
   const navigate = useNavigate();
 
@@ -106,30 +181,11 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E1E4E3] border border-[#E1E4E3]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E1E4E3] border border-[#E1E4E3]" style={{ perspective: '800px' }}>
             {PRODUCT_CATEGORIES.map((c) => (
-              <Link
-                key={c.title}
-                to={c.href}
-                className="group bg-white p-7 flex flex-col justify-between text-left transition-colors hover:bg-[#0D1B2A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1C5CA8]"
-              >
-                <div className="space-y-5">
-                  <div className="flex items-center justify-between">
-                    <div className="w-11 h-11 rounded-lg border border-[#E1E4E3] group-hover:border-white/20 flex items-center justify-center text-[#1C5CA8] group-hover:text-[#7FB2E4] transition-colors">
-                      <c.icon className="w-5 h-5" strokeWidth={1.75} />
-                    </div>
-                    <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-200" />
-                  </div>
-                  <h4 className="font-heading font-bold text-lg text-[#0D1B2A] group-hover:text-white transition-colors">{c.title}</h4>
-                  <p className="text-slate-500 group-hover:text-slate-300 text-[13px] leading-relaxed transition-colors">
-                    {c.desc}
-                  </p>
-                </div>
-                <div className="pt-6 mt-6 border-t border-[#E1E4E3] group-hover:border-white/10 flex items-center gap-1.5 text-[13px] font-semibold text-[#1C5CA8] group-hover:text-[#7FB2E4]">
-                  <span>{c.cta}</span>
-                  <ChevronRight className="w-4 h-4" />
-                </div>
-              </Link>
+              <div key={c.title} className="contents">
+                <ProductCard category={c} />
+              </div>
             ))}
           </div>
         </div>
