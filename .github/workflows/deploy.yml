@@ -2,12 +2,16 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [emergent]
   workflow_dispatch:
 
 # Legacy branch-based Pages deploy: build, then publish dist/ to the
 # gh-pages branch. This deliberately avoids actions/deploy-pages, whose
 # server-side deployment subsystem became wedged on an earlier commit.
+#
+# Deploys from `emergent`, not `main` — `emergent` is the shared branch
+# both Emergent AI's saves and this terminal push to; `main` no longer
+# auto-deploys.
 permissions:
   contents: write
 
