@@ -45,7 +45,7 @@ const CHROME = findChrome();
 
 // ---- routes ----------------------------------------------------------------
 const staticRoutes = [
-  '/', '/about', '/products', '/industries',
+  '/', '/about', '/products',
   '/manufacturing', '/certifications', '/contact', '/request-quote',
 ];
 let productIds = [];

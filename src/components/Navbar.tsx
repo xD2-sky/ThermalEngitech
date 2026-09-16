@@ -25,7 +25,6 @@ export default function Navbar() {
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/products', label: 'Products' },
-    { path: '/industries', label: 'Industries' },
     { path: '/manufacturing', label: 'Manufacturing' },
     { path: '/contact', label: 'Contact' },
   ] as const;

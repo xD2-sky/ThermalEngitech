@@ -16,7 +16,6 @@ import AboutUs from './pages/AboutUs';
 import Products from './pages/Products';
 import ProductCategory from './pages/ProductCategory';
 import ProductDetails from './pages/ProductDetails';
-import Industries from './pages/Industries';
 import Manufacturing from './pages/Manufacturing';
 import Certifications from './pages/Certifications';
 import ContactUs from './pages/ContactUs';
@@ -43,7 +42,6 @@ export default function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/products/category/:slug" element={<ProductCategory />} />
             <Route path="/products/:id" element={<ProductDetails />} />
-            <Route path="/industries" element={<Industries />} />
             <Route path="/manufacturing" element={<Manufacturing />} />
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/contact" element={<ContactUs />} />

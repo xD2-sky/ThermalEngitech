@@ -98,21 +98,6 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
               </a>
             </motion.div>
 
-            <motion.dl
-              variants={item}
-              className="mt-8 grid grid-cols-3 gap-[clamp(1rem,1.5vw,1.75rem)] max-w-lg border-t border-[#E4E7EC] pt-6"
-            >
-              {[
-                ['12+', 'Years in the field'],
-                ['1,200+', 'Systems installed'],
-                ['100%', 'IBR-certified builds'],
-              ].map(([value, label]) => (
-                <div key={label}>
-                  <dt className="text-[clamp(1.5rem,1.15rem+0.9vw,2.1rem)] font-heading font-extrabold text-[#0B1B2B]">{value}</dt>
-                  <dd className="mt-1.5 text-[clamp(0.66rem,0.62rem+0.1vw,0.76rem)] text-[#78889B] leading-snug">{label}</dd>
-                </div>
-              ))}
-            </motion.dl>
           </motion.div>
 
           {/* Right — image card with subtle steam + float */}
