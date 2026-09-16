@@ -38,7 +38,7 @@ export default function Navbar() {
     <nav
       className={`sticky top-0 left-0 right-0 z-50 font-sans transition-all duration-300 ease-out ${
         scrolled
-          ? 'bg-transparent border-b border-[#E4E7EC] shadow-[0_4px_20px_rgba(11,27,43,0.06)]'
+          ? 'bg-white/85 backdrop-blur-md border-b border-[#E4E7EC] shadow-[0_4px_20px_rgba(11,27,43,0.06)]'
           : 'bg-transparent border-b border-transparent'
       }`}
     >

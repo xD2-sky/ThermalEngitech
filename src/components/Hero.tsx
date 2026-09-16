@@ -5,8 +5,7 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, ShieldCheck, Phone } from 'lucide-react';
-import { SITE } from '../config/site';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 interface HeroProps {
   onRequestQuote: () => void;
@@ -86,16 +85,6 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
               >
                 Request a quote
               </button>
-            </motion.div>
-
-            <motion.div variants={item} className="mt-6">
-              <a
-                href={`tel:${SITE.phonePrimaryTel}`}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#47566A] hover:text-[#1C5CA8] transition-colors"
-              >
-                <Phone className="w-4 h-4 text-[#1C5CA8]" />
-                Speak to an engineer — {SITE.phonePrimaryDisplay}
-              </a>
             </motion.div>
 
           </motion.div>
