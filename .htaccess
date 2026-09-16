@@ -1,0 +1,56 @@
+# ============================================================================
+#  Thermal Engitech — Apache config for Hostinger (static prerendered SPA)
+# ============================================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Serve a prerendered directory index if it exists (e.g. /about -> /about/index.html)
+  RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI}/index.html -f
+  RewriteRule ^(.*)$ /$1/index.html [L]
+
+  # If the requested file or directory exists, serve it as-is
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Otherwise fall back to the SPA entry (client-side routing)
+  RewriteRule ^ /index.html [L]
+</IfModule>
+
+# ---- Compression -----------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml
+</IfModule>
+
+# ---- Browser caching -------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Hashed, immutable build assets — cache hard
+  <FilesMatch "\.(js|css|woff2?|ttf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|avif|svg|ico|mp4)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  # HTML should always revalidate so new deploys show up immediately
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---- Security headers ------------------------------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+ErrorDocument 404 /index.html
