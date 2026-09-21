@@ -239,7 +239,7 @@ export default function Home() {
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover animate-kenburns"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(9,18,30,0.86),rgba(9,18,30,0.78))]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(9,18,30,0.55),rgba(9,18,30,0.6))]" />
         <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
           <span className="steam-plume steam-1" />
           <span className="steam-plume steam-3" />
