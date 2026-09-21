@@ -1,0 +1,137 @@
+{
+  "project_name": "Thermal Engitech - Premium Industrial Engineering Landing Page",
+  "app_type": "landing_page",
+  "theme": "light",
+  "design_archetype": "Swiss & High-Contrast Performance Pro (Industrial Engineering Editorial)",
+  "color_palette": {
+    "background_primary": "#FFFFFF",
+    "background_secondary": "#F8FAFC",
+    "background_muted": "#F1F5F9",
+    "background_dark_band": "#0B132B",
+    "text_primary": "#0A1128",
+    "text_secondary": "#475569",
+    "text_muted": "#64748B",
+    "text_dark_band": "#F8FAFC",
+    "border_subtle": "#E2E8F0",
+    "border_strong": "#CBD5E1",
+    "brand_blue": "#1D4ED8",
+    "brand_blue_hover": "#1E40AF",
+    "brand_blue_light": "#EFF6FF",
+    "signal_accent": "#E04F16",
+    "signal_accent_hover": "#C23B09",
+    "signal_accent_light": "#FFF7ED",
+    "status_success": "#059669",
+    "dark_contrast_bg": "#0B132B",
+    "dark_contrast_border": "#1E293B"
+  },
+  "typography": {
+    "headline_font": "Space Grotesk, Barlow, sans-serif",
+    "body_font": "Plus Jakarta Sans, Inter, sans-serif",
+    "mono_font": "JetBrains Mono, IBM Plex Mono, monospace",
+    "scale": {
+      "hero_h1": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight uppercase leading-[1.05]",
+      "section_h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight uppercase leading-tight",
+      "card_h3": "text-xl sm:text-2xl font-bold tracking-tight",
+      "subtitle": "text-base sm:text-lg text-slate-600 font-normal leading-relaxed",
+      "mono_label": "font-mono text-xs uppercase tracking-[0.2em] font-medium text-slate-500",
+      "body": "text-base text-slate-700 leading-relaxed font-normal"
+    }
+  },
+  "layout_and_grid": {
+    "spacing_philosophy": "Generous industrial layout. Use p-8 to p-16 for section padding, 2-3x more breathing room than average templates.",
+    "container_max_width": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "grid_modes": {
+      "products_bento": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8",
+      "manifesto_chapters": "grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch",
+      "industries_grid": "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4",
+      "certifications_grid": "grid grid-cols-2 md:grid-cols-4 gap-6"
+    }
+  },
+  "signature_moments": [
+    "Kinetic Hero: Line-by-line staggered text reveal using framer-motion with floating tech metrics badge",
+    "Numbered Manifesto Chapters: 01 / 02 / 03 layout with vertical industrial lines and high-contrast typography",
+    "Slow Editorial Marquee: Continuous ticker featuring ISO 9001:2015, IBR 1950, ASME, TEMA Standards and engineering keywords",
+    "Interactive Stat Counters: Smooth count-up on scroll for 12+ Years, 1,200+ Installations, 100% IBR Compliance",
+    "Hover Craft Cards: Subtle lift (-translate-y-1), crisp border accent glow, and technical spec reveal on product hover",
+    "Magnetic Action Buttons: Dual CTA buttons with subtle spring responsiveness and red-orange signal accent highlight",
+    "Floating Action Bar: Fixed bottom-right quick contact pill for WhatsApp direct chat and telephone calling"
+  ],
+  "image_urls": {
+    "hero_boiler_plant": "https://images.unsplash.com/photo-1611581372056-30cf28a7bd2e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwc3RlYW0lMjBib2lsZXIlMjB0aGVybWFsJTIwcGxhbnQlMjBtYW51ZmFjdHVyaW5nfGVufDB8fHx8MTc4OTk4NzMzM3ww&ixlib=rb-4.1.0&q=85",
+    "hero_furnace_bg": "https://images.unsplash.com/photo-1654943751003-8231e7f8a901?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHw0fHxpbmR1c3RyaWFsJTIwc3RlYW0lMjBib2lsZXIlMjB0aGVybWFsJTIwcGxhbnQlMjBtYW51ZmFjdHVyaW5nfGVufDB8fHx8MTc4OTk4NzMzM3ww&ixlib=rb-4.1.0&q=85",
+    "factory_interior": "https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwyfHxoZWF2eSUyMG1hY2hpbmVyeSUyMHN0ZWVsJTIwZmFicmljYXRpb24lMjBlbmdpbmVlcmluZyUyMHBsYW50fGVufDB8fHx8MTc4OTk4NzMzM3ww&ixlib=rb-4.1.0&q=85",
+    "control_panel": "https://images.unsplash.com/photo-1717386255773-a456c611dc4e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwzfHxoZWF2eSUyMG1hY2hpbmVyeSUyMHN0ZWVsJTIwZmFicmljYXRpb24lMjBlbmdpbmVlcmluZyUyMHBsYW50fGVufDB8fHx8MTc4OTk4NzMzM3ww&ixlib=rb-4.1.0&q=85",
+    "fabrication_facility": "https://images.unsplash.com/photo-1717386255773-1e3037c81788?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwxfHxoZWF2eSUyMG1hY2hpbmVyeSUyMHN0ZWVsJTIwZmFicmljYXRpb24lMjBlbmdpbmVlcmluZyUyMHBsYW50fGVufDB8fHx8MTc4OTk4NzMzM3ww&ixlib=rb-4.1.0&q=85",
+    "original_steam_boiler": "https://xd2-sky.github.io/ThermalEngitech/images/products/steam-boiler-skid.png",
+    "original_thermic_heater": "https://xd2-sky.github.io/ThermalEngitech/images/products/multi-fuel-system.png",
+    "original_heat_exchanger": "https://xd2-sky.github.io/ThermalEngitech/images/products/heat-exchanger-vessel.jpg",
+    "original_air_preheater": "https://xd2-sky.github.io/ThermalEngitech/images/products/packaged-boiler-unit.png"
+  },
+  "sections_to_implement": [
+    {
+      "id": "header",
+      "description": "Sticky Navigation Header with backdrop blur, brand logo, navigation links, quick call badge, and CTA button. Includes mobile menu sheet.",
+      "data_testid": "nav-header"
+    },
+    {
+      "id": "hero",
+      "description": "Kinetic Hero section with line-by-line staggered text animation, background industrial photo with subtle dark gradient overlay, dual CTAs ('Explore Catalogue', 'Request Quote'), and live stat counters bar.",
+      "data_testid": "hero-section"
+    },
+    {
+      "id": "editorial_marquee",
+      "description": "Slow moving continuous ticker strip with technical compliance standards (IBR 1950, ASME, ISO 9001:2015, TEMA, Solid Fuel, Biomass, High Pressure Thermal Systems).",
+      "data_testid": "editorial-marquee"
+    },
+    {
+      "id": "manifesto_about",
+      "description": "Numbered Manifesto Chapters (01/ Engineering Foundation, 02/ In-House Precision, 03/ Zero-Downtime Guarantee) explaining Thermal Engitech's heritage since 2012 in Dhamatwan, Gujarat.",
+      "data_testid": "about-manifesto-section"
+    },
+    {
+      "id": "products",
+      "description": "Interactive Bento Grid of 4 core solutions: Steam Boilers, Thermic Fluid Heaters, Heat Exchangers, Air Pre Heaters & Auxiliaries. Features technical tags, hover card effects, image previews, and detailed modal/drawer specs.",
+      "data_testid": "products-section"
+    },
+    {
+      "id": "why_choose_us",
+      "description": "Technical Advantage section with HTRI sizing calculations, volumetric welder qualifications, precision firing controls, and lower operating costs.",
+      "data_testid": "why-choose-us-section"
+    },
+    {
+      "id": "industries_served",
+      "description": "Interactive grid of 14 key industries served (Chemical, Dairy, Distillery, Food, Packaging, Paper, Pharma, Plywood, Rice, Rubber, Sponge Iron, Solvent, Sugar, Textile) with active category filter/highlighting.",
+      "data_testid": "industries-section"
+    },
+    {
+      "id": "certifications",
+      "description": "High-trust compliance roster displaying ISO 9001:2015, ASME, IBR 1950, and TEMA badges with full compliance details.",
+      "data_testid": "certifications-section"
+    },
+    {
+      "id": "consultation_cta",
+      "description": "High-impact deep blue band for custom plant layout consultations with phone & WhatsApp direct action triggers.",
+      "data_testid": "consultation-cta-section"
+    },
+    {
+      "id": "footer",
+      "description": "Rich corporate footer with full contact info (Dhamatwan, Ahmedabad, Gujarat), office telephone (+91 70693 06431), email (info@thermalengitech.com), copyright, and quick navigation links.",
+      "data_testid": "footer-section"
+    },
+    {
+      "id": "floating_actions",
+      "description": "Fixed bottom-right quick contact pill with direct WhatsApp chat trigger and phone call trigger.",
+      "data_testid": "floating-action-buttons"
+    }
+  ],
+  "instructions_to_main_agent": [
+    "Ensure all components are implemented in JavaScript React (.jsx / .js files).",
+    "Inject fonts 'Space Grotesk' and 'Plus Jakarta Sans' via Google Fonts in index.html.",
+    "Add data-testid attributes to all buttons, links, section elements, card components, and form elements.",
+    "Do NOT make the header completely transparent; use glassmorphism backdrop-blur-md bg-white/90 with subtle bottom border border-slate-200.",
+    "Follow the generous spacing system with minimum py-16 to py-24 on major sections.",
+    "Implement smooth scrolling using CSS scroll-behavior or custom framer-motion anchors.",
+    "Ensure total responsiveness across mobile, tablet, and widescreen layouts.",
+    "Use Lucide-React icons extensively for technical metrics, badges, and bullet points."
+  ]
+}

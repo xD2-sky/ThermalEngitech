@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Plus Jakarta Sans", Inter, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #ffffff;
+    color: #0a1128;
+}
+
+::selection {
+    background-color: #e04f16;
+    color: #ffffff;
+}
+
+@keyframes te-marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-te-marquee {
+    animation: te-marquee 40s linear infinite;
+}
+
+.animate-te-marquee:hover {
+    animation-play-state: paused;
+}
+
+.te-outline-text {
+    -webkit-text-stroke: 1px rgba(10, 17, 40, 0.25);
+    color: transparent;
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 224 61% 10%;
+        --card: 0 0% 100%;
+        --card-foreground: 224 61% 10%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 224 61% 10%;
+        --primary: 221 83% 53%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 224 61% 10%;
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215 16% 47%;
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 224 61% 10%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 214 32% 91%;
+        --input: 214 32% 91%;
+        --ring: 221 83% 53%;
+        --radius: 0.5rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
