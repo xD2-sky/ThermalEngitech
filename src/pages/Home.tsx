@@ -14,11 +14,11 @@ import {
   Factory,
   Wrench,
   Award,
+  ShieldCheck,
   ChevronRight,
   ArrowRight,
   CheckCircle2,
   Flame,
-  Droplets,
   Coins,
   Layers,
   FlaskConical,
@@ -96,6 +96,62 @@ export default function Home() {
         onRequestQuote={() => navigate('/request-quote')}
         onViewProducts={() => navigate('/products')}
       />
+
+      {/* About Us — short intro, real stats, large image. Kept light on text by design. */}
+      <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <Reveal className="lg:col-span-5 space-y-6 text-left">
+            <p
+              className="text-[11px] uppercase tracking-[0.14em] text-[#1C5CA8]"
+              style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
+            >
+              About Thermal Engitech
+            </p>
+            <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
+              Engineering heat systems since 2012
+            </h2>
+            <p className="text-sm text-[#47566A] leading-relaxed">
+              Founded in Gujarat, Thermal Engitech has grown into a full heavy-engineering plant
+              in Dhamatwan — trusted across India and export markets for complete boiler
+              assemblies, heaters, and accessories.
+            </p>
+
+            <div className="grid grid-cols-3 gap-4 pt-2 border-t border-[#E4E7EC]">
+              <div className="pt-4">
+                <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">12+</p>
+                <p className="text-xs text-[#78889B] mt-1">Years in the field</p>
+              </div>
+              <div className="pt-4">
+                <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">1,200+</p>
+                <p className="text-xs text-[#78889B] mt-1">Systems installed</p>
+              </div>
+              <div className="pt-4">
+                <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">100%</p>
+                <p className="text-xs text-[#78889B] mt-1">IBR-certified builds</p>
+              </div>
+            </div>
+
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1C5CA8] hover:text-[#103E72] transition-colors pt-1"
+            >
+              <span>Learn more about us</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Reveal>
+
+          <Reveal delay={0.1} className="lg:col-span-7">
+            <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-[#0B1B2B]/10">
+              <img
+                src={`${import.meta.env.BASE_URL}images/industries-bg.jpg`}
+                alt="Thermal Engitech industrial facility"
+                className="w-full h-[320px] md:h-[420px] object-cover"
+                loading="lazy"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </div>
 
       {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
           featured categories show here; the other 4 products live on the Products page. */}
@@ -193,90 +249,92 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Featured Capabilities Section */}
-      <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto rounded-3xl border border-[#E4E7EC] bg-[#FBFCFE] p-8 md:p-12 shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <Reveal className="lg:col-span-6 space-y-6 text-left">
-              <p
-                className="text-[11px] uppercase tracking-[0.1em] text-[#1C5CA8]"
-                style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
-              >
-                Thermal Engitech advantages
-              </p>
-              <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.05]">
-                High-efficiency process heating, over a decade in the field
-              </h2>
-              <p className="text-sm text-[#47566A] leading-relaxed">
-                Engineered in Dhamatwan, Gujarat — built for lower fuel costs and higher dry-fraction steam output.
-              </p>
+      {/* Why Thermal Engitech — capabilities/reliability/expertise focus, distinct from
+          the About Us section above (which covers company history/identity). */}
+      <div className="bg-[#FBFCFE] py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <Reveal className="lg:col-span-6 space-y-6 text-left">
+            <p
+              className="text-[11px] uppercase tracking-[0.1em] text-[#1C5CA8]"
+              style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
+            >
+              Why choose us
+            </p>
+            <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.05]">
+              Why Thermal Engitech
+            </h2>
+            <p className="text-sm text-[#47566A] leading-relaxed">
+              Every system is engineered to your plant's exact thermal load, fuel type, and space
+              constraints — not pulled from a catalog. Reliability and efficiency are built in
+              from the first calculation.
+            </p>
 
-              <div className="space-y-3 pt-2">
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0" strokeWidth={1.75} />
+            <div className="space-y-4 pt-2">
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
+                <div>
                   <h3 className="font-bold text-sm text-[#0B1B2B]">Advanced HTRI sizing calculations</h3>
                 </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0" strokeWidth={1.75} />
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
+                <div>
                   <h3 className="font-bold text-sm text-[#0B1B2B]">Volumetric welder qualifications</h3>
                 </div>
               </div>
-
-              <div className="pt-4 flex flex-wrap items-center gap-3">
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] text-white hover:bg-[#103E72] px-5 py-2.5 text-sm font-semibold transition-colors shadow-sm"
-                >
-                  <span>Learn more about us</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/products"
-                  className="inline-flex items-center rounded-full border border-[#0B1B2B]/20 bg-white hover:border-[#0B1B2B] px-5 py-2.5 text-sm font-medium text-[#0B1B2B] transition-colors"
-                >
-                  View product range
-                </Link>
-              </div>
-            </Reveal>
-
-            {/* Feature grid */}
-            <Reveal delay={0.1} className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-[#E4E7EC] bg-white p-6 space-y-3.5 text-left hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1C5CA8]/8 text-[#1C5CA8]"><Flame className="w-5 h-5" strokeWidth={1.6} /></span>
-                <h3 className="font-heading font-bold text-sm text-[#0B1B2B]">Precision firing controls</h3>
-                <p className="text-xs text-[#47566A] leading-relaxed">Fuel economy on diesel, gas, or biomass.</p>
-              </div>
-
-              <div className="rounded-2xl border border-[#E4E7EC] bg-white p-6 space-y-3.5 text-left hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1C5CA8]/8 text-[#1C5CA8]"><Droplets className="w-5 h-5" strokeWidth={1.6} /></span>
-                <h3 className="font-heading font-bold text-sm text-[#0B1B2B]">IBR dry steam output</h3>
-                <p className="text-xs text-[#47566A] leading-relaxed">Steady release, high dry-fraction.</p>
-              </div>
-
-              <div className="rounded-2xl border border-[#E4E7EC] bg-white p-6 space-y-3.5 text-left hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1C5CA8]/8 text-[#1C5CA8]"><Coins className="w-5 h-5" strokeWidth={1.6} /></span>
-                <h3 className="font-heading font-bold text-sm text-[#0B1B2B]">Lower operating costs</h3>
-                <p className="text-xs text-[#47566A] leading-relaxed">Grates customized for agri-waste, wood chips, charcoal.</p>
-              </div>
-
-              <div className="rounded-2xl bg-gradient-to-br from-[#103E72] to-[#1C5CA8] text-white p-6 flex flex-col justify-between items-start text-left shadow-lg shadow-[#1C5CA8]/20">
-                <b
-                  className="text-[10px] tracking-[0.1em] text-[#BBD4F0] uppercase"
-                  style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
-                >
-                  Certified works
-                </b>
-                <div className="space-y-1.5 py-4">
-                  <h3 className="text-3xl font-heading font-extrabold">1,200+</h3>
-                  <p className="text-xs text-white/75">Steam installations, deployed worldwide.</p>
+              <div className="flex items-start gap-3">
+                <Flame className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
+                <div>
+                  <h3 className="font-bold text-sm text-[#0B1B2B]">Precision firing controls</h3>
+                  <p className="text-xs text-[#78889B] mt-0.5">Fuel economy on diesel, gas, or biomass.</p>
                 </div>
-                <Link to="/certifications" className="text-xs font-bold text-white hover:text-[#BBD4F0] flex items-center gap-1 transition-colors">
-                  Read compliance roster
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </Link>
               </div>
-            </Reveal>
-          </div>
+              <div className="flex items-start gap-3">
+                <Coins className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
+                <div>
+                  <h3 className="font-bold text-sm text-[#0B1B2B]">Lower operating costs</h3>
+                  <p className="text-xs text-[#78889B] mt-0.5">Grates customized for agri-waste, wood chips, charcoal.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 flex flex-wrap items-center gap-3">
+              <Link
+                to="/products"
+                className="inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] text-white hover:bg-[#103E72] px-5 py-2.5 text-sm font-semibold transition-colors shadow-sm"
+              >
+                <span>View product range</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="lg:col-span-6 relative">
+            <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-[#0B1B2B]/10">
+              <img
+                src={`${import.meta.env.BASE_URL}images/hero-boiler-room.jpg`}
+                alt="Precision engineering detail at Thermal Engitech"
+                className="w-full h-[320px] md:h-[440px] object-cover"
+                loading="lazy"
+              />
+            </div>
+            {/* Floating stat card, overlapping the image bottom-left */}
+            <div className="absolute -bottom-6 left-6 right-6 sm:right-auto sm:w-64 rounded-2xl bg-gradient-to-br from-[#103E72] to-[#1C5CA8] text-white p-5 shadow-lg shadow-[#1C5CA8]/25">
+              <b
+                className="text-[10px] tracking-[0.1em] text-[#BBD4F0] uppercase"
+                style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
+              >
+                Certified works
+              </b>
+              <p className="text-2xl font-heading font-extrabold mt-1">1,200+</p>
+              <p className="text-xs text-white/75 mt-0.5">Steam installations, deployed worldwide.</p>
+              <Link to="/certifications" className="text-xs font-bold text-white hover:text-[#BBD4F0] flex items-center gap-1 mt-3 transition-colors">
+                Read compliance roster
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </Reveal>
+
         </div>
       </div>
 
@@ -336,7 +394,48 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Call to action panel — premium blue gradient */}
+      {/* Certifications & Quality — compact, real credentials, links to full detail page */}
+      <div className="bg-white py-16 px-4 sm:px-6 lg:px-8 border-t border-[#E4E7EC]">
+        <div className="max-w-7xl mx-auto">
+          <Reveal className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
+            <div className="space-y-2">
+              <p
+                className="text-[11px] uppercase tracking-[0.14em] text-[#1C5CA8]"
+                style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
+              >
+                Certifications & Quality
+              </p>
+              <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
+                Built to the standards your plant is audited against
+              </h2>
+            </div>
+            <Link
+              to="/certifications"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1C5CA8] hover:text-[#103E72] transition-colors shrink-0"
+            >
+              <span>View all certifications</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Reveal>
+
+          <Reveal delay={0.1} className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[#E4E7EC] border border-[#E4E7EC]">
+            {[
+              ['ISO 9001:2015', 'Quality management'],
+              ['ASME', 'Design & fabrication'],
+              ['IBR 1950', 'Indian Boiler Regulations'],
+              ['TEMA', 'Heat exchanger standards'],
+            ].map(([label, desc]) => (
+              <div key={label} className="bg-white p-6 flex flex-col items-center text-center gap-2">
+                <ShieldCheck className="w-6 h-6 text-[#1C5CA8]" strokeWidth={1.75} />
+                <p className="font-heading font-bold text-sm text-[#0B1B2B]">{label}</p>
+                <p className="text-xs text-[#78889B]">{desc}</p>
+              </div>
+            ))}
+          </Reveal>
+        </div>
+      </div>
+
+
       <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Reveal className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#103E72] via-[#1C5CA8] to-[#2F7BD4] p-8 md:p-11 grid grid-cols-1 md:grid-cols-12 gap-6 items-center shadow-xl shadow-[#1C5CA8]/20">
