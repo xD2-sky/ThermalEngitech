@@ -16,7 +16,6 @@ import {
   Award,
   ChevronRight,
   ArrowRight,
-  ArrowUpRight,
   CheckCircle2,
   Flame,
   Droplets,
@@ -51,6 +50,7 @@ const PRODUCT_CATEGORIES = [
     desc: 'High-efficiency dry steam boilers customized for solid fuel, gas, biomass, or oil firing.',
     href: '/products/category/steam-boilers',
     cta: 'Explore steam boilers',
+    image: 'images/products/steam-boiler-skid.png',
   },
   {
     n: '02',
@@ -59,6 +59,7 @@ const PRODUCT_CATEGORIES = [
     desc: 'Concentric helical coil hot-oil heaters for stable, high-temperature indirect process heating.',
     href: '/products/category/thermic-fluid-heaters',
     cta: 'Explore heaters',
+    image: 'images/products/multi-fuel-system.png',
   },
   {
     n: '03',
@@ -67,6 +68,7 @@ const PRODUCT_CATEGORIES = [
     desc: 'Custom engineered shell-and-tube or plate heat exchangers and condensers matching TEMA standards.',
     href: '/products/heat-exchanger-shelltube',
     cta: 'Explore heat exchangers',
+    image: 'images/products/heat-exchanger-vessel.jpg',
   },
   {
     n: '04',
@@ -75,6 +77,7 @@ const PRODUCT_CATEGORIES = [
     desc: 'High-efficiency waste heat recovery preheaters, economizers, and air pollution control units.',
     href: '/products/air-pre-heater',
     cta: 'Explore auxiliaries',
+    image: 'images/products/packaged-boiler-unit.png',
   },
 ];
 
@@ -94,21 +97,51 @@ export default function Home() {
         onViewProducts={() => navigate('/products')}
       />
 
-      {/* Core Product Range — every card is a single clickable link to its category */}
-      <div className="bg-white pt-28 pb-24 px-4 sm:px-6 lg:px-8 border-b border-[#E1E4E3]">
-        <div className="max-w-7xl mx-auto space-y-14">
-          <Reveal className="text-center max-w-3xl mx-auto space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">Manufactured systems</p>
-            <h2 className="text-3xl md:text-[2.6rem] font-heading font-bold text-[#0D1B2A] tracking-tight leading-[1.05]">
-              Our core product range
-            </h2>
-            <p className="text-slate-600 text-sm leading-relaxed max-w-2xl mx-auto">
-              Heavy-duty process heating equipment, designed and fabricated in-house to the standards your
-              plant is audited against. Select a category to see models, capacities and specifications.
-            </p>
+      {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
+          featured categories show here; the other 4 products live on the Products page. */}
+      <div className="relative bg-[#0B1B2B] pt-28 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Subtle industrial-atmosphere background photo — low opacity, dark-toned already,
+            reads as faint texture behind the composition rather than a prominent visual. */}
+        <img
+          src={`${import.meta.env.BASE_URL}images/hero-furnace-bg-v2.jpg`}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.16]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1B2B]/70 via-[#0B1B2B]/85 to-[#0B1B2B]" />
+
+        <div className="max-w-7xl mx-auto space-y-16 relative z-10">
+
+          <Reveal className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+            <div className="max-w-2xl space-y-5">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-[2px] bg-[#DC2626]" />
+                <p
+                  className="text-[11px] uppercase tracking-[0.18em] text-slate-400"
+                  style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
+                >
+                  Our Products
+                </p>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-[3.4rem] font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.04]">
+                Four Solutions.<br />Countless Possibilities.
+              </h2>
+              <p className="text-slate-400 text-sm leading-relaxed max-w-lg">
+                Thermal Engitech provides engineered thermal and process-heating solutions for
+                industrial applications — designed and fabricated in-house to the standards your
+                plant is audited against.
+              </p>
+            </div>
+
+            <div className="hidden lg:block text-right shrink-0">
+              <p className="text-xs uppercase tracking-[0.14em] text-slate-500 font-semibold leading-relaxed">
+                Heat Drives<br />Progress
+              </p>
+              <span className="inline-block mt-2 w-10 h-[2px] bg-[#DC2626]" />
+            </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E1E4E3] border border-[#E1E4E3]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/10 border-y border-white/10">
             {PRODUCT_CATEGORIES.map((c, i) => (
               <motion.div
                 key={c.title}
@@ -117,30 +150,46 @@ export default function Home() {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               >
-              <Link
-                to={c.href}
-                className="group bg-white p-7 flex flex-col justify-between text-left h-full transition-colors hover:bg-[#0D1B2A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1C5CA8]"
-              >
-                <div className="space-y-5">
-                  <div className="flex items-center justify-between">
-                    <div className="w-11 h-11 rounded-lg border border-[#E1E4E3] group-hover:border-white/20 flex items-center justify-center text-[#1C5CA8] group-hover:text-[#7FB2E4] transition-colors">
-                      <c.icon className="w-5 h-5" strokeWidth={1.75} />
-                    </div>
-                    <ArrowUpRight className="w-4 h-4 text-slate-300 group-hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-200" />
+                <Link to={c.href} className="group relative flex flex-col h-full min-h-[440px] focus:outline-none">
+                  {/* Image fills the panel; dark gradient at the base for text legibility */}
+                  <div className="absolute inset-0 overflow-hidden bg-[#0d1f33]">
+                    <img
+                      src={`${import.meta.env.BASE_URL}${c.image}`}
+                      alt={c.title}
+                      className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B2B] via-[#0B1B2B]/20 to-transparent transition-opacity duration-300 group-hover:from-[#0B1B2B]/95" />
                   </div>
-                  <h4 className="font-heading font-bold text-lg text-[#0D1B2A] group-hover:text-white transition-colors">{c.title}</h4>
-                  <p className="text-slate-500 group-hover:text-slate-300 text-[13px] leading-relaxed transition-colors">
-                    {c.desc}
-                  </p>
-                </div>
-                <div className="pt-6 mt-6 border-t border-[#E1E4E3] group-hover:border-white/10 flex items-center gap-1.5 text-[13px] font-semibold text-[#1C5CA8] group-hover:text-[#7FB2E4]">
-                  <span>{c.cta}</span>
-                  <ChevronRight className="w-4 h-4" />
-                </div>
-              </Link>
+
+                  {/* Content overlay */}
+                  <div className="relative z-10 flex flex-col justify-between h-full p-6">
+                    <span className="text-white/60 font-heading font-bold text-xl tracking-tight">{c.n}</span>
+
+                    <div className="space-y-2">
+                      <h3 className="font-heading font-bold text-lg text-white leading-tight">{c.title}</h3>
+                      <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
+                        {c.desc}
+                      </p>
+                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#DC2626] mt-1 transition-transform duration-300 group-hover:translate-x-1">
+                        <ArrowRight className="w-4 h-4 text-white" strokeWidth={2.25} />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>
+
+          <Reveal className="text-center">
+            <Link
+              to="/products"
+              className="group inline-flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.1em] text-white hover:text-[#DC2626] transition-colors"
+            >
+              <span>Explore complete product range</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
         </div>
       </div>
 
