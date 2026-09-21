@@ -251,7 +251,7 @@ export default function Home() {
 
       {/* Why Thermal Engitech — capabilities/reliability/expertise focus, distinct from
           the About Us section above (which covers company history/identity). */}
-      <div className="bg-[#FBFCFE] py-20 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-6 space-y-6 text-left">
             <p
