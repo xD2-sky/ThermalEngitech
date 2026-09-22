@@ -4,7 +4,7 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, animate, useInView } from 'motion/react';
+import { motion, animate, useInView, AnimatePresence } from 'motion/react';
 import { Link, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Reveal from '../components/Reveal';
@@ -106,6 +106,7 @@ const PRODUCT_CATEGORIES = [
 
 export default function Home() {
   const navigate = useNavigate();
+  const [activeIndustry, setActiveIndustry] = useState(0);
 
   useDocumentMeta(
     'Industrial Steam Boilers & Thermic Fluid Heaters',
@@ -361,11 +362,7 @@ export default function Home() {
           className="absolute inset-0 w-full h-full object-cover animate-kenburns"
         />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(9,18,30,0.55),rgba(9,18,30,0.6))]" />
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-          <span className="steam-plume steam-1" />
-          <span className="steam-plume steam-3" />
-        </div>
-        <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+        <div className="max-w-7xl mx-auto space-y-10 relative z-10">
           <Reveal className="max-w-2xl space-y-4 text-center mx-auto">
             <p className="flex items-center justify-center gap-2 text-sm text-slate-400">
               <span className="text-[#7FB2E4]">•</span>
@@ -379,23 +376,67 @@ export default function Home() {
             </p>
           </Reveal>
 
+          {/* Large stage — shows the currently selected industry, crossfades on change.
+              Icon-based (not a photo) since we don't have a distinct real photograph per
+              industry — using real per-industry icon data rather than a generic/fake photo.
+              No mode="wait": exit/enter run concurrently (a true crossfade) instead of being
+              sequentially gated, so rapid clicking through tiles can't wedge the transition. */}
+          <Reveal delay={0.05} className="relative h-40 sm:h-48 rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden">
+            <AnimatePresence>
+              {(() => {
+                const active = INDUSTRIES_SERVED[activeIndustry];
+                const ActiveIcon = INDUSTRY_ICONS[active.icon] ?? Factory;
+                return (
+                  <motion.div
+                    key={activeIndustry}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute inset-0 flex flex-col items-center justify-center gap-3"
+                  >
+                    <motion.span
+                      initial={{ scale: 0.9 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#7FB2E4]/15 text-[#7FB2E4]"
+                    >
+                      <ActiveIcon className="w-8 h-8" strokeWidth={1.5} />
+                    </motion.span>
+                    <span className="font-heading font-bold text-lg text-white">{active.name}</span>
+                  </motion.div>
+                );
+              })()}
+            </AnimatePresence>
+          </Reveal>
+
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
             {INDUSTRIES_SERVED.map((ind, i) => {
               const Icon = INDUSTRY_ICONS[ind.icon] ?? Factory;
+              const isActive = i === activeIndustry;
               return (
-                <motion.div
+                <motion.button
                   key={i}
+                  type="button"
+                  onClick={() => setActiveIndustry(i)}
+                  onMouseEnter={() => setActiveIndustry(i)}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.4, delay: (i % 7) * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                  className="rounded-xl bg-white/8 backdrop-blur-md border border-white/15 p-5 flex flex-col items-center text-center gap-3 hover:bg-white/15 hover:-translate-y-1 hover:shadow-[0_15px_30px_-12px_rgba(127,178,228,0.35)] hover:border-[#7FB2E4]/40 transition-all duration-300"
+                  className={`rounded-xl backdrop-blur-md border p-5 flex flex-col items-center text-center gap-3 transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? 'bg-white/18 border-[#7FB2E4]/60 shadow-[0_15px_30px_-12px_rgba(127,178,228,0.4)] -translate-y-1'
+                      : 'bg-white/8 border-white/15 hover:bg-white/15 hover:-translate-y-1 hover:shadow-[0_15px_30px_-12px_rgba(127,178,228,0.35)] hover:border-[#7FB2E4]/40'
+                  }`}
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#7FB2E4]/15 text-[#7FB2E4]">
+                  <span className={`flex h-11 w-11 items-center justify-center rounded-lg transition-all duration-300 ${
+                    isActive ? 'bg-[#7FB2E4]/30 scale-110' : 'bg-[#7FB2E4]/15'
+                  } text-[#7FB2E4]`}>
                     <Icon className="w-5 h-5" strokeWidth={1.75} />
                   </span>
                   <span className="font-heading font-bold text-xs text-white leading-tight">{ind.name}</span>
-                </motion.div>
+                </motion.button>
               );
             })}
           </div>
