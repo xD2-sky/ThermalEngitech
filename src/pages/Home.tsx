@@ -177,7 +177,7 @@ export default function Home() {
 
       {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
           featured categories show here; the other 4 products live on the Products page. */}
-      <div className="relative bg-[#0B1B2B] pt-28 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="relative bg-[#0B1B2B] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Subtle industrial-atmosphere background photo — low opacity, dark-toned already,
             reads as faint texture behind the composition rather than a prominent visual. */}
         <img
@@ -368,7 +368,7 @@ export default function Home() {
               <span className="text-[#7FB2E4]">•</span>
               Where our systems run
             </p>
-            <h2 className="text-3xl md:text-[2.6rem] font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.05]">
+            <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.05]">
               Industries we serve
             </h2>
             <p className="text-slate-300 text-sm leading-relaxed">
@@ -486,13 +486,13 @@ export default function Home() {
         </div>
       </div>
 
-
+      {/* Quote CTA — premium blue gradient panel */}
       <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Reveal className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#103E72] via-[#1C5CA8] to-[#2F7BD4] p-8 md:p-11 grid grid-cols-1 md:grid-cols-12 gap-6 items-center shadow-xl shadow-[#1C5CA8]/20">
             <div className="absolute inset-0 opacity-[0.15] bg-[radial-gradient(circle_at_20%_20%,#ffffff_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true" />
             <div className="md:col-span-9 space-y-2 text-left relative z-10">
-              <h2 className="font-heading font-extrabold text-2xl text-white">Ready to consult on a custom plant layout?</h2>
+              <h2 className="font-heading font-extrabold text-2xl md:text-3xl text-white">Ready to consult on a custom plant layout?</h2>
               <p className="text-sm text-white/80 leading-relaxed max-w-3xl">
                 Our engineering coordinators assess thermal demand, fuel options, and space constraints
                 to hand you a full technical draft — not a generic quote.
