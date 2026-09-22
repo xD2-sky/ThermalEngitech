@@ -3,10 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, animate, useInView, AnimatePresence } from 'motion/react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Link, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
+import AboutIntro from '../components/AboutIntro';
 import Reveal from '../components/Reveal';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { INDUSTRIES_SERVED } from '../data';
@@ -41,29 +42,6 @@ const INDUSTRY_ICONS: Record<string, React.ComponentType<{ className?: string; s
   FlaskConical, Milk, Wine, UtensilsCrossed, Package, Newspaper, Pill,
   TreePine, Wheat, CircleDot, Flame, Beaker, Candy, Shirt
 };
-
-// Animated count-up — counts from 0 to the target value once scrolled into view.
-function AnimatedStat({ to, suffix }: { to: number; suffix: string }) {
-  const ref = useRef<HTMLParagraphElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
-  const [val, setVal] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    const controls = animate(0, to, {
-      duration: 1.6,
-      ease: [0.16, 1, 0.3, 1],
-      onUpdate: (v) => setVal(Math.round(v)),
-    });
-    return () => controls.stop();
-  }, [inView, to]);
-
-  return (
-    <p ref={ref} className="text-xl sm:text-2xl font-heading font-extrabold text-[#0B1B2B]">
-      {val.toLocaleString('en-IN')}{suffix}
-    </p>
-  );
-}
 
 const PRODUCT_CATEGORIES = [
   {
@@ -121,59 +99,8 @@ export default function Home() {
         onViewProducts={() => navigate('/products')}
       />
 
-      {/* About Us — short intro, real stats, large image. Kept light on text by design. */}
-      <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <Reveal className="lg:col-span-5 space-y-6 text-left">
-            <p className="flex items-center gap-2 text-sm text-[#78889B]">
-              <span className="text-[#1C5CA8]">•</span>
-              About Thermal Engitech
-            </p>
-            <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
-              Engineering heat systems since 2012
-            </h2>
-            <p className="text-sm text-[#47566A] leading-relaxed">
-              Founded in Gujarat, Thermal Engitech has grown into a full heavy-engineering plant
-              in Dhamatwan — trusted across India and export markets for complete boiler
-              assemblies, heaters, and accessories.
-            </p>
-
-            <div className="grid grid-cols-3 gap-2.5 sm:gap-4 pt-2 border-t border-[#E4E7EC]">
-              <div className="pt-4">
-                <AnimatedStat to={12} suffix="+" />
-                <p className="text-[11px] sm:text-xs text-[#78889B] mt-1">Years in the field</p>
-              </div>
-              <div className="pt-4">
-                <AnimatedStat to={1200} suffix="+" />
-                <p className="text-[11px] sm:text-xs text-[#78889B] mt-1">Systems installed</p>
-              </div>
-              <div className="pt-4">
-                <AnimatedStat to={100} suffix="%" />
-                <p className="text-[11px] sm:text-xs text-[#78889B] mt-1">IBR-certified builds</p>
-              </div>
-            </div>
-
-            <Link
-              to="/about"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#1C5CA8] hover:text-[#103E72] transition-colors pt-1"
-            >
-              <span>Learn more about us</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </Reveal>
-
-          <Reveal delay={0.1} className="lg:col-span-7">
-            <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-[#0B1B2B]/10">
-              <img
-                src={`${import.meta.env.BASE_URL}images/industries-bg.jpg`}
-                alt="Thermal Engitech industrial facility"
-                className="w-full h-[320px] md:h-[420px] object-cover transition-transform duration-700 hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-          </Reveal>
-        </div>
-      </div>
+      {/* About Us — logo-masked industrial photo on the left, company intro on the right. */}
+      <AboutIntro />
 
       {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
           featured categories show here; the other 4 products live on the Products page. */}
