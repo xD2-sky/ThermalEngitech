@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, animate, useInView } from 'motion/react';
 import { Link, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Reveal from '../components/Reveal';
@@ -41,6 +41,29 @@ const INDUSTRY_ICONS: Record<string, React.ComponentType<{ className?: string; s
   FlaskConical, Milk, Wine, UtensilsCrossed, Package, Newspaper, Pill,
   TreePine, Wheat, CircleDot, Flame, Beaker, Candy, Shirt
 };
+
+// Animated count-up — counts from 0 to the target value once scrolled into view.
+function AnimatedStat({ to, suffix }: { to: number; suffix: string }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+  const [val, setVal] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(0, to, {
+      duration: 1.6,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => setVal(Math.round(v)),
+    });
+    return () => controls.stop();
+  }, [inView, to]);
+
+  return (
+    <p ref={ref} className="text-2xl font-heading font-extrabold text-[#0B1B2B]">
+      {val.toLocaleString('en-IN')}{suffix}
+    </p>
+  );
+}
 
 const PRODUCT_CATEGORIES = [
   {
@@ -101,10 +124,8 @@ export default function Home() {
       <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-5 space-y-6 text-left">
-            <p
-              className="text-[11px] uppercase tracking-[0.14em] text-[#1C5CA8]"
-              style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
-            >
+            <p className="flex items-center gap-2 text-sm text-[#78889B]">
+              <span className="text-[#1C5CA8]">•</span>
               About Thermal Engitech
             </p>
             <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
@@ -118,22 +139,22 @@ export default function Home() {
 
             <div className="grid grid-cols-3 gap-4 pt-2 border-t border-[#E4E7EC]">
               <div className="pt-4">
-                <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">12+</p>
+                <AnimatedStat to={12} suffix="+" />
                 <p className="text-xs text-[#78889B] mt-1">Years in the field</p>
               </div>
               <div className="pt-4">
-                <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">1,200+</p>
+                <AnimatedStat to={1200} suffix="+" />
                 <p className="text-xs text-[#78889B] mt-1">Systems installed</p>
               </div>
               <div className="pt-4">
-                <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">100%</p>
+                <AnimatedStat to={100} suffix="%" />
                 <p className="text-xs text-[#78889B] mt-1">IBR-certified builds</p>
               </div>
             </div>
 
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1C5CA8] hover:text-[#103E72] transition-colors pt-1"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#1C5CA8] hover:text-[#103E72] transition-colors pt-1"
             >
               <span>Learn more about us</span>
               <ArrowRight className="w-4 h-4" />
@@ -145,7 +166,7 @@ export default function Home() {
               <img
                 src={`${import.meta.env.BASE_URL}images/industries-bg.jpg`}
                 alt="Thermal Engitech industrial facility"
-                className="w-full h-[320px] md:h-[420px] object-cover"
+                className="w-full h-[320px] md:h-[420px] object-cover transition-transform duration-700 hover:scale-105"
                 loading="lazy"
               />
             </div>
@@ -254,10 +275,8 @@ export default function Home() {
       <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <Reveal className="lg:col-span-6 space-y-6 text-left">
-            <p
-              className="text-[11px] uppercase tracking-[0.1em] text-[#1C5CA8]"
-              style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
-            >
+            <p className="flex items-center gap-2 text-sm text-[#78889B]">
+              <span className="text-[#1C5CA8]">•</span>
               Why choose us
             </p>
             <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.05]">
@@ -270,27 +289,27 @@ export default function Home() {
             </p>
 
             <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
+              <div className="group flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
                 <div>
                   <h3 className="font-bold text-sm text-[#0B1B2B]">Advanced HTRI sizing calculations</h3>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
+              <div className="group flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
                 <div>
                   <h3 className="font-bold text-sm text-[#0B1B2B]">Volumetric welder qualifications</h3>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <Flame className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
+              <div className="group flex items-start gap-3">
+                <Flame className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
                 <div>
                   <h3 className="font-bold text-sm text-[#0B1B2B]">Precision firing controls</h3>
                   <p className="text-xs text-[#78889B] mt-0.5">Fuel economy on diesel, gas, or biomass.</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <Coins className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" strokeWidth={1.75} />
+              <div className="group flex items-start gap-3">
+                <Coins className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
                 <div>
                   <h3 className="font-bold text-sm text-[#0B1B2B]">Lower operating costs</h3>
                   <p className="text-xs text-[#78889B] mt-0.5">Grates customized for agri-waste, wood chips, charcoal.</p>
@@ -301,10 +320,10 @@ export default function Home() {
             <div className="pt-4 flex flex-wrap items-center gap-3">
               <Link
                 to="/products"
-                className="inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] text-white hover:bg-[#103E72] px-5 py-2.5 text-sm font-semibold transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] text-white hover:bg-[#103E72] px-5 py-2.5 text-sm font-medium transition-colors"
               >
                 <span>View product range</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </Reveal>
@@ -314,21 +333,16 @@ export default function Home() {
               <img
                 src={`${import.meta.env.BASE_URL}images/hero-boiler-room.jpg`}
                 alt="Precision engineering detail at Thermal Engitech"
-                className="w-full h-[320px] md:h-[440px] object-cover"
+                className="w-full h-[320px] md:h-[440px] object-cover transition-transform duration-700 hover:scale-105"
                 loading="lazy"
               />
             </div>
             {/* Floating stat card, overlapping the image bottom-left */}
             <div className="absolute -bottom-6 left-6 right-6 sm:right-auto sm:w-64 rounded-2xl bg-gradient-to-br from-[#103E72] to-[#1C5CA8] text-white p-5 shadow-lg shadow-[#1C5CA8]/25">
-              <b
-                className="text-[10px] tracking-[0.1em] text-[#BBD4F0] uppercase"
-                style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
-              >
-                Certified works
-              </b>
+              <p className="text-xs text-[#BBD4F0]">Certified works</p>
               <p className="text-2xl font-heading font-extrabold mt-1">1,200+</p>
               <p className="text-xs text-white/75 mt-0.5">Steam installations, deployed worldwide.</p>
-              <Link to="/certifications" className="text-xs font-bold text-white hover:text-[#BBD4F0] flex items-center gap-1 mt-3 transition-colors">
+              <Link to="/certifications" className="text-xs font-medium text-white hover:text-[#BBD4F0] flex items-center gap-1 mt-3 transition-colors">
                 Read compliance roster
                 <ChevronRight className="w-3.5 h-3.5" />
               </Link>
@@ -353,10 +367,8 @@ export default function Home() {
         </div>
         <div className="max-w-7xl mx-auto space-y-12 relative z-10">
           <Reveal className="max-w-2xl space-y-4 text-center mx-auto">
-            <p
-              className="text-[11px] uppercase tracking-[0.1em] text-[#7FB2E4]"
-              style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
-            >
+            <p className="flex items-center justify-center gap-2 text-sm text-slate-400">
+              <span className="text-[#7FB2E4]">•</span>
               Where our systems run
             </p>
             <h2 className="text-3xl md:text-[2.6rem] font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.05]">
@@ -377,7 +389,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.4, delay: (i % 7) * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                  className="rounded-xl bg-white/8 backdrop-blur-md border border-white/15 p-5 flex flex-col items-center text-center gap-3 hover:bg-white/15 hover:-translate-y-0.5 transition-all duration-200"
+                  className="rounded-xl bg-white/8 backdrop-blur-md border border-white/15 p-5 flex flex-col items-center text-center gap-3 hover:bg-white/15 hover:-translate-y-1 hover:shadow-[0_15px_30px_-12px_rgba(127,178,228,0.35)] hover:border-[#7FB2E4]/40 transition-all duration-300"
                 >
                   <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#7FB2E4]/15 text-[#7FB2E4]">
                     <Icon className="w-5 h-5" strokeWidth={1.75} />
@@ -399,10 +411,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <Reveal className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
             <div className="space-y-2">
-              <p
-                className="text-[11px] uppercase tracking-[0.14em] text-[#1C5CA8]"
-                style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
-              >
+              <p className="flex items-center gap-2 text-sm text-[#78889B]">
+                <span className="text-[#1C5CA8]">•</span>
                 Certifications & Quality
               </p>
               <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
@@ -411,7 +421,7 @@ export default function Home() {
             </div>
             <Link
               to="/certifications"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1C5CA8] hover:text-[#103E72] transition-colors shrink-0"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#1C5CA8] hover:text-[#103E72] transition-colors shrink-0"
             >
               <span>View all certifications</span>
               <ArrowRight className="w-4 h-4" />
@@ -425,8 +435,8 @@ export default function Home() {
               ['IBR 1950', 'Indian Boiler Regulations'],
               ['TEMA', 'Heat exchanger standards'],
             ].map(([label, desc]) => (
-              <div key={label} className="bg-white p-6 flex flex-col items-center text-center gap-2">
-                <ShieldCheck className="w-6 h-6 text-[#1C5CA8]" strokeWidth={1.75} />
+              <div key={label} className="group bg-white hover:bg-[#1C5CA8]/5 p-6 flex flex-col items-center text-center gap-2 transition-colors duration-300">
+                <ShieldCheck className="w-6 h-6 text-[#1C5CA8] transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
                 <p className="font-heading font-bold text-sm text-[#0B1B2B]">{label}</p>
                 <p className="text-xs text-[#78889B]">{desc}</p>
               </div>
@@ -450,7 +460,7 @@ export default function Home() {
             <div className="md:col-span-3 md:text-right relative z-10">
               <Link
                 to="/request-quote"
-                className="inline-flex w-full items-center justify-center rounded-full bg-white text-[#103E72] hover:bg-[#EAF2FB] px-5 py-3.5 text-sm font-semibold transition-colors shadow-md"
+                className="inline-flex w-full items-center justify-center rounded-full bg-white text-[#103E72] hover:bg-[#EAF2FB] px-5 py-2.5 text-sm font-medium transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
               >
                 Start a consultation
               </Link>
