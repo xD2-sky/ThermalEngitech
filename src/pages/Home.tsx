@@ -59,7 +59,7 @@ function AnimatedStat({ to, suffix }: { to: number; suffix: string }) {
   }, [inView, to]);
 
   return (
-    <p ref={ref} className="text-2xl font-heading font-extrabold text-[#0B1B2B]">
+    <p ref={ref} className="text-xl sm:text-2xl font-heading font-extrabold text-[#0B1B2B]">
       {val.toLocaleString('en-IN')}{suffix}
     </p>
   );
@@ -138,18 +138,18 @@ export default function Home() {
               assemblies, heaters, and accessories.
             </p>
 
-            <div className="grid grid-cols-3 gap-4 pt-2 border-t border-[#E4E7EC]">
+            <div className="grid grid-cols-3 gap-2.5 sm:gap-4 pt-2 border-t border-[#E4E7EC]">
               <div className="pt-4">
                 <AnimatedStat to={12} suffix="+" />
-                <p className="text-xs text-[#78889B] mt-1">Years in the field</p>
+                <p className="text-[11px] sm:text-xs text-[#78889B] mt-1">Years in the field</p>
               </div>
               <div className="pt-4">
                 <AnimatedStat to={1200} suffix="+" />
-                <p className="text-xs text-[#78889B] mt-1">Systems installed</p>
+                <p className="text-[11px] sm:text-xs text-[#78889B] mt-1">Systems installed</p>
               </div>
               <div className="pt-4">
                 <AnimatedStat to={100} suffix="%" />
-                <p className="text-xs text-[#78889B] mt-1">IBR-certified builds</p>
+                <p className="text-[11px] sm:text-xs text-[#78889B] mt-1">IBR-certified builds</p>
               </div>
             </div>
 
@@ -201,7 +201,7 @@ export default function Home() {
                   Our Products
                 </p>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-[3.4rem] font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.04]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.04]">
                 Four Solutions.<br />Countless Possibilities.
               </h2>
               <p className="text-slate-400 text-sm leading-relaxed max-w-lg">
@@ -476,7 +476,7 @@ export default function Home() {
               ['IBR 1950', 'Indian Boiler Regulations'],
               ['TEMA', 'Heat exchanger standards'],
             ].map(([label, desc]) => (
-              <div key={label} className="group bg-white hover:bg-[#1C5CA8]/5 p-6 flex flex-col items-center text-center gap-2 transition-colors duration-300">
+              <div key={label} className="group bg-white hover:bg-[#1C5CA8]/5 p-4 sm:p-6 flex flex-col items-center text-center gap-2 transition-colors duration-300">
                 <ShieldCheck className="w-6 h-6 text-[#1C5CA8] transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
                 <p className="font-heading font-bold text-sm text-[#0B1B2B]">{label}</p>
                 <p className="text-xs text-[#78889B]">{desc}</p>
