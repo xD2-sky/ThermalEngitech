@@ -41,7 +41,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
         <img
           src={`${import.meta.env.BASE_URL}images/hero-boiler-bright-final.jpg`}
           alt="Thermal Engitech steam boiler on-site, industrial facility backdrop"
-          className="w-full h-[112%] object-cover"
+          className="w-full h-[112%] object-cover animate-hero-kenburns"
           loading="eager"
           fetchPriority="high"
         />

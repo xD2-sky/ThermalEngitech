@@ -113,6 +113,18 @@ h1 { letter-spacing: -0.028em; }
   to   { transform: scale(1.18); }
 }
 
+/* Hero: gentle continuous zoom on the background photo, layered under the
+   scroll-parallax translateY already applied to its wrapper. */
+.animate-hero-kenburns {
+  animation: hero-kenburns 26s ease-in-out infinite alternate;
+  transform-origin: 60% 40%;
+  will-change: transform;
+}
+@keyframes hero-kenburns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
 /* Hero: furnace ember glow flicker */
 .animate-ember {
   animation: ember 5.5s ease-in-out infinite;
