@@ -45,7 +45,7 @@ export default function AboutIntro() {
   const maskImgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
 
   return (
-    <div ref={sectionRef} className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div ref={sectionRef} className="relative py-28 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Full-bleed background — real sky/industrial-facility photo */}
       <img
         src={`${base}images/about-bg-sky.webp`}
@@ -53,9 +53,15 @@ export default function AboutIntro() {
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
       />
-      {/* Light wash on top for text legibility — content sits on the right,
-          which is already the paler/hazier side of the photo, so this stays subtle */}
-      <div className="absolute inset-0 bg-white/35" />
+      {/* Soft, mostly-uniform white wash across the whole background so the
+          photo reads muted like the reference — strongest behind the text
+          column (right), but never fully transparent, so the backdrop stays
+          soft everywhere and the (unwashed) logo mask pops against it. */}
+      <div className="absolute inset-0 bg-gradient-to-l from-white/65 via-white/45 to-white/40" />
+      {/* Soft fade at the top and bottom edges so the photo blends into the
+          sections above/below instead of a hard rectangular cut */}
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
 
@@ -76,15 +82,13 @@ export default function AboutIntro() {
               }}
             >
               <motion.img
-                src={`${base}images/hero-steel-vessel.jpg`}
-                alt="Thermal Engitech industrial process-heating equipment"
+                src={`${base}images/about-logo-photo.jpg`}
+                alt="Industrial process-heating pipework against an open sky"
                 className="absolute inset-x-0 h-[124%] w-full object-cover"
-                style={{ top: '-12%', objectPosition: '50% 32%', y: maskImgY }}
+                style={{ top: '-12%', objectPosition: '20% 45%', y: maskImgY }}
                 loading="lazy"
               />
             </div>
-            {/* Small accent mark — reuses the site's established red accent */}
-            <span className="absolute -bottom-2 left-1 h-1 w-20 bg-[#DC2626] rounded-full" aria-hidden="true" />
           </div>
         </Reveal>
 
@@ -110,9 +114,9 @@ export default function AboutIntro() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2 border-t border-[#0B1B2B]/15">
             {HIGHLIGHTS.map((h) => (
-              <div key={h.title} className="flex sm:flex-col items-start sm:items-start gap-3 pt-5">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/70 backdrop-blur-sm text-[#0B1B2B] shadow-sm">
-                  <h.icon className="w-5 h-5" strokeWidth={1.75} />
+              <div key={h.title} className="group flex sm:flex-col items-start sm:items-start gap-3 pt-5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/70 backdrop-blur-sm text-[#0B1B2B] shadow-sm transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-white">
+                  <h.icon className="w-5 h-5 transition-colors duration-300 group-hover:text-[#DC2626]" strokeWidth={1.75} />
                 </span>
                 <div>
                   <h3 className="font-heading font-bold text-sm text-[#0B1B2B] leading-tight">
