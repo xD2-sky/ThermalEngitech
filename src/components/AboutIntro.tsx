@@ -3,24 +3,25 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { ArrowRight, Settings, Factory, Users } from 'lucide-react';
 import Reveal from './Reveal';
 
 const HIGHLIGHTS = [
   {
-    n: '01',
+    icon: Settings,
     title: 'Engineering Excellence',
     desc: 'Engineering-driven solutions designed for performance, efficiency and reliability.',
   },
   {
-    n: '02',
+    icon: Factory,
     title: 'Reliable Manufacturing',
     desc: 'Focus on quality, precision and dependable industrial equipment.',
   },
   {
-    n: '03',
+    icon: Users,
     title: 'Customer Focused',
     desc: 'Solutions developed around real operating requirements and long-term customer needs.',
   },
@@ -28,22 +29,41 @@ const HIGHLIGHTS = [
 
 /**
  * Homepage "About Us" intro — sits between Hero and the Product Range band.
- * Left: the Thermal Engitech pipe-mark logo used as a CSS mask, with a real
- * industrial equipment photograph showing through the shape. Right: a short
- * factual company summary, three highlights, and a link to the full About page.
+ * Left: the Thermal Engitech pipe-mark logo, large and prominent, used as a
+ * CSS mask with a real industrial photo showing through — the photo scrolls
+ * within the fixed mask shape for a subtle "contained motion" effect.
+ * Background: a real sky/industrial-facility photo spans the section,
+ * matching the reference composition directly (user-supplied asset).
  */
 export default function AboutIntro() {
   const base = import.meta.env.BASE_URL;
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Scroll-linked position for the photo inside the logo mask — the mask
+  // shape stays fixed, the photo drifts within it as the section scrolls by.
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  const maskImgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
 
   return (
-    <div className="bg-white py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <div ref={sectionRef} className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Full-bleed background — real sky/industrial-facility photo */}
+      <img
+        src={`${base}images/about-bg-sky.webp`}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Light wash on top for text legibility — content sits on the right,
+          which is already the paler/hazier side of the photo, so this stays subtle */}
+      <div className="absolute inset-0 bg-white/35" />
 
-        {/* Visual — logo-shaped mask with an industrial photo showing through it */}
-        <Reveal className="lg:col-span-5 flex justify-center lg:justify-start">
-          <div className="relative w-[78%] max-w-[380px] lg:max-w-none lg:w-[clamp(300px,34vw,520px)]">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
+
+        {/* Visual — large logo-shaped mask; the photo inside drifts on scroll */}
+        <Reveal className="lg:col-span-6 flex justify-center lg:justify-start">
+          <div className="relative w-[92%] max-w-[440px] lg:max-w-none lg:w-[clamp(400px,46vw,680px)]">
             <div
-              className="relative w-full aspect-[1312/1199] bg-[#0B1B2B]"
+              className="relative w-full aspect-[1312/1199] bg-[#0B1B2B] overflow-hidden"
               style={{
                 WebkitMaskImage: `url(${base}images/brand/logo-mark.png)`,
                 maskImage: `url(${base}images/brand/logo-mark.png)`,
@@ -55,21 +75,21 @@ export default function AboutIntro() {
                 maskSize: 'contain',
               }}
             >
-              <img
+              <motion.img
                 src={`${base}images/hero-steel-vessel.jpg`}
                 alt="Thermal Engitech industrial process-heating equipment"
-                className="absolute inset-0 h-full w-full object-cover"
-                style={{ objectPosition: '50% 32%' }}
+                className="absolute inset-x-0 h-[124%] w-full object-cover"
+                style={{ top: '-12%', objectPosition: '50% 32%', y: maskImgY }}
                 loading="lazy"
               />
             </div>
             {/* Small accent mark — reuses the site's established red accent */}
-            <span className="absolute -bottom-2 left-1 h-1 w-16 bg-[#DC2626] rounded-full" aria-hidden="true" />
+            <span className="absolute -bottom-2 left-1 h-1 w-20 bg-[#DC2626] rounded-full" aria-hidden="true" />
           </div>
         </Reveal>
 
         {/* Content */}
-        <Reveal delay={0.1} className="lg:col-span-7 space-y-6 text-left">
+        <Reveal delay={0.1} className="lg:col-span-6 space-y-6 text-left">
           <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#DC2626]">
             <span className="w-8 h-[2px] bg-[#DC2626]" />
             About Us
@@ -88,22 +108,16 @@ export default function AboutIntro() {
             ISO 9001:2015 standards for customers across India and export markets.
           </p>
 
-          <div className="pt-2 border-t border-[#E4E7EC] divide-y divide-[#E4E7EC]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2 border-t border-[#0B1B2B]/15">
             {HIGHLIGHTS.map((h) => (
-              <div key={h.n} className="grid grid-cols-[2.75rem_1fr] gap-3 py-5">
-                <span
-                  className="text-xs font-bold text-[#DC2626] pt-0.5"
-                  style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
-                >
-                  {h.n}
+              <div key={h.title} className="flex sm:flex-col items-start sm:items-start gap-3 pt-5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/70 backdrop-blur-sm text-[#0B1B2B] shadow-sm">
+                  <h.icon className="w-5 h-5" strokeWidth={1.75} />
                 </span>
                 <div>
-                  <h3 className="font-heading font-bold text-sm sm:text-base text-[#0B1B2B]">
+                  <h3 className="font-heading font-bold text-sm text-[#0B1B2B] leading-tight">
                     {h.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#78889B] mt-1 leading-relaxed">
-                    {h.desc}
-                  </p>
                 </div>
               </div>
             ))}
@@ -111,7 +125,7 @@ export default function AboutIntro() {
 
           <Link
             to="/about"
-            className="group inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-5 py-2.5 text-sm font-medium transition-colors duration-200"
+            className="group inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-5 py-2.5 text-sm font-medium transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)]"
           >
             <span>Discover Our Story</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />

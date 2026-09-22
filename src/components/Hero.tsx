@@ -37,10 +37,10 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
           boiler's own natural red/black colors are left intact, not desaturated.
           Subtle parallax on scroll for depth. */}
       <motion.picture style={{ y: imgY }} className="absolute inset-0 block">
-        <source srcSet={`${import.meta.env.BASE_URL}images/hero-boiler-bright-final.webp`} type="image/webp" />
+        <source srcSet={`${import.meta.env.BASE_URL}images/hero-industrial-sky-final.webp`} type="image/webp" />
         <img
-          src={`${import.meta.env.BASE_URL}images/hero-boiler-bright-final.jpg`}
-          alt="Thermal Engitech steam boiler on-site, industrial facility backdrop"
+          src={`${import.meta.env.BASE_URL}images/hero-industrial-sky-final.jpg`}
+          alt="Industrial process-heating facility skyline against an open sky"
           className="w-full h-[112%] object-cover animate-hero-kenburns"
           loading="eager"
           fetchPriority="high"
