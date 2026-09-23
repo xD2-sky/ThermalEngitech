@@ -15,12 +15,12 @@ import {
   Factory,
   Wrench,
   Award,
+  Settings,
+  FileText,
+  Handshake,
   ShieldCheck,
-  ChevronRight,
   ArrowRight,
-  CheckCircle2,
   Flame,
-  Coins,
   Layers,
   FlaskConical,
   Milk,
@@ -195,85 +195,120 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Why Thermal Engitech — capabilities/reliability/expertise focus, distinct from
-          the About Us section above (which covers company history/identity). */}
-      <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <Reveal className="lg:col-span-6 space-y-6 text-left">
-            <p className="flex items-center gap-2 text-sm text-[#78889B]">
-              <span className="text-[#1C5CA8]">•</span>
-              Why choose us
-            </p>
-            <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.05]">
-              Why Thermal Engitech
-            </h2>
-            <p className="text-sm text-[#47566A] leading-relaxed">
-              Every system is engineered to your plant's exact thermal load, fuel type, and space
-              constraints — not pulled from a catalog. Reliability and efficiency are built in
-              from the first calculation.
-            </p>
+      {/* Why Thermal Engitech — diagonal-split hero moment (deliberately different
+          layout grammar from the rest of the site's stacked-rectangle sections),
+          stat proof up front, and an expanded 6-point differentiator grid below. */}
+      <div className="relative bg-gradient-to-br from-[#EAF3FC] to-white overflow-hidden">
+        {/* Soft top blend so this section's own light-blue gradient flows out of
+            Product Range's white bottom fade above it instead of cutting in. */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent" />
+        <div className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative">
 
-            <div className="space-y-4 pt-2">
-              <div className="group flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
-                <div>
-                  <h3 className="font-bold text-sm text-[#0B1B2B]">Advanced HTRI sizing calculations</h3>
-                </div>
+            <Reveal className="lg:col-span-6 space-y-6 relative z-10">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-[2px] bg-[#DC2626]" />
+                <p
+                  className="text-xs uppercase tracking-[0.18em] text-[#3A6EA8] font-semibold"
+                >
+                  Why Thermal Engitech
+                </p>
               </div>
-              <div className="group flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
-                <div>
-                  <h3 className="font-bold text-sm text-[#0B1B2B]">Volumetric welder qualifications</h3>
-                </div>
-              </div>
-              <div className="group flex items-start gap-3">
-                <Flame className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
-                <div>
-                  <h3 className="font-bold text-sm text-[#0B1B2B]">Precision firing controls</h3>
-                  <p className="text-xs text-[#78889B] mt-0.5">Fuel economy on diesel, gas, or biomass.</p>
-                </div>
-              </div>
-              <div className="group flex items-start gap-3">
-                <Coins className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
-                <div>
-                  <h3 className="font-bold text-sm text-[#0B1B2B]">Lower operating costs</h3>
-                  <p className="text-xs text-[#78889B] mt-0.5">Grates customized for agri-waste, wood chips, charcoal.</p>
-                </div>
-              </div>
-            </div>
 
-            <div className="pt-4 flex flex-wrap items-center gap-3">
+              <h2 className="text-4xl sm:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+                <span className="text-[#0B1B2B]">Engineering Built Around</span>
+                <br />
+                <span className="text-[#DC2626]">Your Process.</span>
+              </h2>
+
+              <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-lg">
+                A long-term partner for your thermal needs — delivering reliable, efficient and
+                customized solutions for a more productive tomorrow.
+              </p>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2 divide-x divide-[#0B1B2B]/12">
+                <div className="pl-0">
+                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">1,200+</p>
+                  <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Systems Installed</p>
+                </div>
+                <div className="pl-4">
+                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">12+ Yrs</p>
+                  <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Industry Presence</p>
+                </div>
+                <div className="pl-4">
+                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">15,000 m²</p>
+                  <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Manufacturing Facility</p>
+                </div>
+                <div className="pl-4">
+                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">100%</p>
+                  <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">IBR & ASME Compliant</p>
+                </div>
+              </div>
+
               <Link
                 to="/products"
-                className="inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] text-white hover:bg-[#103E72] px-5 py-2.5 text-sm font-medium transition-colors"
+                className="group inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-6 py-3 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)]"
               >
-                <span>View product range</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>Explore Our Capabilities</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
-            </div>
+            </Reveal>
+
+            <div className="hidden lg:block lg:col-span-6" aria-hidden="true" />
+          </div>
+        </div>
+
+        {/* Diagonal-cut photo — real photo already used elsewhere on the site
+            (verified authentic), not the unverified reference image */}
+        <div
+          className="absolute inset-y-0 right-0 w-full lg:w-[52%] hidden lg:block"
+          style={{ clipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0% 100%)' }}
+        >
+          <img
+            src={`${import.meta.env.BASE_URL}images/about-logo-photo.jpg`}
+            alt="Industrial process-heating pipework against an open sky"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      {/* What Sets Us Apart — 6-point differentiator grid */}
+      <div className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto space-y-10">
+          <Reveal className="space-y-2">
+            <h3 className="font-heading font-bold text-xl text-[#0B1B2B]">What Sets Us Apart</h3>
+            <span className="block w-10 h-[3px] bg-[#DC2626]" />
           </Reveal>
 
-          <Reveal delay={0.1} className="lg:col-span-6 relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-[#0B1B2B]/10">
-              <img
-                src={`${import.meta.env.BASE_URL}images/hero-boiler-room.jpg`}
-                alt="Precision engineering detail at Thermal Engitech"
-                className="w-full h-[320px] md:h-[440px] object-cover transition-transform duration-700 hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-            {/* Floating stat card, overlapping the image bottom-left */}
-            <div className="absolute -bottom-6 left-6 right-6 sm:right-auto sm:w-64 rounded-2xl bg-gradient-to-br from-[#103E72] to-[#1C5CA8] text-white p-5 shadow-lg shadow-[#1C5CA8]/25">
-              <p className="text-xs text-[#BBD4F0]">Certified works</p>
-              <p className="text-2xl font-heading font-extrabold mt-1">1,200+</p>
-              <p className="text-xs text-white/75 mt-0.5">Steam installations, deployed worldwide.</p>
-              <Link to="/certifications" className="text-xs font-medium text-white hover:text-[#BBD4F0] flex items-center gap-1 mt-3 transition-colors">
-                Read compliance roster
-                <ChevronRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
+          <Reveal delay={0.05} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-6 gap-y-10">
+            {[
+              { icon: Settings, title: 'Process-Specific Engineering', desc: 'Solutions designed around your actual thermal load and operating requirements.' },
+              { icon: Factory, title: 'In-House Manufacturing', desc: 'End-to-end fabrication at our 15,000 m² Dhamatwan facility.' },
+              { icon: ShieldCheck, title: 'Certified Quality', desc: 'Volumetric-qualified welders and radiographic weld checks on every pressure joint.' },
+              { icon: Flame, title: 'Fuel Flexibility', desc: 'Diesel, gas, biomass, agri-waste, wood chips, charcoal — tuned to your fuel.' },
+              { icon: FileText, title: 'Audit-Ready Compliance', desc: 'ISO 9001:2015, ASME, and IBR 1950 documentation for every unit.' },
+              { icon: Handshake, title: 'Proven Track Record', desc: '12+ years and 1,200+ installations across India and export markets.' },
+            ].map((item) => (
+              <div key={item.title} className="group flex items-start gap-3.5">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#DC2626]/8 text-[#DC2626] transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-[#DC2626]/12">
+                  <item.icon className="w-5 h-5" strokeWidth={1.75} />
+                </span>
+                <div className="space-y-1">
+                  <b className="text-sm font-bold text-[#0B1B2B] block leading-tight">{item.title}</b>
+                  <p className="text-xs text-[#78889B] leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
           </Reveal>
 
+          <Reveal delay={0.1} className="flex items-center justify-center gap-4 pt-6">
+            <span className="h-px w-16 bg-[#E4E7EC]" />
+            <p className="text-[11px] uppercase tracking-[0.14em] text-[#9CA9BA] font-semibold text-center">
+              Partnering for a cleaner, brighter tomorrow
+            </p>
+            <span className="h-px w-16 bg-[#E4E7EC]" />
+          </Reveal>
         </div>
       </div>
 
