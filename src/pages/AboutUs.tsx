@@ -5,9 +5,8 @@
 
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import HeroSteam from '../components/HeroSteam';
 import { Link } from 'react-router-dom';
-import { Building, Target, Compass, Factory, ArrowRight, Sparkles, Award, BookOpen } from 'lucide-react';
+import { Target, Compass, Sparkles, Award, BookOpen, ArrowRight } from 'lucide-react';
 
 export default function AboutUs() {
   useDocumentMeta(
@@ -34,70 +33,84 @@ export default function AboutUs() {
   ];
 
   return (
-    <div className="space-y-0 text-left bg-[#F1F1ED]">
-      
-      {/* Page Header Banner */}
-      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
-        <img src={`${import.meta.env.BASE_URL}images/banners/about.webp`} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-[#0D1B2A]/80" />
-        <HeroSteam />
-        <div className="relative z-10 max-w-7xl mx-auto space-y-4">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#2F7BD4] uppercase">
-            Corporate Footprint
-          </span>
-          <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
-            About Thermal Engitech
+    <div className="space-y-0 text-left bg-white">
+
+      {/* Page header — sky/industrial photo, soft wash, matches the Home page's About Us intro */}
+      <div className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <img
+          src={`${import.meta.env.BASE_URL}images/about-bg-sky.webp`}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/55 to-white/50" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
+
+        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-5">
+          <p className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#DC2626]">
+            <span className="w-8 h-[2px] bg-[#DC2626]" />
+            About Us
+            <span className="w-8 h-[2px] bg-[#DC2626]" />
+          </p>
+          <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
+            Built on Expertise.
+            <br />
+            <span className="text-[#DC2626]">Driven by Purpose.</span>
           </h1>
-          <p className="text-slate-300 text-sm max-w-3xl leading-relaxed">
-            A Gujarat-based engineering and fabrication company supplying process-heat equipment to the
-            chemical, textile, food and pharmaceutical industries.
+          <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-2xl mx-auto">
+            Thermal Engitech is a Gujarat-based engineering and manufacturing company delivering
+            reliable, efficient thermal and process-heating solutions — steam boilers, thermic
+            fluid heaters and heat exchangers, engineered in-house and built to IBR, ASME and
+            ISO 9001:2015 standards for customers across India and export markets.
           </p>
         </div>
       </div>
 
-      {/* Main Narrative Block & Company Journey */}
+      {/* Main narrative & company journey */}
       <div className="bg-white py-16 md:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             <div className="lg:col-span-7 space-y-6">
-              <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
-                Our History & Vision
+              <p className="flex items-center gap-2 text-sm text-[#78889B]">
+                <span className="text-[#1C5CA8]">•</span>
+                Our history & vision
               </p>
-              <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0D1B2A]">
+              <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
                 Building dependable process-heat systems since 2012
               </h2>
-              
-              <div className="space-y-4 text-sm text-slate-600 leading-relaxed font-sans">
+
+              <div className="space-y-4 text-sm text-[#47566A] leading-relaxed">
                 <p>
-                  Founded 2012 in Gujarat, now a full heavy-engineering plant in Dhamatwan — trusted across India and export markets for complete boiler assemblies, heaters, and accessories.
+                  Founded 2012 in Gujarat, now a full heavy-engineering plant in Dhamatwan — trusted
+                  across India and export markets for complete boiler assemblies, heaters, and accessories.
                 </p>
               </div>
 
-              {/* Plant stats counts */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 border-t border-[#E1E4E3] text-center sm:text-left">
+              {/* Plant stats */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 border-t border-[#E4E7EC] text-center sm:text-left">
                 <div>
-                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1C5CA8]">1,200+</span>
-                  <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold font-mono">Commissioned Plants</span>
+                  <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#1C5CA8]">1,200+</span>
+                  <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Commissioned plants</span>
                 </div>
                 <div>
-                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1C5CA8]">15,000 m²</span>
-                  <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold font-mono">Dhamatwan Workshop</span>
+                  <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#1C5CA8]">15,000 m²</span>
+                  <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Dhamatwan workshop</span>
                 </div>
                 <div>
-                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1C5CA8]">100%</span>
-                  <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold font-mono">IBR & ASME Compliant</span>
+                  <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#1C5CA8]">100%</span>
+                  <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">IBR & ASME compliant</span>
                 </div>
                 <div>
-                  <span className="block text-2xl md:text-3xl font-extrabold text-[#1C5CA8]">12+ Years</span>
-                  <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold font-mono">Industry Presence</span>
+                  <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#1C5CA8]">12+ years</span>
+                  <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Industry presence</span>
                 </div>
               </div>
             </div>
 
-            {/* Visual Callout block to "Why we differ" */}
-            <div className="lg:col-span-5 bg-slate-50 border border-[#E1E4E3] rounded-lg overflow-hidden">
-              <div className="bg-[#0D1B2A] p-6 flex justify-center">
+            {/* Foundational pillars card */}
+            <div className="lg:col-span-5 bg-[#F2F4F7] border border-[#E4E7EC] rounded-2xl overflow-hidden">
+              <div className="bg-[#0B1B2B] p-6 flex justify-center">
                 <img
                   src={`${import.meta.env.BASE_URL}images/products/packaged-boiler-unit.png`}
                   alt="Factory-assembled packaged boiler unit ready for dispatch"
@@ -105,47 +118,47 @@ export default function AboutUs() {
                 />
               </div>
               <div className="p-6 md:p-8 space-y-6">
-              <h3 className="text-base font-heading font-bold text-[#0D1B2A] uppercase tracking-wider border-b border-[#E1E4E3] pb-3">
-                Our Foundational Pillars
-              </h3>
-              
-              <div className="space-y-5">
-                <div className="flex gap-4">
-                  <div className="p-2 bg-[#1C5CA8]/10 rounded-lg text-[#1C5CA8] shrink-0 h-10 w-10 flex items-center justify-center">
-                    <Target className="w-5 h-5" />
-                  </div>
-                  <div className="space-y-1">
-                    <b className="text-sm font-bold text-[#0D1B2A] block">Client-Centric Custom Sizing</b>
-                    <p className="text-xs text-slate-500 leading-relaxed font-sans">
-                      Scaled to your footprint, fuels, and pressure loops — never a catalog model.
-                    </p>
-                  </div>
-                </div>
+                <h3 className="font-heading font-bold text-base text-[#0B1B2B] border-b border-[#E4E7EC] pb-3">
+                  Our foundational pillars
+                </h3>
 
-                <div className="flex gap-4">
-                  <div className="p-2 bg-[#1C5CA8]/10 rounded-lg text-[#1C5CA8] shrink-0 h-10 w-10 flex items-center justify-center">
-                    <Compass className="w-5 h-5" />
+                <div className="space-y-5">
+                  <div className="flex gap-4">
+                    <div className="h-10 w-10 shrink-0 flex items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
+                      <Target className="w-5 h-5" strokeWidth={1.75} />
+                    </div>
+                    <div className="space-y-1">
+                      <b className="text-sm font-bold text-[#0B1B2B] block">Client-centric custom sizing</b>
+                      <p className="text-xs text-[#78889B] leading-relaxed">
+                        Scaled to your footprint, fuels, and pressure loops — never a catalog model.
+                      </p>
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    <b className="text-sm font-bold text-[#0D1B2A] block">Extensive Safety Interlocks</b>
-                    <p className="text-xs text-slate-500 leading-relaxed font-sans">
-                      Dual water level checks, relief valves, flame cut-offs — standard on every unit.
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex gap-4">
-                  <div className="p-2 bg-[#1C5CA8]/10 rounded-lg text-[#1C5CA8] shrink-0 h-10 w-10 flex items-center justify-center">
-                    <Sparkles className="w-5 h-5" />
+                  <div className="flex gap-4">
+                    <div className="h-10 w-10 shrink-0 flex items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
+                      <Compass className="w-5 h-5" strokeWidth={1.75} />
+                    </div>
+                    <div className="space-y-1">
+                      <b className="text-sm font-bold text-[#0B1B2B] block">Extensive safety interlocks</b>
+                      <p className="text-xs text-[#78889B] leading-relaxed">
+                        Dual water level checks, relief valves, flame cut-offs — standard on every unit.
+                      </p>
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    <b className="text-sm font-bold text-[#0D1B2A] block">Absolute Materials Honesty</b>
-                    <p className="text-xs text-slate-500 leading-relaxed font-sans">
-                      Certified ASTM materials, backed by original mill test certs.
-                    </p>
+
+                  <div className="flex gap-4">
+                    <div className="h-10 w-10 shrink-0 flex items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
+                      <Sparkles className="w-5 h-5" strokeWidth={1.75} />
+                    </div>
+                    <div className="space-y-1">
+                      <b className="text-sm font-bold text-[#0B1B2B] block">Absolute materials honesty</b>
+                      <p className="text-xs text-[#78889B] leading-relaxed">
+                        Certified ASTM materials, backed by original mill test certs.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
 
@@ -153,42 +166,43 @@ export default function AboutUs() {
         </div>
       </div>
 
-      {/* Leadership Profile Section */}
-      <div className="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E1E4E3] bg-slate-50">
+      {/* Leadership */}
+      <div className="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-[#F2F4F7]">
         <div className="max-w-7xl mx-auto space-y-12">
-          
+
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
-              Leadership Team
+            <p className="flex items-center justify-center gap-2 text-sm text-[#78889B]">
+              <span className="text-[#1C5CA8]">•</span>
+              Leadership team
             </p>
-            <h2 className="text-3xl font-heading font-bold text-[#0D1B2A]">
-              Guided by Process Heat Veterans
+            <h2 className="text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
+              Guided by process-heat veterans
             </h2>
-            <p className="text-slate-600 text-sm">
+            <p className="text-[#47566A] text-sm">
               Our directors combine academic thermal research with robust, practical GIDC workshop supervision.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {leadership.map((lead, i) => (
-              <div 
+              <div
                 key={i}
-                className="bg-white border border-[#E1E4E3] rounded-xl p-6 shadow-sm space-y-4 flex flex-col justify-between"
+                className="bg-white border border-[#E4E7EC] rounded-2xl p-6 shadow-sm space-y-4 flex flex-col justify-between"
               >
                 <div className="space-y-3 text-left">
-                  <div className="h-12 w-12 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] flex items-center justify-center font-bold font-heading text-lg">
+                  <div className="h-12 w-12 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] flex items-center justify-center font-heading font-bold text-lg">
                     {lead.name.split(' ')[1][0]}
                   </div>
                   <div>
-                    <h4 className="font-heading font-extrabold text-sm text-[#0D1B2A]">{lead.name}</h4>
-                    <span className="text-[10px] uppercase font-mono font-bold text-[#1C5CA8]">{lead.role}</span>
+                    <h4 className="font-heading font-extrabold text-sm text-[#0B1B2B]">{lead.name}</h4>
+                    <span className="text-[11px] font-semibold text-[#1C5CA8]">{lead.role}</span>
                   </div>
-                  <p className="text-xs text-slate-500 font-sans leading-relaxed">{lead.description}</p>
+                  <p className="text-xs text-[#78889B] leading-relaxed">{lead.description}</p>
                 </div>
 
-                <div className="pt-4 border-t border-[#E1E4E3] text-[10px] font-bold text-[#1C5CA8] flex items-center gap-1.5 font-mono">
+                <div className="pt-4 border-t border-[#E4E7EC] text-[11px] font-semibold text-[#1C5CA8] flex items-center gap-1.5">
                   <Award className="w-3.5 h-3.5" />
-                  <span>ISO Audit Representative</span>
+                  <span>ISO audit representative</span>
                 </div>
               </div>
             ))}
@@ -197,29 +211,31 @@ export default function AboutUs() {
         </div>
       </div>
 
-      {/* Corporate Philosophy Section */}
+      {/* Mission */}
       <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-10">
           <BookOpen className="w-12 h-12 text-[#1C5CA8] mx-auto opacity-80" />
-          
+
           <div className="space-y-4">
-            <h3 className="text-2xl font-heading font-bold text-[#0D1B2A]">Our Ongoing Mission</h3>
-            <p className="text-sm text-slate-600 leading-relaxed font-sans max-w-2xl mx-auto">
-              "To manufacture and deploy thermodynamic units that outperform standard parameters, reduce ambient emissions to local pollution board standards, and empower chemical, food, and textile grids with total thermal security."
+            <h3 className="text-2xl font-heading font-extrabold text-[#0B1B2B]">Our ongoing mission</h3>
+            <p className="text-sm text-[#47566A] leading-relaxed max-w-2xl mx-auto">
+              "To manufacture and deploy thermodynamic units that outperform standard parameters, reduce
+              ambient emissions to local pollution board standards, and empower chemical, food, and
+              textile grids with total thermal security."
             </p>
           </div>
 
           <div className="pt-4 flex items-center justify-center gap-3">
-            <Link 
+            <Link
               to="/products"
-              className="px-5 py-2.5 bg-[#0D1B2A] text-white font-bold text-xs uppercase tracking-wider rounded-lg shadow hover:bg-[#1C5CA8] transition flex items-center gap-1.5"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-5 py-2.5 text-sm font-medium transition-colors duration-200"
             >
               <span>View our products</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Link>
-            <Link 
+            <Link
               to="/contact"
-              className="px-5 py-2.5 border border-[#E1E4E3] bg-white text-[#17222E] hover:bg-slate-50 text-xs font-bold uppercase tracking-wider rounded-lg transition"
+              className="inline-flex items-center rounded-full border border-[#0B1B2B]/15 bg-white text-[#0B1B2B] hover:border-[#0B1B2B]/40 px-5 py-2.5 text-sm font-medium transition-colors duration-200"
             >
               Get in touch
             </Link>

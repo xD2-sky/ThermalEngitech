@@ -45,7 +45,10 @@ export default function AboutIntro() {
   const maskImgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
 
   return (
-    <div ref={sectionRef} className="relative py-28 sm:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div
+      ref={sectionRef}
+      className="relative min-h-[100svh] lg:min-h-[calc(100vh-5rem)] flex items-center py-20 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
       {/* Full-bleed background — real sky/industrial-facility photo */}
       <img
         src={`${base}images/about-bg-sky.webp`}
@@ -57,17 +60,17 @@ export default function AboutIntro() {
           photo reads muted like the reference — strongest behind the text
           column (right), but never fully transparent, so the backdrop stays
           soft everywhere and the (unwashed) logo mask pops against it. */}
-      <div className="absolute inset-0 bg-gradient-to-l from-white/65 via-white/45 to-white/40" />
+      <div className="absolute inset-0 bg-gradient-to-l from-white/55 via-white/15 to-transparent" />
       {/* Soft fade at the top and bottom edges so the photo blends into the
           sections above/below instead of a hard rectangular cut */}
       <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative z-10">
 
         {/* Visual — large logo-shaped mask; the photo inside drifts on scroll */}
         <Reveal className="lg:col-span-6 flex justify-center lg:justify-start">
-          <div className="relative w-[92%] max-w-[440px] lg:max-w-none lg:w-[clamp(400px,46vw,680px)]">
+          <div className="relative w-[92%] max-w-[440px] lg:max-w-none lg:w-[clamp(360px,38vw,540px)]">
             <div
               className="relative w-full aspect-[1312/1199] bg-[#0B1B2B] overflow-hidden"
               style={{

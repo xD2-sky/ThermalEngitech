@@ -37,11 +37,12 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
           boiler's own natural red/black colors are left intact, not desaturated.
           Subtle parallax on scroll for depth. */}
       <motion.picture style={{ y: imgY }} className="absolute inset-0 block">
-        <source srcSet={`${import.meta.env.BASE_URL}images/hero-industrial-sky-final.webp`} type="image/webp" />
+        <source srcSet={`${import.meta.env.BASE_URL}images/hero-industrial-skyline.webp`} type="image/webp" />
         <img
-          src={`${import.meta.env.BASE_URL}images/hero-industrial-sky-final.jpg`}
+          src={`${import.meta.env.BASE_URL}images/hero-industrial-skyline.jpg`}
           alt="Industrial process-heating facility skyline against an open sky"
           className="w-full h-[112%] object-cover animate-hero-kenburns"
+          style={{ objectPosition: 'center 82%' }}
           loading="eager"
           fetchPriority="high"
         />
@@ -50,8 +51,8 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
       {/* Extra light-neutral CSS scrim on top of the baked-in treatment — keeps text
           reliably legible regardless of exact crop/viewport. White/light-gray only,
           no blue or dark tint, easing off toward the right so the photo reads through. */}
-      <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(248,249,251,0.88)_0%,rgba(248,249,251,0.68)_38%,rgba(248,249,251,0.22)_70%,rgba(248,249,251,0.05)_100%)]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#F7F9FC]/50 via-transparent to-[#F7F9FC]/25" />
+      <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(248,249,251,0.55)_0%,rgba(248,249,251,0.38)_38%,rgba(248,249,251,0.12)_70%,rgba(248,249,251,0.02)_100%)]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#F7F9FC]/30 via-transparent to-[#F7F9FC]/10" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-[clamp(1rem,3vw,2rem)]">
         <motion.div
