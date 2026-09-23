@@ -109,6 +109,9 @@ export default function Home() {
             sky photo above it instead of cutting in abruptly — mirrors the same
             white-fade technique AboutIntro already uses at its own edges. */}
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent" />
+        {/* Soft bottom blend so this section flows into the white "Why Thermal
+            Engitech" section below it instead of cutting off abruptly. */}
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent" />
         <div className="max-w-7xl mx-auto space-y-16 relative z-10">
 
           <Reveal className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
