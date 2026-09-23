@@ -104,17 +104,7 @@ export default function Home() {
 
       {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
           featured categories show here; the other 4 products live on the Products page. */}
-      <div className="relative bg-[#0B1B2B] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Subtle industrial-atmosphere background photo — low opacity, dark-toned already,
-            reads as faint texture behind the composition rather than a prominent visual. */}
-        <img
-          src={`${import.meta.env.BASE_URL}images/hero-furnace-bg-v2.jpg`}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.16]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1B2B]/70 via-[#0B1B2B]/85 to-[#0B1B2B]" />
-
+      <div className="relative bg-gradient-to-br from-[#CFE4F7] via-[#E4F0FB] to-[#F7FAFD] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-16 relative z-10">
 
           <Reveal className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
@@ -122,16 +112,16 @@ export default function Home() {
               <div className="flex items-center gap-2.5">
                 <span className="w-8 h-[2px] bg-[#DC2626]" />
                 <p
-                  className="text-[11px] uppercase tracking-[0.18em] text-slate-400"
+                  className="text-[11px] uppercase tracking-[0.18em] text-[#3A6EA8]"
                   style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
                 >
                   Our Products
                 </p>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.04]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.04]">
                 Four Solutions.<br />Countless Possibilities.
               </h2>
-              <p className="text-slate-400 text-sm leading-relaxed max-w-lg">
+              <p className="text-[#47566A] text-sm leading-relaxed max-w-lg">
                 Thermal Engitech provides engineered thermal and process-heating solutions for
                 industrial applications — designed and fabricated in-house to the standards your
                 plant is audited against.
@@ -139,14 +129,14 @@ export default function Home() {
             </div>
 
             <div className="hidden lg:block text-right shrink-0">
-              <p className="text-xs uppercase tracking-[0.14em] text-slate-500 font-semibold leading-relaxed">
+              <p className="text-xs uppercase tracking-[0.14em] text-[#5C7A9E] font-semibold leading-relaxed">
                 Heat Drives<br />Progress
               </p>
               <span className="inline-block mt-2 w-10 h-[2px] bg-[#DC2626]" />
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/10 border-y border-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#0B1B2B]/12 border-y border-[#0B1B2B]/12">
             {PRODUCT_CATEGORIES.map((c, i) => (
               <motion.div
                 key={c.title}
@@ -189,7 +179,7 @@ export default function Home() {
           <Reveal className="text-center">
             <Link
               to="/products"
-              className="group inline-flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.1em] text-white hover:text-[#DC2626] transition-colors"
+              className="group inline-flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.1em] text-[#0B1B2B] hover:text-[#DC2626] transition-colors"
             >
               <span>Explore complete product range</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
