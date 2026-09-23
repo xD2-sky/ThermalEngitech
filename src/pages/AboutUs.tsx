@@ -8,11 +8,31 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { Link } from 'react-router-dom';
 import { Target, Compass, Sparkles, Award, BookOpen, ArrowRight } from 'lucide-react';
 
+const PILLARS = [
+  {
+    icon: Target,
+    title: 'Client-Centric Sizing',
+    desc: 'Scaled to your footprint, fuels, and pressure loops — never a catalog model.',
+  },
+  {
+    icon: Compass,
+    title: 'Safety Interlocks',
+    desc: 'Dual water level checks, relief valves, flame cut-offs — standard on every unit.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Materials Honesty',
+    desc: 'Certified ASTM materials, backed by original mill test certificates.',
+  },
+];
+
 export default function AboutUs() {
   useDocumentMeta(
     'About Us',
     'Founded 2012 in Gujarat — Thermal Engitech designs, engineers and manufactures heavy-duty boilers and heaters from our Dhamatwan facility.'
   );
+
+  const base = import.meta.env.BASE_URL;
 
   const leadership = [
     {
@@ -38,7 +58,7 @@ export default function AboutUs() {
       {/* Page header — sky/industrial photo, soft wash, matches the Home page's About Us intro */}
       <div className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <img
-          src={`${import.meta.env.BASE_URL}images/about-bg-sky.webp`}
+          src={`${base}images/about-bg-sky.webp`}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
@@ -66,113 +86,101 @@ export default function AboutUs() {
         </div>
       </div>
 
-      {/* Main narrative & company journey */}
-      <div className="bg-white py-16 md:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto space-y-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* Our history & vision — logo-masked photo (left) + narrative and stats (right),
+          same composition as the Home page's About Us intro */}
+      <div className="bg-white py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-            <div className="lg:col-span-7 space-y-6">
-              <p className="flex items-center gap-2 text-sm text-[#78889B]">
-                <span className="text-[#1C5CA8]">•</span>
-                Our history & vision
-              </p>
-              <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
-                Building dependable process-heat systems since 2012
-              </h2>
-
-              <div className="space-y-4 text-sm text-[#47566A] leading-relaxed">
-                <p>
-                  Founded 2012 in Gujarat, now a full heavy-engineering plant in Dhamatwan — trusted
-                  across India and export markets for complete boiler assemblies, heaters, and accessories.
-                </p>
-              </div>
-
-              {/* Plant stats */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 border-t border-[#E4E7EC] text-center sm:text-left">
-                <div>
-                  <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#1C5CA8]">1,200+</span>
-                  <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Commissioned plants</span>
-                </div>
-                <div>
-                  <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#1C5CA8]">15,000 m²</span>
-                  <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Dhamatwan workshop</span>
-                </div>
-                <div>
-                  <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#1C5CA8]">100%</span>
-                  <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">IBR & ASME compliant</span>
-                </div>
-                <div>
-                  <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#1C5CA8]">12+ years</span>
-                  <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Industry presence</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Foundational pillars card */}
-            <div className="lg:col-span-5 bg-[#F2F4F7] border border-[#E4E7EC] rounded-2xl overflow-hidden">
-              <div className="bg-[#0B1B2B] p-6 flex justify-center">
+          <div className="lg:col-span-5 flex justify-center lg:justify-start">
+            <div className="relative w-[80%] max-w-[380px] lg:max-w-none lg:w-[clamp(320px,32vw,460px)]">
+              <div
+                className="relative w-full aspect-[1312/1199] bg-[#0B1B2B] overflow-hidden"
+                style={{
+                  WebkitMaskImage: `url(${base}images/brand/logo-mark.png)`,
+                  maskImage: `url(${base}images/brand/logo-mark.png)`,
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                  maskPosition: 'center',
+                  WebkitMaskSize: 'contain',
+                  maskSize: 'contain',
+                }}
+              >
                 <img
-                  src={`${import.meta.env.BASE_URL}images/products/packaged-boiler-unit.png`}
-                  alt="Factory-assembled packaged boiler unit ready for dispatch"
-                  className="w-full max-w-[240px] h-auto"
+                  src={`${base}images/about-logo-photo.jpg`}
+                  alt="Industrial process-heating pipework against an open sky"
+                  className="absolute inset-x-0 h-[124%] w-full object-cover"
+                  style={{ top: '-12%', objectPosition: '20% 45%' }}
+                  loading="lazy"
                 />
               </div>
-              <div className="p-6 md:p-8 space-y-6">
-                <h3 className="font-heading font-bold text-base text-[#0B1B2B] border-b border-[#E4E7EC] pb-3">
-                  Our foundational pillars
-                </h3>
+            </div>
+          </div>
 
-                <div className="space-y-5">
-                  <div className="flex gap-4">
-                    <div className="h-10 w-10 shrink-0 flex items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
-                      <Target className="w-5 h-5" strokeWidth={1.75} />
-                    </div>
-                    <div className="space-y-1">
-                      <b className="text-sm font-bold text-[#0B1B2B] block">Client-centric custom sizing</b>
-                      <p className="text-xs text-[#78889B] leading-relaxed">
-                        Scaled to your footprint, fuels, and pressure loops — never a catalog model.
-                      </p>
-                    </div>
-                  </div>
+          <div className="lg:col-span-7 space-y-6">
+            <p className="flex items-center gap-2 text-sm text-[#78889B]">
+              <span className="text-[#DC2626]">•</span>
+              Our history & vision
+            </p>
+            <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
+              Building dependable process-heat systems since 2012
+            </h2>
 
-                  <div className="flex gap-4">
-                    <div className="h-10 w-10 shrink-0 flex items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
-                      <Compass className="w-5 h-5" strokeWidth={1.75} />
-                    </div>
-                    <div className="space-y-1">
-                      <b className="text-sm font-bold text-[#0B1B2B] block">Extensive safety interlocks</b>
-                      <p className="text-xs text-[#78889B] leading-relaxed">
-                        Dual water level checks, relief valves, flame cut-offs — standard on every unit.
-                      </p>
-                    </div>
-                  </div>
+            <p className="text-sm text-[#47566A] leading-relaxed">
+              Founded 2012 in Gujarat, now a full heavy-engineering plant in Dhamatwan — trusted
+              across India and export markets for complete boiler assemblies, heaters, and accessories.
+            </p>
 
-                  <div className="flex gap-4">
-                    <div className="h-10 w-10 shrink-0 flex items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
-                      <Sparkles className="w-5 h-5" strokeWidth={1.75} />
-                    </div>
-                    <div className="space-y-1">
-                      <b className="text-sm font-bold text-[#0B1B2B] block">Absolute materials honesty</b>
-                      <p className="text-xs text-[#78889B] leading-relaxed">
-                        Certified ASTM materials, backed by original mill test certs.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+            {/* Plant stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 border-t border-[#0B1B2B]/15 text-center sm:text-left">
+              <div>
+                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">1,200+</span>
+                <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Commissioned plants</span>
+              </div>
+              <div>
+                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">15,000 m²</span>
+                <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Dhamatwan workshop</span>
+              </div>
+              <div>
+                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">100%</span>
+                <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">IBR & ASME compliant</span>
+              </div>
+              <div>
+                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">12+ years</span>
+                <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Industry presence</span>
               </div>
             </div>
+          </div>
 
+        </div>
+
+        {/* Foundational pillars — icon-highlight row, same hover-forward treatment as
+            the Home page's About Us intro (scale up, lift, deepen shadow on hover) */}
+        <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#E4E7EC]">
+          <h3 className="font-heading font-bold text-lg text-[#0B1B2B] mb-8">Our foundational pillars</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            {PILLARS.map((p) => (
+              <div key={p.title} className="group flex items-start gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#0B1B2B]/5 text-[#0B1B2B] shadow-sm transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-white">
+                  <p.icon className="w-5 h-5 transition-colors duration-300 group-hover:text-[#DC2626]" strokeWidth={1.75} />
+                </span>
+                <div className="space-y-1">
+                  <b className="text-sm font-bold text-[#0B1B2B] block">{p.title}</b>
+                  <p className="text-xs text-[#78889B] leading-relaxed">{p.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* Leadership */}
-      <div className="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-[#F2F4F7]">
+      <div className="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-[#F7FAFD]">
         <div className="max-w-7xl mx-auto space-y-12">
 
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <p className="flex items-center justify-center gap-2 text-sm text-[#78889B]">
-              <span className="text-[#1C5CA8]">•</span>
+              <span className="text-[#DC2626]">•</span>
               Leadership team
             </p>
             <h2 className="text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
@@ -190,17 +198,17 @@ export default function AboutUs() {
                 className="bg-white border border-[#E4E7EC] rounded-2xl p-6 shadow-sm space-y-4 flex flex-col justify-between"
               >
                 <div className="space-y-3 text-left">
-                  <div className="h-12 w-12 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] flex items-center justify-center font-heading font-bold text-lg">
+                  <div className="h-12 w-12 rounded-full bg-[#DC2626]/10 text-[#DC2626] flex items-center justify-center font-heading font-bold text-lg">
                     {lead.name.split(' ')[1][0]}
                   </div>
                   <div>
                     <h4 className="font-heading font-extrabold text-sm text-[#0B1B2B]">{lead.name}</h4>
-                    <span className="text-[11px] font-semibold text-[#1C5CA8]">{lead.role}</span>
+                    <span className="text-[11px] font-semibold text-[#DC2626]">{lead.role}</span>
                   </div>
                   <p className="text-xs text-[#78889B] leading-relaxed">{lead.description}</p>
                 </div>
 
-                <div className="pt-4 border-t border-[#E4E7EC] text-[11px] font-semibold text-[#1C5CA8] flex items-center gap-1.5">
+                <div className="pt-4 border-t border-[#E4E7EC] text-[11px] font-semibold text-[#DC2626] flex items-center gap-1.5">
                   <Award className="w-3.5 h-3.5" />
                   <span>ISO audit representative</span>
                 </div>
@@ -214,7 +222,7 @@ export default function AboutUs() {
       {/* Mission */}
       <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-10">
-          <BookOpen className="w-12 h-12 text-[#1C5CA8] mx-auto opacity-80" />
+          <BookOpen className="w-12 h-12 text-[#DC2626] mx-auto opacity-80" />
 
           <div className="space-y-4">
             <h3 className="text-2xl font-heading font-extrabold text-[#0B1B2B]">Our ongoing mission</h3>
@@ -228,7 +236,7 @@ export default function AboutUs() {
           <div className="pt-4 flex items-center justify-center gap-3">
             <Link
               to="/products"
-              className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-5 py-2.5 text-sm font-medium transition-colors duration-200"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-5 py-2.5 text-sm font-medium transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)]"
             >
               <span>View our products</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
