@@ -34,9 +34,24 @@ export default function Navbar() {
     return location.pathname.startsWith(path);
   };
 
+  // Home and About have a light-toned top (hero photo / sky photo), so the
+  // navbar's original dark text reads fine over them while unscrolled. Every
+  // other route has a dark banner at the top, so the unscrolled navbar needs
+  // light text there instead — once scrolled, every route converges on the
+  // same white/blurred bar with dark text, unchanged.
+  // Product category and product detail pages have a plain light page
+  // background behind the navbar (their content starts below a breadcrumb
+  // bar, not a dark banner) — unlike the /products index itself, which has
+  // a dark banner like Manufacturing/Certifications/Contact/Request Quote.
+  const isLightHeroRoute =
+    location.pathname === '/' ||
+    location.pathname === '/about' ||
+    (location.pathname.startsWith('/products/') && location.pathname !== '/products/');
+  const useDarkText = scrolled || isLightHeroRoute;
+
   return (
     <nav
-      className={`sticky top-0 left-0 right-0 z-50 font-sans transition-all duration-300 ease-out ${
+      className={`fixed top-0 left-0 right-0 z-50 font-sans transition-all duration-300 ease-out ${
         scrolled
           ? 'bg-white/85 backdrop-blur-md border-b border-[#E4E7EC] shadow-[0_4px_20px_rgba(11,27,43,0.06)]'
           : 'bg-transparent border-b border-transparent'
@@ -48,10 +63,10 @@ export default function Navbar() {
         <Link to="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0 group min-w-0">
           <Logo className="h-8 w-10 sm:h-10 sm:w-12 shrink-0 transition-transform duration-300 group-hover:scale-105" />
           <div className="flex flex-col leading-tight min-w-0">
-            <span className="font-heading font-extrabold text-sm sm:text-base text-[#0B1B2B] tracking-tight truncate">
+            <span className={`font-heading font-extrabold text-sm sm:text-base tracking-tight truncate transition-colors duration-300 ${useDarkText ? 'text-[#0B1B2B]' : 'text-white'}`}>
               Thermal <span className="text-[#1C5CA8]">Engitech</span>
             </span>
-            <span className="text-[9px] tracking-[0.16em] text-[#78889B] uppercase hidden sm:block">Pvt. Ltd.</span>
+            <span className={`text-[9px] tracking-[0.16em] uppercase hidden sm:block transition-colors duration-300 ${useDarkText ? 'text-[#78889B]' : 'text-white/70'}`}>Pvt. Ltd.</span>
           </div>
         </Link>
 
@@ -64,10 +79,12 @@ export default function Navbar() {
                 key={item.path}
                 to={item.path}
                 data-testid={`nav-${item.label.toLowerCase()}`}
-                className={`relative font-heading text-sm font-semibold whitespace-nowrap transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:bg-[#1C5CA8] after:transition-all after:duration-300 ${
+                className={`relative font-heading text-sm font-semibold whitespace-nowrap transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:transition-all after:duration-300 ${
                   active
-                    ? 'text-[#1C5CA8] after:w-full'
-                    : 'text-[#47566A] hover:text-[#0B1B2B] after:w-0 hover:after:w-full'
+                    ? `after:w-full ${useDarkText ? 'text-[#1C5CA8] after:bg-[#1C5CA8]' : 'text-[#7FB2E4] after:bg-[#7FB2E4]'}`
+                    : useDarkText
+                      ? 'text-[#47566A] hover:text-[#0B1B2B] after:w-0 hover:after:w-full after:bg-[#1C5CA8]'
+                      : 'text-white/80 hover:text-white after:w-0 hover:after:w-full after:bg-white'
                 }`}
               >
                 {item.label}
@@ -80,7 +97,7 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-5 shrink-0">
           <a
             href={`tel:${SITE.phonePrimaryTel}`}
-            className="flex items-center gap-1.5 text-[#47566A] hover:text-[#1C5CA8] transition-colors text-sm font-semibold whitespace-nowrap"
+            className={`flex items-center gap-1.5 transition-colors text-sm font-semibold whitespace-nowrap ${useDarkText ? 'text-[#47566A] hover:text-[#1C5CA8]' : 'text-white/80 hover:text-white'}`}
           >
             <Phone className="w-3.5 h-3.5" />
             <span>{SITE.phonePrimaryDisplay}</span>
@@ -97,7 +114,7 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden p-2 rounded-md text-[#0B1B2B] hover:bg-[#0B1B2B]/5 transition-colors"
+          className={`lg:hidden p-2 rounded-md transition-colors ${useDarkText ? 'text-[#0B1B2B] hover:bg-[#0B1B2B]/5' : 'text-white hover:bg-white/10'}`}
           aria-label="Toggle menu"
           data-testid="mobile-menu-toggle"
         >

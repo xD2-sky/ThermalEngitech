@@ -30,7 +30,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative bg-[#F7F9FC] text-[#0B1B2B] overflow-hidden font-sans min-h-[calc(100svh-4rem)] lg:min-h-[calc(100vh-5rem)] flex items-center py-10"
+      className="relative bg-[#F7F9FC] text-[#0B1B2B] overflow-hidden font-sans min-h-[100svh] lg:min-h-[100vh] flex items-center py-10"
     >
       {/* Full-bleed background photo — bright, natural daylight treatment. Softened
           slightly and the surroundings lightened toward white/light-gray, but the

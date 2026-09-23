@@ -46,8 +46,9 @@ export default function ProductCategory() {
   return (
     <div className="text-left bg-[#F7F9FC] min-h-screen">
 
-      {/* Breadcrumb */}
-      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans">
+      {/* Breadcrumb — margin-top clears the fixed navbar (this thin utility bar
+          sits below it, unlike hero/banner sections which extend behind it) */}
+      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20">
         <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-500 font-semibold">
           <Link to="/products" className="flex items-center gap-1.5 text-[#1C5CA8] hover:underline" data-testid="back-to-catalogue">
             <ArrowLeft className="w-4 h-4" />

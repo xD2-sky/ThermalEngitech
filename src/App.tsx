@@ -31,10 +31,11 @@ export default function App() {
 
       <div className="min-h-screen bg-[#FBFBFC] text-[#17222E] flex flex-col justify-between select-text scroll-smooth selection:bg-[#2F7BD4]/25">
         
-        {/* Persistent Sticky Header / Navbar */}
+        {/* Persistent Fixed Header / Navbar — out of flow, overlays every page's top section */}
         <Navbar />
 
-        {/* Dynamic Route Switcher Panel */}
+        {/* Dynamic Route Switcher Panel — no top padding, so every page's own top
+            section starts at y:0 behind the transparent navbar, matching Hero */}
         <main className="flex-1 w-full">
           <Routes>
             <Route path="/" element={<Home />} />

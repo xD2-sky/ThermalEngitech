@@ -316,8 +316,9 @@ export default function ProductDetails() {
   return (
     <div className="bg-slate-50 min-h-screen text-left">
       
-      {/* Breadcrumbs bar with navigation shortcuts */}
-      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans sticky top-16 sm:top-18 lg:top-20 z-30">
+      {/* Breadcrumbs bar with navigation shortcuts — margin-top clears the fixed
+          navbar at rest; sticky top-* then holds it there once scrolled */}
+      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20 sticky top-16 sm:top-18 lg:top-20 z-30">
         <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-500 font-semibold">
           <Link
             to={backTo}
