@@ -67,8 +67,17 @@ export default function AboutIntro() {
       {/* Bottom edge blends into Our Products' own light-blue (not white) —
           the one intentional fade on the page, using the site's existing
           light-blue (matches Our Products' from-[#CFE4F7] gradient start)
-          so the two sections feel like one continuous, premium transition. */}
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#CFE4F7] to-transparent" />
+          so the two sections feel like one continuous, premium transition.
+          Eased multi-stop (rather than Tailwind's linear 2-stop from/to) so
+          the wash builds in gradually instead of reading as a visible band
+          partway up — same color, just a more natural falloff. */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(to top, #CFE4F7 0%, rgba(207,228,247,0.75) 20%, rgba(207,228,247,0.4) 45%, rgba(207,228,247,0.12) 75%, rgba(207,228,247,0) 100%)',
+        }}
+      />
 
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative z-10">
 
