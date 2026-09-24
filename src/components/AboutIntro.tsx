@@ -32,8 +32,9 @@ const HIGHLIGHTS = [
  * Left: the Thermal Engitech pipe-mark logo, large and prominent, used as a
  * CSS mask with a real industrial photo showing through — the photo scrolls
  * within the fixed mask shape for a subtle "contained motion" effect.
- * Background: a real sky/industrial-facility photo spans the section,
- * matching the reference composition directly (user-supplied asset).
+ * Background: plain white — a clean, content-height section (no photo/
+ * overlay), sized to its own content rather than forced to full viewport
+ * height, since that was sized for the old full-bleed photo treatment.
  */
 export default function AboutIntro() {
   const base = import.meta.env.BASE_URL;
@@ -47,38 +48,8 @@ export default function AboutIntro() {
   return (
     <div
       ref={sectionRef}
-      className="relative min-h-[100svh] lg:min-h-[calc(100vh-5rem)] flex items-center py-20 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative bg-white py-20 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Full-bleed background — real sky/industrial-facility photo */}
-      <img
-        src={`${base}images/about-bg-sky.webp`}
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      {/* Soft, mostly-uniform white wash across the whole background so the
-          photo reads muted like the reference — strongest behind the text
-          column (right), but never fully transparent, so the backdrop stays
-          soft everywhere and the (unwashed) logo mask pops against it. */}
-      <div className="absolute inset-0 bg-gradient-to-l from-white/55 via-white/15 to-transparent" />
-      {/* Soft fade at the top edge so the photo blends into the Hero above
-          instead of a hard rectangular cut. */}
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent" />
-      {/* Bottom edge blends into Our Products' own light-blue (not white) —
-          the one intentional fade on the page, using the site's existing
-          light-blue (matches Our Products' from-[#CFE4F7] gradient start)
-          so the two sections feel like one continuous, premium transition.
-          Eased multi-stop (rather than Tailwind's linear 2-stop from/to) so
-          the wash builds in gradually instead of reading as a visible band
-          partway up — same color, just a more natural falloff. */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
-        style={{
-          background:
-            'linear-gradient(to top, #CFE4F7 0%, rgba(207,228,247,0.75) 20%, rgba(207,228,247,0.4) 45%, rgba(207,228,247,0.12) 75%, rgba(207,228,247,0) 100%)',
-        }}
-      />
-
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative z-10">
 
         {/* Visual — large logo-shaped mask; the photo inside drifts on scroll */}
@@ -131,7 +102,7 @@ export default function AboutIntro() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2 border-t border-[#0B1B2B]/15">
             {HIGHLIGHTS.map((h) => (
               <div key={h.title} className="group flex sm:flex-col items-start sm:items-start gap-3 pt-5">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/70 backdrop-blur-sm text-[#0B1B2B] shadow-sm transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-white">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0B1B2B]/5 text-[#0B1B2B] transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-[#DC2626]/8">
                   <h.icon className="w-5 h-5 transition-colors duration-300 group-hover:text-[#DC2626]" strokeWidth={1.75} />
                 </span>
                 <div>
