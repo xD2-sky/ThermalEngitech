@@ -61,10 +61,14 @@ export default function AboutIntro() {
           column (right), but never fully transparent, so the backdrop stays
           soft everywhere and the (unwashed) logo mask pops against it. */}
       <div className="absolute inset-0 bg-gradient-to-l from-white/55 via-white/15 to-transparent" />
-      {/* Soft fade at the top and bottom edges so the photo blends into the
-          sections above/below instead of a hard rectangular cut */}
+      {/* Soft fade at the top edge so the photo blends into the Hero above
+          instead of a hard rectangular cut. */}
       <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
+      {/* Bottom edge blends into Our Products' own light-blue (not white) —
+          the one intentional fade on the page, using the site's existing
+          light-blue (matches Our Products' from-[#CFE4F7] gradient start)
+          so the two sections feel like one continuous, premium transition. */}
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#CFE4F7] to-transparent" />
 
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative z-10">
 

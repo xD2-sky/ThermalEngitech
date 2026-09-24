@@ -104,13 +104,9 @@ export default function Home() {
       {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
           featured categories show here; the other 4 products live on the Products page. */}
       <div className="relative bg-gradient-to-br from-[#CFE4F7] via-[#E4F0FB] to-[#F7FAFD] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* Soft top blend so this section's background flows out of the About Us
-            sky photo above it instead of cutting in abruptly — mirrors the same
-            white-fade technique AboutIntro already uses at its own edges. */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent" />
-        {/* Soft bottom blend so this section flows into the white "Why Thermal
-            Engitech" section below it instead of cutting off abruptly. */}
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent" />
+        {/* No top/bottom fade here by design: the blend into this section lives on
+            About Us's own bottom edge (see AboutIntro.tsx), and the transition into
+            "Why Thermal Engitech" below is intentionally a clean, default cut. */}
         <div className="max-w-7xl mx-auto space-y-16 relative z-10">
 
           <Reveal className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
