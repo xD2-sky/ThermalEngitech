@@ -175,7 +175,7 @@ export default function AboutUs() {
       </div>
 
       {/* Leadership */}
-      <div className="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-[#F7FAFD]">
+      <div className="py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-[#F2F5F7]">
         <div className="max-w-7xl mx-auto space-y-12">
 
           <div className="text-center max-w-3xl mx-auto space-y-4">
