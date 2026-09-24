@@ -112,7 +112,7 @@ export default function Home() {
             "Why Thermal Engitech" below is intentionally a clean, default cut. */}
         <div className="max-w-7xl mx-auto space-y-16 relative z-10">
 
-          <Reveal className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+          <Reveal className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
             <div className="max-w-2xl space-y-4">
               <div className="flex items-center gap-2.5">
                 <span className="w-8 h-[2px] bg-[#DC2626]" />
@@ -130,15 +130,36 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="hidden lg:block text-right shrink-0">
-              <p className="text-xs uppercase tracking-[0.14em] text-[#78889B] font-semibold leading-relaxed">
-                Heat Drives<br />Progress
+            {/* Compact supporting-facts card — fills the space next to the intro
+                with real, verified information (drawn from the same standards/
+                capabilities called out elsewhere on the site) rather than a
+                sparse tagline or decorative filler. */}
+            <div className="w-full lg:w-[300px] shrink-0 rounded-2xl border border-[#0B1B2B]/10 bg-white/70 p-5 space-y-3">
+              <p className="text-[11px] uppercase tracking-[0.14em] text-[#1C5CA8] font-bold">
+                Engineered for Industry
               </p>
-              <span className="inline-block mt-2 w-10 h-[2px] bg-[#DC2626]" />
+              <p className="text-xs text-[#47566A] leading-relaxed">
+                Every unit is custom-engineered and fabricated in-house — not off-the-shelf —
+                to match your process, fuel and compliance requirements.
+              </p>
+              <ul className="space-y-1.5 pt-1">
+                <li className="flex items-start gap-2 text-xs text-[#0B1B2B] font-medium">
+                  <span className="text-[#1C5CA8] mt-0.5">•</span>
+                  IBR, ASME &amp; ISO 9001:2015 compliant range
+                </li>
+                <li className="flex items-start gap-2 text-xs text-[#0B1B2B] font-medium">
+                  <span className="text-[#1C5CA8] mt-0.5">•</span>
+                  Solid fuel, gas, biomass &amp; oil-fired options
+                </li>
+                <li className="flex items-start gap-2 text-xs text-[#0B1B2B] font-medium">
+                  <span className="text-[#1C5CA8] mt-0.5">•</span>
+                  Fabricated at our 7,500 m² Dhamatwan facility
+                </li>
+              </ul>
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#0B1B2B]/12 border-y border-[#0B1B2B]/12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {PRODUCT_CATEGORIES.map((c, i) => (
               <motion.div
                 key={c.title}
@@ -146,8 +167,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="h-full"
               >
-                <Link to={c.href} className="group relative flex flex-col h-full min-h-[440px] focus:outline-none">
+                <Link to={c.href} className="group relative flex flex-col h-full min-h-[440px] rounded-2xl overflow-hidden shadow-[0_10px_28px_-14px_rgba(11,27,43,0.35)] hover:shadow-[0_20px_44px_-16px_rgba(11,27,43,0.45)] transition-shadow duration-300 focus:outline-none">
                   {/* Image fills the panel; dark gradient at the base for text legibility */}
                   <div className="absolute inset-0 overflow-hidden bg-[#0d1f33]">
                     <img
