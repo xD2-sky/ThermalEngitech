@@ -143,7 +143,7 @@ export default function Home() {
                 key={c.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
+                viewport={{ once: false, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               >
                 <Link to={c.href} className="group relative flex flex-col h-full min-h-[440px] focus:outline-none">
@@ -347,7 +347,7 @@ export default function Home() {
                   key={i}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
+                  viewport={{ once: false, margin: '-50px' }}
                   transition={{ duration: 0.4, delay: (i % 7) * 0.05, ease: [0.16, 1, 0.3, 1] }}
                   className="rounded-xl border border-[#0B1B2B]/10 bg-white shadow-[0_1px_3px_rgba(11,27,43,0.06)] p-5 flex flex-col items-center text-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_30px_-12px_rgba(28,92,168,0.2)] hover:border-[#1C5CA8]/30"
                 >

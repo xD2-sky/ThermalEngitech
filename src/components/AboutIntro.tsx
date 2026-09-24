@@ -65,7 +65,7 @@ export default function AboutIntro() {
   // in its final position immediately.
   const containerMotionProps = shouldReduceMotion
     ? {}
-    : { variants: textContainer, initial: 'hidden', whileInView: 'show', viewport: { once: true, margin: '-70px' } };
+    : { variants: textContainer, initial: 'hidden', whileInView: 'show', viewport: { once: false, margin: '-70px' } };
   const itemMotionProps = shouldReduceMotion ? {} : { variants: textItem };
 
   return (

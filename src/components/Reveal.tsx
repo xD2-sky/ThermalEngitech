@@ -19,7 +19,7 @@ interface RevealProps {
  * Scroll-triggered entrance wrapper. Content is always present in the DOM
  * (so it stays crawlable) — only opacity/transform animate in on view.
  */
-export default function Reveal({ children, className, delay = 0, y = 26, as = 'div', once = true, duration = 0.6 }: RevealProps) {
+export default function Reveal({ children, className, delay = 0, y = 26, as = 'div', once = false, duration = 0.6 }: RevealProps) {
   const MotionTag = motion[as] as typeof motion.div;
   const shouldReduceMotion = useReducedMotion();
 
