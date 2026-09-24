@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
 import AboutIntro from '../components/AboutIntro';
 import Reveal from '../components/Reveal';
+import AnimatedCounter from '../components/AnimatedCounter';
 import LogoWatermark from '../components/LogoWatermark';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { INDUSTRIES_SERVED } from '../data';
@@ -232,19 +233,27 @@ export default function Home() {
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-1 divide-x divide-[#0B1B2B]/12">
                 <div className="pl-0">
-                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">2,000+</p>
+                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">
+                    <AnimatedCounter value={2000} suffix="+" />
+                  </p>
                   <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Systems Installed</p>
                 </div>
                 <div className="pl-4">
-                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">12+ Yrs</p>
+                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">
+                    <AnimatedCounter value={12} suffix="+ Yrs" />
+                  </p>
                   <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Industry Presence</p>
                 </div>
                 <div className="pl-4">
-                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">7,500 m²</p>
+                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">
+                    <AnimatedCounter value={7500} suffix=" m²" />
+                  </p>
                   <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Manufacturing Facility</p>
                 </div>
                 <div className="pl-4">
-                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">100%</p>
+                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">
+                    <AnimatedCounter value={100} suffix="%" />
+                  </p>
                   <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">IBR & ASME Compliant</p>
                 </div>
               </div>
