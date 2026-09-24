@@ -366,64 +366,109 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Certifications & Quality — compact, real credentials, links to full detail page */}
-      <div className="bg-white py-16 px-4 sm:px-6 lg:px-8 border-t border-[#E4E7EC]">
+      {/* Certifications & Quality — pure white background per explicit spec (no
+          blue/gray/gradient/tint). Four larger cards, each a horizontal
+          mark-then-details tile. ASME uses the real seal graphic (verified,
+          uploaded by Sanjay); ISO/IBR/TEMA use a large styled wordmark — no
+          licensed source files for those organizations' exact trademarked
+          artwork, and no Indian State Emblem regardless of genuine IBR
+          compliance (its use is legally restricted independent of that). */}
+      <div className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <Reveal className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
-            <div className="space-y-2">
-              <p className="flex items-center gap-2 text-sm text-[#78889B]">
-                <span className="text-[#1C5CA8]">•</span>
-                Certifications & Quality
-              </p>
-              <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
-                Built to the standards your plant is audited against
+          <Reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2.5">
+                <span className="w-8 h-[2px] bg-[#DC2626]" />
+                <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
+                  Certifications &amp; Quality
+                </p>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
+                Built to the standards your plant is <span className="text-[#DC2626]">audited against</span>.
               </h2>
             </div>
             <Link
               to="/certifications"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#1C5CA8] hover:text-[#103E72] transition-colors shrink-0"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1C5CA8] hover:text-[#103E72] transition-colors shrink-0"
             >
               <span>View all certifications</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </Reveal>
 
-          <Reveal delay={0.1} className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[#E4E7EC] border border-[#E4E7EC]">
+          <Reveal delay={0.1} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {[
-              ['ISO 9001:2015', 'Quality management'],
-              ['ASME', 'Design & fabrication'],
-              ['IBR 1950', 'Indian Boiler Regulations'],
-              ['TEMA', 'Heat exchanger standards'],
-            ].map(([label, desc]) => (
-              <div key={label} className="group bg-white hover:bg-[#1C5CA8]/5 p-4 sm:p-6 flex flex-col items-center text-center gap-2 transition-colors duration-300">
-                <ShieldCheck className="w-6 h-6 text-[#1C5CA8] transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
-                <p className="font-heading font-bold text-sm text-[#0B1B2B]">{label}</p>
-                <p className="text-xs text-[#78889B]">{desc}</p>
+              { label: 'ISO 9001:2015', desc: 'Quality management system', seal: null, mark: 'ISO' },
+              { label: 'ASME', desc: 'Design & fabrication standards', seal: 'asme-cert-seal.png', mark: null },
+              { label: 'IBR 1950', desc: 'Indian Boiler Regulations', seal: null, mark: 'IBR' },
+              { label: 'TEMA', desc: 'Heat exchanger standards', seal: null, mark: 'TEMA' },
+            ].map((c) => (
+              <div
+                key={c.label}
+                className="group flex items-center gap-5 sm:gap-6 bg-white border border-[#E4E7EC] rounded-2xl shadow-sm hover:shadow-md p-6 sm:p-7 transition-all duration-300"
+              >
+                <div className="shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
+                  {c.seal ? (
+                    <img
+                      src={`${import.meta.env.BASE_URL}images/certifications/${c.seal}`}
+                      alt={`${c.label} certification seal`}
+                      className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                    />
+                  ) : (
+                    <span className="font-heading font-extrabold text-2xl sm:text-3xl text-[#1C5CA8] tracking-tight transition-transform duration-300 group-hover:scale-110">
+                      {c.mark}
+                    </span>
+                  )}
+                </div>
+                <span className="w-px self-stretch bg-[#E4E7EC]" aria-hidden="true" />
+                <div className="space-y-1 text-left">
+                  <p className="font-heading font-bold text-base text-[#0B1B2B]">{c.label}</p>
+                  <p className="text-sm text-[#78889B]">{c.desc}</p>
+                </div>
               </div>
             ))}
           </Reveal>
         </div>
       </div>
 
-      {/* Quote CTA — premium blue gradient panel */}
-      <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+      {/* Quote CTA — premium blue gradient panel with a real industrial photo
+          integrated into the right side (horizontal gradient blend, not a
+          separate inset rectangle), matching Why Thermal Engitech's approach
+          of blending this same verified photo into a solid background. */}
+      <div className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <Reveal className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#103E72] via-[#1C5CA8] to-[#2F7BD4] p-8 md:p-11 grid grid-cols-1 md:grid-cols-12 gap-6 items-center shadow-xl shadow-[#1C5CA8]/20">
+          <Reveal className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#103E72] via-[#1C5CA8] to-[#2F7BD4] shadow-xl shadow-[#1C5CA8]/20">
             <div className="absolute inset-0 opacity-[0.15] bg-[radial-gradient(circle_at_20%_20%,#ffffff_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true" />
-            <div className="md:col-span-9 space-y-2 text-left relative z-10">
-              <h2 className="font-heading font-extrabold text-2xl md:text-3xl text-white">Ready to consult on a custom plant layout?</h2>
-              <p className="text-sm text-white/80 leading-relaxed max-w-3xl">
-                Our engineering coordinators assess thermal demand, fuel options, and space constraints
-                to hand you a full technical draft — not a generic quote.
-              </p>
+
+            <div className="absolute inset-y-0 right-0 w-[42%] hidden lg:block">
+              <img
+                src={`${import.meta.env.BASE_URL}images/about-logo-photo.jpg`}
+                alt=""
+                aria-hidden="true"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#103E72] via-[#103E72]/45 to-transparent" />
             </div>
-            <div className="md:col-span-3 md:text-right relative z-10">
-              <Link
-                to="/request-quote"
-                className="inline-flex w-full items-center justify-center rounded-full bg-white text-[#103E72] hover:bg-[#EAF2FB] px-5 py-2.5 text-sm font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
-              >
-                Start a consultation
-              </Link>
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center p-8 md:p-11">
+              <div className="lg:col-span-8 space-y-3 text-left">
+                <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-[2.25rem] text-white tracking-[-0.01em] leading-[1.1]">
+                  Let's plan your next project together.
+                </h2>
+                <p className="text-sm sm:text-base text-white/80 leading-relaxed max-w-xl">
+                  Our team will help you design a custom solution based on your process, space
+                  constraints and plant requirements.
+                </p>
+              </div>
+              <div className="lg:col-span-4 lg:text-right">
+                <Link
+                  to="/request-quote"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)] hover:-translate-y-0.5"
+                >
+                  <span>Start a Consultation</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                </Link>
+              </div>
             </div>
           </Reveal>
         </div>
