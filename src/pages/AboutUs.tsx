@@ -134,11 +134,11 @@ export default function AboutUs() {
             {/* Plant stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 border-t border-[#0B1B2B]/15 text-center sm:text-left">
               <div>
-                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">1,200+</span>
+                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">2,000+</span>
                 <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Commissioned plants</span>
               </div>
               <div>
-                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">15,000 m²</span>
+                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">7,500 m²</span>
                 <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Dhamatwan workshop</span>
               </div>
               <div>

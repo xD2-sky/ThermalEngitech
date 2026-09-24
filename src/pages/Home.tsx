@@ -199,9 +199,11 @@ export default function Home() {
           stat proof up front, and an expanded 6-point differentiator grid below. */}
       <div className="relative bg-gradient-to-br from-[#EAF3FC] to-white overflow-hidden">
         {/* Soft top blend so this section's own light-blue gradient flows out of
-            Product Range's white bottom fade above it instead of cutting in. */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent" />
-        <div className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
+            Product Range's white bottom fade above it instead of cutting in.
+            Scoped to the content side only (not full-width) so it doesn't wash
+            over the diagonal photo's top edge, keeping that crisp. */}
+        <div className="absolute left-0 right-[54%] top-0 h-24 bg-gradient-to-b from-white to-transparent" />
+        <div className="relative py-10 sm:py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative">
 
             <Reveal className="lg:col-span-6 space-y-6 relative z-10">
@@ -220,14 +222,20 @@ export default function Home() {
                 <span className="text-[#DC2626]">Your Process.</span>
               </h2>
 
-              <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-lg">
-                A long-term partner for your thermal needs — delivering reliable, efficient and
-                customized solutions for a more productive tomorrow.
-              </p>
+              <div className="space-y-1.5 max-w-lg">
+                <p className="text-sm sm:text-base font-semibold text-[#0B1B2B] leading-relaxed">
+                  Creating Value for Our Customers Since 2012.
+                </p>
+                <p className="text-sm sm:text-base text-[#47566A] leading-relaxed">
+                  For more than a decade, we've helped reduce fuel costs by 20–70% — depending on
+                  your location — while lowering carbon footprint through higher-quality,
+                  better-engineered equipment.
+                </p>
+              </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2 divide-x divide-[#0B1B2B]/12">
                 <div className="pl-0">
-                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">1,200+</p>
+                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">2,000+</p>
                   <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Systems Installed</p>
                 </div>
                 <div className="pl-4">
@@ -235,7 +243,7 @@ export default function Home() {
                   <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Industry Presence</p>
                 </div>
                 <div className="pl-4">
-                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">15,000 m²</p>
+                  <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">7,500 m²</p>
                   <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Manufacturing Facility</p>
                 </div>
                 <div className="pl-4">
@@ -258,15 +266,19 @@ export default function Home() {
         </div>
 
         {/* Diagonal-cut photo — real photo already used elsewhere on the site
-            (verified authentic), not the unverified reference image */}
+            (verified authentic), not the unverified reference image.
+            Height-capped and top/bottom-anchored to the same padding as the
+            text column (instead of inset-y-0 full-bleed) so it starts level
+            with the "Why Thermal Engitech" heading and stays proportional to
+            the content rather than stretching the section taller. */}
         <div
-          className="absolute inset-y-0 right-0 w-full lg:w-[52%] hidden lg:block"
-          style={{ clipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0% 100%)' }}
+          className="absolute right-0 top-10 sm:top-12 bottom-10 sm:bottom-12 w-full lg:w-[46%] hidden lg:block"
+          style={{ clipPath: 'polygon(16% 0, 100% 0, 100% 100%, 0% 100%)' }}
         >
           <img
             src={`${import.meta.env.BASE_URL}images/about-logo-photo.jpg`}
             alt="Industrial process-heating pipework against an open sky"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[center_35%]"
             loading="lazy"
           />
         </div>
@@ -283,11 +295,11 @@ export default function Home() {
           <Reveal delay={0.05} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-6 gap-y-10">
             {[
               { icon: Settings, title: 'Process-Specific Engineering', desc: 'Solutions designed around your actual thermal load and operating requirements.' },
-              { icon: Factory, title: 'In-House Manufacturing', desc: 'End-to-end fabrication at our 15,000 m² Dhamatwan facility.' },
+              { icon: Factory, title: 'In-House Manufacturing', desc: 'End-to-end fabrication at our 7,500 m² Dhamatwan facility.' },
               { icon: ShieldCheck, title: 'Certified Quality', desc: 'Volumetric-qualified welders and radiographic weld checks on every pressure joint.' },
               { icon: Flame, title: 'Fuel Flexibility', desc: 'Diesel, gas, biomass, agri-waste, wood chips, charcoal — tuned to your fuel.' },
               { icon: FileText, title: 'Audit-Ready Compliance', desc: 'ISO 9001:2015, ASME, and IBR 1950 documentation for every unit.' },
-              { icon: Handshake, title: 'Proven Track Record', desc: '12+ years and 1,200+ installations across India and export markets.' },
+              { icon: Handshake, title: 'Proven Track Record', desc: '12+ years and 2,000+ installations across India and export markets.' },
             ].map((item) => (
               <div key={item.title} className="group flex items-start gap-3.5">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#DC2626]/8 text-[#DC2626] transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-[#DC2626]/12">

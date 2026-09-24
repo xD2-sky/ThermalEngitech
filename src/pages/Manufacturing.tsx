@@ -13,7 +13,7 @@ import { Settings, ShieldCheck, HardHat, PenTool, Cpu } from 'lucide-react';
 export default function Manufacturing() {
   useDocumentMeta(
     'Manufacturing & Infrastructure',
-    '15,000 sq.m facility in Dhamatwan, Gujarat — real shop-floor capabilities in welding, plate bending, CNC cutting and pressure testing.'
+    '7,500 sq.m facility in Dhamatwan, Gujarat — real shop-floor capabilities in welding, plate bending, CNC cutting and pressure testing.'
   );
 
   return (
@@ -32,7 +32,7 @@ export default function Manufacturing() {
               Inside Our Manufacturing Facility
             </h1>
             <p className="text-slate-300 text-sm max-w-3xl leading-relaxed">
-              15,000 m² in Dhamatwan, Gujarat — approved under IBR 1950 to roll, weld, and inspect heavy-duty thermal systems.
+              7,500 m² in Dhamatwan, Gujarat — approved under IBR 1950 to roll, weld, and inspect heavy-duty thermal systems.
             </p>
           </div>
           <div className="lg:col-span-5 hidden lg:flex justify-center">
