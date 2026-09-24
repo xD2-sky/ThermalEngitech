@@ -104,7 +104,7 @@ export default function Home() {
 
       {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
           featured categories show here; the other 4 products live on the Products page. */}
-      <div className="relative bg-[#F2F5F7] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="relative bg-[#E8F1FB] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <LogoWatermark position="left" size={950} opacity={0.055} />
         {/* No top/bottom fade here by design: the blend into this section lives on
             About Us's own bottom edge (see AboutIntro.tsx), and the transition into
@@ -326,7 +326,7 @@ export default function Home() {
       {/* Industries We Serve — flat neutral background matching Product Range,
           no photo (replaced per feedback). Equal-sized cards, no large "stage"
           preview — every industry gets the same visual weight. */}
-      <div className="relative bg-[#F2F5F7] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="relative bg-[#E8F1FB] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <LogoWatermark position="bottom-right" size={800} opacity={0.05} />
         <div className="max-w-7xl mx-auto space-y-10 relative z-10">
           <Reveal className="max-w-2xl space-y-4 text-center mx-auto">

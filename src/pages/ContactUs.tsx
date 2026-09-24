@@ -5,7 +5,6 @@
 
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import HeroSteam from '../components/HeroSteam';
 import CompanyMap from '../components/CompanyMap';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 
@@ -35,19 +34,17 @@ export default function ContactUs() {
   return (
     <div className="space-y-0 text-left bg-slate-50 min-h-screen">
       
-      {/* Banner */}
-      <div className="bg-[#0D1B2A] text-white pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-white/10 relative overflow-hidden">
-        <img src={`${import.meta.env.BASE_URL}images/banners/contact.webp`} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-[#0D1B2A]/80" />
-        <HeroSteam />
+      {/* Banner — light-blue, matching the site-wide rhythm. Photo will be added
+          back separately once a light-theme-appropriate image is ready. */}
+      <div className="bg-[#E8F1FB] text-[#0B1B2B] pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-[#E4E7EC] relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto space-y-4">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
+          <span className="text-xs font-mono font-bold tracking-widest text-[#1C5CA8] uppercase">
             Get In Touch
           </span>
-          <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
+          <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-tight">
             Contact Our Engineering Headquarters
           </h1>
-          <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
+          <p className="text-[#47566A] text-sm max-w-2xl leading-relaxed">
             Reach out directly for corporate estimates, custom sizing proposals, or technical assistance concerning existing boiler grids.
           </p>
         </div>

@@ -5,7 +5,6 @@
 
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import HeroSteam from '../components/HeroSteam';
 import { Link } from 'react-router-dom';
 import { MANUFACTURING_STEPS, SHOP_CAPABILITIES, DESIGN_CAPABILITIES } from '../data';
 import { Settings, ShieldCheck, HardHat, PenTool, Cpu } from 'lucide-react';
@@ -19,19 +18,17 @@ export default function Manufacturing() {
   return (
     <div className="space-y-0 text-left bg-[#F1F1ED] min-h-screen">
       
-      {/* Banner */}
-      <div className="bg-[#0B1B2B] text-white border-b border-[#1C5CA8]/25 relative overflow-hidden">
-        {/* Subtle industrial blueprint network line */}
-        <HeroSteam />
+      {/* Banner — light-blue, matching the site-wide rhythm */}
+      <div className="bg-[#E8F1FB] text-[#0B1B2B] border-b border-[#E4E7EC] relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#7FB2E4]">
+            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
               Dhamatwan Workshop Facility
             </p>
-            <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
+            <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-tight">
               Inside Our Manufacturing Facility
             </h1>
-            <p className="text-slate-300 text-sm max-w-3xl leading-relaxed">
+            <p className="text-[#47566A] text-sm max-w-3xl leading-relaxed">
               7,500 m² in Dhamatwan, Gujarat — approved under IBR 1950 to roll, weld, and inspect heavy-duty thermal systems.
             </p>
           </div>
@@ -39,7 +36,7 @@ export default function Manufacturing() {
             <img
               src={`${import.meta.env.BASE_URL}images/products/steam-boiler-skid.png`}
               alt="Completed steam boiler skid on the Dhamatwan shop floor"
-              className="w-full max-w-sm h-auto drop-shadow-[0_25px_40px_rgba(0,0,0,0.5)]"
+              className="w-full max-w-sm h-auto drop-shadow-[0_25px_40px_rgba(11,27,43,0.15)]"
             />
           </div>
         </div>

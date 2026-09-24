@@ -176,7 +176,7 @@ export default function AboutUs() {
       </div>
 
       {/* Leadership */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-[#F2F5F7] overflow-hidden">
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-[#E8F1FB] overflow-hidden">
         <LogoWatermark position="top-right" size={700} opacity={0.05} />
         <div className="max-w-7xl mx-auto space-y-12 relative z-10">
 
