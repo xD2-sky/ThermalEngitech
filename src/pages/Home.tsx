@@ -198,11 +198,13 @@ export default function Home() {
           contained, rounded card (with a refined diagonal corner-cut) that sits IN
           the grid next to the text and is centered against it via items-center,
           instead of an absolute full-bleed slice — so it reads as one connected
-          piece rather than a large image floating beside the copy. */}
-      <div className="relative bg-gradient-to-br from-[#EAF3FC] to-white overflow-hidden">
-        {/* Soft top blend so this section's own light-blue gradient flows out of
-            Product Range's white bottom fade above it instead of cutting in. */}
-        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent" />
+          piece rather than a large image floating beside the copy.
+          Background: plain white, matching "What Sets Us Apart" right below it
+          (the two are one visual unit) — not a separate light-blue shade. The
+          site's one light-blue is reserved for Product Range/Industries; Product
+          Range's own bottom fade already blends into this white, so no separate
+          top fade is needed here. */}
+      <div className="relative bg-white overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-14 pb-10 sm:pb-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
