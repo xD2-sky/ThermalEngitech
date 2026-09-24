@@ -1,13 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;450;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Geist+Mono:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  /* Headline face — modern, structural, trustworthy (replaces the condensed poster face) */
+  /* Manrope is the sitewide typeface — headings, body, nav, buttons, labels,
+     numbers, everything. One family, weight does the differentiating:
+     800 headings, 700 section titles/card titles, 600 nav/buttons/labels,
+     500 secondary/body-emphasis, 400 body copy. */
   --font-heading: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  /* Working body face — neutral, highly legible at every size */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  /* Reserved for spec figures, model codes and data labels only — used sparingly */
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  /* No separate mono face — repointed to Manrope so any remaining font-mono
+     utility (spec figures, diagram callouts, id codes) still renders in the
+     one sitewide family rather than falling back to a system monospace. */
+  --font-mono: "Manrope", ui-sans-serif, system-ui, sans-serif;
 
   /* ---- Core palette ---- */
   --color-ink: #0B1B2B;        /* primary dark — panels, nav, footer */
@@ -57,7 +61,9 @@ h1, h2, h3, h4, h5 {
   line-height: 1.12;
 }
 
-h1 { letter-spacing: -0.028em; }
+/* Major/hero headings get the heaviest weight in the system; h2-h5 (section
+   headings, card titles) stay at 700 unless a component sets its own weight. */
+h1 { font-weight: 800; letter-spacing: -0.028em; }
 
 /* Condensed poster caps are gone — where a heading is still set in caps,
    give it the positive tracking that capital letters actually need. */
@@ -66,10 +72,10 @@ h1 { letter-spacing: -0.028em; }
   font-weight: 700;
 }
 
-/* The "typewriter caps" kicker pattern (font-mono + uppercase) reads as a
-   stage prop. Where it's used as a label — not for figures — set it in the
-   body face with calm tracking. Numeric spec data uses font-mono WITHOUT
-   uppercase and is left untouched. */
+/* The "typewriter caps" kicker pattern (font-mono + uppercase) normalizes to
+   the eyebrow-label weight (600) and calm tracking, regardless of whatever
+   weight utility a component also applied. Numeric spec data uses font-mono
+   WITHOUT uppercase and is left at its own weight. */
 .font-mono.uppercase {
   font-family: var(--font-sans);
   font-weight: 600;

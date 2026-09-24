@@ -116,7 +116,7 @@ export default function AboutIntro() {
 
           <Link
             to="/about"
-            className="group inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-5 py-2.5 text-sm font-medium transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)]"
+            className="group inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-5 py-2.5 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)]"
           >
             <span>Discover Our Story</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />

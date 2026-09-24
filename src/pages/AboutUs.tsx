@@ -238,14 +238,14 @@ export default function AboutUs() {
           <div className="pt-4 flex items-center justify-center gap-3">
             <Link
               to="/products"
-              className="group inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-5 py-2.5 text-sm font-medium transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)]"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-5 py-2.5 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)]"
             >
               <span>View our products</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center rounded-full border border-[#0B1B2B]/15 bg-white text-[#0B1B2B] hover:border-[#0B1B2B]/40 px-5 py-2.5 text-sm font-medium transition-colors duration-200"
+              className="inline-flex items-center rounded-full border border-[#0B1B2B]/15 bg-white text-[#0B1B2B] hover:border-[#0B1B2B]/40 px-5 py-2.5 text-sm font-semibold transition-colors duration-200"
             >
               Get in touch
             </Link>

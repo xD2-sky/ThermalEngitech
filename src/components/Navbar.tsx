@@ -105,7 +105,7 @@ export default function Navbar() {
           <Link
             to="/request-quote"
             data-testid="nav-request-quote"
-            className="inline-flex items-center justify-center rounded-full bg-[#1C5CA8] text-white text-sm font-medium px-5 py-2.5 hover:bg-[#103E72] shadow-sm shadow-[#1C5CA8]/20 transition-colors whitespace-nowrap"
+            className="inline-flex items-center justify-center rounded-full bg-[#1C5CA8] text-white text-sm font-semibold px-5 py-2.5 hover:bg-[#103E72] shadow-sm shadow-[#1C5CA8]/20 transition-colors whitespace-nowrap"
           >
             Request a quote
           </Link>
@@ -149,7 +149,7 @@ export default function Navbar() {
           <Link
             to="/request-quote"
             onClick={() => setMobileOpen(false)}
-            className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-[#1C5CA8] text-white text-sm font-medium px-[18px] py-3"
+            className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-[#1C5CA8] text-white text-sm font-semibold px-[18px] py-3"
           >
             Request a quote
           </Link>

@@ -106,7 +106,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
             <button
               onClick={onViewProducts}
               data-testid="hero-explore-btn"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#1C5CA8] text-white hover:bg-[#103E72] px-5 py-2.5 text-sm font-medium transition-colors duration-200 cursor-pointer"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#1C5CA8] text-white hover:bg-[#103E72] px-5 py-2.5 text-sm font-semibold transition-colors duration-200 cursor-pointer"
             >
               <span>Explore the catalogue</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -115,7 +115,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
             <button
               onClick={onRequestQuote}
               data-testid="hero-quote-btn"
-              className="inline-flex items-center justify-center rounded-full border border-[#0B1B2B]/15 bg-white text-[#0B1B2B] hover:border-[#0B1B2B]/40 px-5 py-2.5 text-sm font-medium transition-colors duration-200 cursor-pointer"
+              className="inline-flex items-center justify-center rounded-full border border-[#0B1B2B]/15 bg-white text-[#0B1B2B] hover:border-[#0B1B2B]/40 px-5 py-2.5 text-sm font-semibold transition-colors duration-200 cursor-pointer"
             >
               Request a quote
             </button>

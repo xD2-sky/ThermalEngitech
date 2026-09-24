@@ -115,10 +115,7 @@ export default function Home() {
             <div className="max-w-2xl space-y-4">
               <div className="flex items-center gap-2.5">
                 <span className="w-8 h-[2px] bg-[#DC2626]" />
-                <p
-                  className="text-[11px] uppercase tracking-[0.18em] text-[#78889B] font-semibold"
-                  style={{ fontFamily: "'Geist Mono', ui-monospace, monospace" }}
-                >
+                <p className="text-[11px] uppercase tracking-[0.18em] text-[#78889B] font-semibold">
                   Our Products
                 </p>
               </div>
@@ -423,7 +420,7 @@ export default function Home() {
             <div className="md:col-span-3 md:text-right relative z-10">
               <Link
                 to="/request-quote"
-                className="inline-flex w-full items-center justify-center rounded-full bg-white text-[#103E72] hover:bg-[#EAF2FB] px-5 py-2.5 text-sm font-medium transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
+                className="inline-flex w-full items-center justify-center rounded-full bg-white text-[#103E72] hover:bg-[#EAF2FB] px-5 py-2.5 text-sm font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
               >
                 Start a consultation
               </Link>
