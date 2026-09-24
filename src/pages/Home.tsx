@@ -194,24 +194,22 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Why Thermal Engitech — diagonal-split hero moment (deliberately different
-          layout grammar from the rest of the site's stacked-rectangle sections),
-          stat proof up front, and an expanded 6-point differentiator grid below. */}
+      {/* Why Thermal Engitech — compact two-column composition. The photo is now a
+          contained, rounded card (with a refined diagonal corner-cut) that sits IN
+          the grid next to the text and is centered against it via items-center,
+          instead of an absolute full-bleed slice — so it reads as one connected
+          piece rather than a large image floating beside the copy. */}
       <div className="relative bg-gradient-to-br from-[#EAF3FC] to-white overflow-hidden">
         {/* Soft top blend so this section's own light-blue gradient flows out of
-            Product Range's white bottom fade above it instead of cutting in.
-            Scoped to the content side only (not full-width) so it doesn't wash
-            over the diagonal photo's top edge, keeping that crisp. */}
-        <div className="absolute left-0 right-[54%] top-0 h-24 bg-gradient-to-b from-white to-transparent" />
-        <div className="relative py-10 sm:py-12 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative">
+            Product Range's white bottom fade above it instead of cutting in. */}
+        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-14 pb-10 sm:pb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
-            <Reveal className="lg:col-span-6 space-y-6 relative z-10">
+            <Reveal className="lg:col-span-6 space-y-5">
               <div className="flex items-center gap-2.5">
                 <span className="w-8 h-[2px] bg-[#DC2626]" />
-                <p
-                  className="text-xs uppercase tracking-[0.18em] text-[#3A6EA8] font-semibold"
-                >
+                <p className="text-xs uppercase tracking-[0.18em] text-[#3A6EA8] font-semibold">
                   Why Thermal Engitech
                 </p>
               </div>
@@ -233,7 +231,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2 divide-x divide-[#0B1B2B]/12">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-1 divide-x divide-[#0B1B2B]/12">
                 <div className="pl-0">
                   <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">2,000+</p>
                   <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Systems Installed</p>
@@ -261,31 +259,31 @@ export default function Home() {
               </Link>
             </Reveal>
 
-            <div className="hidden lg:block lg:col-span-6" aria-hidden="true" />
+            {/* Contained diagonal-cut photo card — real photo already used elsewhere
+                on the site (verified authentic). Sits as an in-flow grid item so it's
+                vertically centered against the text column automatically, sized by
+                aspect-ratio (matching the source photo's native 4:3 so object-cover
+                needs no distortion), not stretched to the section's full height. */}
+            <Reveal delay={0.08} className="hidden lg:block lg:col-span-6">
+              <div
+                className="relative w-full aspect-[4/3] rounded-[1.75rem] overflow-hidden shadow-[0_24px_54px_-18px_rgba(11,27,43,0.4)]"
+                style={{ clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0% 100%)' }}
+              >
+                <img
+                  src={`${import.meta.env.BASE_URL}images/about-logo-photo.jpg`}
+                  alt="Industrial process-heating pipework against an open sky"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 rounded-[1.75rem] ring-1 ring-inset ring-white/15" />
+              </div>
+            </Reveal>
           </div>
-        </div>
-
-        {/* Diagonal-cut photo — real photo already used elsewhere on the site
-            (verified authentic), not the unverified reference image.
-            Height-capped and top/bottom-anchored to the same padding as the
-            text column (instead of inset-y-0 full-bleed) so it starts level
-            with the "Why Thermal Engitech" heading and stays proportional to
-            the content rather than stretching the section taller. */}
-        <div
-          className="absolute right-0 top-10 sm:top-12 bottom-10 sm:bottom-12 w-full lg:w-[46%] hidden lg:block"
-          style={{ clipPath: 'polygon(16% 0, 100% 0, 100% 100%, 0% 100%)' }}
-        >
-          <img
-            src={`${import.meta.env.BASE_URL}images/about-logo-photo.jpg`}
-            alt="Industrial process-heating pipework against an open sky"
-            className="w-full h-full object-cover object-[center_35%]"
-            loading="lazy"
-          />
         </div>
       </div>
 
       {/* What Sets Us Apart — 6-point differentiator grid */}
-      <div className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white pt-10 sm:pt-12 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-10">
           <Reveal className="space-y-2">
             <h3 className="font-heading font-bold text-xl text-[#0B1B2B]">What Sets Us Apart</h3>
