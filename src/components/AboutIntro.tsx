@@ -81,7 +81,7 @@ export default function AboutIntro() {
 
         {/* Content */}
         <Reveal delay={0.1} className="lg:col-span-6 space-y-6 text-left">
-          <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#DC2626]">
+          <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#78889B]">
             <span className="w-8 h-[2px] bg-[#DC2626]" />
             About Us
           </p>
@@ -89,7 +89,7 @@ export default function AboutIntro() {
           <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
             Built on Expertise.
             <br />
-            <span className="text-[#DC2626]">Driven by Purpose.</span>
+            <span className="text-[#1C5CA8]">Driven by Purpose.</span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-xl">
@@ -102,8 +102,8 @@ export default function AboutIntro() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2 border-t border-[#0B1B2B]/15">
             {HIGHLIGHTS.map((h) => (
               <div key={h.title} className="group flex sm:flex-col items-start sm:items-start gap-3 pt-5">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0B1B2B]/5 text-[#0B1B2B] transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-[#DC2626]/8">
-                  <h.icon className="w-5 h-5 transition-colors duration-300 group-hover:text-[#DC2626]" strokeWidth={1.75} />
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0B1B2B]/5 text-[#0B1B2B] transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-[#1C5CA8]/8">
+                  <h.icon className="w-5 h-5 transition-colors duration-300 group-hover:text-[#1C5CA8]" strokeWidth={1.75} />
                 </span>
                 <div>
                   <h3 className="font-heading font-bold text-sm text-[#0B1B2B] leading-tight">
@@ -116,7 +116,7 @@ export default function AboutIntro() {
 
           <Link
             to="/about"
-            className="group inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-5 py-2.5 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)]"
+            className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-5 py-2.5 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
           >
             <span>Discover Our Story</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />

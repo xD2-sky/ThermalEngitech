@@ -57,11 +57,11 @@ export default function ContactUs() {
           
           {/* Main physical site */}
           <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4">
-            <h3 className="font-heading font-extrabold text-[#0D1B2A] text-sm uppercase tracking-wider border-b border-slate-100 pb-3">
+            <h3 className="font-heading font-extrabold text-[#0B1B2B] text-sm uppercase tracking-wider border-b border-slate-100 pb-3">
               Corporate Office & Plant
             </h3>
             
-            <div className="space-y-4 font-sans text-xs text-slate-600">
+            <div className="space-y-4 font-sans text-xs text-[#47566A]">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" />
                 <span>
@@ -83,35 +83,35 @@ export default function ContactUs() {
 
           {/* Plant Operational Hours */}
           <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4 text-left">
-            <h3 className="font-heading font-extrabold text-[#0D1B2A] text-sm uppercase tracking-wider border-b border-slate-100 pb-3 flex items-center gap-2">
+            <h3 className="font-heading font-extrabold text-[#0B1B2B] text-sm uppercase tracking-wider border-b border-slate-100 pb-3 flex items-center gap-2">
               <Clock className="w-4 h-4 text-[#1C5CA8]" />
               <span>Operational Hours</span>
             </h3>
 
-            <div className="space-y-2.5 font-sans text-xs text-slate-500">
+            <div className="space-y-2.5 font-sans text-xs text-[#47566A]">
               <div className="flex justify-between border-b border-dotted border-slate-200 pb-1.5">
                 <span>Monday - Friday:</span>
-                <span className="font-bold text-slate-800">09:00 AM - 06:30 PM</span>
+                <span className="font-bold text-[#0B1B2B]">09:00 AM - 06:30 PM</span>
               </div>
               <div className="flex justify-between border-b border-dotted border-slate-200 pb-1.5">
                 <span>Saturday:</span>
-                <span className="font-bold text-slate-800">09:00 AM - 04:00 PM</span>
+                <span className="font-bold text-[#0B1B2B]">09:00 AM - 04:00 PM</span>
               </div>
-              <div className="flex justify-between text-slate-500 italic">
+              <div className="flex justify-between text-[#47566A] italic">
                 <span>Sunday:</span>
                 <span>Plant Closed</span>
               </div>
             </div>
             
-            <p className="text-[10px] text-slate-500 leading-relaxed font-sans pt-1">
+            <p className="text-[10px] text-[#78889B] leading-relaxed font-sans pt-1">
               * Critical breakdowns and troubleshooting hotlines remain accessible on a 24/7 cycle for registered contractual clients.
             </p>
           </div>
 
           {/* Success timeline */}
           <div className="bg-[#1C5CA8]/5 border border-[#1C5CA8]/20 p-6 rounded-lg text-left space-y-2.5 font-sans">
-            <h5 className="font-bold text-xs text-[#0D1B2A] uppercase tracking-wide">Estimates Response Guarantee</h5>
-            <p className="text-xs text-slate-600 leading-normal">
+            <h5 className="font-bold text-xs text-[#0B1B2B] uppercase tracking-wide">Estimates Response Guarantee</h5>
+            <p className="text-xs text-[#47566A] leading-normal">
               Sizing calculations and a full bill of material — delivered within 24 working hours.
             </p>
           </div>
@@ -123,10 +123,10 @@ export default function ContactUs() {
           
           <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-6">
             <div className="border-b border-slate-100 pb-3">
-              <h3 className="font-heading font-extrabold text-base text-[#0D1B2A]">
+              <h3 className="font-heading font-extrabold text-base text-[#0B1B2B]">
                 Key Department Representatives
               </h3>
-              <p className="text-[11px] text-slate-500 font-sans">
+              <p className="text-[11px] text-[#78889B] font-sans">
                 Contact the direct coordinator assigned to your corporate category.
               </p>
             </div>
@@ -138,9 +138,9 @@ export default function ContactUs() {
                     {c.title}
                   </span>
                   <div className="space-y-1">
-                    <b className="font-bold text-[#0D1B2A] block text-[11px]">{c.person}</b>
-                    <a href={`tel:${c.phoneTel}`} className="text-slate-600 block hover:text-[#1C5CA8] transition">{c.phone}</a>
-                    <a href={`mailto:${c.email}`} className="text-slate-500 hover:text-[#1C5CA8] transition block break-all font-semibold select-all">
+                    <b className="font-bold text-[#0B1B2B] block text-[11px]">{c.person}</b>
+                    <a href={`tel:${c.phoneTel}`} className="text-[#47566A] block hover:text-[#1C5CA8] transition">{c.phone}</a>
+                    <a href={`mailto:${c.email}`} className="text-[#47566A] hover:text-[#1C5CA8] transition block break-all font-semibold select-all">
                       {c.email}
                     </a>
                   </div>

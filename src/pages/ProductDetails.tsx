@@ -269,8 +269,8 @@ export default function ProductDetails() {
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center space-y-6">
-        <h2 className="text-2xl font-bold font-heading text-[#0D1B2A]">Product Configuration Not Found</h2>
-        <p className="text-slate-500 max-w-sm mx-auto text-xs leading-normal">
+        <h2 className="text-2xl font-bold font-heading text-[#0B1B2B]">Product Configuration Not Found</h2>
+        <p className="text-[#47566A] max-w-sm mx-auto text-xs leading-normal">
           The requested system schematic could not be loaded. It may have been archived or updated.
         </p>
         <Link
@@ -319,7 +319,7 @@ export default function ProductDetails() {
       {/* Breadcrumbs bar with navigation shortcuts — margin-top clears the fixed
           navbar at rest; sticky top-* then holds it there once scrolled */}
       <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20 sticky top-16 sm:top-18 lg:top-20 z-30">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-500 font-semibold">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#78889B] font-semibold">
           <Link
             to={backTo}
             data-testid="product-back-btn"
@@ -333,7 +333,7 @@ export default function ProductDetails() {
             <ChevronRight className="w-3.5 h-3.5" />
             <Link to={`/products/category/${slugify(product.category)}`} className="text-[#1C5CA8] hover:underline">{product.category}</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-slate-700 font-extrabold truncate max-w-[120px] sm:max-w-none">{product.name}</span>
+            <span className="text-[#0B1B2B] font-extrabold truncate max-w-[120px] sm:max-w-none">{product.name}</span>
           </div>
         </div>
       </div>
@@ -348,7 +348,7 @@ export default function ProductDetails() {
             <span className="text-xs font-mono font-bold tracking-wider text-[#1C5CA8] bg-[#1C5CA8]/10 px-3 py-1.5 rounded-full uppercase">
               {product.category}
             </span>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold text-[#0D1B2A] tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-tight leading-tight">
               {product.name}
             </h1>
             <p className="text-[#1C5CA8] text-sm md:text-base font-semibold font-sans leading-relaxed">
@@ -359,7 +359,7 @@ export default function ProductDetails() {
           {/* Large Scale CAD View Canvas overlay */}
           <div className="bg-white border border-[#E1E4E3] rounded-lg p-8 flex items-center justify-center relative shadow-xs min-h-[300px]">
             <ProductImageLarge type={product.imageType} productId={product.id} />
-            <span className="absolute bottom-4 left-4 bg-slate-100 font-mono text-[9px] text-slate-500 uppercase tracking-widest px-2.5 py-1 rounded">
+            <span className="absolute bottom-4 left-4 bg-slate-100 font-mono text-[9px] text-[#78889B] uppercase tracking-widest px-2.5 py-1 rounded">
               High Resolution Schematic CAD Layout
             </span>
           </div>
@@ -371,17 +371,17 @@ export default function ProductDetails() {
 
           {/* Sizing description breakdown */}
           <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg space-y-4">
-            <h3 className="text-base font-heading font-bold tracking-tight text-[#0D1B2A] border-b border-slate-100 pb-3">
+            <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 pb-3">
               Design & Operations Overview
             </h3>
-            <p className="text-xs text-slate-600 leading-relaxed font-sans">
+            <p className="text-xs text-[#47566A] leading-relaxed font-sans">
               {product.description}
             </p>
           </div>
 
           {/* Technical specifications — the data existed but was never surfaced before */}
           <div className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden">
-            <h3 className="text-base font-heading font-bold tracking-tight text-[#0D1B2A] border-b border-slate-100 px-6 pt-6 pb-3">
+            <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 px-6 pt-6 pb-3">
               Technical Specifications
             </h3>
             <div>
@@ -390,8 +390,8 @@ export default function ProductDetails() {
                   key={idx}
                   className={`grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-1 sm:gap-6 px-6 py-3.5 ${idx > 0 ? 'border-t border-slate-100' : ''}`}
                 >
-                  <span className="text-[11px] font-mono uppercase tracking-wide text-slate-500">{sp.label}</span>
-                  <span className="text-xs sm:text-sm font-semibold text-[#0D1B2A]">{sp.value}</span>
+                  <span className="text-[11px] font-mono uppercase tracking-wide text-[#78889B]">{sp.label}</span>
+                  <span className="text-xs sm:text-sm font-semibold text-[#0B1B2B]">{sp.value}</span>
                 </div>
               ))}
             </div>
@@ -399,7 +399,7 @@ export default function ProductDetails() {
 
           {/* Features and standards ticks */}
           <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg space-y-6">
-            <h3 className="text-base font-heading font-bold tracking-tight text-[#0D1B2A] border-b border-slate-100 pb-3 flex items-center gap-2">
+            <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 pb-3 flex items-center gap-2">
               <Cpu className="w-4 h-4 text-[#1C5CA8]" />
               <span>Key Performance Features</span>
             </h3>
@@ -407,7 +407,7 @@ export default function ProductDetails() {
               {product.features?.map((feat, idx) => (
                 <div key={idx} className="flex gap-2.5 items-start">
                   <CheckCircle2 className="w-4 h-4 text-[#1C5CA8] shrink-0 mt-0.5" />
-                  <span className="text-xs text-slate-600 font-sans leading-relaxed">{feat}</span>
+                  <span className="text-xs text-[#47566A] font-sans leading-relaxed">{feat}</span>
                 </div>
               ))}
             </div>
@@ -441,8 +441,8 @@ export default function ProductDetails() {
           {/* Form container */}
           <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-sm space-y-6 text-left">
             <div className="space-y-1 border-b border-slate-100 pb-3">
-              <h4 className="font-heading font-extrabold text-base text-[#0D1B2A]">Send Quick Enquiry</h4>
-              <p className="text-[11px] text-slate-500 font-sans">
+              <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">Send Quick Enquiry</h4>
+              <p className="text-[11px] text-[#78889B] font-sans">
                 Submit raw sizing metrics to receive CAD layout suggestions.
               </p>
             </div>
@@ -451,15 +451,15 @@ export default function ProductDetails() {
               <div className="bg-[#10B981]/5 border border-[#10B981]/25 rounded-xl p-6 text-center space-y-4 font-sans py-10">
                 <CheckCircle className="w-12 h-12 text-[#10B981] mx-auto" />
                 <div className="space-y-1.5">
-                  <h4 className="font-heading font-bold text-[#0D1B2A] text-sm">Enquiry Received Successfully</h4>
-                  <p className="text-xs text-slate-500 leading-normal">
+                  <h4 className="font-heading font-bold text-[#0B1B2B] text-sm">Enquiry Received Successfully</h4>
+                  <p className="text-xs text-[#47566A] leading-normal">
                     An engineering assessor will reach out shortly.
                   </p>
                 </div>
                 <button
                   type="button"
                   onClick={() => setInquirySent(false)}
-                  className="px-4 py-2 border border-[#E1E4E3] bg-white text-xs font-semibold rounded-lg hover:bg-slate-50 text-slate-700 transition"
+                  className="px-4 py-2 border border-[#E1E4E3] bg-white text-xs font-semibold rounded-lg hover:bg-slate-50 text-[#0B1B2B] transition"
                 >
                   Send another request
                 </button>
@@ -468,73 +468,73 @@ export default function ProductDetails() {
               <form onSubmit={handleInquirySubmit} className="space-y-4 text-xs font-sans">
                 
                 <div className="space-y-1.5">
-                  <label className="font-bold text-slate-500 block uppercase tracking-wide">Target Equipment Name</label>
+                  <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Target Equipment Name</label>
                   <input
                     type="text"
                     disabled
                     value={product.name}
-                    className="w-full px-3 py-2.5 bg-slate-50 border border-[#E1E4E3] rounded-lg text-slate-600 font-semibold cursor-not-allowed outline-none"
+                    className="w-full px-3 py-2.5 bg-slate-50 border border-[#E1E4E3] rounded-lg text-[#47566A] font-semibold cursor-not-allowed outline-none"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0D1B2A] block uppercase tracking-wide">Company Name *</label>
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Company Name *</label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. Gujarat Synthetics Ltd."
                       value={formData.companyName}
                       onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0D1B2A] block uppercase tracking-wide">Contact Person *</label>
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Contact Person *</label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. Mr. S. K. Mehta"
                       value={formData.contactPerson}
                       onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0D1B2A] block uppercase tracking-wide">Email Address *</label>
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Email Address *</label>
                     <input
                       type="email"
                       required
                       placeholder="name@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0D1B2A] block uppercase tracking-wide">Mobile / Phone *</label>
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Mobile / Phone *</label>
                     <input
                       type="text"
                       required
                       placeholder="+91 98XXX XXXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="font-bold text-[#0D1B2A] block uppercase tracking-wide">Desired Capacity / Flow Sizing</label>
+                  <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Desired Capacity / Flow Sizing</label>
                   <select
                     value={formData.capacity}
                     onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-                    className="w-full px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-semibold focus:outline-none focus:border-[#1C5CA8] transition"
+                    className="w-full px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] transition"
                   >
                     <option value="Under 1.0 Ton / Hour">Under 1.0 Ton / Hour</option>
                     <option value="1.0 - 5.0 Tons / Hour">1.0 - 5.0 Tons / Hour</option>
@@ -545,13 +545,13 @@ export default function ProductDetails() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="font-bold text-[#0D1B2A] block uppercase tracking-wide">Thermal Sizing Notes / local fuel spec</label>
+                  <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Thermal Sizing Notes / local fuel spec</label>
                   <textarea
                     rows={3}
                     placeholder="Provide space limitations, operational hours, or biomass briquette calorific values..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-slate-800 font-medium focus:outline-none focus:border-[#1C5CA8] transition resize-none"
+                    className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition resize-none"
                   />
                 </div>
 
@@ -568,18 +568,18 @@ export default function ProductDetails() {
 
           {/* Quick contact helpline */}
           <div className="bg-slate-100 border border-[#E1E4E3] rounded-lg p-6 text-left space-y-4">
-            <h5 className="font-heading font-bold text-xs text-[#0D1B2A] uppercase tracking-wider">Helpline</h5>
+            <h5 className="font-heading font-bold text-xs text-[#0B1B2B] uppercase tracking-wider">Helpline</h5>
             <div className="space-y-3 font-sans text-xs">
-              <div className="flex items-center gap-2 text-slate-600">
+              <div className="flex items-center gap-2 text-[#47566A]">
                 <Phone className="w-4 h-4 text-[#1C5CA8] shrink-0" />
                 <span>Sales: +91 70693 06431</span>
               </div>
-              <div className="flex items-center gap-2 text-slate-600">
+              <div className="flex items-center gap-2 text-[#47566A]">
                 <Mail className="w-4 h-4 text-[#1C5CA8] shrink-0" />
                 <span>info@thermalengitech.com</span>
               </div>
             </div>
-            <p className="text-[10px] text-slate-500 font-medium leading-relaxed font-sans pt-1 border-t border-slate-200">
+            <p className="text-[10px] text-[#78889B] font-medium leading-relaxed font-sans pt-1 border-t border-slate-200">
               Technical proposals returned within 24 business hours.
             </p>
           </div>

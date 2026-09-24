@@ -54,7 +54,7 @@ export default function Manufacturing() {
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#0B1B2B]">
               Precision Heavy Fabrication Capacity
             </h2>
-            <p className="text-xs text-slate-600 leading-relaxed font-sans">
+            <p className="text-xs text-[#47566A] leading-relaxed font-sans">
               Standardized fabrication under clear procedural guidelines — material durability, geometric centering, and structural joint unity on every unit.
             </p>
           </div>
@@ -72,7 +72,7 @@ export default function Manufacturing() {
                   <span className="text-xs font-mono font-bold text-[#1C5CA8] uppercase sm:col-span-1 leading-tight">
                     {cap.label}
                   </span>
-                  <span className="text-xs text-slate-600 leading-relaxed font-sans sm:col-span-3">
+                  <span className="text-xs text-[#47566A] leading-relaxed font-sans sm:col-span-3">
                     {cap.value}
                   </span>
                 </div>
@@ -96,7 +96,7 @@ export default function Manufacturing() {
                 </h4>
                 <ul className="space-y-2">
                   {DESIGN_CAPABILITIES.equipmentDesign.map((item, i) => (
-                    <li key={i} className="text-xs text-slate-600 leading-relaxed flex items-start gap-2">
+                    <li key={i} className="text-xs text-[#47566A] leading-relaxed flex items-start gap-2">
                       <span className="text-[#1C5CA8] mt-0.5">•</span>
                       <span>{item}</span>
                     </li>
@@ -110,7 +110,7 @@ export default function Manufacturing() {
                 </h4>
                 <ul className="space-y-2">
                   {DESIGN_CAPABILITIES.cadTools.map((item, i) => (
-                    <li key={i} className="text-xs text-slate-600 leading-relaxed flex items-start gap-2">
+                    <li key={i} className="text-xs text-[#47566A] leading-relaxed flex items-start gap-2">
                       <span className="text-[#1C5CA8] mt-0.5">•</span>
                       <span>{item}</span>
                     </li>
@@ -131,12 +131,12 @@ export default function Manufacturing() {
             <h4 className="font-heading font-extrabold text-sm uppercase text-[#0B1B2B] tracking-wider">
               Quality Assurance Directives
             </h4>
-            <p className="text-xs text-slate-500 leading-relaxed font-sans">
+            <p className="text-xs text-[#47566A] leading-relaxed font-sans">
               Every plate, tube, and weld is monitored by our quality coordinators. Documentation on file for each unit:
             </p>
           </div>
 
-          <ul className="space-y-3.5 text-xs text-slate-600 font-sans">
+          <ul className="space-y-3.5 text-xs text-[#47566A] font-sans">
             <li className="flex items-start gap-2.5">
               <span className="text-[#1C5CA8] font-bold">✓</span>
               <span><strong>MTR Verification:</strong> Mill Test Reports for every steel batch.</span>
@@ -164,7 +164,7 @@ export default function Manufacturing() {
             <h2 className="text-3xl font-heading font-bold text-[#0B1B2B]">
               The Six-Stage Assembly Pipeline
             </h2>
-            <p className="text-slate-600 text-sm">
+            <p className="text-[#47566A] text-sm">
               Raw boiler-grade steel to finished, certified system — six stages.
             </p>
           </div>
@@ -180,12 +180,12 @@ export default function Manufacturing() {
                     <span className="font-mono text-xs font-bold text-[#1C5CA8] uppercase tracking-wider">
                       Stage {step.step}
                     </span>
-                    <span className="text-[10px] uppercase font-mono text-slate-400">Section GIDC</span>
+                    <span className="text-[10px] uppercase font-mono text-[#78889B]">Section GIDC</span>
                   </div>
                   <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">{step.title}</h4>
-                  <p className="text-xs text-slate-500 leading-relaxed font-sans">{step.description}</p>
+                  <p className="text-xs text-[#47566A] leading-relaxed font-sans">{step.description}</p>
                 </div>
-                <div className="pt-3 border-t border-slate-100 mt-2 text-[10px] font-mono text-slate-500 uppercase tracking-tight">
+                <div className="pt-3 border-t border-slate-100 mt-2 text-[10px] font-mono text-[#78889B] uppercase tracking-tight">
                   Status: 100% Quality Audited
                 </div>
               </div>

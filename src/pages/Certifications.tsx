@@ -54,12 +54,12 @@ export default function Certifications() {
                 <h3 className="font-heading font-extrabold text-lg text-[#0B1B2B] leading-snug group-hover:text-[#1C5CA8] transition duration-200">
                   {cert.title}
                 </h3>
-                <p className="text-xs text-slate-500 font-sans leading-relaxed">
+                <p className="text-xs text-[#47566A] font-sans leading-relaxed">
                   {cert.description}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 mt-6 flex items-center justify-between text-[10px] font-mono font-bold text-slate-400">
+              <div className="pt-4 border-t border-slate-100 mt-6 flex items-center justify-between text-[10px] font-mono font-bold text-[#78889B]">
                 <span>GOVERNING BODY:</span>
                 <span className="text-[#1C5CA8] text-[11px] font-bold">{cert.authority}</span>
               </div>
@@ -74,7 +74,7 @@ export default function Certifications() {
               <FileCheck className="w-5 h-5 text-[#1C5CA8]" />
               <span>Design Codes & Standards Referenced</span>
             </h3>
-            <p className="text-xs text-slate-500 font-sans leading-relaxed">
+            <p className="text-xs text-[#47566A] font-sans leading-relaxed">
               The actual codes our design and stress-analysis work is checked against — not a generic "international standards" claim.
             </p>
           </div>
@@ -87,7 +87,7 @@ export default function Certifications() {
                 </div>
                 <div className="space-y-0.5 text-left">
                   <h4 className="font-bold text-xs text-[#0B1B2B] leading-tight">{dc.code}</h4>
-                  <span className="text-[10.5px] text-slate-500 font-medium">{dc.note}</span>
+                  <span className="text-[10.5px] text-[#78889B] font-medium">{dc.note}</span>
                 </div>
               </div>
             ))}

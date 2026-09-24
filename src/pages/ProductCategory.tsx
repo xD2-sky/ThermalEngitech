@@ -48,7 +48,7 @@ export default function ProductCategory() {
       {/* Breadcrumb — margin-top clears the fixed navbar (this thin utility bar
           sits below it, unlike hero/banner sections which extend behind it) */}
       <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-500 font-semibold">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#78889B] font-semibold">
           <Link to="/products" className="flex items-center gap-1.5 text-[#1C5CA8] hover:underline" data-testid="back-to-catalogue">
             <ArrowLeft className="w-4 h-4" />
             <span>All categories</span>
@@ -56,7 +56,7 @@ export default function ProductCategory() {
           <div className="flex items-center gap-2">
             <Link to="/products" className="hover:text-[#1C5CA8]">Products</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-slate-700 font-extrabold">{category.name}</span>
+            <span className="text-[#0B1B2B] font-extrabold">{category.name}</span>
           </div>
         </div>
       </div>
@@ -95,24 +95,24 @@ export default function ProductCategory() {
 
                 <div className="p-6 space-y-3.5 flex-1 flex flex-col justify-between">
                   <div className="space-y-2">
-                    <h3 className="font-heading font-bold text-[#0D1B2A] text-[15px] group-hover:text-[#1C5CA8] transition-colors line-clamp-2 leading-snug">
+                    <h3 className="font-heading font-bold text-[#0B1B2B] text-[15px] group-hover:text-[#1C5CA8] transition-colors line-clamp-2 leading-snug">
                       {prod.name}
                     </h3>
-                    <p className="text-[13px] text-slate-500 leading-relaxed line-clamp-3">{prod.description}</p>
+                    <p className="text-[13px] text-[#47566A] leading-relaxed line-clamp-3">{prod.description}</p>
                   </div>
 
                   <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-3">
                     {prod.specifications?.slice(0, 2).map((sp, idx) => (
                       <div key={idx} className="space-y-0.5">
-                        <span className="block text-[10px] font-medium text-slate-400 tracking-wide">{sp.label}</span>
-                        <span className="block text-[12px] font-semibold text-[#17222E] truncate" title={sp.value}>{sp.value}</span>
+                        <span className="block text-[10px] font-medium text-[#78889B] tracking-wide">{sp.label}</span>
+                        <span className="block text-[12px] font-semibold text-[#0B1B2B] truncate" title={sp.value}>{sp.value}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[12px] font-medium text-slate-500 flex items-center gap-1.5">
+                  <span className="text-[12px] font-medium text-[#78889B] flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4 text-[#1C5CA8]" />
                     IBR certified
                   </span>

@@ -167,7 +167,7 @@ export default function Home() {
                       <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
                         {c.desc}
                       </p>
-                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#DC2626] mt-1 transition-transform duration-300 group-hover:translate-x-1">
+                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1C5CA8] mt-1 transition-transform duration-300 group-hover:translate-x-1">
                         <ArrowRight className="w-4 h-4 text-white" strokeWidth={2.25} />
                       </span>
                     </div>
@@ -180,7 +180,7 @@ export default function Home() {
           <Reveal className="text-center">
             <Link
               to="/products"
-              className="group inline-flex items-center gap-2.5 text-sm font-bold uppercase tracking-[0.14em] text-[#0B1B2B] hover:text-[#DC2626] transition-colors"
+              className="group inline-flex items-center gap-2.5 text-sm font-bold uppercase tracking-[0.14em] text-[#0B1B2B] hover:text-[#1C5CA8] transition-colors"
             >
               <span className="border-b-2 border-[#0B1B2B]/20 group-hover:border-[#DC2626] pb-1 transition-colors">
                 Explore complete product range
@@ -208,7 +208,7 @@ export default function Home() {
             <Reveal className="lg:col-span-6 space-y-5">
               <div className="flex items-center gap-2.5">
                 <span className="w-8 h-[2px] bg-[#DC2626]" />
-                <p className="text-xs uppercase tracking-[0.18em] text-[#3A6EA8] font-semibold">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
                   Why Thermal Engitech
                 </p>
               </div>
@@ -216,7 +216,7 @@ export default function Home() {
               <h2 className="text-4xl sm:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
                 <span className="text-[#0B1B2B]">Engineering Built Around</span>
                 <br />
-                <span className="text-[#DC2626]">Your Process.</span>
+                <span className="text-[#1C5CA8]">Your Process.</span>
               </h2>
 
               <div className="space-y-1.5 max-w-lg">
@@ -251,7 +251,7 @@ export default function Home() {
 
               <Link
                 to="/products"
-                className="group inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-6 py-3 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)]"
+                className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-6 py-3 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
               >
                 <span>Explore Our Capabilities</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -299,7 +299,7 @@ export default function Home() {
               { icon: Handshake, title: 'Proven Track Record', desc: '12+ years and 2,000+ installations across India and export markets.' },
             ].map((item) => (
               <div key={item.title} className="group flex items-start gap-3.5">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#DC2626]/8 text-[#DC2626] transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-[#DC2626]/12">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#1C5CA8]/8 text-[#1C5CA8] transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-[#1C5CA8]/12">
                   <item.icon className="w-5 h-5" strokeWidth={1.75} />
                 </span>
                 <div className="space-y-1">
@@ -312,7 +312,7 @@ export default function Home() {
 
           <Reveal delay={0.1} className="flex items-center justify-center gap-4 pt-6">
             <span className="h-px w-16 bg-[#E4E7EC]" />
-            <p className="text-[11px] uppercase tracking-[0.14em] text-[#9CA9BA] font-semibold text-center">
+            <p className="text-[11px] uppercase tracking-[0.14em] text-[#78889B] font-semibold text-center">
               Partnering for a cleaner, brighter tomorrow
             </p>
             <span className="h-px w-16 bg-[#E4E7EC]" />
@@ -327,7 +327,7 @@ export default function Home() {
         <LogoWatermark position="bottom-right" size={800} opacity={0.05} />
         <div className="max-w-7xl mx-auto space-y-10 relative z-10">
           <Reveal className="max-w-2xl space-y-4 text-center mx-auto">
-            <p className="flex items-center justify-center gap-2 text-sm text-[#3A6EA8]">
+            <p className="flex items-center justify-center gap-2 text-sm text-[#78889B]">
               <span className="text-[#1C5CA8]">•</span>
               Where our systems run
             </p>
@@ -384,7 +384,7 @@ export default function Home() {
                 </p>
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
-                Built to the standards your plant is <span className="text-[#DC2626]">audited against</span>.
+                Built to the standards your plant is <span className="text-[#1C5CA8]">audited against</span>.
               </h2>
             </div>
             <Link
@@ -463,7 +463,7 @@ export default function Home() {
               <div className="lg:col-span-4 lg:text-right">
                 <Link
                   to="/request-quote"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)] hover:-translate-y-0.5"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-[#EAF2FB] text-[#103E72] px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   <span>Start a Consultation</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />

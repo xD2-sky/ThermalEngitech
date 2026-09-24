@@ -68,7 +68,7 @@ export default function AboutUs() {
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center space-y-5">
-          <p className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#DC2626]">
+          <p className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#78889B]">
             <span className="w-8 h-[2px] bg-[#DC2626]" />
             About Us
             <span className="w-8 h-[2px] bg-[#DC2626]" />
@@ -76,7 +76,7 @@ export default function AboutUs() {
           <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
             Built on Expertise.
             <br />
-            <span className="text-[#DC2626]">Driven by Purpose.</span>
+            <span className="text-[#1C5CA8]">Driven by Purpose.</span>
           </h1>
           <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-2xl mx-auto">
             Thermal Engitech is a Gujarat-based engineering and manufacturing company delivering
@@ -120,7 +120,7 @@ export default function AboutUs() {
 
           <div className="lg:col-span-7 space-y-6">
             <p className="flex items-center gap-2 text-sm text-[#78889B]">
-              <span className="text-[#DC2626]">•</span>
+              <span className="text-[#1C5CA8]">•</span>
               Our history & vision
             </p>
             <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
@@ -163,7 +163,7 @@ export default function AboutUs() {
             {PILLARS.map((p) => (
               <div key={p.title} className="group flex items-start gap-4">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#0B1B2B]/5 text-[#0B1B2B] shadow-sm transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-white">
-                  <p.icon className="w-5 h-5 transition-colors duration-300 group-hover:text-[#DC2626]" strokeWidth={1.75} />
+                  <p.icon className="w-5 h-5 transition-colors duration-300 group-hover:text-[#1C5CA8]" strokeWidth={1.75} />
                 </span>
                 <div className="space-y-1">
                   <b className="text-sm font-bold text-[#0B1B2B] block">{p.title}</b>
@@ -182,7 +182,7 @@ export default function AboutUs() {
 
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <p className="flex items-center justify-center gap-2 text-sm text-[#78889B]">
-              <span className="text-[#DC2626]">•</span>
+              <span className="text-[#1C5CA8]">•</span>
               Leadership team
             </p>
             <h2 className="text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
@@ -200,17 +200,17 @@ export default function AboutUs() {
                 className="bg-white border border-[#E4E7EC] rounded-2xl p-6 shadow-sm space-y-4 flex flex-col justify-between"
               >
                 <div className="space-y-3 text-left">
-                  <div className="h-12 w-12 rounded-full bg-[#DC2626]/10 text-[#DC2626] flex items-center justify-center font-heading font-bold text-lg">
+                  <div className="h-12 w-12 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] flex items-center justify-center font-heading font-bold text-lg">
                     {lead.name.split(' ')[1][0]}
                   </div>
                   <div>
                     <h4 className="font-heading font-extrabold text-sm text-[#0B1B2B]">{lead.name}</h4>
-                    <span className="text-[11px] font-semibold text-[#DC2626]">{lead.role}</span>
+                    <span className="text-[11px] font-semibold text-[#1C5CA8]">{lead.role}</span>
                   </div>
                   <p className="text-xs text-[#78889B] leading-relaxed">{lead.description}</p>
                 </div>
 
-                <div className="pt-4 border-t border-[#E4E7EC] text-[11px] font-semibold text-[#DC2626] flex items-center gap-1.5">
+                <div className="pt-4 border-t border-[#E4E7EC] text-[11px] font-semibold text-[#1C5CA8] flex items-center gap-1.5">
                   <Award className="w-3.5 h-3.5" />
                   <span>ISO audit representative</span>
                 </div>
@@ -224,7 +224,7 @@ export default function AboutUs() {
       {/* Mission */}
       <div className="bg-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center space-y-10">
-          <BookOpen className="w-12 h-12 text-[#DC2626] mx-auto opacity-80" />
+          <BookOpen className="w-12 h-12 text-[#1C5CA8] mx-auto opacity-80" />
 
           <div className="space-y-4">
             <h3 className="text-2xl font-heading font-extrabold text-[#0B1B2B]">Our ongoing mission</h3>
@@ -238,7 +238,7 @@ export default function AboutUs() {
           <div className="pt-4 flex items-center justify-center gap-3">
             <Link
               to="/products"
-              className="group inline-flex items-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B3401F] text-white px-5 py-2.5 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(220,38,38,0.5)]"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-5 py-2.5 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
             >
               <span>View our products</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />

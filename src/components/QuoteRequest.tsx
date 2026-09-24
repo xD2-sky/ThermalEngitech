@@ -73,10 +73,10 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
         <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
           Industrial Project Integration
         </p>
-        <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0D1B2A]">
+        <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0B1B2B]">
           Request Sizing & Technical Quotation
         </h2>
-        <p className="text-[#17222E] text-sm max-w-2xl mx-auto leading-relaxed">
+        <p className="text-[#0B1B2B] text-sm max-w-2xl mx-auto leading-relaxed">
           Submit your specs — get a verified proposal and estimate within 24 business hours.
         </p>
       </div>
@@ -89,8 +89,8 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
           {submittedTicket && (
             <div className="absolute inset-0 bg-white/98 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 animate-fadeIn">
               <CheckCircle className="w-16 h-16 text-[#1C5CA8] mb-4" />
-              <h3 className="text-2xl font-heading font-bold text-[#0D1B2A]">Quotation Ticket Dispatched</h3>
-              <p className="text-sm text-[#17222E] max-w-md mt-2 leading-relaxed">
+              <h3 className="text-2xl font-heading font-bold text-[#0B1B2B]">Quotation Ticket Dispatched</h3>
+              <p className="text-sm text-[#0B1B2B] max-w-md mt-2 leading-relaxed">
                 Thank you! Your thermodynamic specifications ticket <b className="text-[#1C5CA8] font-bold">{submittedTicket}</b> has been queued. Our systems engineers will contact your representative.
               </p>
               
@@ -104,7 +104,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6 text-left">
-            <h3 className="text-base font-heading font-semibold text-[#0D1B2A] flex items-center gap-2">
+            <h3 className="text-base font-heading font-semibold text-[#0B1B2B] flex items-center gap-2">
               <Clipboard className="w-5 h-5 text-[#1C5CA8]" />
               Thermal Engineering Spec Sheet
             </h3>
@@ -114,52 +114,52 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             {/* Corporate & Representative Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#17222E]">Registered Corporate Name *</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Registered Corporate Name *</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Apex Chemical Processing Pvt Ltd"
                   value={formData.companyName}
                   onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#17222E]">Representative Engineer Name *</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Representative Engineer Name *</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. Dr. Harish Mehta"
                   value={formData.contactPerson}
                   onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#17222E]">Professional Email *</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Professional Email *</label>
                 <input
                   type="email"
                   required
                   placeholder="name@company.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#17222E]">Mobile / Contact Number *</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Mobile / Contact Number *</label>
                 <input
                   type="tel"
                   required
                   placeholder="e.g. +91 70693 06431"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
             </div>
@@ -167,11 +167,11 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             {/* Equipment Sizing parameters */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#17222E]">Required Equipment Specialty</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Required Equipment Specialty</label>
                 <select
                   value={formData.requiredProduct}
                   onChange={(e) => setFormData({ ...formData, requiredProduct: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 >
                   {PRODUCTS.map((prod) => (
                     <option key={prod.id} value={prod.name}>
@@ -182,27 +182,27 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#17222E]">Volumetric Capacity / Heat Duty *</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Volumetric Capacity / Heat Duty *</label>
                 <input
                   type="text"
                   required
                   placeholder="e.g. 5.0 Tons/hr or 1,200,000 kcal/hr"
                   value={formData.capacity}
                   onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
             </div>
 
             {/* Detail notes */}
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-[#17222E]">Specific Sizing Limits / Operating Pressures / Fuel Preferences</label>
+              <label className="text-xs font-bold text-[#0B1B2B]">Specific Sizing Limits / Operating Pressures / Fuel Preferences</label>
               <textarea
                 rows={4}
                 placeholder="List targeted continuous runtime, specific construction grades (e.g. SS316, ASTM A516 Gr.70), statutory IBR layout requirements, design fuel (Natural Gas, bio-briquettes), or space boundary constraints..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#17222E] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition leading-relaxed"
+                className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition leading-relaxed"
               />
             </div>
 
@@ -221,33 +221,33 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
         <div className="lg:col-span-5 space-y-6">
           
           <div className="bg-white border border-[#E1E4E3] rounded-xl p-6 space-y-5 text-left">
-            <h3 className="text-md font-heading font-bold text-[#0D1B2A] flex items-center gap-2">
+            <h3 className="text-md font-heading font-bold text-[#0B1B2B] flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-[#1C5CA8]" />
               Quality Inspection Mandates
             </h3>
-            <p className="text-xs text-slate-600 leading-relaxed">
+            <p className="text-xs text-[#47566A] leading-relaxed">
               Every pressure vessel fabricated inside our plant complies strictly with authorized global classification inspection code cycles:
             </p>
 
             <div className="space-y-3">
               <div className="p-3 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg">
-                <b className="text-xs font-bold text-[#0D1B2A] block">ASME BPVC SEC I & VIII</b>
-                <p className="text-[11px] text-slate-500 mt-0.5">High-impact pressure weldings check using continuous volumetric plate radiography testing.</p>
+                <b className="text-xs font-bold text-[#0B1B2B] block">ASME BPVC SEC I & VIII</b>
+                <p className="text-[11px] text-[#78889B] mt-0.5">High-impact pressure weldings check using continuous volumetric plate radiography testing.</p>
               </div>
               
               <div className="p-3 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg">
-                <b className="text-xs font-bold text-[#0D1B2A] block">IBR 1950 Rules (Form VI)</b>
-                <p className="text-[11px] text-slate-500 mt-0.5">Pre-arranged structural engineering inspection clearances with Directorate of Boilers India officials.</p>
+                <b className="text-xs font-bold text-[#0B1B2B] block">IBR 1950 Rules (Form VI)</b>
+                <p className="text-[11px] text-[#78889B] mt-0.5">Pre-arranged structural engineering inspection clearances with Directorate of Boilers India officials.</p>
               </div>
 
               <div className="p-3 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg">
-                <b className="text-xs font-bold text-[#0D1B2A] block">ISO 9001:2015 QMS Standard</b>
-                <p className="text-[11px] text-slate-500 mt-0.5">Strict quality management systems governing design, manufacturing, procurement, and testing stages.</p>
+                <b className="text-xs font-bold text-[#0B1B2B] block">ISO 9001:2015 QMS Standard</b>
+                <p className="text-[11px] text-[#78889B] mt-0.5">Strict quality management systems governing design, manufacturing, procurement, and testing stages.</p>
               </div>
 
               <div className="p-3 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg">
-                <b className="text-xs font-bold text-[#0D1B2A] block">Leak proof Hydrostatic Sizing</b>
-                <p className="text-[11px] text-slate-500 mt-0.5">Dual-cycle hydro checks of completed boiler shells conducted at 1.5x design pressure limits.</p>
+                <b className="text-xs font-bold text-[#0B1B2B] block">Leak proof Hydrostatic Sizing</b>
+                <p className="text-[11px] text-[#78889B] mt-0.5">Dual-cycle hydro checks of completed boiler shells conducted at 1.5x design pressure limits.</p>
               </div>
             </div>
           </div>
@@ -255,7 +255,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
           {/* Active Queued Session Tickets */}
           {savedInquiries.length > 0 && (
             <div className="bg-white border border-[#E1E4E3] rounded-xl p-6 space-y-4 animate-fadeIn text-left">
-              <h3 className="text-sm font-heading font-bold text-[#0D1B2A] uppercase tracking-wider">
+              <h3 className="text-sm font-heading font-bold text-[#0B1B2B] uppercase tracking-wider">
                 Submitted Tickets ({savedInquiries.length})
               </h3>
               
@@ -270,9 +270,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                     </div>
 
                     <div className="space-y-0.5">
-                      <b className="text-[#0D1B2A] block text-[12px]">{inq.companyName}</b>
-                      <span className="text-slate-500 block text-[10.5px]">Item Selected: {inq.requiredProduct}</span>
-                      <span className="text-slate-500 block text-[10.5px]">Capacity: {inq.capacity}</span>
+                      <b className="text-[#0B1B2B] block text-[12px]">{inq.companyName}</b>
+                      <span className="text-[#78889B] block text-[10.5px]">Item Selected: {inq.requiredProduct}</span>
+                      <span className="text-[#78889B] block text-[10.5px]">Capacity: {inq.capacity}</span>
                     </div>
                   </div>
                 ))}

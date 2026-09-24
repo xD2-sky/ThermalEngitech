@@ -22,7 +22,7 @@ export default function ProductVideoShowcase({ productId }: ProductVideoShowcase
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-        <h3 className="text-sm uppercase font-mono font-bold tracking-wider text-[#0D1B2A] flex items-center gap-2">
+        <h3 className="text-sm uppercase font-mono font-bold tracking-wider text-[#0B1B2B] flex items-center gap-2">
           <Video className="w-4 h-4 text-[#1C5CA8]" />
           <span>Product Video Showcase</span>
         </h3>
