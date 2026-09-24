@@ -20,7 +20,7 @@ export default function Certifications() {
   );
 
   return (
-    <div className="space-y-0 text-left bg-slate-50 min-h-screen">
+    <div className="space-y-0 text-left bg-white min-h-screen">
       
       {/* Page Header — light-blue, matching the site-wide rhythm. Photo will be added
           back separately once a light-theme-appropriate image is ready. */}

@@ -27,7 +27,7 @@ export default function Products() {
   const categories = getCategories();
 
   return (
-    <div className="text-left bg-[#F7F9FC] min-h-screen">
+    <div className="text-left bg-white min-h-screen">
 
       {/* Banner — light-blue, matching the site-wide rhythm. Photo will be added
           back separately once a light-theme-appropriate image is ready. */}

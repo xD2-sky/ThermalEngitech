@@ -16,7 +16,7 @@ export default function Manufacturing() {
   );
 
   return (
-    <div className="space-y-0 text-left bg-[#F1F1ED] min-h-screen">
+    <div className="space-y-0 text-left bg-white min-h-screen">
       
       {/* Banner — light-blue, matching the site-wide rhythm */}
       <div className="bg-[#E8F1FB] text-[#0B1B2B] border-b border-[#E4E7EC] relative overflow-hidden">

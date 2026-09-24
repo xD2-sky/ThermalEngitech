@@ -43,7 +43,7 @@ export default function ProductCategory() {
   );
 
   return (
-    <div className="text-left bg-[#F7F9FC] min-h-screen">
+    <div className="text-left bg-white min-h-screen">
 
       {/* Breadcrumb — margin-top clears the fixed navbar (this thin utility bar
           sits below it, unlike hero/banner sections which extend behind it) */}
