@@ -5,9 +5,23 @@
 
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
 import { ArrowRight, Settings, Factory, Users } from 'lucide-react';
 import Reveal from './Reveal';
+
+// Staggered entrance for the text column: the container triggers once (on
+// scroll into view) and orchestrates each child's delay, rather than each
+// element independently watching its own scroll position — that keeps the
+// cascade feeling like one coordinated group instead of elements popping in
+// as the user happens to scroll past each one.
+const textContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.22, delayChildren: 0.15 } },
+};
+const textItem = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] } },
+};
 
 const HIGHLIGHTS = [
   {
@@ -45,6 +59,15 @@ export default function AboutIntro() {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
   const maskImgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
 
+  const shouldReduceMotion = useReducedMotion();
+  // Spread onto the container/each item — empty when reduced motion is
+  // requested, so nothing here animates at all and everything just renders
+  // in its final position immediately.
+  const containerMotionProps = shouldReduceMotion
+    ? {}
+    : { variants: textContainer, initial: 'hidden', whileInView: 'show', viewport: { once: true, margin: '-70px' } };
+  const itemMotionProps = shouldReduceMotion ? {} : { variants: textItem };
+
   return (
     <div
       ref={sectionRef}
@@ -53,7 +76,7 @@ export default function AboutIntro() {
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center relative z-10">
 
         {/* Visual — large logo-shaped mask; the photo inside drifts on scroll */}
-        <Reveal className="lg:col-span-6 flex justify-center lg:justify-start">
+        <Reveal className="lg:col-span-6 flex justify-center lg:justify-start" y={40} duration={1.1}>
           <div className="relative w-[92%] max-w-[440px] lg:max-w-none lg:w-[clamp(360px,38vw,540px)]">
             <div
               className="relative w-full aspect-[1312/1199] bg-[#0B1B2B] overflow-hidden"
@@ -79,27 +102,40 @@ export default function AboutIntro() {
           </div>
         </Reveal>
 
-        {/* Content */}
-        <Reveal delay={0.1} className="lg:col-span-6 space-y-6 text-left">
-          <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#78889B]">
+        {/* Content — staggered cascade: eyebrow, heading, paragraph, highlights
+            and CTA each rise into place in sequence rather than all at once. */}
+        <motion.div className="lg:col-span-6 space-y-6 text-left" {...containerMotionProps}>
+          <motion.p
+            {...itemMotionProps}
+            className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#78889B]"
+          >
             <span className="w-8 h-[2px] bg-[#DC2626]" />
             About Us
-          </p>
+          </motion.p>
 
-          <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
+          <motion.h2
+            {...itemMotionProps}
+            className="text-3xl md:text-4xl lg:text-[2.75rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]"
+          >
             Built on Expertise.
             <br />
             <span className="text-[#1C5CA8]">Driven by Purpose.</span>
-          </h2>
+          </motion.h2>
 
-          <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-xl">
+          <motion.p
+            {...itemMotionProps}
+            className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-xl"
+          >
             Thermal Engitech is a Gujarat-based engineering and manufacturing company delivering
             reliable, efficient thermal and process-heating solutions — steam boilers, thermic
             fluid heaters and heat exchangers, engineered in-house and built to IBR, ASME and
             ISO 9001:2015 standards for customers across India and export markets.
-          </p>
+          </motion.p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2 border-t border-[#0B1B2B]/15">
+          <motion.div
+            {...itemMotionProps}
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2 border-t border-[#0B1B2B]/15"
+          >
             {HIGHLIGHTS.map((h) => (
               <div key={h.title} className="group flex sm:flex-col items-start sm:items-start gap-3 pt-5">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#0B1B2B]/5 text-[#0B1B2B] transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-[#1C5CA8]/8">
@@ -112,16 +148,18 @@ export default function AboutIntro() {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
 
-          <Link
-            to="/about"
-            className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-5 py-2.5 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
-          >
-            <span>Discover Our Story</span>
-            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </Link>
-        </Reveal>
+          <motion.div {...itemMotionProps}>
+            <Link
+              to="/about"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-5 py-2.5 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
+            >
+              <span>Discover Our Story</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Link>
+          </motion.div>
+        </motion.div>
 
       </div>
     </div>
