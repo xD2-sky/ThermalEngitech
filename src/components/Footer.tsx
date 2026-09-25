@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Logo from './Logo';
+import LogoWatermark from './LogoWatermark';
 
 export default function Footer() {
   const quickLinks = [
@@ -28,9 +29,10 @@ export default function Footer() {
     'text-slate-300 hover:text-white transition-colors duration-200 text-[13px]';
 
   return (
-    <footer className="bg-[#0B1B2B] text-slate-300 border-t border-white/10 font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-10 md:gap-8">
+    <footer className="relative overflow-hidden bg-[#0B1B2B] text-slate-300 border-t border-white/10 font-sans">
+      <LogoWatermark position="left" size={750} opacity={0.06} />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-10 md:gap-8 md:divide-x md:divide-white/15">
 
           {/* Company */}
           <div className="col-span-2 md:col-span-4 space-y-5">
