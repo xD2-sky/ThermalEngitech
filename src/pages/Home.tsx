@@ -489,7 +489,7 @@ export default function Home() {
               <div className="lg:col-span-4 lg:text-right">
                 <Link
                   to="/request-quote"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-[#EAF2FB] text-[#103E72] px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   <span>Start a Consultation</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
