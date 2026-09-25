@@ -11,13 +11,13 @@ interface AnimatedCounterProps {
 }
 
 /**
- * Counts up from 0 to `value` each time it scrolls into view (and again on
- * every re-entry, not just the first) — used for the "Why Thermal Engitech"
- * stat numbers.
+ * Counts up from 0 to `value` the first time it scrolls into view, then
+ * holds at the final value — used for the "Why Thermal Engitech" stat
+ * numbers.
  */
 export default function AnimatedCounter({ value, duration = 4, prefix = '', suffix = '', className }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: false, margin: '-60px' });
+  const isInView = useInView(ref, { once: true, margin: '-60px' });
   const shouldReduceMotion = useReducedMotion();
   const [display, setDisplay] = useState(0);
 
