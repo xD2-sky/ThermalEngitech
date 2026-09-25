@@ -479,8 +479,6 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#103E72]/95 via-[#103E72]/70 via-60% to-[#103E72]/15" />
             </div>
 
-            <div className="absolute inset-0 opacity-[0.15] bg-[radial-gradient(circle_at_20%_20%,#ffffff_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true" />
-
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center p-10 md:p-16">
               <div className="lg:col-span-8 space-y-3 text-left">
                 <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-[2.25rem] text-white tracking-[-0.01em] leading-[1.1]">
