@@ -8,6 +8,7 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { Link } from 'react-router-dom';
 import { Target, Compass, Sparkles, Award, BookOpen, ArrowRight } from 'lucide-react';
 import LogoWatermark from '../components/LogoWatermark';
+import AnimatedCounter from '../components/AnimatedCounter';
 
 const PILLARS = [
   {
@@ -135,19 +136,27 @@ export default function AboutUs() {
             {/* Plant stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 border-t border-[#0B1B2B]/15 text-center sm:text-left">
               <div>
-                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">2,000+</span>
+                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">
+                  <AnimatedCounter value={2000} suffix="+" />
+                </span>
                 <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Commissioned plants</span>
               </div>
               <div>
-                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">7,500 m²</span>
+                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">
+                  <AnimatedCounter value={7500} suffix=" m²" />
+                </span>
                 <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Dhamatwan workshop</span>
               </div>
               <div>
-                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">100%</span>
+                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">
+                  <AnimatedCounter value={100} suffix="%" />
+                </span>
                 <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">IBR & ASME compliant</span>
               </div>
               <div>
-                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">12+ years</span>
+                <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">
+                  <AnimatedCounter value={12} suffix="+ years" />
+                </span>
                 <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Industry presence</span>
               </div>
             </div>
