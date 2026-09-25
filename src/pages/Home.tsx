@@ -428,18 +428,18 @@ export default function Home() {
             </Link>
           </Reveal>
 
-          <Reveal delay={0.1} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <Reveal delay={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { label: 'ISO 9001:2015', desc: 'Quality management system', seal: null, mark: 'ISO' },
-              { label: 'ASME', desc: 'Design & fabrication standards', seal: 'asme-cert-seal.png', mark: null },
-              { label: 'IBR 1950', desc: 'Indian Boiler Regulations', seal: null, mark: 'IBR' },
-              { label: 'TEMA', desc: 'Heat exchanger standards', seal: null, mark: 'TEMA' },
+              { label: 'ISO 9001:2015', desc: 'Quality management system', seal: null, icon: ShieldCheck },
+              { label: 'ASME', desc: 'Design & fabrication standards', seal: 'asme-cert-seal.png', icon: null },
+              { label: 'IBR 1950', desc: 'Indian Boiler Regulations', seal: null, icon: Award },
+              { label: 'TEMA', desc: 'Heat exchanger standards', seal: null, icon: Layers },
             ].map((c) => (
               <div
                 key={c.label}
-                className="group flex items-center gap-5 sm:gap-6 bg-white border border-[#E4E7EC] rounded-2xl shadow-sm hover:shadow-md p-6 sm:p-7 transition-all duration-300"
+                className="group flex flex-col items-start gap-4 bg-white border border-[#E4E7EC] rounded-2xl shadow-sm hover:shadow-md p-6 sm:p-7 transition-all duration-300"
               >
-                <div className="shrink-0 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
+                <div className="shrink-0 w-16 h-16 flex items-center justify-center rounded-xl bg-[#1C5CA8]/8">
                   {c.seal ? (
                     <img
                       src={`${import.meta.env.BASE_URL}images/certifications/${c.seal}`}
@@ -447,12 +447,9 @@ export default function Home() {
                       className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
                     />
                   ) : (
-                    <span className="font-heading font-extrabold text-2xl sm:text-3xl text-[#1C5CA8] tracking-tight transition-transform duration-300 group-hover:scale-110">
-                      {c.mark}
-                    </span>
+                    <c.icon className="w-8 h-8 text-[#1C5CA8] transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
                   )}
                 </div>
-                <span className="w-px self-stretch bg-[#E4E7EC]" aria-hidden="true" />
                 <div className="space-y-1 text-left">
                   <p className="font-heading font-bold text-base text-[#0B1B2B]">{c.label}</p>
                   <p className="text-sm text-[#78889B]">{c.desc}</p>
@@ -492,7 +489,7 @@ export default function Home() {
               <div className="lg:col-span-4 lg:text-right">
                 <Link
                   to="/request-quote"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-[#EAF2FB] text-[#103E72] px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   <span>Start a Consultation</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
