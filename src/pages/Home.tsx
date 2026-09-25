@@ -107,7 +107,6 @@ export default function Home() {
       {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
           featured categories show here; the other 4 products live on the Products page. */}
       <div className="relative bg-[#E8F1FB] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <LogoWatermark position="left" size={950} opacity={0.055} />
         {/* No top/bottom fade here by design: the blend into this section lives on
             About Us's own bottom edge (see AboutIntro.tsx), and the transition into
             "Why Thermal Engitech" below is intentionally a clean, default cut. */}
