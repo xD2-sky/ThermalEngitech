@@ -232,42 +232,41 @@ export default function AboutUs() {
 
       {/* Mission — two-column: eyebrow/heading/quote/CTAs on the left, an
           annotated engineering-blueprint illustration of a boiler system on
-          the right, matching a reference layout. Kept on white (rather than
-          the reference's light-blue) since Leadership right above this
-          section already uses the site's one light-blue, and stacking two
-          identical-colored sections back to back would remove the section
-          break between them. */}
-      <div className="bg-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+          the right, matching a reference layout. Gradient (not flat) light-blue
+          so it reads as blue per the reference while still easing in from
+          Leadership's flat #E8F1FB above rather than repeating it exactly —
+          keeps a visible section break between the two. */}
+      <div className="bg-gradient-to-br from-[#E8F1FB] to-white py-24 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-6 space-y-6 text-left">
+          <div className="lg:col-span-6 space-y-7 text-left">
             <div className="flex items-center gap-2.5">
               <span className="w-8 h-[2px] bg-[#DC2626]" />
               <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
                 Our Ongoing Mission
               </p>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+            <h2 className="text-4xl sm:text-5xl md:text-[3.5rem] font-heading font-extrabold tracking-[-0.02em] leading-[1.06]">
               <span className="text-[#0B1B2B]">Engineering a</span>
               <br />
               <span className="text-[#1C5CA8]">cleaner, safer</span>{' '}
               <span className="text-[#0B1B2B]">tomorrow.</span>
             </h2>
-            <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-xl">
+            <p className="text-base sm:text-lg text-[#47566A] leading-relaxed max-w-xl">
               "To manufacture and deploy thermodynamic units that outperform standard parameters, reduce
               ambient emissions to local pollution board standards, and empower chemical, food, and
               textile grids with total thermal security."
             </p>
-            <div className="pt-2 flex items-center gap-3">
+            <div className="pt-2 flex items-center gap-4">
               <Link
                 to="/products"
-                className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-6 py-3 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
+                className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-8 py-4 text-base font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
               >
                 <span>View our products</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center rounded-full border border-[#0B1B2B]/15 bg-white text-[#0B1B2B] hover:border-[#0B1B2B]/40 px-6 py-3 text-sm font-semibold transition-colors duration-200"
+                className="inline-flex items-center rounded-full border border-[#0B1B2B]/15 bg-white text-[#0B1B2B] hover:border-[#0B1B2B]/40 px-8 py-4 text-base font-semibold transition-colors duration-200"
               >
                 Get in touch
               </Link>
@@ -278,7 +277,7 @@ export default function AboutUs() {
             <img
               src={`${base}images/about-mission-blueprint.png`}
               alt="Engineering blueprint of a steam boiler system, annotated with process heating, steam systems and heat recovery capabilities"
-              className="w-full h-auto"
+              className="w-full h-auto scale-110"
             />
             <span className="hidden sm:block absolute left-[2%] top-[10%] text-[#1C5CA8] text-sm sm:text-base italic font-medium" style={{ fontFamily: 'Georgia, serif' }}>
               Process Heating<br />Solutions
