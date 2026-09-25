@@ -355,8 +355,8 @@ export default function Home() {
       {/* Industries We Serve — flat neutral background matching Product Range,
           no photo (replaced per feedback). Equal-sized cards, no large "stage"
           preview — every industry gets the same visual weight. */}
-      <div className="relative bg-[#E8F1FB] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <LogoWatermark position="bottom-right" size={800} opacity={0.05} />
+      <div className="relative bg-[#DCE9F7] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <LogoWatermark position="bottom-right" size={800} opacity={0.08} />
         <div className="max-w-7xl mx-auto space-y-10 relative z-10">
           <Reveal className="max-w-2xl space-y-4 text-center mx-auto">
             <p className="flex items-center justify-center gap-2 text-sm text-[#78889B]">
@@ -367,11 +367,11 @@ export default function Home() {
               Industries we serve
             </h2>
             <p className="text-[#47566A] text-sm leading-relaxed">
-              Fourteen industries, one requirement in common: heat that can't fail.
+              Fifteen industries, one requirement in common: heat that can't fail.
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 lg:gap-6">
             {INDUSTRIES_SERVED.map((ind, i) => {
               const Icon = INDUSTRY_ICONS[ind.icon] ?? Factory;
               return (
@@ -380,13 +380,13 @@ export default function Home() {
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, margin: '-50px' }}
-                  transition={{ duration: 0.4, delay: (i % 7) * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                  className="rounded-xl border border-[#0B1B2B]/10 bg-white shadow-[0_1px_3px_rgba(11,27,43,0.06)] p-5 flex flex-col items-center text-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_30px_-12px_rgba(28,92,168,0.2)] hover:border-[#1C5CA8]/30"
+                  transition={{ duration: 0.4, delay: (i % 5) * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                  className="rounded-xl border border-[#0B1B2B]/10 bg-white shadow-[0_1px_3px_rgba(11,27,43,0.06)] p-6 flex flex-col items-center text-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_30px_-12px_rgba(28,92,168,0.2)] hover:border-[#1C5CA8]/30"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#1C5CA8]/8 text-[#1C5CA8]">
-                    <Icon className="w-5 h-5" strokeWidth={1.75} />
+                  <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-[#1C5CA8]/8 text-[#1C5CA8]">
+                    <Icon className="w-6 h-6" strokeWidth={1.75} />
                   </span>
-                  <span className="font-heading font-bold text-xs text-[#0B1B2B] leading-tight">{ind.name}</span>
+                  <span className="font-heading font-bold text-sm text-[#0B1B2B] leading-tight">{ind.name}</span>
                 </motion.div>
               );
             })}
