@@ -464,25 +464,24 @@ export default function Home() {
       </div>
 
       {/* Quote CTA — premium blue gradient panel with a real industrial photo
-          integrated into the right side (horizontal gradient blend, not a
-          separate inset rectangle), matching Why Thermal Engitech's approach
-          of blending this same verified photo into a solid background. */}
+          filling the entire panel, tinted by a gradient scrim so the white
+          text and button stay legible over it. */}
       <div className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Reveal className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#103E72] via-[#1C5CA8] to-[#2F7BD4] shadow-xl shadow-[#1C5CA8]/20">
-            <div className="absolute inset-0 opacity-[0.15] bg-[radial-gradient(circle_at_20%_20%,#ffffff_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true" />
-
-            <div className="absolute inset-y-0 right-0 w-[42%] hidden lg:block">
+            <div className="absolute inset-0">
               <img
                 src={`${import.meta.env.BASE_URL}images/about-logo-photo.jpg`}
                 alt=""
                 aria-hidden="true"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-[center_68%]"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#103E72] via-[#103E72]/45 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#103E72]/95 via-[#103E72]/70 via-60% to-[#103E72]/15" />
             </div>
 
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center p-8 md:p-11">
+            <div className="absolute inset-0 opacity-[0.15] bg-[radial-gradient(circle_at_20%_20%,#ffffff_1px,transparent_1px)] [background-size:22px_22px]" aria-hidden="true" />
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center p-10 md:p-16">
               <div className="lg:col-span-8 space-y-3 text-left">
                 <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-[2.25rem] text-white tracking-[-0.01em] leading-[1.1]">
                   Let's plan your next project together.
