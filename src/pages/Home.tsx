@@ -405,9 +405,9 @@ export default function Home() {
           licensed source files for those organizations' exact trademarked
           artwork, and no Indian State Emblem regardless of genuine IBR
           compliance (its use is legally restricted independent of that). */}
-      <div className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white pt-16 sm:pt-20 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <Reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+          <Reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <div className="space-y-3">
               <div className="flex items-center gap-2.5">
                 <span className="w-8 h-[2px] bg-[#DC2626]" />
@@ -428,7 +428,7 @@ export default function Home() {
             </Link>
           </Reveal>
 
-          <Reveal delay={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <Reveal delay={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
             {[
               { label: 'ISO 9001:2015', desc: 'Quality management system', seal: null, icon: ShieldCheck },
               { label: 'ASME', desc: 'Design & fabrication standards', seal: 'asme-cert-seal.png', icon: null },
@@ -437,7 +437,7 @@ export default function Home() {
             ].map((c) => (
               <div
                 key={c.label}
-                className="group flex flex-col items-start gap-4 bg-white border border-[#E4E7EC] rounded-2xl shadow-sm hover:shadow-md p-6 sm:p-7 transition-all duration-300"
+                className="group flex flex-col items-start gap-5 bg-white border border-[#E4E7EC] rounded-2xl shadow-sm hover:shadow-md p-7 sm:p-8 transition-all duration-300"
               >
                 <div className="shrink-0 w-16 h-16 flex items-center justify-center rounded-xl bg-[#1C5CA8]/8">
                   {c.seal ? (
@@ -463,7 +463,7 @@ export default function Home() {
       {/* Quote CTA — premium blue gradient panel with a real industrial photo
           filling the entire panel, tinted by a gradient scrim so the white
           text and button stay legible over it. */}
-      <div className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white pt-10 sm:pt-12 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Reveal className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#103E72] via-[#1C5CA8] to-[#2F7BD4] shadow-xl shadow-[#1C5CA8]/20">
             <div className="absolute inset-0">
