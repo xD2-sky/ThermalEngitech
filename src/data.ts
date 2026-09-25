@@ -455,16 +455,17 @@ export const INDUSTRIES = [
 // lucide-react icons in the component that renders this.
 export const INDUSTRIES_SERVED = [
   { name: 'Chemical Plants', icon: 'FlaskConical' },
+  { name: 'Copper Plants', icon: 'Zap' },
   { name: 'Dairy Units', icon: 'Milk' },
   { name: 'Distillery Plants', icon: 'Wine' },
   { name: 'Food Industry', icon: 'UtensilsCrossed' },
+  { name: 'Investment Casting Units', icon: 'Flame' },
   { name: 'Packaging Units', icon: 'Package' },
   { name: 'Paper Mills', icon: 'Newspaper' },
   { name: 'Pharma Industry', icon: 'Pill' },
   { name: 'Plywood Industry', icon: 'TreePine' },
   { name: 'Rice Mills', icon: 'Wheat' },
   { name: 'Rubber Industry', icon: 'CircleDot' },
-  { name: 'Sponge Iron Units', icon: 'Flame' },
   { name: 'Solvent Plants', icon: 'Beaker' },
   { name: 'Sugar Mill & Industry', icon: 'Candy' },
   { name: 'Textile Units', icon: 'Shirt' }

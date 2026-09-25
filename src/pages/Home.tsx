@@ -36,13 +36,14 @@ import {
   CircleDot,
   Beaker,
   Candy,
-  Shirt
+  Shirt,
+  Zap
 } from 'lucide-react';
 
 // Explicit map (not a wildcard import) so unused lucide icons still tree-shake out of the bundle.
 const INDUSTRY_ICONS: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
   FlaskConical, Milk, Wine, UtensilsCrossed, Package, Newspaper, Pill,
-  TreePine, Wheat, CircleDot, Flame, Beaker, Candy, Shirt
+  TreePine, Wheat, CircleDot, Flame, Beaker, Candy, Shirt, Zap
 };
 
 const PRODUCT_CATEGORIES = [
