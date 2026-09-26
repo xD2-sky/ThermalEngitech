@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
+import Reveal from '../components/Reveal';
 import { CERTIFICATIONS, DESIGN_CODES } from '../data';
 import { 
   BadgeCheck, 
@@ -48,9 +49,10 @@ export default function Certifications() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
           {CERTIFICATIONS.map((cert, i) => (
-            <div 
-              key={i}
-              className="bg-white border border-[#E1E4E3] p-6 md:p-8 rounded-lg shadow-sm hover:shadow transition duration-200 flex flex-col justify-between h-full group hover:border-[#1C5CA8]/35"
+            <React.Fragment key={cert.title}>
+            <Reveal
+              delay={(i % 2) * 0.08}
+              className="bg-white border border-[#E1E4E3] p-6 md:p-8 rounded-lg shadow-sm hover:shadow transition duration-200 flex flex-col justify-between h-full group hover:border-[#1C5CA8]/35 hover:-translate-y-0.5"
             >
               <div className="space-y-4">
                 <div className="w-12 h-12 bg-[#1C5CA8]/10 rounded-xl flex items-center justify-center text-[#1C5CA8]">
@@ -68,12 +70,13 @@ export default function Certifications() {
                 <span>GOVERNING BODY:</span>
                 <span className="text-[#1C5CA8] text-[11px] font-bold">{cert.authority}</span>
               </div>
-            </div>
+            </Reveal>
+            </React.Fragment>
           ))}
         </div>
 
         {/* Design codes & standards actually referenced in engineering */}
-        <div className="bg-white border border-[#E1E4E3] rounded-lg p-6 md:p-8 space-y-8 shadow-xs text-left">
+        <Reveal className="bg-white border border-[#E1E4E3] rounded-lg p-6 md:p-8 space-y-8 shadow-xs text-left">
           <div className="space-y-2 border-b border-slate-100 pb-4">
             <h3 className="font-heading font-extrabold text-lg text-[#0B1B2B] flex items-center gap-2">
               <FileCheck className="w-5 h-5 text-[#1C5CA8]" />
@@ -97,10 +100,10 @@ export default function Certifications() {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
 
         {/* Compliance checklist declarations */}
-        <div className="bg-[#0B1B2B] text-white rounded-lg p-6 md:p-8 space-y-6 relative overflow-hidden border border-white/5 shadow-md">
+        <Reveal className="bg-[#0B1B2B] text-white rounded-lg p-6 md:p-8 space-y-6 relative overflow-hidden border border-white/5 shadow-md">
           <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]" />
           <div className="relative z-10 max-w-4xl space-y-4 text-left">
             <h4 className="font-heading font-extrabold text-lg text-white flex items-center gap-1.5 uppercase tracking-wide">
@@ -116,7 +119,7 @@ export default function Certifications() {
               <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> ASME U & S compliance capabilities</span>
             </div>
           </div>
-        </div>
+        </Reveal>
 
       </div>
 

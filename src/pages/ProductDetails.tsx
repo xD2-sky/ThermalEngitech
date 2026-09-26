@@ -10,6 +10,7 @@ import { PRODUCTS } from '../data';
 import { slugify, productsInCategory } from '../catalog';
 import ProductVideoShowcase from '../components/ProductVideoShowcase';
 import { ArrowLeft, ShieldCheck, Cpu, CheckCircle, Mail, Phone, CheckCircle2, ChevronRight } from 'lucide-react';
+import Reveal from '../components/Reveal';
 
 // Re-using CAD layout illustrations for high-contrast detail views
 function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'generator' | 'exchanger' | 'prs' | 'preheater' | 'pollution' | 'other'; productId?: string }) {
@@ -262,7 +263,7 @@ export default function ProductDetails() {
     contactPerson: '',
     email: '',
     phone: '',
-    capacity: '2.5 Tons/hr',
+    capacity: 'Under 1.0 Ton / Hour',
     message: ''
   });
 
@@ -290,7 +291,6 @@ export default function ProductDetails() {
   const handleInquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.companyName || !formData.contactPerson || !formData.email || !formData.phone) {
-      alert('Please fill out all contact fields.');
       return;
     }
 
@@ -344,7 +344,7 @@ export default function ProductDetails() {
         <div className="lg:col-span-7 space-y-10">
           
           {/* Header */}
-          <div className="space-y-4">
+          <Reveal className="space-y-4">
             <span className="text-xs font-mono font-bold tracking-wider text-[#1C5CA8] bg-[#1C5CA8]/10 px-3 py-1.5 rounded-full uppercase">
               {product.category}
             </span>
@@ -354,15 +354,15 @@ export default function ProductDetails() {
             <p className="text-[#1C5CA8] text-sm md:text-base font-semibold font-sans leading-relaxed">
               "{product.tagline}"
             </p>
-          </div>
+          </Reveal>
 
           {/* Large Scale CAD View Canvas overlay */}
-          <div className="bg-white border border-[#E1E4E3] rounded-lg p-8 flex items-center justify-center relative shadow-xs min-h-[300px]">
+          <Reveal delay={0.05} className="bg-white border border-[#E1E4E3] rounded-lg p-8 flex items-center justify-center relative shadow-xs min-h-[300px]">
             <ProductImageLarge type={product.imageType} productId={product.id} />
             <span className="absolute bottom-4 left-4 bg-slate-100 font-mono text-[9px] text-[#78889B] uppercase tracking-widest px-2.5 py-1 rounded">
               High Resolution Schematic CAD Layout
             </span>
-          </div>
+          </Reveal>
 
           {/* Video Showcase (Only for Steam Boilers and Thermic Fluid Heaters) */}
           {(product.category === 'Steam Boilers' || product.category === 'Thermic Fluid Heaters') && (
@@ -370,17 +370,17 @@ export default function ProductDetails() {
           )}
 
           {/* Sizing description breakdown */}
-          <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg space-y-4">
+          <Reveal delay={0.1} className="bg-white border border-[#E1E4E3] p-6 rounded-lg space-y-4">
             <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 pb-3">
               Design & Operations Overview
             </h3>
             <p className="text-xs text-[#47566A] leading-relaxed font-sans">
               {product.description}
             </p>
-          </div>
+          </Reveal>
 
           {/* Technical specifications — the data existed but was never surfaced before */}
-          <div className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden">
+          <Reveal delay={0.1} className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden">
             <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 px-6 pt-6 pb-3">
               Technical Specifications
             </h3>
@@ -395,10 +395,10 @@ export default function ProductDetails() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
 
           {/* Features and standards ticks */}
-          <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg space-y-6">
+          <Reveal delay={0.15} className="bg-white border border-[#E1E4E3] p-6 rounded-lg space-y-6">
             <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 pb-3 flex items-center gap-2">
               <Cpu className="w-4 h-4 text-[#1C5CA8]" />
               <span>Key Performance Features</span>
@@ -411,9 +411,7 @@ export default function ProductDetails() {
                 </div>
               ))}
             </div>
-          </div>
-
-
+          </Reveal>
 
         </div>
 
@@ -421,7 +419,7 @@ export default function ProductDetails() {
         <div className="lg:col-span-5 space-y-8">
           
           {/* Quick specs short highlight */}
-          <div className="bg-[#0D1B2A] text-white p-6 rounded-lg space-y-4 border border-white/5 relative overflow-hidden shadow-md">
+          <Reveal className="bg-[#0D1B2A] text-white p-6 rounded-lg space-y-4 border border-white/5 relative overflow-hidden shadow-md">
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
             <div className="relative z-10 space-y-3 text-left">
               <span className="text-[10px] uppercase font-mono font-extrabold text-[#7FB2E4] tracking-wider">
@@ -436,10 +434,10 @@ export default function ProductDetails() {
                 <span>Guaranteed joint radiography audits</span>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Form container */}
-          <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-sm space-y-6 text-left">
+          <Reveal delay={0.05} className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-sm space-y-6 text-left">
             <div className="space-y-1 border-b border-slate-100 pb-3">
               <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">Send Quick Enquiry</h4>
               <p className="text-[11px] text-[#78889B] font-sans">
@@ -564,10 +562,10 @@ export default function ProductDetails() {
 
               </form>
             )}
-          </div>
+          </Reveal>
 
           {/* Quick contact helpline */}
-          <div className="bg-slate-100 border border-[#E1E4E3] rounded-lg p-6 text-left space-y-4">
+          <Reveal delay={0.1} className="bg-slate-100 border border-[#E1E4E3] rounded-lg p-6 text-left space-y-4">
             <h5 className="font-heading font-bold text-xs text-[#0B1B2B] uppercase tracking-wider">Helpline</h5>
             <div className="space-y-3 font-sans text-xs">
               <div className="flex items-center gap-2 text-[#47566A]">
@@ -582,7 +580,7 @@ export default function ProductDetails() {
             <p className="text-[10px] text-[#78889B] font-medium leading-relaxed font-sans pt-1 border-t border-slate-200">
               Technical proposals returned within 24 business hours.
             </p>
-          </div>
+          </Reveal>
 
         </div>
 

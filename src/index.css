@@ -142,29 +142,6 @@ h1 { font-weight: 800; letter-spacing: -0.028em; }
   70%      { opacity: 0.7;  transform: scale(1.02); }
 }
 
-/* Hero: rising steam plumes */
-.steam-plume {
-  position: absolute;
-  bottom: -8%;
-  width: clamp(220px, 26vw, 460px);
-  height: clamp(220px, 26vw, 460px);
-  border-radius: 50%;
-  background: radial-gradient(circle at 50% 60%, rgba(255,255,255,0.35), rgba(255,255,255,0) 62%);
-  filter: blur(26px);
-  opacity: 0;
-  will-change: transform, opacity;
-}
-.steam-1 { left: 10%; animation: steamRise 13s ease-in-out infinite; }
-.steam-2 { left: 34%; animation: steamRise 17s ease-in-out 3s infinite; }
-.steam-3 { left: 60%; animation: steamRise 15s ease-in-out 6s infinite; }
-.steam-4 { left: 80%; animation: steamRise 19s ease-in-out 1.5s infinite; }
-@keyframes steamRise {
-  0%   { transform: translateY(0) scale(0.7); opacity: 0; }
-  15%  { opacity: 0.5; }
-  60%  { opacity: 0.35; }
-  100% { transform: translateY(-88vh) scale(1.7); opacity: 0; }
-}
-
 /* Hero: scroll cue line */
 .animate-scrollcue { animation: scrollcue 2s ease-in-out infinite; transform-origin: top; }
 @keyframes scrollcue {

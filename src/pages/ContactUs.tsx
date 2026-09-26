@@ -6,6 +6,7 @@
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import CompanyMap from '../components/CompanyMap';
+import Reveal from '../components/Reveal';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 
 export default function ContactUs() {
@@ -59,9 +60,9 @@ export default function ContactUs() {
         
         {/* Left Column (Coordinates and Hours) */}
         <div className="lg:col-span-4 space-y-8 text-left">
-          
+
           {/* Main physical site */}
-          <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4">
+          <Reveal className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4">
             <h3 className="font-heading font-extrabold text-[#0B1B2B] text-sm uppercase tracking-wider border-b border-slate-100 pb-3">
               Corporate Office & Plant
             </h3>
@@ -84,10 +85,10 @@ export default function ContactUs() {
                 <span>info@thermalengitech.com</span>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Plant Operational Hours */}
-          <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4 text-left">
+          <Reveal delay={0.08} className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4 text-left">
             <h3 className="font-heading font-extrabold text-[#0B1B2B] text-sm uppercase tracking-wider border-b border-slate-100 pb-3 flex items-center gap-2">
               <Clock className="w-4 h-4 text-[#1C5CA8]" />
               <span>Operational Hours</span>
@@ -107,26 +108,26 @@ export default function ContactUs() {
                 <span>Plant Closed</span>
               </div>
             </div>
-            
+
             <p className="text-[10px] text-[#78889B] leading-relaxed font-sans pt-1">
               * Critical breakdowns and troubleshooting hotlines remain accessible on a 24/7 cycle for registered contractual clients.
             </p>
-          </div>
+          </Reveal>
 
           {/* Success timeline */}
-          <div className="bg-[#1C5CA8]/5 border border-[#1C5CA8]/20 p-6 rounded-lg text-left space-y-2.5 font-sans">
+          <Reveal delay={0.16} className="bg-[#1C5CA8]/5 border border-[#1C5CA8]/20 p-6 rounded-lg text-left space-y-2.5 font-sans">
             <h5 className="font-bold text-xs text-[#0B1B2B] uppercase tracking-wide">Estimates Response Guarantee</h5>
             <p className="text-xs text-[#47566A] leading-normal">
               Sizing calculations and a full bill of material — delivered within 24 working hours.
             </p>
-          </div>
+          </Reveal>
 
         </div>
 
         {/* Right Column (Sales Coordinators and Live Map) */}
         <div className="lg:col-span-8 space-y-8 text-left">
           
-          <div className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-6">
+          <Reveal className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-6">
             <div className="border-b border-slate-100 pb-3">
               <h3 className="font-heading font-extrabold text-base text-[#0B1B2B]">
                 Key Department Representatives
@@ -138,7 +139,7 @@ export default function ContactUs() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {contacts.map((c, i) => (
-                <div key={i} className="bg-slate-50 border border-slate-100 p-4 rounded-xl space-y-3 font-sans text-xs text-left">
+                <div key={i} className="bg-slate-50 border border-slate-100 hover:border-[#1C5CA8]/30 hover:shadow-sm p-4 rounded-xl space-y-3 font-sans text-xs text-left transition-all duration-200">
                   <span className="text-[9.5px] font-mono font-bold text-[#1C5CA8] uppercase tracking-wider block border-b border-slate-200 pb-1.5">
                     {c.title}
                   </span>
@@ -152,9 +153,11 @@ export default function ContactUs() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <CompanyMap />
+          <Reveal delay={0.1}>
+            <CompanyMap />
+          </Reveal>
 
         </div>
 

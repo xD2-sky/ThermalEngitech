@@ -34,20 +34,18 @@ export default function Navbar() {
     return location.pathname.startsWith(path);
   };
 
-  // Home and About have a light-toned top (hero photo / sky photo), so the
-  // navbar's original dark text reads fine over them while unscrolled. Every
-  // other route has a dark banner at the top, so the unscrolled navbar needs
-  // light text there instead — once scrolled, every route converges on the
-  // same white/blurred bar with dark text, unchanged.
-  // Product category and product detail pages have a plain light page
-  // background behind the navbar (their content starts below a breadcrumb
-  // bar, not a dark banner) — unlike the /products index itself, which has
-  // a dark banner like Manufacturing/Certifications/Contact/Request Quote.
-  const isLightHeroRoute =
-    location.pathname === '/' ||
-    location.pathname === '/about' ||
-    (location.pathname.startsWith('/products/') && location.pathname !== '/products/');
-  const useDarkText = scrolled || isLightHeroRoute;
+  // Most routes (Home, About, product detail pages, and any unmatched/404
+  // route) have a plain light page background behind the navbar, so the
+  // navbar's original dark text reads fine over them while unscrolled.
+  // Only these specific routes have a dark full-bleed photo banner at the
+  // top instead, so the unscrolled navbar needs light text there — once
+  // scrolled, every route converges on the same white/blurred bar with dark
+  // text, unchanged.
+  const DARK_BANNER_ROUTES = ['/products', '/manufacturing', '/certifications', '/contact', '/request-quote'];
+  const isDarkBannerRoute =
+    DARK_BANNER_ROUTES.includes(location.pathname) ||
+    location.pathname.startsWith('/products/category/');
+  const useDarkText = scrolled || !isDarkBannerRoute;
 
   return (
     <nav

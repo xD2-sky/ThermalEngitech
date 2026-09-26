@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import { Link } from 'react-router-dom';
+import Reveal from '../components/Reveal';
 import { MANUFACTURING_STEPS, SHOP_CAPABILITIES, DESIGN_CAPABILITIES } from '../data';
 import { Settings, ShieldCheck, HardHat, PenTool, Cpu } from 'lucide-react';
 
@@ -44,7 +44,7 @@ export default function Manufacturing() {
         
         {/* Left Column (Narrative and equipment table) */}
         <div className="lg:col-span-7 space-y-10">
-          <div className="space-y-4">
+          <Reveal className="space-y-4">
             <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
               Production Machinery
             </p>
@@ -54,9 +54,9 @@ export default function Manufacturing() {
             <p className="text-xs text-[#47566A] leading-relaxed font-sans">
               Standardized fabrication under clear procedural guidelines — material durability, geometric centering, and structural joint unity on every unit.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs">
+          <Reveal delay={0.05} className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs">
             <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
               <h3 className="text-xs uppercase font-mono font-bold text-[#0B1B2B] flex items-center gap-2">
                 <HardHat className="w-4 h-4 text-[#1C5CA8]" />
@@ -75,10 +75,10 @@ export default function Manufacturing() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
 
           {/* Design & Engineering Capabilities — real data from the facility's documented infrastructure */}
-          <div className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs">
+          <Reveal delay={0.1} className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs">
             <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
               <h3 className="text-xs uppercase font-mono font-bold text-[#0B1B2B] flex items-center gap-2">
                 <PenTool className="w-4 h-4 text-[#1C5CA8]" />
@@ -115,11 +115,11 @@ export default function Manufacturing() {
                 </ul>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Right Column (Standard Quality Assurance Accreditations summary) */}
-        <div className="lg:col-span-5 bg-white border border-[#E1E4E3] rounded-lg p-6 md:p-8 space-y-6 self-start shadow-xs text-left">
+        <Reveal delay={0.15} className="lg:col-span-5 bg-white border border-[#E1E4E3] rounded-lg p-6 md:p-8 space-y-6 self-start shadow-xs text-left">
           <div className="p-3 bg-[#1C5CA8]/10 rounded-xl text-[#1C5CA8] w-12 h-12 flex items-center justify-center">
             <ShieldCheck className="w-6 h-6" />
           </div>
@@ -147,14 +147,14 @@ export default function Manufacturing() {
               <span><strong>Form VI Approval:</strong> Issued by State Boiler Inspectors after hydrostatic testing.</span>
             </li>
           </ul>
-        </div>
+        </Reveal>
 
       </div>
 
       {/* Assembly Steps Flowchart Section */}
       <div className="bg-slate-100 py-20 px-4 sm:px-6 lg:px-8 border-t border-[#E1E4E3]">
         <div className="max-w-7xl mx-auto space-y-16">
-          <div className="text-center max-w-3xl mx-auto space-y-4">
+          <Reveal className="text-center max-w-3xl mx-auto space-y-4">
             <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
               Production Steps
             </p>
@@ -164,13 +164,14 @@ export default function Manufacturing() {
             <p className="text-[#47566A] text-sm">
               Raw boiler-grade steel to finished, certified system — six stages.
             </p>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
             {MANUFACTURING_STEPS.map((step, i) => (
-              <div 
-                key={i}
-                className="bg-white border border-[#E1E4E3] p-6 rounded-lg hover:border-[#1C5CA8]/35 transition shadow-sm space-y-3.5 flex flex-col justify-between"
+              <React.Fragment key={step.step}>
+              <Reveal
+                delay={(i % 3) * 0.08}
+                className="bg-white border border-[#E1E4E3] p-6 rounded-lg hover:border-[#1C5CA8]/35 hover:-translate-y-0.5 transition shadow-sm space-y-3.5 flex flex-col justify-between"
               >
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -185,7 +186,8 @@ export default function Manufacturing() {
                 <div className="pt-3 border-t border-slate-100 mt-2 text-[10px] font-mono text-[#78889B] uppercase tracking-tight">
                   Status: 100% Quality Audited
                 </div>
-              </div>
+              </Reveal>
+              </React.Fragment>
             ))}
           </div>
         </div>

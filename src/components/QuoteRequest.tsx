@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Inquiry } from '../types';
 import { PRODUCTS } from '../data';
+import Reveal from './Reveal';
 import { ChevronRight, Clipboard, ShieldCheck, CheckCircle } from 'lucide-react';
 
 interface QuoteRequestProps {
@@ -21,7 +22,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
     email: '',
     phone: '',
     requiredProduct: presetProductName || 'Oil / Gas Fired 3-Pass Fully Wet Back Steam Boiler',
-    capacity: '2.5 Tons/hr',
+    capacity: '',
     message: ''
   });
 
@@ -69,7 +70,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
     <div id="contact" className="space-y-12 font-sans py-4">
       
       {/* Intro section */}
-      <div className="text-center max-w-3xl mx-auto space-y-4">
+      <Reveal className="text-center max-w-3xl mx-auto space-y-4">
         <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
           Industrial Project Integration
         </p>
@@ -79,12 +80,12 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
         <p className="text-[#0B1B2B] text-sm max-w-2xl mx-auto leading-relaxed">
           Submit your specs — get a verified proposal and estimate within 24 business hours.
         </p>
-      </div>
+      </Reveal>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-7xl mx-auto">
-        
+
         {/* Contact Form Controls (7 Columns) */}
-        <div className="lg:col-span-7 bg-white border border-[#E1E4E3] rounded-xl p-6 md:p-8 shadow-sm relative overflow-hidden">
+        <Reveal delay={0.05} className="lg:col-span-7 bg-white border border-[#E1E4E3] rounded-xl p-6 md:p-8 shadow-sm relative overflow-hidden">
           
           {submittedTicket && (
             <div className="absolute inset-0 bg-white/98 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 animate-fadeIn">
@@ -215,12 +216,12 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             </button>
           </form>
 
-        </div>
+        </Reveal>
 
         {/* Quality/Inspection Mandates (5 Columns) */}
         <div className="lg:col-span-5 space-y-6">
-          
-          <div className="bg-white border border-[#E1E4E3] rounded-xl p-6 space-y-5 text-left">
+
+          <Reveal delay={0.1} className="bg-white border border-[#E1E4E3] rounded-xl p-6 space-y-5 text-left">
             <h3 className="text-md font-heading font-bold text-[#0B1B2B] flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-[#1C5CA8]" />
               Quality Inspection Mandates
@@ -250,7 +251,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 <p className="text-[11px] text-[#78889B] mt-0.5">Dual-cycle hydro checks of completed boiler shells conducted at 1.5x design pressure limits.</p>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Active Queued Session Tickets */}
           {savedInquiries.length > 0 && (

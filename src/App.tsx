@@ -20,6 +20,7 @@ import Manufacturing from './pages/Manufacturing';
 import Certifications from './pages/Certifications';
 import ContactUs from './pages/ContactUs';
 import RequestQuote from './pages/RequestQuote';
+import NotFound from './pages/NotFound';
 
 import { MessageCircle, Phone } from 'lucide-react';
 
@@ -47,6 +48,7 @@ export default function App() {
             <Route path="/certifications" element={<Certifications />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/request-quote" element={<RequestQuote />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
 
