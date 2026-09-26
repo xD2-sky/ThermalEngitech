@@ -184,7 +184,7 @@ export default function AboutUs() {
       </div>
 
       {/* Leadership */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-[#E8F1FB] overflow-hidden">
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-12 relative z-10">
 
           <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -230,11 +230,11 @@ export default function AboutUs() {
 
       {/* Mission — two-column: eyebrow/heading/quote/CTAs on the left, an
           annotated engineering-blueprint illustration of a boiler system on
-          the right, matching a reference layout. Gradient (not flat) light-blue
-          so it reads as blue per the reference while still easing in from
-          Leadership's flat #E8F1FB above rather than repeating it exactly —
-          keeps a visible section break between the two. */}
-      <div className="bg-gradient-to-br from-[#E8F1FB] to-white py-24 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
+          the right, matching a reference layout. Plain white, matching the
+          crisp white-body treatment used sitewide (Manufacturing/
+          Certifications/Contact) — Leadership's own border-y above already
+          provides the section break, since both are now flat white. */}
+      <div className="bg-white py-24 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-6 space-y-7 text-left">
             <div className="flex items-center gap-2.5">
@@ -277,7 +277,7 @@ export default function AboutUs() {
               alt="Engineering blueprint of a steam boiler system, annotated with process heating, steam systems and heat recovery capabilities"
               className="w-full h-auto scale-110"
             />
-            <span className="hidden sm:block absolute left-[2%] top-[10%] text-[#1C5CA8] text-sm sm:text-base italic font-medium" style={{ fontFamily: 'Georgia, serif' }}>
+            <span className="hidden sm:block absolute left-[2%] top-[10%] text-[#1C5CA8] text-sm sm:text-base italic font-medium">
               Process Heating<br />Solutions
             </span>
           </div>

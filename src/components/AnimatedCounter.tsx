@@ -17,7 +17,7 @@ interface AnimatedCounterProps {
  */
 export default function AnimatedCounter({ value, duration = 4, prefix = '', suffix = '', className }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-60px' });
+  const isInView = useInView(ref, { once: true, margin: '0px 0px 150px 0px' });
   const shouldReduceMotion = useReducedMotion();
   const [display, setDisplay] = useState(0);
 
