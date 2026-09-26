@@ -300,8 +300,8 @@ export default function Home() {
                 style={{ clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0% 100%)' }}
               >
                 <img
-                  src={`${import.meta.env.BASE_URL}images/about-logo-photo.jpg`}
-                  alt="Industrial process-heating pipework against an open sky"
+                  src={`${import.meta.env.BASE_URL}images/hero-steel-vessel.jpg`}
+                  alt="Precision-engineered steel pressure vessel"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -358,10 +358,12 @@ export default function Home() {
         <LogoWatermark position="bottom-right" size={800} opacity={0.08} />
         <div className="max-w-7xl mx-auto space-y-10 relative z-10">
           <Reveal className="max-w-2xl space-y-4 text-center mx-auto">
-            <p className="flex items-center justify-center gap-2 text-sm text-[#78889B]">
-              <span className="text-[#1C5CA8]">•</span>
-              Where our systems run
-            </p>
+            <div className="flex items-center justify-center gap-2.5">
+              <span className="w-8 h-[2px] bg-[#DC2626]" />
+              <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
+                Where our systems run
+              </p>
+            </div>
             <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.05]">
               Industries we serve
             </h2>
@@ -467,10 +469,10 @@ export default function Home() {
           <Reveal className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#103E72] via-[#1C5CA8] to-[#2F7BD4] shadow-xl shadow-[#1C5CA8]/20">
             <div className="absolute inset-0">
               <img
-                src={`${import.meta.env.BASE_URL}images/about-logo-photo.jpg`}
+                src={`${import.meta.env.BASE_URL}images/hero-boiler-room.jpg`}
                 alt=""
                 aria-hidden="true"
-                className="w-full h-full object-cover object-[center_68%]"
+                className="w-full h-full object-cover object-[center_40%]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#103E72]/95 via-[#103E72]/70 via-60% to-[#103E72]/15" />
             </div>

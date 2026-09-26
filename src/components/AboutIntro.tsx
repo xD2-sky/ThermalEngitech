@@ -77,7 +77,7 @@ export default function AboutIntro() {
 
         {/* Visual — large logo-shaped mask; the photo inside drifts on scroll */}
         <Reveal className="lg:col-span-6 flex justify-center lg:justify-start" y={40} duration={1.1}>
-          <div className="relative w-[92%] max-w-[440px] lg:max-w-none lg:w-[clamp(360px,38vw,540px)]">
+          <div className="relative w-[92%] max-w-[480px] lg:max-w-none lg:w-[clamp(420px,46vw,620px)]">
             <div
               className="relative w-full aspect-[1312/1199] bg-[#0B1B2B] overflow-hidden"
               style={{
