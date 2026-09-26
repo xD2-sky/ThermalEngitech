@@ -12,7 +12,8 @@ import { ArrowRight, Compass } from 'lucide-react';
 export default function NotFound() {
   useDocumentMeta(
     'Page Not Found',
-    'The page you are looking for does not exist or has been moved.'
+    'The page you are looking for does not exist or has been moved.',
+    { noindex: true }
   );
 
   return (

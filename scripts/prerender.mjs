@@ -81,6 +81,16 @@ const sitemap =
 writeFileSync(join(DIST, 'sitemap.xml'), sitemap);
 console.log(`[prerender] wrote sitemap.xml (${routes.length} urls)`);
 
+// GitHub Pages (unlike the Hostinger .htaccess above) has no rewrite rules —
+// it serves this file's content, unmodified, for any URL that isn't a real
+// file, while leaving the actual requested URL in the address bar. Copying
+// the plain app shell here (before the loop below overwrites dist/index.html
+// with prerendered Home markup) means client-side React Router still reads
+// the real location and renders the right route, including the branded 404
+// page for a genuinely unmatched path.
+writeFileSync(join(DIST, '404.html'), readFileSync(join(DIST, 'index.html'), 'utf8'));
+console.log('[prerender] wrote 404.html (GitHub Pages SPA fallback)');
+
 if (!CHROME) {
   console.warn('[prerender] No Chrome binary found — skipping HTML prerender (SPA fallback still works).');
   process.exit(0);
