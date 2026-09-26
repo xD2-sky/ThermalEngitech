@@ -18,27 +18,24 @@ export default function Manufacturing() {
   return (
     <div className="space-y-0 text-left bg-white min-h-screen">
       
-      {/* Banner — light-blue, matching the site-wide rhythm */}
-      <div className="bg-[#E8F1FB] text-[#0B1B2B] border-b border-[#E4E7EC] relative overflow-hidden">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-14 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7 space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
-              Dhamatwan Workshop Facility
-            </p>
-            <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-tight">
-              Inside Our Manufacturing Facility
-            </h1>
-            <p className="text-[#47566A] text-sm max-w-3xl leading-relaxed">
-              7,500 m² in Dhamatwan, Gujarat — approved under IBR 1950 to roll, weld, and inspect heavy-duty thermal systems.
-            </p>
-          </div>
-          <div className="lg:col-span-5 hidden lg:flex justify-center">
-            <img
-              src={`${import.meta.env.BASE_URL}images/products/steam-boiler-skid.png`}
-              alt="Completed steam boiler skid on the Dhamatwan shop floor"
-              className="w-full max-w-sm h-auto drop-shadow-[0_25px_40px_rgba(11,27,43,0.15)]"
-            />
-          </div>
+      {/* Banner — full-bleed photo with a dark scrim, text on top. */}
+      <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
+        <img
+          src={`${import.meta.env.BASE_URL}images/hero-boiler-bright-final.jpg`}
+          alt="Thermal Engitech steam boiler unit at the Dhamatwan facility"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
+        <div className="relative z-10 max-w-7xl mx-auto w-full py-16 space-y-4">
+          <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#7FB2E4]">
+            Dhamatwan Workshop Facility
+          </p>
+          <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
+            Inside Our Manufacturing Facility
+          </h1>
+          <p className="text-white/80 text-sm max-w-3xl leading-relaxed">
+            7,500 m² in Dhamatwan, Gujarat — approved under IBR 1950 to roll, weld, and inspect heavy-duty thermal systems.
+          </p>
         </div>
       </div>
 
