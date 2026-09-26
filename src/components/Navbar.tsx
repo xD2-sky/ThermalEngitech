@@ -37,14 +37,17 @@ export default function Navbar() {
   // Most routes (Home, About, product detail pages, and any unmatched/404
   // route) have a plain light page background behind the navbar, so the
   // navbar's original dark text reads fine over them while unscrolled.
-  // Only these specific routes have a dark full-bleed photo banner at the
-  // top instead, so the unscrolled navbar needs light text there — once
-  // scrolled, every route converges on the same white/blurred bar with dark
-  // text, unchanged.
+  // Only these specific routes have a dark full-bleed photo banner
+  // starting at y:0 (extending behind the navbar) instead — so the
+  // unscrolled navbar needs light text there. Category pages (/products/
+  // category/:slug) do have a dark banner, but it's preceded by a plain
+  // white breadcrumb bar that clears the navbar via margin-top, so what's
+  // actually behind the navbar at scroll:0 is that white bar, not the
+  // banner — dark text is correct there, same as the default. Once
+  // scrolled, every route converges on the same white/blurred bar with
+  // dark text, unchanged.
   const DARK_BANNER_ROUTES = ['/products', '/manufacturing', '/certifications', '/contact', '/request-quote'];
-  const isDarkBannerRoute =
-    DARK_BANNER_ROUTES.includes(location.pathname) ||
-    location.pathname.startsWith('/products/category/');
+  const isDarkBannerRoute = DARK_BANNER_ROUTES.includes(location.pathname);
   const useDarkText = scrolled || !isDarkBannerRoute;
 
   return (
