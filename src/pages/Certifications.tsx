@@ -22,17 +22,22 @@ export default function Certifications() {
   return (
     <div className="space-y-0 text-left bg-white min-h-screen">
       
-      {/* Page Header — light-blue, matching the site-wide rhythm. Photo will be added
-          back separately once a light-theme-appropriate image is ready. */}
-      <div className="bg-[#E8F1FB] text-[#0B1B2B] pt-16 pb-14 px-4 sm:px-6 lg:px-8 border-b border-[#E4E7EC] relative overflow-hidden">
-        <div className="relative z-10 max-w-7xl mx-auto space-y-4">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#1C5CA8] uppercase">
+      {/* Page Header — full-bleed photo with a dark scrim, text on top. */}
+      <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
+        <img
+          src={`${import.meta.env.BASE_URL}images/banners/certifications.webp`}
+          alt="CNC plasma cutting sparks on a steel plate during fabrication"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
+        <div className="relative z-10 max-w-7xl mx-auto w-full py-16 space-y-4">
+          <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
             Compliance Standards
           </span>
-          <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-tight">
+          <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
             Safety & Accreditation
           </h1>
-          <p className="text-[#47566A] text-sm max-w-2xl leading-relaxed">
+          <p className="text-white/80 text-sm max-w-2xl leading-relaxed">
             In high-pressure boiler engineering, compliance is non-negotiable. Our workshop is audited continuously to guarantee risk-free operation.
           </p>
         </div>

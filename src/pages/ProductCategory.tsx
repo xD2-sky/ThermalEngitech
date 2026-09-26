@@ -61,15 +61,21 @@ export default function ProductCategory() {
         </div>
       </div>
 
-      {/* Banner — light-blue, matching the site-wide rhythm. Photo will be added
-          back separately once a light-theme-appropriate image is ready. */}
-      <div className="bg-[#E8F1FB] text-[#0B1B2B] pt-14 pb-12 px-4 sm:px-6 lg:px-8 border-b border-[#E4E7EC] relative overflow-hidden">
-        <div className="relative z-10 max-w-7xl mx-auto space-y-3">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#1C5CA8] uppercase">
+      {/* Banner — full-bleed photo with a dark scrim, text on top. One
+          distinct, relevant photo per category, named to match category.slug. */}
+      <div className="relative overflow-hidden min-h-[300px] flex items-center px-4 sm:px-6 lg:px-8">
+        <img
+          src={`${import.meta.env.BASE_URL}images/categories/${category.slug}.jpg`}
+          alt={`${category.name} — representative industrial equipment`}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
+        <div className="relative z-10 max-w-7xl mx-auto w-full py-14 space-y-3">
+          <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
             {category.count} {category.count === 1 ? 'model' : 'models'}
           </span>
-          <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-tight">{category.name}</h1>
-          <p className="text-[#47566A] text-sm max-w-2xl leading-relaxed">{category.blurb}</p>
+          <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">{category.name}</h1>
+          <p className="text-white/80 text-sm max-w-2xl leading-relaxed">{category.blurb}</p>
         </div>
       </div>
 
