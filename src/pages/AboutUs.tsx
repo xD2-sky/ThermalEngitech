@@ -249,7 +249,7 @@ export default function AboutUs() {
           dot-grid, decorative corner arcs) instead of the drawing sitting in
           its own separate white card — the whole section reads as a single
           designed composition rather than text-plus-a-dropped-in-image. */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-[#EEF4FC] via-[#F4F8FC] to-white py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+      <div className="relative overflow-hidden bg-white py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
 
         <svg className="absolute -bottom-24 -left-24 w-[420px] h-[420px] text-[#1C5CA8]/[0.08] pointer-events-none" viewBox="0 0 400 400" fill="none" aria-hidden="true">
           <circle cx="200" cy="200" r="190" stroke="currentColor" strokeWidth="1.5" />
