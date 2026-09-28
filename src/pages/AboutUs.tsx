@@ -58,7 +58,7 @@ export default function AboutUs() {
     <div className="space-y-0 text-left bg-white">
 
       {/* Page header — sky/industrial photo, soft wash, matches the Home page's About Us intro */}
-      <div className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
         <img
           src={`${base}images/about-bg-sky.webp`}
           alt=""
@@ -67,7 +67,7 @@ export default function AboutUs() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/55 to-white/50" />
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-5">
+        <div className="relative z-10 max-w-4xl mx-auto w-full py-16 text-center space-y-5">
           <Reveal as="span" className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#78889B]">
             <span className="w-8 h-[2px] bg-[#DC2626]" />
             About Us
@@ -244,15 +244,30 @@ export default function AboutUs() {
         </div>
       </div>
 
-      {/* Mission — two-column: eyebrow/heading/quote/CTAs on the left, an
-          annotated engineering-blueprint illustration of a boiler system on
-          the right, matching a reference layout. Plain white, matching the
-          crisp white-body treatment used sitewide (Manufacturing/
-          Certifications/Contact) — Leadership's own border-y above already
-          provides the section break, since both are now flat white. */}
-      <div className="bg-white py-24 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          <div className="lg:col-span-6 space-y-7 text-left">
+      {/* Mission — text and the general-arrangement drawing share one
+          continuous blueprint-canvas surface (soft blue gradient, faint
+          dot-grid, decorative corner arcs) instead of the drawing sitting in
+          its own separate white card — the whole section reads as a single
+          designed composition rather than text-plus-a-dropped-in-image. */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-[#EEF4FC] via-[#F4F8FC] to-white py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+
+        <svg className="absolute -bottom-24 -left-24 w-[420px] h-[420px] text-[#1C5CA8]/[0.08] pointer-events-none" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+          <circle cx="200" cy="200" r="190" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="200" cy="200" r="140" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="200" cy="200" r="90" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
+        <svg className="absolute -top-20 -right-20 w-[360px] h-[360px] text-[#1C5CA8]/[0.08] pointer-events-none" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+          <circle cx="200" cy="200" r="180" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="200" cy="200" r="130" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
+        <div
+          className="hidden lg:block absolute inset-y-0 right-0 w-2/3 pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle, rgba(28,92,168,0.16) 1px, transparent 1px)', backgroundSize: '28px 28px' }}
+          aria-hidden="true"
+        />
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+          <div className="lg:col-span-5 space-y-7 text-left">
             <Reveal className="flex items-center gap-2.5">
               <span className="w-8 h-[2px] bg-[#DC2626]" />
               <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
@@ -268,7 +283,7 @@ export default function AboutUs() {
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="text-base sm:text-lg text-[#47566A] leading-relaxed max-w-xl">
+              <p className="text-base sm:text-lg text-[#47566A] leading-relaxed">
                 "To manufacture and deploy thermodynamic units that outperform standard parameters, reduce
                 ambient emissions to local pollution board standards, and empower chemical, food, and
                 textile grids with total thermal security."
@@ -291,15 +306,20 @@ export default function AboutUs() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.1} className="lg:col-span-6 relative">
+          <Reveal delay={0.2} className="lg:col-span-7 relative">
+            <div className="mb-4 text-left sm:text-right">
+              <h3 className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.12em] text-[#1C5CA8]">
+                General Arrangement Drawing
+              </h3>
+              <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wide text-[#78889B] mt-1">
+                3-Pass Horizontal Steam Boiler — Front, Side &amp; Rear Elevations
+              </p>
+            </div>
             <img
-              src={`${base}images/about-mission-blueprint.png`}
-              alt="Engineering blueprint of a steam boiler system, annotated with process heating, steam systems and heat recovery capabilities"
-              className="w-full h-auto scale-110"
+              src={`${base}images/about-mission-steam-boiler-drawing.png`}
+              alt="Technical CAD drawing of a three-pass horizontal steam boiler, shown in front, side and rear elevation views"
+              className="w-full h-auto"
             />
-            <span className="hidden sm:block absolute left-[2%] top-[10%] text-[#1C5CA8] text-sm sm:text-base italic font-medium">
-              Process Heating<br />Solutions
-            </span>
           </Reveal>
         </div>
       </div>
