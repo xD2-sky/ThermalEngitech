@@ -8,6 +8,7 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { Link } from 'react-router-dom';
 import { Target, Compass, Sparkles, Award, ArrowRight } from 'lucide-react';
 import AnimatedCounter from '../components/AnimatedCounter';
+import Reveal from '../components/Reveal';
 
 const PILLARS = [
   {
@@ -67,22 +68,26 @@ export default function AboutUs() {
         <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/55 to-white/50" />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center space-y-5">
-          <p className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#78889B]">
+          <Reveal as="span" className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#78889B]">
             <span className="w-8 h-[2px] bg-[#DC2626]" />
             About Us
             <span className="w-8 h-[2px] bg-[#DC2626]" />
-          </p>
-          <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
-            Built on Expertise.
-            <br />
-            <span className="text-[#1C5CA8]">Driven by Purpose.</span>
-          </h1>
-          <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-2xl mx-auto">
-            Thermal Engitech is a Gujarat-based engineering and manufacturing company delivering
-            reliable, efficient thermal and process-heating solutions — steam boilers, thermic
-            fluid heaters and heat exchangers, engineered in-house and built to IBR, ASME and
-            ISO 9001:2015 standards for customers across India and export markets.
-          </p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
+              Built on Expertise.
+              <br />
+              <span className="text-[#1C5CA8]">Driven by Purpose.</span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-2xl mx-auto">
+              Thermal Engitech is a Gujarat-based engineering and manufacturing company delivering
+              reliable, efficient thermal and process-heating solutions — steam boilers, thermic
+              fluid heaters and heat exchangers, engineered in-house and built to IBR, ASME and
+              ISO 9001:2015 standards for customers across India and export markets.
+            </p>
+          </Reveal>
         </div>
       </div>
 
@@ -91,7 +96,7 @@ export default function AboutUs() {
       <div className="bg-white py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-          <div className="lg:col-span-5 flex justify-center lg:justify-start">
+          <Reveal className="lg:col-span-5 flex justify-center lg:justify-start">
             <div className="relative w-[80%] max-w-[380px] lg:max-w-none lg:w-[clamp(320px,32vw,460px)]">
               <div
                 className="relative w-full aspect-[1312/1199] bg-[#0B1B2B] overflow-hidden"
@@ -115,24 +120,26 @@ export default function AboutUs() {
                 />
               </div>
             </div>
-          </div>
+          </Reveal>
 
           <div className="lg:col-span-7 space-y-6">
-            <p className="flex items-center gap-2 text-sm text-[#78889B]">
-              <span className="text-[#1C5CA8]">•</span>
-              Our history & vision
-            </p>
-            <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
-              Building dependable process-heat systems since 2012
-            </h2>
+            <Reveal delay={0.05} className="space-y-6">
+              <p className="flex items-center gap-2 text-sm text-[#78889B]">
+                <span className="text-[#1C5CA8]">•</span>
+                Our history & vision
+              </p>
+              <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
+                Building dependable process-heat systems since 2012
+              </h2>
 
-            <p className="text-sm text-[#47566A] leading-relaxed">
-              Founded 2012 in Gujarat, now a full heavy-engineering plant in Dhamatwan — trusted
-              across India and export markets for complete boiler assemblies, heaters, and accessories.
-            </p>
+              <p className="text-sm text-[#47566A] leading-relaxed">
+                Founded 2012 in Gujarat, now a full heavy-engineering plant in Dhamatwan — trusted
+                across India and export markets for complete boiler assemblies, heaters, and accessories.
+              </p>
+            </Reveal>
 
             {/* Plant stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 border-t border-[#0B1B2B]/15 text-center sm:text-left">
+            <Reveal delay={0.1} className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 border-t border-[#0B1B2B]/15 text-center sm:text-left">
               <div>
                 <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">
                   <AnimatedCounter value={2000} suffix="+" />
@@ -157,7 +164,7 @@ export default function AboutUs() {
                 </span>
                 <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Industry presence</span>
               </div>
-            </div>
+            </Reveal>
           </div>
 
         </div>
@@ -165,10 +172,17 @@ export default function AboutUs() {
         {/* Foundational pillars — icon-highlight row, same hover-forward treatment as
             the Home page's About Us intro (scale up, lift, deepen shadow on hover) */}
         <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#E4E7EC]">
-          <h3 className="font-heading font-bold text-lg text-[#0B1B2B] mb-8">Our foundational pillars</h3>
+          <Reveal className="space-y-1.5 mb-8">
+            <p className="flex items-center gap-2 text-sm text-[#78889B]">
+              <span className="text-[#1C5CA8]">•</span>
+              Why choose us
+            </p>
+            <h3 className="font-heading font-bold text-lg text-[#0B1B2B]">Our foundational pillars</h3>
+          </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {PILLARS.map((p) => (
-              <div key={p.title} className="group flex items-start gap-4">
+            {PILLARS.map((p, i) => (
+              <React.Fragment key={p.title}>
+              <Reveal delay={i * 0.08} className="group flex items-start gap-4">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#0B1B2B]/5 text-[#0B1B2B] shadow-sm transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-white">
                   <p.icon className="w-5 h-5 transition-colors duration-300 group-hover:text-[#1C5CA8]" strokeWidth={1.75} />
                 </span>
@@ -176,7 +190,8 @@ export default function AboutUs() {
                   <b className="text-sm font-bold text-[#0B1B2B] block">{p.title}</b>
                   <p className="text-xs text-[#78889B] leading-relaxed">{p.desc}</p>
                 </div>
-              </div>
+              </Reveal>
+              </React.Fragment>
             ))}
           </div>
         </div>
@@ -186,7 +201,7 @@ export default function AboutUs() {
       <div className="relative py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-[#E8F1FB] overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-12 relative z-10">
 
-          <div className="text-center max-w-3xl mx-auto space-y-4">
+          <Reveal className="text-center max-w-3xl mx-auto space-y-4">
             <p className="flex items-center justify-center gap-2 text-sm text-[#78889B]">
               <span className="text-[#1C5CA8]">•</span>
               Leadership team
@@ -197,13 +212,14 @@ export default function AboutUs() {
             <p className="text-[#47566A] text-sm">
               Our directors combine academic thermal research with robust, practical GIDC workshop supervision.
             </p>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {leadership.map((lead, i) => (
-              <div
-                key={i}
-                className="bg-white border border-[#E4E7EC] rounded-2xl p-6 shadow-sm space-y-4 flex flex-col justify-between"
+              <React.Fragment key={i}>
+              <Reveal
+                delay={i * 0.08}
+                className="bg-white border border-[#E4E7EC] rounded-2xl p-6 shadow-sm space-y-4 flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="space-y-3 text-left">
                   <div className="h-12 w-12 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] flex items-center justify-center font-heading font-bold text-lg">
@@ -220,7 +236,8 @@ export default function AboutUs() {
                   <Award className="w-3.5 h-3.5" />
                   <span>ISO audit representative</span>
                 </div>
-              </div>
+              </Reveal>
+              </React.Fragment>
             ))}
           </div>
 
@@ -236,24 +253,28 @@ export default function AboutUs() {
       <div className="bg-white py-24 sm:py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-6 space-y-7 text-left">
-            <div className="flex items-center gap-2.5">
+            <Reveal className="flex items-center gap-2.5">
               <span className="w-8 h-[2px] bg-[#DC2626]" />
               <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
                 Our Ongoing Mission
               </p>
-            </div>
-            <h2 className="text-4xl sm:text-5xl md:text-[3.5rem] font-heading font-extrabold tracking-[-0.02em] leading-[1.06]">
-              <span className="text-[#0B1B2B]">Engineering a</span>
-              <br />
-              <span className="text-[#1C5CA8]">cleaner, safer</span>{' '}
-              <span className="text-[#0B1B2B]">tomorrow.</span>
-            </h2>
-            <p className="text-base sm:text-lg text-[#47566A] leading-relaxed max-w-xl">
-              "To manufacture and deploy thermodynamic units that outperform standard parameters, reduce
-              ambient emissions to local pollution board standards, and empower chemical, food, and
-              textile grids with total thermal security."
-            </p>
-            <div className="pt-2 flex items-center gap-4">
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="text-4xl sm:text-5xl md:text-[3.5rem] font-heading font-extrabold tracking-[-0.02em] leading-[1.06]">
+                <span className="text-[#0B1B2B]">Engineering a</span>
+                <br />
+                <span className="text-[#1C5CA8]">cleaner, safer</span>{' '}
+                <span className="text-[#0B1B2B]">tomorrow.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-base sm:text-lg text-[#47566A] leading-relaxed max-w-xl">
+                "To manufacture and deploy thermodynamic units that outperform standard parameters, reduce
+                ambient emissions to local pollution board standards, and empower chemical, food, and
+                textile grids with total thermal security."
+              </p>
+            </Reveal>
+            <Reveal delay={0.15} className="pt-2 flex items-center gap-4">
               <Link
                 to="/products"
                 className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-8 py-4 text-base font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
@@ -267,10 +288,10 @@ export default function AboutUs() {
               >
                 Get in touch
               </Link>
-            </div>
+            </Reveal>
           </div>
 
-          <div className="lg:col-span-6 relative">
+          <Reveal delay={0.1} className="lg:col-span-6 relative">
             <img
               src={`${base}images/about-mission-blueprint.png`}
               alt="Engineering blueprint of a steam boiler system, annotated with process heating, steam systems and heat recovery capabilities"
@@ -279,7 +300,7 @@ export default function AboutUs() {
             <span className="hidden sm:block absolute left-[2%] top-[10%] text-[#1C5CA8] text-sm sm:text-base italic font-medium">
               Process Heating<br />Solutions
             </span>
-          </div>
+          </Reveal>
         </div>
       </div>
 
