@@ -65,7 +65,6 @@ export default function AboutUs() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/55 to-white/50" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent" />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center space-y-5">
           <p className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#78889B]">
