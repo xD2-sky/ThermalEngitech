@@ -11,7 +11,7 @@ export interface ProductVideoConfig {
 /**
  * Configure your product videos here.
  * Supported types:
- * - "none": Shows the premium interactive/visual placeholder with play icon.
+ * - "none": Omits the video section entirely (no video configured yet).
  * - "local": Renders an HTML5 `<video controls>` element using the local path in `src`.
  * - "youtube": Renders a responsive `<iframe>` using the YouTube embed URL in `src`.
  * 

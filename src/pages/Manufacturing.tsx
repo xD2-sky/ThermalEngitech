@@ -81,12 +81,12 @@ export default function Manufacturing() {
         </div>
       </div>
 
-      {/* Intro — its own full-bleed band (distinct from the flat-white
-          equipment/design zone below) so it reads as a deliberate opening
-          statement, not a plain text-next-to-image row. The photo carries
-          a subtle scroll parallax and hover zoom, and sits on an offset
-          blue backdrop shape for depth rather than a plain flat crop. */}
-      <div ref={introRef} className="relative overflow-hidden bg-panel-blue py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+      {/* Section rhythm after the hero: white, blue, white, blue — each
+          subsection below is its own full-bleed band so the alternation is
+          consistent all the way to the end of the page. */}
+
+      {/* 1. Intro — white */}
+      <div ref={introRef} className="relative overflow-hidden bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/3 w-[560px] h-[560px] rounded-full bg-[#1C5CA8]/[0.06] pointer-events-none" aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center relative z-10">
@@ -122,12 +122,9 @@ export default function Manufacturing() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 space-y-20">
-
-        {/* Shop Floor Equipment — icon-tagged capability grid, scales far
-            better than a stacked table now that it covers nine categories
-            instead of the original six. */}
-        <div className="space-y-8">
+      {/* 2. Shop Floor Equipment — blue */}
+      <div className="bg-panel-blue py-16 md:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto space-y-8">
           <Reveal className="space-y-2">
             <h3 className="text-xs uppercase font-mono font-bold tracking-[0.14em] text-[#0B1B2B]">
               Shop Floor Equipment
@@ -160,9 +157,11 @@ export default function Manufacturing() {
             })}
           </div>
         </div>
+      </div>
 
-        {/* Design & Engineering Capabilities + Quality Assurance Directives */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      {/* 3. Design & Engineering Capabilities + Quality Assurance Directives — white */}
+      <div className="bg-white py-16 md:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
           <Reveal className="lg:col-span-7 bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs">
             <div className="bg-panel px-6 py-4 border-b border-slate-200">
               <h3 className="text-xs uppercase font-mono font-bold text-[#0B1B2B] flex items-center gap-2">
@@ -250,8 +249,8 @@ export default function Manufacturing() {
 
       </div>
 
-      {/* Assembly Steps Flowchart Section */}
-      <div className="bg-panel py-20 px-4 sm:px-6 lg:px-8 border-t border-[#E1E4E3]">
+      {/* 4. Assembly Steps — blue */}
+      <div className="bg-panel-blue py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-16">
           <Reveal className="text-center max-w-3xl mx-auto space-y-4">
             <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
