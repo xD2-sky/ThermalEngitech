@@ -118,16 +118,13 @@ export default function Manufacturing() {
               Production Machinery
             </p>
             <h2
+              className="animate-gradient-flow"
               style={{
                 fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
                 fontSize: 'clamp(2rem, 4vw, 3.25rem)',
                 fontWeight: 800,
                 lineHeight: 1.1,
                 letterSpacing: '-0.025em',
-                background: 'linear-gradient(135deg, #0f3f7a 0%, #001f3f 100%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
               }}
             >
               Precision Heavy<br />Fabrication Capacity
