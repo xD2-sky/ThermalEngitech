@@ -114,11 +114,14 @@ export default function Manufacturing() {
                 <span className="text-sm font-semibold text-[#0B1B2B] whitespace-nowrap">&amp; IBR 1950</span>
               </div>
             </div>
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
+            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#0B1B2B]">
               Production Machinery
             </p>
-            <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.01em] leading-[1.1]">
-              <span className="text-[#1C5CA8]">Precision Heavy</span> Fabrication Capacity
+            <h2
+              className="text-3xl md:text-4xl lg:text-[2.5rem] font-heading font-extrabold tracking-[-0.01em] leading-[1.1] bg-[linear-gradient(135deg,#093259_0%,#0d5ea8_55%,#08294a_100%)] bg-clip-text text-transparent"
+              style={{ WebkitTextFillColor: 'transparent' }}
+            >
+              Precision Heavy<br />Fabrication Capacity
             </h2>
             <p className="text-sm text-[#47566A] leading-relaxed font-sans max-w-md">
               Standardized fabrication under clear procedural guidelines — durability, geometric centering, and structural joint unity on every unit.
@@ -128,19 +131,19 @@ export default function Manufacturing() {
           <Reveal delay={0.1} className="lg:col-span-6">
             <div className="relative max-w-lg mx-auto lg:max-w-none">
               <div className="bg-panel border border-[#E4E7EC] rounded-2xl shadow-lg p-3 sm:p-4 space-y-3">
-                <div className="group relative overflow-hidden rounded-xl">
+                <div className="relative overflow-hidden rounded-xl">
                   <motion.img
                     style={{ y: photoY }}
                     src={`${base}images/manufacturing-shop-floor.jpg`}
                     alt="A three-pass steam boiler shell under fabrication on the Dhamatwan shop floor, tube nest and access doors visible"
-                    className="w-full h-auto object-cover aspect-[4/3] transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="w-full h-auto object-cover aspect-[4/3]"
                   />
                 </div>
                 <div className="grid grid-cols-4 gap-2 sm:gap-3">
                   {MANUFACTURING_DETAIL_SHOTS.map((shot) => (
                     <div
                       key={shot.src}
-                      className="relative overflow-hidden rounded-lg aspect-square border border-[#0B1B2B]/10 hover:border-[#1C5CA8]/50 transition-colors duration-200"
+                      className="relative overflow-hidden rounded-lg aspect-square border border-[#0B1B2B]/10"
                     >
                       <img src={`${base}${shot.src}`} alt={shot.alt} className="w-full h-full object-cover" />
                     </div>
