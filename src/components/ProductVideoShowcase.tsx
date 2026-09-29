@@ -36,7 +36,7 @@ export default function ProductVideoShowcase({ productId }: ProductVideoShowcase
       </div>
 
       {/* Main Video Box Container matching the size and shadow of the main CAD layout box */}
-      <div className="bg-white border border-[#E1E4E3] rounded-lg p-4 sm:p-6 shadow-xs relative overflow-hidden min-h-[300px] md:min-h-[360px] flex flex-col justify-between">
+      <div className="bg-panel border border-[#E1E4E3] rounded-lg p-4 sm:p-6 shadow-xs relative overflow-hidden min-h-[300px] md:min-h-[360px] flex flex-col justify-between">
         
         {/* Render content based on active configuration */}
         {videoType === 'local' ? (

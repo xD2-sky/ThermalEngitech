@@ -162,8 +162,8 @@ export default function Manufacturing() {
       {/* 3. Design & Engineering Capabilities + Quality Assurance Directives — white */}
       <div className="bg-white py-16 md:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <Reveal className="lg:col-span-7 bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs">
-            <div className="bg-panel px-6 py-4 border-b border-slate-200">
+          <Reveal className="lg:col-span-7 bg-panel border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs">
+            <div className="bg-white px-6 py-4 border-b border-slate-200">
               <h3 className="text-xs uppercase font-mono font-bold text-[#0B1B2B] flex items-center gap-2">
                 <PenTool className="w-4 h-4 text-[#1C5CA8]" />
                 <span>Design & Engineering Capabilities</span>
@@ -219,8 +219,8 @@ export default function Manufacturing() {
               by explicit request. Each directive gets its own icon rather
               than a repeated checkmark, so the three compliance types read
               as distinct at a glance instead of a generic bullet list. */}
-          <div className="lg:col-span-5 bg-white border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs self-start">
-            <div className="bg-panel px-6 py-4 border-b border-slate-200 flex items-center gap-2.5">
+          <div className="lg:col-span-5 bg-panel border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs self-start">
+            <div className="bg-white px-6 py-4 border-b border-slate-200 flex items-center gap-2.5">
               <ShieldCheck className="w-4 h-4 text-[#1C5CA8]" />
               <h3 className="text-xs uppercase font-mono font-bold text-[#0B1B2B]">
                 Quality Assurance Directives

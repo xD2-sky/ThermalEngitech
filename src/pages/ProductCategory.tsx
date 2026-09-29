@@ -93,9 +93,9 @@ export default function ProductCategory() {
               <Link
                 to={`/products/${prod.id}`}
                 data-testid={`product-card-${prod.id}`}
-                className="flex flex-col h-full bg-white border border-[#E4E7EC] rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-[#1C5CA8]/40 transition-all duration-300 group"
+                className="flex flex-col h-full bg-panel border border-[#E4E7EC] rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-[#1C5CA8]/40 transition-all duration-300 group"
               >
-                <div className="p-6 bg-gradient-to-b from-slate-50 to-slate-100 border-b border-slate-100 flex items-center justify-center relative min-h-[200px]">
+                <div className="p-6 bg-white border-b border-slate-100 flex items-center justify-center relative min-h-[200px]">
                   <ProductImage type={prod.imageType} />
                 </div>
 
@@ -117,7 +117,7 @@ export default function ProductCategory() {
                   </div>
                 </div>
 
-                <div className="px-6 py-4 bg-panel border-t border-slate-100 flex items-center justify-between">
+                <div className="px-6 py-4 bg-white border-t border-slate-100 flex items-center justify-between">
                   <span className="text-[12px] font-medium text-[#78889B] flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4 text-[#1C5CA8]" />
                     IBR certified

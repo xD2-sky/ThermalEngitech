@@ -85,7 +85,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-7xl mx-auto">
 
         {/* Contact Form Controls (7 Columns) */}
-        <Reveal delay={0.05} className="lg:col-span-7 bg-white border border-[#E1E4E3] rounded-xl p-6 md:p-8 shadow-sm relative overflow-hidden">
+        <Reveal delay={0.05} className="lg:col-span-7 bg-panel border border-[#E1E4E3] rounded-xl p-6 md:p-8 shadow-sm relative overflow-hidden">
           
           {submittedTicket && (
             <div className="absolute inset-0 bg-white/98 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 animate-fadeIn">
@@ -122,7 +122,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   placeholder="e.g. Apex Chemical Processing Pvt Ltd"
                   value={formData.companyName}
                   onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                 />
               </div>
 
@@ -134,7 +134,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   placeholder="e.g. Dr. Harish Mehta"
                   value={formData.contactPerson}
                   onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                 />
               </div>
             </div>
@@ -148,7 +148,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   placeholder="name@company.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
 
@@ -160,7 +160,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   placeholder="e.g. +91 70693 06431"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
             </div>
@@ -172,7 +172,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 <select
                   value={formData.requiredProduct}
                   onChange={(e) => setFormData({ ...formData, requiredProduct: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 >
                   {PRODUCTS.map((prod) => (
                     <option key={prod.id} value={prod.name}>
@@ -190,7 +190,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   placeholder="e.g. 5.0 Tons/hr or 1,200,000 kcal/hr"
                   value={formData.capacity}
                   onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
             </div>
@@ -203,7 +203,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 placeholder="List targeted continuous runtime, specific construction grades (e.g. SS316, ASTM A516 Gr.70), statutory IBR layout requirements, design fuel (Natural Gas, bio-briquettes), or space boundary constraints..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full text-xs px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition leading-relaxed"
+                className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition leading-relaxed"
               />
             </div>
 
@@ -221,7 +221,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
         {/* Quality/Inspection Mandates (5 Columns) */}
         <div className="lg:col-span-5 space-y-6">
 
-          <Reveal delay={0.1} className="bg-white border border-[#E1E4E3] rounded-xl p-6 space-y-5 text-left">
+          <Reveal delay={0.1} className="bg-panel border border-[#E1E4E3] rounded-xl p-6 space-y-5 text-left">
             <h3 className="text-md font-heading font-bold text-[#0B1B2B] flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-[#1C5CA8]" />
               Quality Inspection Mandates
@@ -231,22 +231,22 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             </p>
 
             <div className="space-y-3">
-              <div className="p-3 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg">
+              <div className="p-3 bg-white border border-[#E1E4E3] rounded-lg">
                 <b className="text-xs font-bold text-[#0B1B2B] block">ASME BPVC SEC I & VIII</b>
                 <p className="text-[11px] text-[#78889B] mt-0.5">High-impact pressure weldings check using continuous volumetric plate radiography testing.</p>
               </div>
               
-              <div className="p-3 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg">
+              <div className="p-3 bg-white border border-[#E1E4E3] rounded-lg">
                 <b className="text-xs font-bold text-[#0B1B2B] block">IBR 1950 Rules (Form VI)</b>
                 <p className="text-[11px] text-[#78889B] mt-0.5">Pre-arranged structural engineering inspection clearances with Directorate of Boilers India officials.</p>
               </div>
 
-              <div className="p-3 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg">
+              <div className="p-3 bg-white border border-[#E1E4E3] rounded-lg">
                 <b className="text-xs font-bold text-[#0B1B2B] block">ISO 9001:2015 QMS Standard</b>
                 <p className="text-[11px] text-[#78889B] mt-0.5">Strict quality management systems governing design, manufacturing, procurement, and testing stages.</p>
               </div>
 
-              <div className="p-3 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg">
+              <div className="p-3 bg-white border border-[#E1E4E3] rounded-lg">
                 <b className="text-xs font-bold text-[#0B1B2B] block">Leak proof Hydrostatic Sizing</b>
                 <p className="text-[11px] text-[#78889B] mt-0.5">Dual-cycle hydro checks of completed boiler shells conducted at 1.5x design pressure limits.</p>
               </div>
@@ -255,14 +255,14 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
           {/* Active Queued Session Tickets */}
           {savedInquiries.length > 0 && (
-            <div className="bg-white border border-[#E1E4E3] rounded-xl p-6 space-y-4 animate-fadeIn text-left">
+            <div className="bg-panel border border-[#E1E4E3] rounded-xl p-6 space-y-4 animate-fadeIn text-left">
               <h3 className="text-sm font-heading font-bold text-[#0B1B2B] uppercase tracking-wider">
                 Submitted Tickets ({savedInquiries.length})
               </h3>
               
               <div className="space-y-3">
                 {savedInquiries.map((inq) => (
-                  <div key={inq.id} className="bg-[#F7F7F4] border border-[#E1E4E3] p-4 rounded-lg space-y-2 text-xs">
+                  <div key={inq.id} className="bg-white border border-[#E1E4E3] p-4 rounded-lg space-y-2 text-xs">
                     <div className="flex justify-between items-center">
                       <span className="font-mono text-[#1C5CA8] font-bold text-[11px]">{inq.id}</span>
                       <span className="px-2 py-0.5 bg-[#1C5CA8]/10 text-[#1C5CA8] rounded-full text-[9px] font-bold">

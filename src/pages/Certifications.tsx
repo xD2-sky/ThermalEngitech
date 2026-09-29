@@ -52,7 +52,7 @@ export default function Certifications() {
             <React.Fragment key={cert.title}>
             <Reveal
               delay={(i % 2) * 0.08}
-              className="bg-white border border-[#E1E4E3] p-6 md:p-8 rounded-lg shadow-sm hover:shadow transition duration-200 flex flex-col justify-between h-full group hover:border-[#1C5CA8]/35 hover:-translate-y-0.5"
+              className="bg-panel border border-[#E1E4E3] p-6 md:p-8 rounded-lg shadow-sm hover:shadow transition duration-200 flex flex-col justify-between h-full group hover:border-[#1C5CA8]/35 hover:-translate-y-0.5"
             >
               <div className="space-y-4">
                 <div className="w-12 h-12 bg-[#1C5CA8]/10 rounded-xl flex items-center justify-center text-[#1C5CA8]">
@@ -76,7 +76,7 @@ export default function Certifications() {
         </div>
 
         {/* Design codes & standards actually referenced in engineering */}
-        <Reveal className="bg-white border border-[#E1E4E3] rounded-lg p-6 md:p-8 space-y-8 shadow-xs text-left">
+        <Reveal className="bg-panel border border-[#E1E4E3] rounded-lg p-6 md:p-8 space-y-8 shadow-xs text-left">
           <div className="space-y-2 border-b border-slate-100 pb-4">
             <h3 className="font-heading font-extrabold text-lg text-[#0B1B2B] flex items-center gap-2">
               <FileCheck className="w-5 h-5 text-[#1C5CA8]" />
@@ -89,7 +89,7 @@ export default function Certifications() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-sans">
             {DESIGN_CODES.map((dc, i) => (
-              <div key={i} className="flex gap-3.5 items-start p-4 bg-panel border border-slate-100 rounded-xl hover:bg-white transition">
+              <div key={i} className="flex gap-3.5 items-start p-4 bg-white border border-slate-100 rounded-xl hover:bg-panel transition">
                 <div className="p-2 bg-white rounded-lg border border-slate-200 text-[#1C5CA8] shrink-0 font-mono text-xs font-bold shadow-xs">
                   0{i + 1}
                 </div>

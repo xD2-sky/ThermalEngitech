@@ -357,9 +357,9 @@ export default function ProductDetails() {
           </Reveal>
 
           {/* Large Scale CAD View Canvas overlay */}
-          <Reveal delay={0.05} className="bg-white border border-[#E1E4E3] rounded-lg p-8 flex items-center justify-center relative shadow-xs min-h-[300px]">
+          <Reveal delay={0.05} className="bg-panel border border-[#E1E4E3] rounded-lg p-8 flex items-center justify-center relative shadow-xs min-h-[300px]">
             <ProductImageLarge type={product.imageType} productId={product.id} />
-            <span className="absolute bottom-4 left-4 bg-panel font-mono text-[9px] text-[#78889B] uppercase tracking-widest px-2.5 py-1 rounded">
+            <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-[#78889B] uppercase tracking-widest px-2.5 py-1 rounded">
               High Resolution Schematic CAD Layout
             </span>
           </Reveal>
@@ -370,7 +370,7 @@ export default function ProductDetails() {
           )}
 
           {/* Sizing description breakdown */}
-          <Reveal delay={0.1} className="bg-white border border-[#E1E4E3] p-6 rounded-lg space-y-4">
+          <Reveal delay={0.1} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg space-y-4">
             <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 pb-3">
               Design & Operations Overview
             </h3>
@@ -380,7 +380,7 @@ export default function ProductDetails() {
           </Reveal>
 
           {/* Technical specifications — the data existed but was never surfaced before */}
-          <Reveal delay={0.1} className="bg-white border border-[#E1E4E3] rounded-lg overflow-hidden">
+          <Reveal delay={0.1} className="bg-panel border border-[#E1E4E3] rounded-lg overflow-hidden">
             <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 px-6 pt-6 pb-3">
               Technical Specifications
             </h3>
@@ -398,7 +398,7 @@ export default function ProductDetails() {
           </Reveal>
 
           {/* Features and standards ticks */}
-          <Reveal delay={0.15} className="bg-white border border-[#E1E4E3] p-6 rounded-lg space-y-6">
+          <Reveal delay={0.15} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg space-y-6">
             <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 pb-3 flex items-center gap-2">
               <Cpu className="w-4 h-4 text-[#1C5CA8]" />
               <span>Key Performance Features</span>
@@ -437,7 +437,7 @@ export default function ProductDetails() {
           </Reveal>
 
           {/* Form container */}
-          <Reveal delay={0.05} className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-sm space-y-6 text-left">
+          <Reveal delay={0.05} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-sm space-y-6 text-left">
             <div className="space-y-1 border-b border-slate-100 pb-3">
               <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">Send Quick Enquiry</h4>
               <p className="text-[11px] text-[#78889B] font-sans">

@@ -438,7 +438,7 @@ export default function Home() {
             ].map((c) => (
               <div
                 key={c.label}
-                className="group flex flex-col items-start gap-5 bg-white border border-[#E4E7EC] rounded-2xl shadow-sm hover:shadow-md p-7 sm:p-8 transition-all duration-300"
+                className="group flex flex-col items-start gap-5 bg-panel border border-[#E4E7EC] rounded-2xl shadow-sm hover:shadow-md p-7 sm:p-8 transition-all duration-300"
               >
                 <div className="shrink-0 w-16 h-16 flex items-center justify-center rounded-xl bg-[#1C5CA8]/8">
                   {c.seal ? (

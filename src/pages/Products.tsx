@@ -63,10 +63,10 @@ export default function Products() {
                 <Link
                   to={categoryHref(c)}
                   data-testid={`category-card-${c.slug}`}
-                  className="group flex flex-col h-full rounded-2xl bg-white border border-[#E4E7EC] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#1C5CA8]/40 transition-all duration-300"
+                  className="group flex flex-col h-full rounded-2xl bg-panel border border-[#E4E7EC] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#1C5CA8]/40 transition-all duration-300"
                 >
                   {/* Schematic preview */}
-                  <div className="relative flex items-center justify-center bg-gradient-to-b from-slate-50 to-slate-100 border-b border-slate-100 min-h-[180px] p-6">
+                  <div className="relative flex items-center justify-center bg-white border-b border-slate-100 min-h-[180px] p-6">
                     <ProductImage type={c.sampleImageType} />
                     <span className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] px-2.5 py-1 text-[10px] font-bold">
                       {c.count} {c.count === 1 ? 'model' : 'models'}

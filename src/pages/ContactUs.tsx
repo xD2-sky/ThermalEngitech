@@ -62,7 +62,7 @@ export default function ContactUs() {
         <div className="lg:col-span-4 space-y-8 text-left">
 
           {/* Main physical site */}
-          <Reveal className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4">
+          <Reveal className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4">
             <h3 className="font-heading font-extrabold text-[#0B1B2B] text-sm uppercase tracking-wider border-b border-slate-100 pb-3">
               Corporate Office & Plant
             </h3>
@@ -88,7 +88,7 @@ export default function ContactUs() {
           </Reveal>
 
           {/* Plant Operational Hours */}
-          <Reveal delay={0.08} className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4 text-left">
+          <Reveal delay={0.08} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4 text-left">
             <h3 className="font-heading font-extrabold text-[#0B1B2B] text-sm uppercase tracking-wider border-b border-slate-100 pb-3 flex items-center gap-2">
               <Clock className="w-4 h-4 text-[#1C5CA8]" />
               <span>Operational Hours</span>
@@ -127,7 +127,7 @@ export default function ContactUs() {
         {/* Right Column (Sales Coordinators and Live Map) */}
         <div className="lg:col-span-8 space-y-8 text-left">
           
-          <Reveal className="bg-white border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-6">
+          <Reveal className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-6">
             <div className="border-b border-slate-100 pb-3">
               <h3 className="font-heading font-extrabold text-base text-[#0B1B2B]">
                 Key Department Representatives
@@ -139,7 +139,7 @@ export default function ContactUs() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {contacts.map((c, i) => (
-                <div key={i} className="bg-panel border border-slate-100 hover:border-[#1C5CA8]/30 hover:shadow-sm p-4 rounded-xl space-y-3 font-sans text-xs text-left transition-all duration-200">
+                <div key={i} className="bg-white border border-slate-100 hover:border-[#1C5CA8]/30 hover:shadow-sm p-4 rounded-xl space-y-3 font-sans text-xs text-left transition-all duration-200">
                   <span className="text-[9.5px] font-mono font-bold text-[#1C5CA8] uppercase tracking-wider block border-b border-slate-200 pb-1.5">
                     {c.title}
                   </span>
