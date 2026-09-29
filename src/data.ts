@@ -532,7 +532,7 @@ export const MANUFACTURING_STEPS = [
 export const SHOP_CAPABILITIES = [
   {
     label: 'Welding',
-    value: 'MIG/TIG/ERW welding processes. Rectifiers rated 400 Amps. Argon Arc welding set with suppressor (TIG). CO2 welding set, 600 Amps.'
+    value: 'MIG/TIG/ERW welding processes. Rectifiers rated 400 Amps. Argon Arc welding set with suppressor (TIG). CO2 welding set, 600 Amps. Dedicated stainless-steel pipe welding unit.'
   },
   {
     label: 'Plate Bending',
@@ -547,12 +547,24 @@ export const SHOP_CAPABILITIES = [
     value: 'Job length up to 2m, job size up to 500mm diameter. Bend saw for angle & channel sections up to 12mm thick. Carbon arc gouging, abrasive cutting.'
   },
   {
+    label: 'Machining Facility',
+    value: 'Radial drills, boring machines, and plano milling. 3-roll plate bending machines, hydraulic bend press and shears.'
+  },
+  {
+    label: 'Portable Tools',
+    value: 'Hand grinders, polishers, and cut-off machines. Pneumatic grinders and drills. Tube extractors and tube expanders with controllers.'
+  },
+  {
     label: 'Material Handling',
-    value: 'Shop equipped with electrically operated overhead crane, plus a pneumatic testing machine rated up to 100 PSI.'
+    value: 'Shop equipped with electrically operated overhead EOT cranes for heavy shell and tube-bundle movement.'
+  },
+  {
+    label: 'Testing Equipment',
+    value: 'Hydraulic testing machine rated up to 200 kg/cm². Pneumatic testing machine rated up to 100 PSI.'
   },
   {
     label: 'Surface Finish & Painting',
-    value: 'Sand blasting and spray painting. 3-phase power connection with 160 KVA / 415V diesel generator backup for power failure.'
+    value: 'Sand blasting and spray painting, with an iron-oxide coating line. 3-phase power connection with 160 KVA / 415V diesel generator backup for power failure.'
   }
 ];
 
