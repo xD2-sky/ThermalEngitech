@@ -106,7 +106,7 @@ export default function Home() {
 
       {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
           featured categories show here; the other 4 products live on the Products page. */}
-      <div className="relative bg-[#E8F1FB] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="relative bg-panel-blue py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* No top/bottom fade here by design: the blend into this section lives on
             About Us's own bottom edge (see AboutIntro.tsx), and the transition into
             "Why Thermal Engitech" below is intentionally a clean, default cut. */}
@@ -354,7 +354,7 @@ export default function Home() {
       {/* Industries We Serve — flat neutral background matching Product Range,
           no photo (replaced per feedback). Equal-sized cards, no large "stage"
           preview — every industry gets the same visual weight. */}
-      <div className="relative bg-[#DCE9F7] py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="relative bg-panel-blue py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <LogoWatermark position="bottom-right" size={800} opacity={0.08} />
         <div className="max-w-7xl mx-auto space-y-10 relative z-10">
           <Reveal className="max-w-2xl space-y-4 text-center mx-auto">
@@ -490,7 +490,7 @@ export default function Home() {
               <div className="lg:col-span-4 lg:text-right">
                 <Link
                   to="/request-quote"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-[#EAF2FB] text-[#103E72] px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-panel-blue text-[#103E72] px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   <span>Start a Consultation</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />

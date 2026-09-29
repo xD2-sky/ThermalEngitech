@@ -117,7 +117,7 @@ export default function ProductCategory() {
                   </div>
                 </div>
 
-                <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                <div className="px-6 py-4 bg-panel border-t border-slate-100 flex items-center justify-between">
                   <span className="text-[12px] font-medium text-[#78889B] flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4 text-[#1C5CA8]" />
                     IBR certified

@@ -198,7 +198,7 @@ export default function AboutUs() {
       </div>
 
       {/* Leadership */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-[#E8F1FB] overflow-hidden">
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-panel-blue overflow-hidden">
         <div className="max-w-7xl mx-auto space-y-12 relative z-10">
 
           <Reveal className="text-center max-w-3xl mx-auto space-y-4">

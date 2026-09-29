@@ -89,7 +89,7 @@ export default function Certifications() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-sans">
             {DESIGN_CODES.map((dc, i) => (
-              <div key={i} className="flex gap-3.5 items-start p-4 bg-[#F1F1ED] border border-slate-100 rounded-xl hover:bg-slate-50 transition">
+              <div key={i} className="flex gap-3.5 items-start p-4 bg-panel border border-slate-100 rounded-xl hover:bg-white transition">
                 <div className="p-2 bg-white rounded-lg border border-slate-200 text-[#1C5CA8] shrink-0 font-mono text-xs font-bold shadow-xs">
                   0{i + 1}
                 </div>

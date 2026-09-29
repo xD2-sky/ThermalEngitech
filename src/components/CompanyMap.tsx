@@ -42,7 +42,7 @@ export default function CompanyMap({ className = '' }: CompanyMapProps) {
       </div>
 
       {/* Free Interactive Google Maps iframe */}
-      <div className="relative w-full h-[380px] md:h-[450px] bg-slate-100">
+      <div className="relative w-full h-[380px] md:h-[450px] bg-panel">
         <iframe
           title="Thermal Engitech PVT. LTD. Location Map"
           src={mapEmbedUrl}

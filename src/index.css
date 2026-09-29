@@ -21,7 +21,13 @@
   --color-slate-soft: #78889B; /* muted / secondary copy */
   --color-line: #E4E7EC;       /* hairline borders */
   --color-paper: #FBFBFC;      /* page background */
-  --color-panel: #F2F4F7;      /* secondary panel background */
+  --color-panel: #F2F4F7;      /* secondary neutral panel/section background — the
+                                   one light-gray divider tone; don't reach for
+                                   slate-50/slate-100 or another ad-hoc gray instead */
+  --color-panel-blue: #E8F1FB; /* secondary blue-tinted panel/section background —
+                                   the one light-blue tone for feature bands (Home,
+                                   About, Manufacturing); don't introduce a nearby
+                                   ad-hoc blue tint instead */
 
   /* Primary accent — professional blue */
   --color-blue: #1C5CA8;

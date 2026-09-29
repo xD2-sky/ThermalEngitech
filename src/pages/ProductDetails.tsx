@@ -314,7 +314,7 @@ export default function ProductDetails() {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen text-left">
+    <div className="bg-white min-h-screen text-left">
       
       {/* Breadcrumbs bar with navigation shortcuts — margin-top clears the fixed
           navbar at rest; sticky top-* then holds it there once scrolled */}
@@ -359,7 +359,7 @@ export default function ProductDetails() {
           {/* Large Scale CAD View Canvas overlay */}
           <Reveal delay={0.05} className="bg-white border border-[#E1E4E3] rounded-lg p-8 flex items-center justify-center relative shadow-xs min-h-[300px]">
             <ProductImageLarge type={product.imageType} productId={product.id} />
-            <span className="absolute bottom-4 left-4 bg-slate-100 font-mono text-[9px] text-[#78889B] uppercase tracking-widest px-2.5 py-1 rounded">
+            <span className="absolute bottom-4 left-4 bg-panel font-mono text-[9px] text-[#78889B] uppercase tracking-widest px-2.5 py-1 rounded">
               High Resolution Schematic CAD Layout
             </span>
           </Reveal>
@@ -457,7 +457,7 @@ export default function ProductDetails() {
                 <button
                   type="button"
                   onClick={() => setInquirySent(false)}
-                  className="px-4 py-2 border border-[#E1E4E3] bg-white text-xs font-semibold rounded-lg hover:bg-slate-50 text-[#0B1B2B] transition"
+                  className="px-4 py-2 border border-[#E1E4E3] bg-white text-xs font-semibold rounded-lg hover:bg-panel text-[#0B1B2B] transition"
                 >
                   Send another request
                 </button>
@@ -471,7 +471,7 @@ export default function ProductDetails() {
                     type="text"
                     disabled
                     value={product.name}
-                    className="w-full px-3 py-2.5 bg-slate-50 border border-[#E1E4E3] rounded-lg text-[#47566A] font-semibold cursor-not-allowed outline-none"
+                    className="w-full px-3 py-2.5 bg-panel border border-[#E1E4E3] rounded-lg text-[#47566A] font-semibold cursor-not-allowed outline-none"
                   />
                 </div>
 
@@ -565,7 +565,7 @@ export default function ProductDetails() {
           </Reveal>
 
           {/* Quick contact helpline */}
-          <Reveal delay={0.1} className="bg-slate-100 border border-[#E1E4E3] rounded-lg p-6 text-left space-y-4">
+          <Reveal delay={0.1} className="bg-panel border border-[#E1E4E3] rounded-lg p-6 text-left space-y-4">
             <h5 className="font-heading font-bold text-xs text-[#0B1B2B] uppercase tracking-wider">Helpline</h5>
             <div className="space-y-3 font-sans text-xs">
               <div className="flex items-center gap-2 text-[#47566A]">

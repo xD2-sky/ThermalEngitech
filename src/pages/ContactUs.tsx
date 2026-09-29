@@ -139,7 +139,7 @@ export default function ContactUs() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {contacts.map((c, i) => (
-                <div key={i} className="bg-slate-50 border border-slate-100 hover:border-[#1C5CA8]/30 hover:shadow-sm p-4 rounded-xl space-y-3 font-sans text-xs text-left transition-all duration-200">
+                <div key={i} className="bg-panel border border-slate-100 hover:border-[#1C5CA8]/30 hover:shadow-sm p-4 rounded-xl space-y-3 font-sans text-xs text-left transition-all duration-200">
                   <span className="text-[9.5px] font-mono font-bold text-[#1C5CA8] uppercase tracking-wider block border-b border-slate-200 pb-1.5">
                     {c.title}
                   </span>
