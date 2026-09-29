@@ -14,6 +14,13 @@ import {
   FileCheck, ScanLine, BadgeCheck,
 } from 'lucide-react';
 
+const MANUFACTURING_DETAIL_SHOTS = [
+  { src: 'images/manufacturing-details/structural-joint.jpg', alt: 'Close-up of a welded structural joint and access door hardware' },
+  { src: 'images/manufacturing-details/tube-bundle.jpg', alt: 'Close-up of the boiler tube bundle and furnace tube sheet' },
+  { src: 'images/manufacturing-details/flange-plate.jpg', alt: 'Close-up of a machined flange plate ready for fitting' },
+  { src: 'images/manufacturing-details/pipe-fitting.jpg', alt: 'Close-up of a pipe fitting ring on raw structural steel stock' },
+];
+
 // Icons keyed by SHOP_CAPABILITIES label — kept in the component (not the
 // data file) so data.ts stays plain, serializable content.
 const CAPABILITY_ICONS: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
@@ -90,32 +97,55 @@ export default function Manufacturing() {
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/3 w-[560px] h-[560px] rounded-full bg-[#1C5CA8]/[0.06] pointer-events-none" aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center relative z-10">
-          <Reveal className="lg:col-span-7 space-y-5">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#0B1B2B]/12 bg-white pl-3 pr-4 py-1.5 text-[#47566A] text-xs font-medium shadow-sm">
-              <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#1C5CA8]" />
-              <span>ISO 9001:2015 · ASME · IBR 1950</span>
+          <Reveal className="lg:col-span-6 space-y-5">
+            <div className="inline-flex items-center divide-x divide-[#0B1B2B]/10 rounded-xl border border-[#0B1B2B]/12 bg-white shadow-sm">
+              <div className="flex items-center gap-2 pl-4 pr-4 py-2.5">
+                <ShieldCheck className="w-5 h-5 shrink-0 text-[#1C5CA8]" strokeWidth={1.75} />
+                <span className="text-sm font-semibold text-[#0B1B2B] whitespace-nowrap">ISO 9001:2015</span>
+              </div>
+              <div className="flex items-center px-4 py-2.5">
+                <img
+                  src={`${base}images/certifications/asme-cert-seal.png`}
+                  alt="ASME certification seal"
+                  className="h-10 w-auto object-contain"
+                />
+              </div>
+              <div className="flex items-center px-4 py-2.5">
+                <span className="text-sm font-semibold text-[#0B1B2B] whitespace-nowrap">&amp; IBR 1950</span>
+              </div>
             </div>
             <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
               Production Machinery
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.01em] leading-[1.1]">
-              Precision Heavy Fabrication Capacity
+              <span className="text-[#1C5CA8]">Precision Heavy</span> Fabrication Capacity
             </h2>
             <p className="text-sm text-[#47566A] leading-relaxed font-sans max-w-md">
-              Standardized fabrication under clear procedural guidelines — material durability, geometric centering, and structural joint unity on every unit.
+              Standardized fabrication under clear procedural guidelines — durability, geometric centering, and structural joint unity on every unit.
             </p>
           </Reveal>
 
-          <Reveal delay={0.1} className="lg:col-span-5">
-            <div className="relative max-w-sm mx-auto lg:max-w-none">
-              <div className="absolute -inset-3 bg-[#1C5CA8]/[0.05] rounded-2xl -z-10" aria-hidden="true" />
-              <div className="group relative overflow-hidden rounded-xl shadow-lg">
-                <motion.img
-                  style={{ y: photoY }}
-                  src={`${base}images/manufacturing-shop-floor.jpg`}
-                  alt="A three-pass steam boiler shell under fabrication on the Dhamatwan shop floor, tube nest and access doors visible"
-                  className="w-full h-auto scale-110 object-cover aspect-[4/5] transition-transform duration-700 ease-out group-hover:scale-125"
-                />
+          <Reveal delay={0.1} className="lg:col-span-6">
+            <div className="relative max-w-lg mx-auto lg:max-w-none">
+              <div className="bg-panel border border-[#E4E7EC] rounded-2xl shadow-lg p-3 sm:p-4 space-y-3">
+                <div className="group relative overflow-hidden rounded-xl">
+                  <motion.img
+                    style={{ y: photoY }}
+                    src={`${base}images/manufacturing-shop-floor.jpg`}
+                    alt="A three-pass steam boiler shell under fabrication on the Dhamatwan shop floor, tube nest and access doors visible"
+                    className="w-full h-auto object-cover aspect-[4/3] transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                </div>
+                <div className="grid grid-cols-4 gap-2 sm:gap-3">
+                  {MANUFACTURING_DETAIL_SHOTS.map((shot) => (
+                    <div
+                      key={shot.src}
+                      className="relative overflow-hidden rounded-lg aspect-square border border-[#0B1B2B]/10 hover:border-[#1C5CA8]/50 transition-colors duration-200"
+                    >
+                      <img src={`${base}${shot.src}`} alt={shot.alt} className="w-full h-full object-cover" />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </Reveal>
