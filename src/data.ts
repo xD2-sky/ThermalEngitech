@@ -507,12 +507,12 @@ export const MANUFACTURING_STEPS = [
   },
   {
     step: '03',
-    title: 'Radiography WELDS & ASME GTAW/SMAW',
+    title: 'Radiography Welds & ASME GTAW/SMAW',
     description: 'Welders are certified under ASME Section IX standards. Joints are subjected to volumetric X-ray inspections to guarantee 100% weld joint efficiency.'
   },
   {
     step: '04',
-    title: 'Tube Bundle Hydrostatic Saturated testing',
+    title: 'Tube Bundle Hydrostatic Pressure Testing',
     description: 'Completed coils and tube sheets are stress-tested at 1.5x design pressure to confirm complete pressure containment integrity.'
   },
   {

@@ -7,7 +7,7 @@ import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import Reveal from '../components/Reveal';
 import { MANUFACTURING_STEPS, SHOP_CAPABILITIES, DESIGN_CAPABILITIES } from '../data';
-import { Settings, ShieldCheck, HardHat, PenTool, Cpu } from 'lucide-react';
+import { Settings, ShieldCheck, HardHat, PenTool, Cpu, Cable } from 'lucide-react';
 
 export default function Manufacturing() {
   useDocumentMeta(
@@ -85,7 +85,7 @@ export default function Manufacturing() {
                 <span>Design & Engineering Capabilities</span>
               </h3>
             </div>
-            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="space-y-3">
                 <h4 className="text-xs font-bold text-[#0B1B2B] uppercase tracking-wide flex items-center gap-1.5">
                   <Settings className="w-3.5 h-3.5 text-[#1C5CA8]" />
@@ -93,6 +93,20 @@ export default function Manufacturing() {
                 </h4>
                 <ul className="space-y-2">
                   {DESIGN_CAPABILITIES.equipmentDesign.map((item, i) => (
+                    <li key={i} className="text-xs text-[#47566A] leading-relaxed flex items-start gap-2">
+                      <span className="text-[#1C5CA8] mt-0.5">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="space-y-3">
+                <h4 className="text-xs font-bold text-[#0B1B2B] uppercase tracking-wide flex items-center gap-1.5">
+                  <Cable className="w-3.5 h-3.5 text-[#1C5CA8]" />
+                  Auxiliaries
+                </h4>
+                <ul className="space-y-2">
+                  {DESIGN_CAPABILITIES.auxiliaries.map((item, i) => (
                     <li key={i} className="text-xs text-[#47566A] leading-relaxed flex items-start gap-2">
                       <span className="text-[#1C5CA8] mt-0.5">•</span>
                       <span>{item}</span>
@@ -119,7 +133,7 @@ export default function Manufacturing() {
         </div>
 
         {/* Right Column (Standard Quality Assurance Accreditations summary) */}
-        <Reveal delay={0.15} className="lg:col-span-5 bg-white border border-[#E1E4E3] rounded-lg p-6 md:p-8 space-y-6 self-start shadow-xs text-left">
+        <Reveal delay={0.15} className="lg:col-span-5 bg-white border border-[#E1E4E3] rounded-lg p-6 md:p-8 space-y-6 self-start lg:sticky lg:top-24 shadow-xs text-left">
           <div className="p-3 bg-[#1C5CA8]/10 rounded-xl text-[#1C5CA8] w-12 h-12 flex items-center justify-center">
             <ShieldCheck className="w-6 h-6" />
           </div>
