@@ -118,8 +118,17 @@ export default function Manufacturing() {
               Production Machinery
             </p>
             <h2
-              className="text-3xl md:text-4xl lg:text-[2.5rem] font-heading font-extrabold tracking-[-0.01em] leading-[1.1] bg-[linear-gradient(135deg,#093259_0%,#0d5ea8_55%,#08294a_100%)] bg-clip-text text-transparent"
-              style={{ WebkitTextFillColor: 'transparent' }}
+              style={{
+                fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
+                fontSize: 'clamp(2rem, 4vw, 3.25rem)',
+                fontWeight: 800,
+                lineHeight: 1.1,
+                letterSpacing: '-0.025em',
+                background: 'linear-gradient(135deg, #0f3f7a 0%, #001f3f 100%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
             >
               Precision Heavy<br />Fabrication Capacity
             </h2>
