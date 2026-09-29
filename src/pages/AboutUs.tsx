@@ -312,7 +312,7 @@ export default function AboutUs() {
                 General Arrangement Drawing
               </h3>
               <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wide text-[#78889B] mt-1">
-                3-Pass Horizontal Steam Boiler — Front, Side &amp; Rear Elevations
+                12 TPH Diesel Fired Steam Boiler
               </p>
             </div>
             <img
