@@ -158,23 +158,27 @@ body {
    so the background-position animation loops seamlessly with no visible
    jump cut. Colors reuse the sitewide blue/ink tokens. */
 .animate-gradient-flow {
-  background-image: linear-gradient(
-    135deg,
-    var(--color-blue) 0%,
-    var(--color-ink) 35%,
-    var(--color-blue) 70%,
-    var(--color-ink) 100%
+  /* repeating-linear-gradient tiles infinitely with an exact 600px period
+     (by construction, not by approximating a canvas size). Animating
+     background-position-x by exactly one period (600px) is mathematically
+     guaranteed to loop with zero seam — there's no edge for it to jump
+     across, unlike a plain linear-gradient stretched over a background-size
+     percentage (which only approximates a loop point and visibly resets). */
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-blue) 0px,
+    var(--color-ink) 300px,
+    var(--color-blue) 600px
   );
-  background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: gradient-flow 6s linear infinite;
+  animation: gradient-flow 8s linear infinite;
 }
 @keyframes gradient-flow {
-  0%   { background-position: 0% 0%; }
-  100% { background-position: 200% 200%; }
+  from { background-position-x: 0px; }
+  to   { background-position-x: 600px; }
 }
 
 /* Hero: scroll cue line */
