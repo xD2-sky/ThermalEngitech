@@ -69,9 +69,9 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
           </motion.div>
 
           <h1 className="mt-7 text-[clamp(2.2rem,1.5rem+2.4vw,4rem)] font-heading font-extrabold leading-[1.04] tracking-[-0.025em] text-[#0B1B2B]">
-            <span className="block overflow-hidden pb-1">
+            <span className="block overflow-hidden pb-4">
               <motion.span
-                className="block"
+                className="block animate-gradient-flow"
                 initial={{ y: '110%' }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -79,9 +79,9 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
                 Industrial heat systems,
               </motion.span>
             </span>
-            <span className="block overflow-hidden pb-1">
+            <span className="block overflow-hidden pb-4">
               <motion.span
-                className="block text-[#1C5CA8]"
+                className="block animate-gradient-flow"
                 initial={{ y: '110%' }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
