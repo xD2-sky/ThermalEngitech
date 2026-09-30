@@ -60,16 +60,22 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  letter-spacing: -0.021em;
-  line-height: 1.12;
-}
+/* In @layer base so a component's own Tailwind font-weight utility
+   (font-extrabold, font-semibold, ...) can actually override these
+   defaults — unlayered CSS would otherwise always beat layered utilities
+   regardless of specificity, silently ignoring the utility class. */
+@layer base {
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.021em;
+    line-height: 1.12;
+  }
 
-/* Major/hero headings get the heaviest weight in the system; h2-h5 (section
-   headings, card titles) stay at 700 unless a component sets its own weight. */
-h1 { font-weight: 800; letter-spacing: -0.028em; }
+  /* Major/hero headings get the heaviest weight in the system; h2-h5 (section
+     headings, card titles) stay at 700 unless a component sets its own weight. */
+  h1 { font-weight: 800; letter-spacing: -0.028em; }
+}
 
 /* Condensed poster caps are gone — where a heading is still set in caps,
    give it the positive tracking that capital letters actually need. */
