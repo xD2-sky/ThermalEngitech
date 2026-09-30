@@ -57,31 +57,31 @@ export default function AboutUs() {
   return (
     <div className="space-y-0 text-left bg-white">
 
-      {/* Page header — sky/industrial photo, soft wash, matches the Home page's About Us intro */}
+      {/* Page header — full-bleed photo with a dark scrim, text on top, matching the other pages' banners */}
       <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
         <img
-          src={`${base}images/about-bg-sky.webp`}
+          src={`${base}images/about-hero-sky.jpg`}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/55 to-white/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
 
         <div className="relative z-10 max-w-4xl mx-auto w-full py-16 text-center space-y-5">
-          <Reveal as="span" className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#78889B]">
+          <Reveal as="span" className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#7FB2E4]">
             <span className="w-8 h-[2px] bg-[#DC2626]" />
             About Us
             <span className="w-8 h-[2px] bg-[#DC2626]" />
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
+            <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.08]">
               Built on Expertise.
               <br />
-              <span className="text-[#1C5CA8]">Driven by Purpose.</span>
+              <span className="text-[#7FB2E4]">Driven by Purpose.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
-            <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-white/80 leading-relaxed max-w-2xl mx-auto">
               Thermal Engitech is a Gujarat-based engineering and manufacturing company delivering
               reliable, efficient thermal and process-heating solutions — steam boilers, thermic
               fluid heaters and heat exchangers, engineered in-house and built to IBR, ASME and
