@@ -70,8 +70,9 @@ export default function Manufacturing() {
       {/* Banner — full-bleed photo with a dark scrim, text on top. */}
       <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
         <img
-          src={`${base}images/hero-boiler-bright-final.jpg`}
-          alt="Thermal Engitech steam boiler unit at the Dhamatwan facility"
+          src={`${base}images/manufacturing-hero-industrial.jpg`}
+          alt=""
+          role="presentation"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
