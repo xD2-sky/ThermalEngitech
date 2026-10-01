@@ -46,7 +46,7 @@ export default function Navbar() {
   // banner — dark text is correct there, same as the default. Once
   // scrolled, every route converges on the same white/blurred bar with
   // dark text, unchanged.
-  const DARK_BANNER_ROUTES = ['/products', '/manufacturing', '/certifications', '/contact', '/request-quote'];
+  const DARK_BANNER_ROUTES = ['/products', '/manufacturing', '/certifications', '/contact', '/request-quote', '/about'];
   const isDarkBannerRoute = DARK_BANNER_ROUTES.includes(location.pathname);
   const useDarkText = scrolled || !isDarkBannerRoute;
 
