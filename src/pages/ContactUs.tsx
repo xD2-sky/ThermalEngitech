@@ -3,11 +3,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import CompanyMap from '../components/CompanyMap';
 import Reveal from '../components/Reveal';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+
+type QuoteForm = { name: string; email: string; phone: string; message: string };
+const EMPTY_FORM: QuoteForm = { name: '', email: '', phone: '', message: '' };
 
 export default function ContactUs() {
   useDocumentMeta(
@@ -15,22 +18,22 @@ export default function ContactUs() {
     'Reach Thermal Engitech for sizing calculations, quotes, or plant visits. Dhamatwan, Gujarat, India.'
   );
 
-  const contacts = [
-    {
-      title: 'Sales & Engineering',
-      person: 'Enquiry Desk',
-      phone: '+91 70693 06431',
-      phoneTel: '+917069306431',
-      email: 'info@thermalengitech.com'
-    },
-    {
-      title: 'Purchase Department',
-      person: 'Ramesh Samdani (Purchase Manager)',
-      phone: '+91 90330 47272',
-      phoneTel: '+919033047272',
-      email: 'info@thermalengitech.com'
-    }
-  ];
+  const [form, setForm] = useState<QuoteForm>(EMPTY_FORM);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange =
+    (field: keyof QuoteForm) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setForm((prev) => ({ ...prev, [field]: e.target.value }));
+    };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  const inputClass =
+    'w-full rounded-lg border border-[#E1E4E3] px-4 py-3 text-sm text-[#0B1B2B] placeholder:text-[#9AA6B2] focus:outline-none focus:border-[#1C5CA8] transition-colors';
 
   return (
     <div className="space-y-0 text-left bg-white min-h-screen">
@@ -63,12 +66,12 @@ export default function ContactUs() {
         <div className="lg:col-span-4 space-y-8 text-left">
 
           {/* Main physical site */}
-          <Reveal className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4">
-            <h3 className="font-heading font-extrabold text-[#0B1B2B] text-sm uppercase tracking-wider border-b border-slate-100 pb-3">
+          <Reveal className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-5">
+            <h3 className="font-heading font-extrabold text-[#0B1B2B] text-base uppercase tracking-wider border-b border-slate-100 pb-3">
               Corporate Office & Plant
             </h3>
-            
-            <div className="space-y-4 font-sans text-xs text-[#47566A]">
+
+            <div className="space-y-5 font-sans text-sm text-[#47566A]">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" />
                 <span>
@@ -76,31 +79,34 @@ export default function ContactUs() {
                 </span>
               </div>
 
-              <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-[#1C5CA8] shrink-0" />
-                <span>+91 70693 06431</span>
+              <div className="flex items-start gap-3">
+                <Phone className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" />
+                <div className="space-y-0.5">
+                  <a href="tel:+917069306431" className="block hover:text-[#1C5CA8] transition">+91 70693 06431</a>
+                  <span className="block text-xs text-[#78889B]">Purchase: <a href="tel:+919033047272" className="hover:text-[#1C5CA8] transition">+91 90330 47272</a></span>
+                </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-[#1C5CA8] shrink-0" />
-                <span>info@thermalengitech.com</span>
+                <a href="mailto:info@thermalengitech.com" className="hover:text-[#1C5CA8] transition break-all">info@thermalengitech.com</a>
               </div>
             </div>
           </Reveal>
 
           {/* Plant Operational Hours */}
           <Reveal delay={0.08} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-4 text-left">
-            <h3 className="font-heading font-extrabold text-[#0B1B2B] text-sm uppercase tracking-wider border-b border-slate-100 pb-3 flex items-center gap-2">
-              <Clock className="w-4 h-4 text-[#1C5CA8]" />
+            <h3 className="font-heading font-extrabold text-[#0B1B2B] text-base uppercase tracking-wider border-b border-slate-100 pb-3 flex items-center gap-2">
+              <Clock className="w-5 h-5 text-[#1C5CA8]" />
               <span>Operational Hours</span>
             </h3>
 
-            <div className="space-y-2.5 font-sans text-xs text-[#47566A]">
-              <div className="flex justify-between border-b border-dotted border-slate-200 pb-1.5">
+            <div className="space-y-3 font-sans text-sm text-[#47566A]">
+              <div className="flex justify-between border-b border-dotted border-slate-200 pb-2">
                 <span>Monday - Friday:</span>
                 <span className="font-bold text-[#0B1B2B]">09:00 AM - 06:30 PM</span>
               </div>
-              <div className="flex justify-between border-b border-dotted border-slate-200 pb-1.5">
+              <div className="flex justify-between border-b border-dotted border-slate-200 pb-2">
                 <span>Saturday:</span>
                 <span className="font-bold text-[#0B1B2B]">09:00 AM - 04:00 PM</span>
               </div>
@@ -110,50 +116,58 @@ export default function ContactUs() {
               </div>
             </div>
 
-            <p className="text-[10px] text-[#78889B] leading-relaxed font-sans pt-1">
+            <p className="text-xs text-[#78889B] leading-relaxed font-sans pt-1">
               * Critical breakdowns and troubleshooting hotlines remain accessible on a 24/7 cycle for registered contractual clients.
-            </p>
-          </Reveal>
-
-          {/* Success timeline */}
-          <Reveal delay={0.16} className="bg-[#1C5CA8]/5 border border-[#1C5CA8]/20 p-6 rounded-lg text-left space-y-2.5 font-sans">
-            <h5 className="font-bold text-xs text-[#0B1B2B] uppercase tracking-wide">Estimates Response Guarantee</h5>
-            <p className="text-xs text-[#47566A] leading-normal">
-              Sizing calculations and a full bill of material — delivered within 24 working hours.
             </p>
           </Reveal>
 
         </div>
 
-        {/* Right Column (Sales Coordinators and Live Map) */}
+        {/* Right Column (Quote request + Live Map) */}
         <div className="lg:col-span-8 space-y-8 text-left">
-          
-          <Reveal className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-xs space-y-6">
+
+          <Reveal className="bg-panel border border-[#E1E4E3] p-6 sm:p-8 rounded-lg shadow-xs space-y-6">
             <div className="border-b border-slate-100 pb-3">
-              <h3 className="font-heading font-extrabold text-base text-[#0B1B2B]">
-                Key Department Representatives
+              <h3 className="font-heading font-extrabold text-lg text-[#0B1B2B]">
+                Request a Quote
               </h3>
-              <p className="text-[11px] text-[#78889B] font-sans">
-                Contact the direct coordinator assigned to your corporate category.
+              <p className="text-sm text-[#78889B] font-sans">
+                Tell us about your requirement and our engineering team will get back to you within 24 working hours.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {contacts.map((c, i) => (
-                <div key={i} className="bg-white border border-slate-100 hover:border-[#1C5CA8]/30 hover:shadow-sm p-4 rounded-xl space-y-3 font-sans text-xs text-left transition-all duration-200">
-                  <span className="text-[9.5px] font-mono font-bold text-[#1C5CA8] uppercase tracking-wider block border-b border-slate-200 pb-1.5">
-                    {c.title}
-                  </span>
-                  <div className="space-y-1">
-                    <b className="font-bold text-[#0B1B2B] block text-[11px]">{c.person}</b>
-                    <a href={`tel:${c.phoneTel}`} className="text-[#47566A] block hover:text-[#1C5CA8] transition">{c.phone}</a>
-                    <a href={`mailto:${c.email}`} className="text-[#47566A] hover:text-[#1C5CA8] transition block break-all font-semibold select-all">
-                      {c.email}
-                    </a>
+            {submitted ? (
+              <div className="bg-white border border-slate-100 rounded-lg p-8 text-center space-y-2">
+                <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">Message sent.</h4>
+                <p className="text-sm text-[#47566A]">
+                  Thank you — our team will get back to you within 24 working hours.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="space-y-1.5">
+                    <label htmlFor="contact-name" className="block text-sm font-semibold text-[#0B1B2B]">Name</label>
+                    <input id="contact-name" name="name" required type="text" value={form.name} onChange={handleChange('name')} className={inputClass} />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label htmlFor="contact-email" className="block text-sm font-semibold text-[#0B1B2B]">Email</label>
+                    <input id="contact-email" name="email" required type="email" value={form.email} onChange={handleChange('email')} className={inputClass} />
                   </div>
                 </div>
-              ))}
-            </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="contact-phone" className="block text-sm font-semibold text-[#0B1B2B]">Phone</label>
+                  <input id="contact-phone" name="phone" required type="tel" value={form.phone} onChange={handleChange('phone')} className={inputClass} />
+                </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="contact-message" className="block text-sm font-semibold text-[#0B1B2B]">Requirement</label>
+                  <textarea id="contact-message" name="message" required rows={4} value={form.message} onChange={handleChange('message')} placeholder="Tell us briefly about your project or requirement." className={`${inputClass} resize-none`} />
+                </div>
+                <button type="submit" className="inline-flex items-center justify-center rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white text-sm font-semibold px-8 py-3.5 transition-colors">
+                  Send Message
+                </button>
+              </form>
+            )}
           </Reveal>
 
           <Reveal delay={0.1}>
