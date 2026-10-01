@@ -245,8 +245,8 @@ export default function AboutUs() {
       </div>
 
       {/* Mission — text and the general-arrangement drawing share one
-          continuous blueprint-canvas surface (soft blue gradient, faint
-          dot-grid, decorative corner arcs) instead of the drawing sitting in
+          continuous blueprint-canvas surface (soft blue gradient,
+          decorative corner arcs) instead of the drawing sitting in
           its own separate white card — the whole section reads as a single
           designed composition rather than text-plus-a-dropped-in-image. */}
       <div className="relative overflow-hidden bg-white py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
@@ -260,11 +260,6 @@ export default function AboutUs() {
           <circle cx="200" cy="200" r="180" stroke="currentColor" strokeWidth="1.5" />
           <circle cx="200" cy="200" r="130" stroke="currentColor" strokeWidth="1.5" />
         </svg>
-        <div
-          className="hidden lg:block absolute inset-y-0 right-0 w-2/3 pointer-events-none"
-          style={{ backgroundImage: 'radial-gradient(circle, rgba(28,92,168,0.16) 1px, transparent 1px)', backgroundSize: '28px 28px' }}
-          aria-hidden="true"
-        />
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
           <div className="lg:col-span-5 space-y-7 text-left">
@@ -318,7 +313,7 @@ export default function AboutUs() {
             <img
               src={`${base}images/about-mission-steam-boiler-drawing.png`}
               alt="Technical CAD drawing of a three-pass horizontal steam boiler, shown in front, side and rear elevation views"
-              className="w-full h-auto"
+              className="w-full h-auto lg:w-[155%] lg:max-w-none"
             />
           </Reveal>
         </div>
