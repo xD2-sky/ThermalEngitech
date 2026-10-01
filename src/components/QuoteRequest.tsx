@@ -98,6 +98,41 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-7xl mx-auto">
 
+        {/* Fuel Consumption & Running Cost Estimator (6 Columns) */}
+        <div className="lg:col-span-6 space-y-6">
+
+          <FuelConsumptionCalculator onApply={handleCalculatorApply} />
+
+          {/* Active Queued Session Tickets */}
+          {savedInquiries.length > 0 && (
+            <div className="bg-panel border border-[#E1E4E3] rounded-xl p-6 space-y-4 animate-fadeIn text-left">
+              <h3 className="text-sm font-heading font-bold text-[#0B1B2B] uppercase tracking-wider">
+                Submitted Tickets ({savedInquiries.length})
+              </h3>
+
+              <div className="space-y-3">
+                {savedInquiries.map((inq) => (
+                  <div key={inq.id} className="bg-white border border-[#E1E4E3] p-4 rounded-lg space-y-2 text-xs">
+                    <div className="flex justify-between items-center">
+                      <span className="font-mono text-[#1C5CA8] font-bold text-[11px]">{inq.id}</span>
+                      <span className="px-2 py-0.5 bg-[#1C5CA8]/10 text-[#1C5CA8] rounded-full text-[9px] font-bold">
+                        RECEIVED
+                      </span>
+                    </div>
+
+                    <div className="space-y-0.5">
+                      <b className="text-[#0B1B2B] block text-[12px]">{inq.companyName}</b>
+                      <span className="text-[#78889B] block text-[10.5px]">Item Selected: {inq.requiredProduct}</span>
+                      <span className="text-[#78889B] block text-[10.5px]">Capacity: {inq.capacity}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+        </div>
+
         {/* Contact Form Controls (6 Columns) */}
         <Reveal delay={0.05} className="lg:col-span-6 bg-panel border border-[#E1E4E3] rounded-xl p-6 md:p-8 shadow-sm relative overflow-hidden">
 
@@ -226,41 +261,6 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
           </form>
 
         </Reveal>
-
-        {/* Fuel Consumption & Running Cost Estimator (6 Columns) */}
-        <div className="lg:col-span-6 space-y-6">
-
-          <FuelConsumptionCalculator onApply={handleCalculatorApply} />
-
-          {/* Active Queued Session Tickets */}
-          {savedInquiries.length > 0 && (
-            <div className="bg-panel border border-[#E1E4E3] rounded-xl p-6 space-y-4 animate-fadeIn text-left">
-              <h3 className="text-sm font-heading font-bold text-[#0B1B2B] uppercase tracking-wider">
-                Submitted Tickets ({savedInquiries.length})
-              </h3>
-              
-              <div className="space-y-3">
-                {savedInquiries.map((inq) => (
-                  <div key={inq.id} className="bg-white border border-[#E1E4E3] p-4 rounded-lg space-y-2 text-xs">
-                    <div className="flex justify-between items-center">
-                      <span className="font-mono text-[#1C5CA8] font-bold text-[11px]">{inq.id}</span>
-                      <span className="px-2 py-0.5 bg-[#1C5CA8]/10 text-[#1C5CA8] rounded-full text-[9px] font-bold">
-                        RECEIVED
-                      </span>
-                    </div>
-
-                    <div className="space-y-0.5">
-                      <b className="text-[#0B1B2B] block text-[12px]">{inq.companyName}</b>
-                      <span className="text-[#78889B] block text-[10.5px]">Item Selected: {inq.requiredProduct}</span>
-                      <span className="text-[#78889B] block text-[10.5px]">Capacity: {inq.capacity}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-        </div>
 
       </div>
 

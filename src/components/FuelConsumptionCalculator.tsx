@@ -282,19 +282,6 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
             </div>
           </div>
 
-          {result.matches.length > 0 && (
-            <div className="pt-3 border-t border-[#E1E4E3] space-y-2">
-              <p className="text-[10px] uppercase tracking-wider text-[#78889B] font-bold">Matching Thermal Engitech Models</p>
-              <div className="flex flex-wrap gap-2">
-                {result.matches.map((m) => (
-                  <span key={m.id} className="inline-flex items-center px-3 py-1.5 bg-[#1C5CA8]/8 text-[#1C5CA8] text-[11px] font-semibold rounded-full">
-                    {m.name}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
           <button
             type="button"
             onClick={handleApply}
