@@ -58,21 +58,21 @@ export default function Navbar() {
           : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="flex items-center justify-between h-16 sm:h-18 lg:h-20 px-4 sm:px-8 lg:px-10">
+      <div className="flex items-center justify-between h-[4.8rem] sm:h-[5.4rem] lg:h-24 px-[1.2rem] sm:px-[2.4rem] lg:px-12">
 
         {/* Logo — left */}
-        <Link to="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0 group min-w-0">
-          <Logo className="h-8 w-10 sm:h-10 sm:w-12 shrink-0 transition-transform duration-300 group-hover:scale-105" />
+        <Link to="/" className="flex items-center gap-3 sm:gap-[0.9rem] shrink-0 group min-w-0">
+          <Logo className="h-[2.4rem] w-12 sm:h-12 sm:w-[3.6rem] shrink-0 transition-transform duration-300 group-hover:scale-105" />
           <div className="flex flex-col leading-tight min-w-0">
-            <span className={`font-heading font-extrabold text-sm sm:text-base tracking-tight truncate transition-colors duration-300 ${useDarkText ? 'text-[#0B1B2B]' : 'text-white'}`}>
+            <span className={`font-heading font-extrabold text-[16.8px] sm:text-[19.2px] tracking-tight truncate transition-colors duration-300 ${useDarkText ? 'text-[#0B1B2B]' : 'text-white'}`}>
               Thermal <span className="text-[#1C5CA8]">Engitech</span>
             </span>
-            <span className={`text-[9px] tracking-[0.16em] uppercase hidden sm:block transition-colors duration-300 ${useDarkText ? 'text-[#78889B]' : 'text-white/70'}`}>Pvt. Ltd.</span>
+            <span className={`text-[10.8px] tracking-[0.16em] uppercase hidden sm:block transition-colors duration-300 ${useDarkText ? 'text-[#78889B]' : 'text-white/70'}`}>Pvt. Ltd.</span>
           </div>
         </Link>
 
         {/* Nav links — centered */}
-        <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+        <div className="hidden lg:flex items-center gap-[2.4rem] absolute left-1/2 -translate-x-1/2">
           {navItems.map((item) => {
             const active = isActive(item.path);
             return (
@@ -80,7 +80,7 @@ export default function Navbar() {
                 key={item.path}
                 to={item.path}
                 data-testid={`nav-${item.label.toLowerCase()}`}
-                className={`relative font-heading text-sm font-semibold whitespace-nowrap transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:transition-all after:duration-300 ${
+                className={`relative font-heading text-[16.8px] font-semibold whitespace-nowrap transition-colors after:absolute after:-bottom-[7.2px] after:left-0 after:h-[2.4px] after:transition-all after:duration-300 ${
                   active
                     ? `after:w-full ${useDarkText ? 'text-[#1C5CA8] after:bg-[#1C5CA8]' : 'text-[#7FB2E4] after:bg-[#7FB2E4]'}`
                     : useDarkText
@@ -95,18 +95,18 @@ export default function Navbar() {
         </div>
 
         {/* Right cluster */}
-        <div className="hidden lg:flex items-center gap-5 shrink-0">
+        <div className="hidden lg:flex items-center gap-6 shrink-0">
           <a
             href={`tel:${SITE.phonePrimaryTel}`}
-            className={`flex items-center gap-1.5 transition-colors text-sm font-semibold whitespace-nowrap ${useDarkText ? 'text-[#47566A] hover:text-[#1C5CA8]' : 'text-white/80 hover:text-white'}`}
+            className={`flex items-center gap-[7.2px] transition-colors text-[16.8px] font-semibold whitespace-nowrap ${useDarkText ? 'text-[#47566A] hover:text-[#1C5CA8]' : 'text-white/80 hover:text-white'}`}
           >
-            <Phone className="w-3.5 h-3.5" />
+            <Phone className="w-[16.8px] h-[16.8px]" />
             <span>{SITE.phonePrimaryDisplay}</span>
           </a>
           <Link
             to="/request-quote"
             data-testid="nav-request-quote"
-            className="inline-flex items-center justify-center rounded-full bg-[#1C5CA8] text-white text-sm font-semibold px-5 py-2.5 hover:bg-[#103E72] shadow-sm shadow-[#1C5CA8]/20 transition-colors whitespace-nowrap"
+            className="inline-flex items-center justify-center rounded-full bg-[#1C5CA8] text-white text-[16.8px] font-semibold px-6 py-3 hover:bg-[#103E72] shadow-sm shadow-[#1C5CA8]/20 transition-colors whitespace-nowrap"
           >
             Request a quote
           </Link>
@@ -115,16 +115,16 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className={`lg:hidden p-2 rounded-md transition-colors ${useDarkText ? 'text-[#0B1B2B] hover:bg-[#0B1B2B]/5' : 'text-white hover:bg-white/10'}`}
+          className={`lg:hidden p-[9.6px] rounded-md transition-colors ${useDarkText ? 'text-[#0B1B2B] hover:bg-[#0B1B2B]/5' : 'text-white hover:bg-white/10'}`}
           aria-label="Toggle menu"
           data-testid="mobile-menu-toggle"
         >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileOpen ? <X className="w-[28.8px] h-[28.8px]" /> : <Menu className="w-[28.8px] h-[28.8px]" />}
         </button>
       </div>
 
       {mobileOpen && (
-        <div className="lg:hidden border-t border-[#E4E7EC] bg-white px-6 py-4 space-y-1 shadow-lg">
+        <div className="lg:hidden border-t border-[#E4E7EC] bg-white px-[28.8px] py-[19.2px] space-y-1 shadow-lg">
           {navItems.map((item) => {
             const active = isActive(item.path);
             return (
@@ -132,7 +132,7 @@ export default function Navbar() {
                 key={item.path}
                 to={item.path}
                 onClick={() => setMobileOpen(false)}
-                className={`block px-3 py-3 rounded-lg text-sm font-semibold transition-colors ${
+                className={`block px-[14.4px] py-[14.4px] rounded-lg text-[16.8px] font-semibold transition-colors ${
                   active ? 'text-[#1C5CA8] bg-[#1C5CA8]/8' : 'text-[#47566A] hover:text-[#0B1B2B] hover:bg-[#0B1B2B]/5'
                 }`}
               >
@@ -142,15 +142,15 @@ export default function Navbar() {
           })}
           <a
             href={`tel:${SITE.phonePrimaryTel}`}
-            className="flex items-center gap-2 px-3 py-3 text-sm font-semibold text-[#47566A]"
+            className="flex items-center gap-[9.6px] px-[14.4px] py-[14.4px] text-[16.8px] font-semibold text-[#47566A]"
           >
-            <Phone className="w-4 h-4 text-[#1C5CA8]" />
+            <Phone className="w-[19.2px] h-[19.2px] text-[#1C5CA8]" />
             {SITE.phonePrimaryDisplay}
           </a>
           <Link
             to="/request-quote"
             onClick={() => setMobileOpen(false)}
-            className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-[#1C5CA8] text-white text-sm font-semibold px-[18px] py-3"
+            className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-[#1C5CA8] text-white text-[16.8px] font-semibold px-[21.6px] py-[14.4px]"
           >
             Request a quote
           </Link>
