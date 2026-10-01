@@ -4,13 +4,14 @@
  */
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import CompanyMap from '../components/CompanyMap';
 import Reveal from '../components/Reveal';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 
-type QuoteForm = { name: string; email: string; phone: string; message: string };
-const EMPTY_FORM: QuoteForm = { name: '', email: '', phone: '', message: '' };
+type MessageForm = { name: string; email: string; message: string };
+const EMPTY_FORM: MessageForm = { name: '', email: '', message: '' };
 
 export default function ContactUs() {
   useDocumentMeta(
@@ -18,11 +19,11 @@ export default function ContactUs() {
     'Reach Thermal Engitech for sizing calculations, quotes, or plant visits. Dhamatwan, Gujarat, India.'
   );
 
-  const [form, setForm] = useState<QuoteForm>(EMPTY_FORM);
+  const [form, setForm] = useState<MessageForm>(EMPTY_FORM);
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange =
-    (field: keyof QuoteForm) =>
+    (field: keyof MessageForm) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
     };
@@ -129,10 +130,15 @@ export default function ContactUs() {
           <Reveal className="bg-panel border border-[#E1E4E3] p-6 sm:p-8 rounded-lg shadow-xs space-y-6">
             <div className="border-b border-slate-100 pb-3">
               <h3 className="font-heading font-extrabold text-lg text-[#0B1B2B]">
-                Request a Quote
+                Send Us a Message
               </h3>
               <p className="text-sm text-[#78889B] font-sans">
-                Tell us about your requirement and our engineering team will get back to you within 24 working hours.
+                General questions and plant-visit requests — we'll reply within 24 working hours. For a sizing
+                calculation and technical quotation, use{' '}
+                <Link to="/request-quote" className="text-[#1C5CA8] font-semibold hover:underline">
+                  Request a Quote
+                </Link>{' '}
+                instead.
               </p>
             </div>
 
@@ -156,12 +162,8 @@ export default function ContactUs() {
                   </div>
                 </div>
                 <div className="space-y-1.5">
-                  <label htmlFor="contact-phone" className="block text-sm font-semibold text-[#0B1B2B]">Phone</label>
-                  <input id="contact-phone" name="phone" required type="tel" value={form.phone} onChange={handleChange('phone')} className={inputClass} />
-                </div>
-                <div className="space-y-1.5">
-                  <label htmlFor="contact-message" className="block text-sm font-semibold text-[#0B1B2B]">Requirement</label>
-                  <textarea id="contact-message" name="message" required rows={4} value={form.message} onChange={handleChange('message')} placeholder="Tell us briefly about your project or requirement." className={`${inputClass} resize-none`} />
+                  <label htmlFor="contact-message" className="block text-sm font-semibold text-[#0B1B2B]">Message</label>
+                  <textarea id="contact-message" name="message" required rows={4} value={form.message} onChange={handleChange('message')} placeholder="How can we help?" className={`${inputClass} resize-none`} />
                 </div>
                 <button type="submit" className="inline-flex items-center justify-center rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white text-sm font-semibold px-8 py-3.5 transition-colors">
                   Send Message
