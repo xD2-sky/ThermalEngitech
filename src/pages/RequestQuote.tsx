@@ -68,9 +68,9 @@ export default function RequestQuote() {
         </div>
       </div>
 
-      {/* Embedded QuoteRequest Frame */}
+      {/* Request form and Fuel Consumption Estimator, side by side */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <QuoteRequest 
+        <QuoteRequest
           presetProductName={presetProduct}
           onSubmitInquiry={handleAddInquiry}
           savedInquiries={savedInquiries}

@@ -3,11 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Inquiry } from '../types';
 import { PRODUCTS } from '../data';
 import Reveal from './Reveal';
-import { ChevronRight, Clipboard, ShieldCheck, CheckCircle } from 'lucide-react';
+import FuelConsumptionCalculator from './FuelConsumptionCalculator';
+import { ChevronRight, Clipboard, CheckCircle } from 'lucide-react';
 
 interface QuoteRequestProps {
   presetProductName: string | null;
@@ -27,6 +28,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
   });
 
   const [submittedTicket, setSubmittedTicket] = useState<string | null>(null);
+  const specSheetRef = useRef<HTMLFormElement>(null);
 
   // Synchronize dynamic preset selection
   useEffect(() => {
@@ -37,6 +39,18 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
       }));
     }
   }, [presetProductName]);
+
+  // Carries the Fuel Consumption Estimator's result straight into this form —
+  // the two panels sit side by side, so this just needs to update the shared
+  // state and (on narrower screens, where they stack) bring the form into view.
+  const handleCalculatorApply = (args: { product: string; capacity: string }) => {
+    setFormData(prev => ({
+      ...prev,
+      requiredProduct: args.product || prev.requiredProduct,
+      capacity: args.capacity
+    }));
+    specSheetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -84,9 +98,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-7xl mx-auto">
 
-        {/* Contact Form Controls (7 Columns) */}
-        <Reveal delay={0.05} className="lg:col-span-7 bg-panel border border-[#E1E4E3] rounded-xl p-6 md:p-8 shadow-sm relative overflow-hidden">
-          
+        {/* Contact Form Controls (6 Columns) */}
+        <Reveal delay={0.05} className="lg:col-span-6 bg-panel border border-[#E1E4E3] rounded-xl p-6 md:p-8 shadow-sm relative overflow-hidden">
+
           {submittedTicket && (
             <div className="absolute inset-0 bg-white/98 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 animate-fadeIn">
               <CheckCircle className="w-16 h-16 text-[#1C5CA8] mb-4" />
@@ -94,7 +108,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               <p className="text-sm text-[#0B1B2B] max-w-md mt-2 leading-relaxed">
                 Thank you! Your thermodynamic specifications ticket <b className="text-[#1C5CA8] font-bold">{submittedTicket}</b> has been queued. Our systems engineers will contact your representative.
               </p>
-              
+
               <button
                 onClick={() => setSubmittedTicket(null)}
                 className="mt-6 px-5 py-2.5 bg-[#0D1B2A] hover:bg-[#1C5CA8] text-white text-xs font-bold rounded-lg transition"
@@ -104,7 +118,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6 text-left">
+          <form ref={specSheetRef} onSubmit={handleSubmit} className="space-y-6 text-left">
             <h3 className="text-base font-heading font-semibold text-[#0B1B2B] flex items-center gap-2">
               <Clipboard className="w-5 h-5 text-[#1C5CA8]" />
               Thermal Engineering Spec Sheet
@@ -119,7 +133,6 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Apex Chemical Processing Pvt Ltd"
                   value={formData.companyName}
                   onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                   className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
@@ -131,7 +144,6 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Dr. Harish Mehta"
                   value={formData.contactPerson}
                   onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
                   className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
@@ -145,7 +157,6 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 <input
                   type="email"
                   required
-                  placeholder="name@company.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
@@ -157,7 +168,6 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 <input
                   type="tel"
                   required
-                  placeholder="e.g. +91 70693 06431"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
@@ -200,7 +210,6 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               <label className="text-xs font-bold text-[#0B1B2B]">Specific Sizing Limits / Operating Pressures / Fuel Preferences</label>
               <textarea
                 rows={4}
-                placeholder="List targeted continuous runtime, specific construction grades (e.g. SS316, ASTM A516 Gr.70), statutory IBR layout requirements, design fuel (Natural Gas, bio-briquettes), or space boundary constraints..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition leading-relaxed"
@@ -218,40 +227,10 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
         </Reveal>
 
-        {/* Quality/Inspection Mandates (5 Columns) */}
-        <div className="lg:col-span-5 space-y-6">
+        {/* Fuel Consumption & Running Cost Estimator (6 Columns) */}
+        <div className="lg:col-span-6 space-y-6">
 
-          <Reveal delay={0.1} className="bg-panel border border-[#E1E4E3] rounded-xl p-6 space-y-5 text-left">
-            <h3 className="text-md font-heading font-bold text-[#0B1B2B] flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5 text-[#1C5CA8]" />
-              Quality Inspection Mandates
-            </h3>
-            <p className="text-xs text-[#47566A] leading-relaxed">
-              Every pressure vessel fabricated inside our plant complies strictly with authorized global classification inspection code cycles:
-            </p>
-
-            <div className="space-y-3">
-              <div className="p-3 bg-white border border-[#E1E4E3] rounded-lg">
-                <b className="text-xs font-bold text-[#0B1B2B] block">ASME BPVC SEC I & VIII</b>
-                <p className="text-[11px] text-[#78889B] mt-0.5">High-impact pressure weldings check using continuous volumetric plate radiography testing.</p>
-              </div>
-              
-              <div className="p-3 bg-white border border-[#E1E4E3] rounded-lg">
-                <b className="text-xs font-bold text-[#0B1B2B] block">IBR 1950 Rules (Form VI)</b>
-                <p className="text-[11px] text-[#78889B] mt-0.5">Pre-arranged structural engineering inspection clearances with Directorate of Boilers India officials.</p>
-              </div>
-
-              <div className="p-3 bg-white border border-[#E1E4E3] rounded-lg">
-                <b className="text-xs font-bold text-[#0B1B2B] block">ISO 9001:2015 QMS Standard</b>
-                <p className="text-[11px] text-[#78889B] mt-0.5">Strict quality management systems governing design, manufacturing, procurement, and testing stages.</p>
-              </div>
-
-              <div className="p-3 bg-white border border-[#E1E4E3] rounded-lg">
-                <b className="text-xs font-bold text-[#0B1B2B] block">Leak proof Hydrostatic Sizing</b>
-                <p className="text-[11px] text-[#78889B] mt-0.5">Dual-cycle hydro checks of completed boiler shells conducted at 1.5x design pressure limits.</p>
-              </div>
-            </div>
-          </Reveal>
+          <FuelConsumptionCalculator onApply={handleCalculatorApply} />
 
           {/* Active Queued Session Tickets */}
           {savedInquiries.length > 0 && (
