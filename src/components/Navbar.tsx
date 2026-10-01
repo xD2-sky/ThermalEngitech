@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import Logo from './Logo';
@@ -14,12 +14,44 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
+  // useLayoutEffect, not useEffect: on a reload where the browser restores
+  // a scrolled-down position (scroll restoration), the initial render would
+  // otherwise briefly paint with the default scrolled=false before this
+  // runs — a one-frame flash of transparent-nav white text over whatever
+  // (non-hero, likely white) content is actually behind it at that scroll
+  // position. Measuring before paint avoids that flash.
+  useLayoutEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Safety net: a layout shift with nothing to do with the user scrolling
+    // (a web font swapping in, a lazy image settling, a reveal animation
+    // finishing) can make the browser nudge scrollY and fire a genuine
+    // native 'scroll' event via scroll anchoring. That can flip `scrolled`
+    // to true even though the user is still at the top of the page, and
+    // since nothing fires another scroll event afterward, it stays stuck
+    // until a refresh. Re-checking the real scrollY on an interval makes
+    // the state self-correct within a second regardless of what caused
+    // the desync, instead of trusting a single event forever.
+    const interval = window.setInterval(handleScroll, 1000);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.clearInterval(interval);
+    };
   }, []);
+
+  // Close the mobile menu on any route change — not just the navItems/CTA
+  // links inside the dropdown that happen to call setMobileOpen(false).
+  // The logo link (outside the dropdown) didn't, so tapping it while the
+  // menu was open left it stuck open on the new page. Keying this off
+  // location.pathname catches that link, the browser back/forward buttons,
+  // and anything else that navigates, instead of requiring every new link
+  // added in the future to remember to close it manually.
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -52,6 +84,7 @@ export default function Navbar() {
 
   return (
     <nav
+      style={{ willChange: 'backdrop-filter, background-color' }}
       className={`fixed top-0 left-0 right-0 z-50 font-sans transition-all duration-300 ease-out ${
         scrolled
           ? 'bg-white/85 backdrop-blur-md border-b border-[#E4E7EC] shadow-[0_4px_20px_rgba(11,27,43,0.06)]'
