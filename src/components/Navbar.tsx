@@ -79,7 +79,17 @@ export default function Navbar() {
   // scrolled, every route converges on the same white/blurred bar with
   // dark text, unchanged.
   const DARK_BANNER_ROUTES = ['/products', '/manufacturing', '/certifications', '/contact', '/request-quote', '/about'];
-  const isDarkBannerRoute = DARK_BANNER_ROUTES.includes(location.pathname);
+  // GitHub Pages 301-redirects a bare "/about" to "/about/" (trailing
+  // slash) on every direct load/refresh. The prerendered HTML for that
+  // page was generated with pathname "/about" (no slash) baked in, so it
+  // matches DARK_BANNER_ROUTES correctly on first paint — but after a
+  // refresh, the browser follows that redirect and React hydrates against
+  // the real URL "/about/", which no longer exact-matches "/about" here.
+  // That flips useDarkText right after hydration, visibly animating the
+  // logo/nav text color via its transition — normalizing away a trailing
+  // slash (except for the root path) keeps both cases matching.
+  const normalizedPath = location.pathname !== '/' ? location.pathname.replace(/\/$/, '') : location.pathname;
+  const isDarkBannerRoute = DARK_BANNER_ROUTES.includes(normalizedPath);
   const useDarkText = scrolled || !isDarkBannerRoute;
 
   return (
