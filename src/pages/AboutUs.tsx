@@ -60,10 +60,10 @@ export default function AboutUs() {
       {/* Page header — full-bleed photo with a dark scrim, text on top, matching the other pages' banners */}
       <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
         <img
-          src={`${base}images/about-hero-sky.jpg`}
+          src={`${base}images/about-hero-industrial.jpg`}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
 

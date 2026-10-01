@@ -38,10 +38,10 @@ export default function ContactUs() {
       {/* Banner — full-bleed photo with a dark scrim, text on top. */}
       <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
         <img
-          src={`${import.meta.env.BASE_URL}images/contact-hero-gradient.jpg`}
+          src={`${import.meta.env.BASE_URL}images/contact-hero-industrial.jpg`}
           alt=""
           role="presentation"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover object-[50%_35%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
         <div className="relative z-10 max-w-7xl mx-auto w-full py-16 space-y-4">
