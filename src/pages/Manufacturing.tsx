@@ -7,9 +7,9 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import Reveal from '../components/Reveal';
-import { MANUFACTURING_STEPS, SHOP_CAPABILITIES, DESIGN_CAPABILITIES } from '../data';
+import { SHOP_CAPABILITIES } from '../data';
 import {
-  Settings, ShieldCheck, PenTool, Cpu, Cable,
+  Settings, ShieldCheck,
   Flame, Layers, Scissors, Radius, Drill, Wrench, ArrowUpDown, Gauge, SprayCan,
   FileCheck, ScanLine, BadgeCheck,
 } from 'lucide-react';
@@ -196,138 +196,21 @@ export default function Manufacturing() {
               );
             })}
           </div>
-        </div>
-      </div>
 
-      {/* 3. Design & Engineering Capabilities + Quality Assurance Directives — white */}
-      <div className="bg-white py-16 md:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <Reveal className="lg:col-span-7 bg-panel border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs">
-            <div className="bg-white px-6 py-4 border-b border-slate-200">
-              <h3 className="text-xs uppercase font-mono font-bold text-[#0B1B2B] flex items-center gap-2">
-                <PenTool className="w-4 h-4 text-[#1C5CA8]" />
-                <span>Design & Engineering Capabilities</span>
-              </h3>
-            </div>
-            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="space-y-3">
-                <h4 className="text-xs font-bold text-[#0B1B2B] uppercase tracking-wide flex items-center gap-1.5">
-                  <Settings className="w-3.5 h-3.5 text-[#1C5CA8]" />
-                  Equipment Design
-                </h4>
-                <ul className="space-y-2">
-                  {DESIGN_CAPABILITIES.equipmentDesign.map((item, i) => (
-                    <li key={i} className="text-xs text-[#47566A] leading-relaxed flex items-start gap-2">
-                      <span className="text-[#1C5CA8] mt-0.5">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="space-y-3">
-                <h4 className="text-xs font-bold text-[#0B1B2B] uppercase tracking-wide flex items-center gap-1.5">
-                  <Cable className="w-3.5 h-3.5 text-[#1C5CA8]" />
-                  Auxiliaries
-                </h4>
-                <ul className="space-y-2">
-                  {DESIGN_CAPABILITIES.auxiliaries.map((item, i) => (
-                    <li key={i} className="text-xs text-[#47566A] leading-relaxed flex items-start gap-2">
-                      <span className="text-[#1C5CA8] mt-0.5">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="space-y-3">
-                <h4 className="text-xs font-bold text-[#0B1B2B] uppercase tracking-wide flex items-center gap-1.5">
-                  <Cpu className="w-3.5 h-3.5 text-[#1C5CA8]" />
-                  Computer Aided Design
-                </h4>
-                <ul className="space-y-2">
-                  {DESIGN_CAPABILITIES.cadTools.map((item, i) => (
-                    <li key={i} className="text-xs text-[#47566A] leading-relaxed flex items-start gap-2">
-                      <span className="text-[#1C5CA8] mt-0.5">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Quality Assurance Directives — static, no scroll-reveal motion
-              by explicit request. Each directive gets its own icon rather
-              than a repeated checkmark, so the three compliance types read
-              as distinct at a glance instead of a generic bullet list. */}
-          <div className="lg:col-span-5 bg-panel border border-[#E1E4E3] rounded-lg overflow-hidden shadow-xs self-start">
-            <div className="bg-white px-6 py-4 border-b border-slate-200 flex items-center gap-2.5">
-              <ShieldCheck className="w-4 h-4 text-[#1C5CA8]" />
-              <h3 className="text-xs uppercase font-mono font-bold text-[#0B1B2B]">
-                Quality Assurance Directives
-              </h3>
-            </div>
-            <div className="p-6 space-y-5">
-              <p className="text-xs text-[#47566A] leading-relaxed font-sans">
-                Every plate, tube, and weld is monitored by our quality coordinators. Documentation on file for each unit:
-              </p>
-              <div className="divide-y divide-slate-100">
-                {QUALITY_DIRECTIVES.map((d) => (
-                  <div key={d.title} className="flex items-start gap-3 py-4 first:pt-0 last:pb-0">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
-                      <d.icon className="w-4 h-4" strokeWidth={1.75} />
-                    </span>
-                    <div className="space-y-0.5">
-                      <h4 className="text-xs font-bold text-[#0B1B2B]">{d.title}</h4>
-                      <p className="text-xs text-[#78889B] leading-relaxed font-sans">{d.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* 4. Assembly Steps — blue */}
-      <div className="bg-panel-blue py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto space-y-16">
-          <Reveal className="text-center max-w-3xl mx-auto space-y-4">
-            <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
-              Production Steps
-            </p>
-            <h2 className="text-3xl font-heading font-bold text-[#0B1B2B]">
-              The Six-Stage Assembly Pipeline
-            </h2>
-            <p className="text-[#47566A] text-sm">
-              Raw boiler-grade steel to finished, certified system — six stages.
-            </p>
-          </Reveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-            {MANUFACTURING_STEPS.map((step, i) => (
-              <React.Fragment key={step.step}>
-              <Reveal
-                delay={(i % 3) * 0.08}
-                className="bg-white border border-[#E1E4E3] p-6 rounded-lg hover:border-[#1C5CA8]/35 hover:-translate-y-0.5 transition shadow-sm space-y-3.5 flex flex-col justify-between"
+          {/* Quality Assurance — compact badge row, not a full text block */}
+          <Reveal className="flex flex-wrap items-center justify-center gap-3 pt-4">
+            {QUALITY_DIRECTIVES.map((d) => (
+              <div
+                key={d.title}
+                className="inline-flex items-center gap-2 bg-white border border-[#E1E4E3] rounded-full pl-3 pr-4 py-2 shadow-xs"
               >
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="font-mono text-xs font-bold text-[#1C5CA8] uppercase tracking-wider">
-                      Stage {step.step}
-                    </span>
-                    <span className="text-[10px] uppercase font-mono text-[#78889B]">Section GIDC</span>
-                  </div>
-                  <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">{step.title}</h4>
-                  <p className="text-xs text-[#47566A] leading-relaxed font-sans">{step.description}</p>
-                </div>
-                <div className="pt-3 border-t border-slate-100 mt-2 text-[10px] font-mono text-[#78889B] uppercase tracking-tight">
-                  Status: 100% Quality Audited
-                </div>
-              </Reveal>
-              </React.Fragment>
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8]">
+                  <d.icon className="w-3.5 h-3.5" strokeWidth={1.75} />
+                </span>
+                <span className="text-xs font-bold text-[#0B1B2B] whitespace-nowrap">{d.title}</span>
+              </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </div>
 
