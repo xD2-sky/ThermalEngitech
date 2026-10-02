@@ -187,33 +187,46 @@ export default function AboutUs() {
           </div>
         </div>
 
-        {/* Founders — same divider rhythm as "Our foundational pillars" above
-            (border-t + eyebrow + h3), so this reads as a natural continuation
-            of the page instead of a separate colored band with its own card
-            grid, which is what made it feel disconnected before. */}
-        <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#E4E7EC]">
-          <Reveal className="space-y-1.5 mb-8">
-            <p className="flex items-center gap-2 text-sm text-[#78889B]">
+      </div>
+
+      {/* Leadership — the original standalone band style, refined: no more
+          ISO-audit tag (didn't apply to both founders), copy and card width
+          tuned for exactly two founders instead of a 3-up grid. */}
+      <div className="relative py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-panel-blue overflow-hidden">
+        <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+
+          <Reveal className="text-center max-w-3xl mx-auto space-y-4">
+            <p className="flex items-center justify-center gap-2 text-sm text-[#78889B]">
               <span className="text-[#1C5CA8]">•</span>
-              Founders
+              Leadership team
             </p>
-            <h3 className="font-heading font-bold text-lg text-[#0B1B2B]">Led by the people who build it</h3>
+            <h2 className="text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
+              Founded and led by the engineers who build it
+            </h2>
+            <p className="text-[#47566A] text-sm">
+              Two co-founders, one shared discipline: engineering process-heat systems that hold up in the field.
+            </p>
           </Reveal>
-          <div className="flex flex-col sm:flex-row gap-8 sm:gap-14">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
             {leadership.map((lead, i) => (
               <React.Fragment key={i}>
-              <Reveal delay={i * 0.08} className="flex items-center gap-4">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#0B1B2B]/5 text-[#0B1B2B] font-heading font-bold text-xl">
+              <Reveal
+                delay={i * 0.08}
+                className="bg-white border border-[#E4E7EC] rounded-2xl p-6 shadow-sm flex items-center gap-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <div className="h-14 w-14 shrink-0 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] flex items-center justify-center font-heading font-bold text-xl">
                   {lead.name.split(' ')[0][0]}
-                </span>
-                <div>
-                  <b className="block font-heading font-extrabold text-base text-[#0B1B2B]">{lead.name}</b>
-                  <span className="text-xs font-semibold text-[#1C5CA8] uppercase tracking-wide">{lead.role}</span>
+                </div>
+                <div className="text-left">
+                  <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">{lead.name}</h4>
+                  <span className="text-xs font-semibold text-[#1C5CA8]">{lead.role}</span>
                 </div>
               </Reveal>
               </React.Fragment>
             ))}
           </div>
+
         </div>
       </div>
 
