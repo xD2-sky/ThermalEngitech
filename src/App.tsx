@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import Analytics from './components/Analytics';
 import { SITE, WHATSAPP_LINK } from './config/site';
 
 // Page components imports
@@ -29,6 +30,7 @@ export default function App() {
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       {/* Scroll restorer handles page switches */}
       <ScrollToTop />
+      <Analytics />
 
       <div className="min-h-screen bg-[#FBFBFC] text-[#17222E] flex flex-col justify-between select-text scroll-smooth selection:bg-[#2F7BD4]/25">
         

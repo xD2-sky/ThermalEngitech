@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0B1B2B" />
 
+    <!-- Google tag (gtag.js) — send_page_view is off here because this is a
+         single-page app; src/lib/analytics.ts fires page_view manually on
+         every React Router navigation instead (see that file for why). -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXK5ZMPDZT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-SXK5ZMPDZT', { send_page_view: false });
+    </script>
+
     <title>Industrial Steam Boilers &amp; Thermic Fluid Heaters | Thermal Engitech Pvt. Ltd.</title>
     <meta name="description" content="Thermal Engitech Pvt. Ltd. manufactures steam boilers, thermic fluid heaters, heat exchangers and process-heat systems in Dhamatwan, Gujarat — IBR, ASME and ISO 9001:2015 certified." />
     <meta name="keywords" content="steam boiler manufacturer, thermic fluid heater, industrial boiler Gujarat, IBR boiler, thermic oil heater, heat exchanger, air preheater, hot water generator, Thermal Engitech" />
