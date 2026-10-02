@@ -6,7 +6,7 @@
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { Link } from 'react-router-dom';
-import { Target, Compass, Sparkles, Award, ArrowRight } from 'lucide-react';
+import { Target, Compass, Sparkles, ArrowRight } from 'lucide-react';
 import AnimatedCounter from '../components/AnimatedCounter';
 import Reveal from '../components/Reveal';
 
@@ -186,51 +186,34 @@ export default function AboutUs() {
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Leadership */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-panel-blue overflow-hidden">
-        <div className="max-w-7xl mx-auto space-y-12 relative z-10">
-
-          <Reveal className="text-center max-w-3xl mx-auto space-y-4">
-            <p className="flex items-center justify-center gap-2 text-sm text-[#78889B]">
+        {/* Founders — same divider rhythm as "Our foundational pillars" above
+            (border-t + eyebrow + h3), so this reads as a natural continuation
+            of the page instead of a separate colored band with its own card
+            grid, which is what made it feel disconnected before. */}
+        <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#E4E7EC]">
+          <Reveal className="space-y-1.5 mb-8">
+            <p className="flex items-center gap-2 text-sm text-[#78889B]">
               <span className="text-[#1C5CA8]">•</span>
-              Leadership team
+              Founders
             </p>
-            <h2 className="text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
-              Guided by process-heat veterans
-            </h2>
-            <p className="text-[#47566A] text-sm">
-              Our directors combine academic thermal research with robust, practical GIDC workshop supervision.
-            </p>
+            <h3 className="font-heading font-bold text-lg text-[#0B1B2B]">Led by the people who build it</h3>
           </Reveal>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <div className="flex flex-col sm:flex-row gap-8 sm:gap-14">
             {leadership.map((lead, i) => (
               <React.Fragment key={i}>
-              <Reveal
-                delay={i * 0.08}
-                className="bg-white border border-[#E4E7EC] rounded-2xl p-6 shadow-sm space-y-4 flex flex-col justify-between hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
-              >
-                <div className="space-y-3 text-left">
-                  <div className="h-12 w-12 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] flex items-center justify-center font-heading font-bold text-lg">
-                    {lead.name.split(' ')[0][0]}
-                  </div>
-                  <div>
-                    <h4 className="font-heading font-extrabold text-sm text-[#0B1B2B]">{lead.name}</h4>
-                    <span className="text-[11px] font-semibold text-[#1C5CA8]">{lead.role}</span>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-[#E4E7EC] text-[11px] font-semibold text-[#1C5CA8] flex items-center gap-1.5">
-                  <Award className="w-3.5 h-3.5" />
-                  <span>ISO audit representative</span>
+              <Reveal delay={i * 0.08} className="flex items-center gap-4">
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#0B1B2B]/5 text-[#0B1B2B] font-heading font-bold text-xl">
+                  {lead.name.split(' ')[0][0]}
+                </span>
+                <div>
+                  <b className="block font-heading font-extrabold text-base text-[#0B1B2B]">{lead.name}</b>
+                  <span className="text-xs font-semibold text-[#1C5CA8] uppercase tracking-wide">{lead.role}</span>
                 </div>
               </Reveal>
               </React.Fragment>
             ))}
           </div>
-
         </div>
       </div>
 
