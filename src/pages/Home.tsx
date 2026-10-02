@@ -105,57 +105,27 @@ export default function Home() {
 
       {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
           featured categories show here; the other 4 products live on the Products page. */}
-      <div className="relative bg-panel-blue py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="relative bg-panel-blue py-14 sm:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* No top/bottom fade here by design: the blend into this section lives on
             About Us's own bottom edge (see AboutIntro.tsx), and the transition into
             "Why Thermal Engitech" below is intentionally a clean, default cut. */}
-        <div className="max-w-7xl mx-auto space-y-16 relative z-10">
+        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
 
-          <Reveal className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
-            <div className="max-w-2xl space-y-4">
-              <div className="flex items-center gap-2.5">
-                <span className="w-8 h-[2px] bg-[#DC2626]" />
-                <p className="text-[11px] uppercase tracking-[0.18em] text-[#78889B] font-semibold">
-                  Our Products
-                </p>
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.04]">
-                Four Solutions.<br />Countless Possibilities.
-              </h2>
-              <p className="text-[#47566A] text-sm leading-relaxed max-w-lg">
-                Thermal Engitech provides engineered thermal and process-heating solutions for
-                industrial applications — designed and fabricated in-house to the standards your
-                plant is audited against.
+          <Reveal className="max-w-2xl space-y-4">
+            <div className="flex items-center gap-2.5">
+              <span className="w-8 h-[2px] bg-[#DC2626]" />
+              <p className="text-[11px] uppercase tracking-[0.18em] text-[#78889B] font-semibold">
+                Our Products
               </p>
             </div>
-
-            {/* Compact supporting-facts card — fills the space next to the intro
-                with real, verified information (drawn from the same standards/
-                capabilities called out elsewhere on the site) rather than a
-                sparse tagline or decorative filler. */}
-            <div className="w-full lg:w-[300px] shrink-0 rounded-2xl border border-[#0B1B2B]/10 bg-white/70 p-5 space-y-3">
-              <p className="text-[11px] uppercase tracking-[0.14em] text-[#1C5CA8] font-bold">
-                Engineered for Industry
-              </p>
-              <p className="text-xs text-[#47566A] leading-relaxed">
-                Every unit is custom-engineered and fabricated in-house — not off-the-shelf —
-                to match your process, fuel and compliance requirements.
-              </p>
-              <ul className="space-y-1.5 pt-1">
-                <li className="flex items-start gap-2 text-xs text-[#0B1B2B] font-medium">
-                  <span className="text-[#1C5CA8] mt-0.5">•</span>
-                  IBR, ASME &amp; ISO 9001:2015 compliant range
-                </li>
-                <li className="flex items-start gap-2 text-xs text-[#0B1B2B] font-medium">
-                  <span className="text-[#1C5CA8] mt-0.5">•</span>
-                  Solid fuel, gas, biomass &amp; oil-fired options
-                </li>
-                <li className="flex items-start gap-2 text-xs text-[#0B1B2B] font-medium">
-                  <span className="text-[#1C5CA8] mt-0.5">•</span>
-                  Fabricated at our 7,500 m² Dhamatwan facility
-                </li>
-              </ul>
-            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.04]">
+              Four Solutions.<br />Countless Possibilities.
+            </h2>
+            <p className="text-[#47566A] text-sm leading-relaxed max-w-lg">
+              Thermal Engitech provides engineered thermal and process-heating solutions for
+              industrial applications — designed and fabricated in-house to the standards your
+              plant is audited against.
+            </p>
           </Reveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
