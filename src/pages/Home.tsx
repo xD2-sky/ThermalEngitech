@@ -10,7 +10,6 @@ import Hero from '../components/Hero';
 import AboutIntro from '../components/AboutIntro';
 import Reveal from '../components/Reveal';
 import AnimatedCounter from '../components/AnimatedCounter';
-import LogoWatermark from '../components/LogoWatermark';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { INDUSTRIES_SERVED } from '../data';
 import {
@@ -351,23 +350,31 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Industries We Serve — flat neutral background matching Product Range,
-          no photo (replaced per feedback). Equal-sized cards, no large "stage"
-          preview — every industry gets the same visual weight. */}
-      <div className="relative bg-panel-blue py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <LogoWatermark position="bottom-right" size={800} opacity={0.08} />
+      {/* Industries We Serve — photo background (ant-rozetsky steel-mill
+          interior, same as the About page hero) with the same dark scrim
+          treatment used across the site's hero banners. Cards are frosted
+          glass (translucent + backdrop-blur), so the photo shows through
+          them too, not just in the gaps between them. */}
+      <div className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <img
+          src={`${import.meta.env.BASE_URL}images/about-hero-industrial.jpg`}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
         <div className="max-w-7xl mx-auto space-y-10 relative z-10">
           <Reveal className="max-w-2xl space-y-4 text-center mx-auto">
             <div className="flex items-center justify-center gap-2.5">
               <span className="w-8 h-[2px] bg-[#DC2626]" />
-              <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#7FB2E4] font-semibold">
                 Where our systems run
               </p>
             </div>
-            <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.05]">
+            <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.05]">
               Industries we serve
             </h2>
-            <p className="text-[#47566A] text-sm leading-relaxed">
+            <p className="text-white/80 text-sm leading-relaxed">
               Fifteen industries, one requirement in common: heat that can't fail.
             </p>
           </Reveal>
@@ -393,7 +400,7 @@ export default function Home() {
             })}
           </div>
 
-          <p className="text-center text-[#78889B] text-xs pt-2">
+          <p className="text-center text-white/60 text-xs pt-2">
             Plus other industries and units where direct and indirect heating is essential.
           </p>
         </div>
