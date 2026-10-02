@@ -38,19 +38,12 @@ export default function AboutUs() {
 
   const leadership = [
     {
-      name: 'Mr. Arvind Patel',
-      role: 'Managing Director & Chief Engineer',
-      description: 'Over 28 years of core industrial experience in thermal power cycles, multi-fluid convective heat patterns, and compliance codes with state-level regulatory boards.'
+      name: 'Chintant Parmar',
+      role: 'Co-Founder',
     },
     {
-      name: 'Mr. Sanjay Patel',
-      role: 'Director - Production & Operations',
-      description: 'Coordinates Shrey Industrial Park plant assemblies, specializing in heavy mechanical sheet rolling, hydrostatic testing rigs, and quality audits.'
-    },
-    {
-      name: 'Ms. Priyanka Shah',
-      role: 'Chief of QA & Compliance Standards',
-      description: 'Oversees radiographic weld checks, ISO management logs, and ASME / IBR statutory documentation for national and global clients.'
+      name: 'Abhishek Jethalia',
+      role: 'Co-Founder',
     }
   ];
 
@@ -212,7 +205,7 @@ export default function AboutUs() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {leadership.map((lead, i) => (
               <React.Fragment key={i}>
               <Reveal
@@ -221,13 +214,12 @@ export default function AboutUs() {
               >
                 <div className="space-y-3 text-left">
                   <div className="h-12 w-12 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] flex items-center justify-center font-heading font-bold text-lg">
-                    {lead.name.split(' ')[1][0]}
+                    {lead.name.split(' ')[0][0]}
                   </div>
                   <div>
                     <h4 className="font-heading font-extrabold text-sm text-[#0B1B2B]">{lead.name}</h4>
                     <span className="text-[11px] font-semibold text-[#1C5CA8]">{lead.role}</span>
                   </div>
-                  <p className="text-xs text-[#78889B] leading-relaxed">{lead.description}</p>
                 </div>
 
                 <div className="pt-4 border-t border-[#E4E7EC] text-[11px] font-semibold text-[#1C5CA8] flex items-center gap-1.5">
