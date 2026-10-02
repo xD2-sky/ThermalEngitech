@@ -224,12 +224,11 @@ export default function Home() {
           Range's own bottom fade already blends into this white, so no separate
           top fade is needed here. */}
       <div className="relative bg-white overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-14 pb-10 sm:pb-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 pb-6 sm:pb-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
             <Reveal className="lg:col-span-6 space-y-5">
               <div className="flex items-center gap-2.5">
-                <span className="w-8 h-[2px] bg-[#DC2626]" />
                 <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
                   Why Thermal Engitech
                 </p>
@@ -312,7 +311,7 @@ export default function Home() {
       </div>
 
       {/* What Sets Us Apart — 6-point differentiator grid */}
-      <div className="bg-white pt-10 sm:pt-12 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white pt-8 sm:pt-10 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-10">
           <Reveal className="space-y-2">
             <h3 className="font-heading font-bold text-xl text-[#0B1B2B]">What Sets Us Apart</h3>
@@ -338,14 +337,6 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </Reveal>
-
-          <Reveal delay={0.1} className="flex items-center justify-center gap-4 pt-6">
-            <span className="h-px w-16 bg-[#E4E7EC]" />
-            <p className="text-[11px] uppercase tracking-[0.14em] text-[#78889B] font-semibold text-center">
-              Partnering for a cleaner, brighter tomorrow
-            </p>
-            <span className="h-px w-16 bg-[#E4E7EC]" />
           </Reveal>
         </div>
       </div>
