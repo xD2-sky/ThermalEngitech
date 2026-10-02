@@ -4,10 +4,12 @@
  */
 
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'motion/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import PageTransition from './components/PageTransition';
 import { SITE, WHATSAPP_LINK } from './config/site';
 
 // Page components imports
@@ -27,29 +29,50 @@ import { MessageCircle, Phone } from 'lucide-react';
 export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <AppShell />
+    </BrowserRouter>
+  );
+}
+
+function AppShell() {
+  const location = useLocation();
+
+  return (
+    <>
       {/* Scroll restorer handles page switches */}
       <ScrollToTop />
 
       <div className="min-h-screen bg-[#FBFBFC] text-[#17222E] flex flex-col justify-between select-text scroll-smooth selection:bg-[#2F7BD4]/25">
-        
+
         {/* Persistent Fixed Header / Navbar — out of flow, overlays every page's top section */}
         <Navbar />
 
         {/* Dynamic Route Switcher Panel — no top padding, so every page's own top
-            section starts at y:0 behind the transparent navbar, matching Hero */}
+            section starts at y:0 behind the transparent navbar, matching Hero.
+            <Routes> is keyed by pathname inside AnimatePresence so a navigation
+            remounts PageTransition's motion.div, letting it play an exit
+            animation for the old page before the new one enters — ordinary
+            re-renders of the same route (e.g. a query-param change) don't
+            re-key it, so nothing re-animates needlessly. */}
         <main className="flex-1 w-full">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/category/:slug" element={<ProductCategory />} />
-            <Route path="/products/:id" element={<ProductDetails />} />
-            <Route path="/manufacturing" element={<Manufacturing />} />
-            <Route path="/certifications" element={<Certifications />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/request-quote" element={<RequestQuote />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AnimatePresence mode="wait" initial={false}>
+            <React.Fragment key={location.pathname}>
+              <Routes location={location}>
+                <Route element={<PageTransition />}>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<AboutUs />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/products/category/:slug" element={<ProductCategory />} />
+                  <Route path="/products/:id" element={<ProductDetails />} />
+                  <Route path="/manufacturing" element={<Manufacturing />} />
+                  <Route path="/certifications" element={<Certifications />} />
+                  <Route path="/contact" element={<ContactUs />} />
+                  <Route path="/request-quote" element={<RequestQuote />} />
+                  <Route path="*" element={<NotFound />} />
+                </Route>
+              </Routes>
+            </React.Fragment>
+          </AnimatePresence>
         </main>
 
         {/* ================= FIXED FLOATING LEAD GENERATION WIDGETS ================= */}
@@ -86,6 +109,6 @@ export default function App() {
         <Footer />
 
       </div>
-    </BrowserRouter>
+    </>
   );
 }
