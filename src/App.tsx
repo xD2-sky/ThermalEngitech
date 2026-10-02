@@ -3,14 +3,20 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'motion/react';
+import { AnimatePresence, useReducedMotion } from 'motion/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import PageTransition from './components/PageTransition';
+import PageTransitionOverlay from './components/PageTransitionOverlay';
 import { SITE, WHATSAPP_LINK } from './config/site';
+
+// How long the branded logo curtain stays up over a navigation — long enough
+// to fully bridge PageTransition's own exit (0.32s) + enter (0.32s) sequence
+// underneath it, with a little margin so it never reveals a blank frame.
+const TRANSITION_OVERLAY_MS = 750;
 
 // Page components imports
 import Home from './pages/Home';
@@ -36,11 +42,33 @@ export default function App() {
 
 function AppShell() {
   const location = useLocation();
+  const shouldReduceMotion = useReducedMotion();
+  const [showTransitionOverlay, setShowTransitionOverlay] = useState(false);
+  const prevPathname = useRef(location.pathname);
+
+  // Fires only on an actual pathname change (not e.g. a query-param update
+  // on the same page), and only when the visitor hasn't asked for reduced
+  // motion — PageTransition itself skips its fade for those visitors, so the
+  // overlay shouldn't introduce one either.
+  useEffect(() => {
+    if (shouldReduceMotion || prevPathname.current === location.pathname) {
+      prevPathname.current = location.pathname;
+      return;
+    }
+    prevPathname.current = location.pathname;
+    setShowTransitionOverlay(true);
+    const timeout = window.setTimeout(() => setShowTransitionOverlay(false), TRANSITION_OVERLAY_MS);
+    return () => window.clearTimeout(timeout);
+  }, [location.pathname, shouldReduceMotion]);
 
   return (
     <>
       {/* Scroll restorer handles page switches */}
       <ScrollToTop />
+
+      <AnimatePresence>
+        {showTransitionOverlay && <PageTransitionOverlay key="transition-overlay" />}
+      </AnimatePresence>
 
       <div className="min-h-screen bg-[#FBFBFC] text-[#17222E] flex flex-col justify-between select-text scroll-smooth selection:bg-[#2F7BD4]/25">
 
