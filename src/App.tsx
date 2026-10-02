@@ -3,22 +3,22 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, useReducedMotion } from 'motion/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-import PageTransition from './components/PageTransition';
 import PageTransitionOverlay from './components/PageTransitionOverlay';
 import { SITE, WHATSAPP_LINK } from './config/site';
 
-// How long the branded logo curtain stays fully up before it starts fading,
-// timed to PageTransition's own exit (0.22s) + enter (0.22s) underneath it —
-// plus the overlay's own ~0.12s fade-out, the whole thing lands at ~0.5s
-// total, matching the plain fade/slide transition's original feel rather
-// than tacking extra time on top of it.
-const TRANSITION_OVERLAY_MS = 400;
+// How long the branded logo curtain stays fully up before it starts fading
+// out (PageTransitionOverlay's own exit transition takes another ~0.16s on
+// top of this). The page underneath has no animation of its own — it swaps
+// instantly while fully hidden under the overlay's always-opaque backdrop —
+// so this only needs to cover the logo's own reveal (~0.28s) plus a brief
+// rest, landing the whole sequence at roughly half a second.
+const TRANSITION_OVERLAY_MS = 380;
 
 // Page components imports
 import Home from './pages/Home';
@@ -48,11 +48,16 @@ function AppShell() {
   const [showTransitionOverlay, setShowTransitionOverlay] = useState(false);
   const prevPathname = useRef(location.pathname);
 
-  // Fires only on an actual pathname change (not e.g. a query-param update
-  // on the same page), and only when the visitor hasn't asked for reduced
-  // motion — PageTransition itself skips its fade for those visitors, so the
-  // overlay shouldn't introduce one either.
-  useEffect(() => {
+  // useLayoutEffect, not useEffect: <Routes> below already re-renders with
+  // the NEW page's content in this same render (it reads useLocation() too),
+  // so a plain useEffect here would only flip the overlay on *after* that
+  // content has already committed — and possibly after the browser has
+  // already painted it, flashing the new page bare for a frame before the
+  // overlay catches up to cover it. Flushing synchronously before paint
+  // (same fix already used in Navbar.tsx for an identical class of bug)
+  // guarantees the overlay is in the very first frame that shows anything
+  // different, so there's nothing underneath left exposed to flicker.
+  useLayoutEffect(() => {
     if (shouldReduceMotion || prevPathname.current === location.pathname) {
       prevPathname.current = location.pathname;
       return;
@@ -79,30 +84,23 @@ function AppShell() {
 
         {/* Dynamic Route Switcher Panel — no top padding, so every page's own top
             section starts at y:0 behind the transparent navbar, matching Hero.
-            <Routes> is keyed by pathname inside AnimatePresence so a navigation
-            remounts PageTransition's motion.div, letting it play an exit
-            animation for the old page before the new one enters — ordinary
-            re-renders of the same route (e.g. a query-param change) don't
-            re-key it, so nothing re-animates needlessly. */}
+            Plain, unanimated route swap: the branded overlay above is the
+            only thing that visibly moves during a navigation, so there's
+            nothing for a second, independently-timed animation here to fall
+            out of sync with. */}
         <main className="flex-1 w-full">
-          <AnimatePresence mode="wait" initial={false}>
-            <React.Fragment key={location.pathname}>
-              <Routes location={location}>
-                <Route element={<PageTransition />}>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/about" element={<AboutUs />} />
-                  <Route path="/products" element={<Products />} />
-                  <Route path="/products/category/:slug" element={<ProductCategory />} />
-                  <Route path="/products/:id" element={<ProductDetails />} />
-                  <Route path="/manufacturing" element={<Manufacturing />} />
-                  <Route path="/certifications" element={<Certifications />} />
-                  <Route path="/contact" element={<ContactUs />} />
-                  <Route path="/request-quote" element={<RequestQuote />} />
-                  <Route path="*" element={<NotFound />} />
-                </Route>
-              </Routes>
-            </React.Fragment>
-          </AnimatePresence>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/category/:slug" element={<ProductCategory />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/manufacturing" element={<Manufacturing />} />
+            <Route path="/certifications" element={<Certifications />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/request-quote" element={<RequestQuote />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </main>
 
         {/* ================= FIXED FLOATING LEAD GENERATION WIDGETS ================= */}
