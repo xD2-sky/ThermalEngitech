@@ -11,8 +11,8 @@ import { Inquiry } from '../types';
 
 export default function RequestQuote() {
   useDocumentMeta(
-    'Request a Quote',
-    'Submit your plant specifications for a sizing calculation and technical quotation within 24 business hours.'
+    'Fuel Consumption & Running Cost Calculator',
+    'Estimate boiler fuel consumption and running cost by capacity and fuel type — then request a technical sizing quotation. Free online calculator.'
   );
 
   const [searchParams] = useSearchParams();

@@ -105,8 +105,29 @@ const MIME = {
   '.ico': 'image/x-icon', '.woff': 'font/woff', '.woff2': 'font/woff2',
   '.mp4': 'video/mp4', '.xml': 'application/xml', '.txt': 'text/plain',
 };
+
+// Mirrors vite.config.ts's `base` (e.g. "/ThermalEngitech/") so the asset
+// URLs baked into the built bundle (<script src="/ThermalEngitech/assets/...">)
+// resolve against this local test server the same way they do once deployed.
+// Without this, those requests 404 under headless Chrome, the bundle never
+// loads, and React never mounts — every "prerendered" page silently comes out
+// as an empty shell. Read from vite.config.ts rather than hardcoded so it
+// can't drift out of sync with the real deploy path.
+function getBasePath() {
+  try {
+    const viteConfig = readFileSync(join(ROOT, 'vite.config.ts'), 'utf8');
+    const match = viteConfig.match(/base:\s*['"]([^'"]*)['"]/);
+    if (match) return match[1] === '/' ? '' : match[1].replace(/\/$/, '');
+  } catch (e) {
+    console.warn('[prerender] could not read vite.config.ts base path:', e.message);
+  }
+  return '';
+}
+const BASE_PATH = getBasePath();
+
 const server = createServer((req, res) => {
-  const urlPath = decodeURIComponent(req.url.split('?')[0]);
+  const rawPath = decodeURIComponent(req.url.split('?')[0]);
+  const urlPath = BASE_PATH && rawPath.startsWith(BASE_PATH) ? (rawPath.slice(BASE_PATH.length) || '/') : rawPath;
   const ext = extname(urlPath);
   if (ext) {
     const file = join(DIST, urlPath);
@@ -127,7 +148,7 @@ async function run() {
   console.log(`[prerender] serving dist/ on :${PORT} via ${CHROME}`);
 
   for (const route of routes) {
-    const url = `http://localhost:${PORT}${route}`;
+    const url = `http://localhost:${PORT}${BASE_PATH}${route}`;
     let html;
     try {
       const { stdout } = await execFileAsync(CHROME, [
@@ -146,7 +167,12 @@ async function run() {
       console.warn(`[prerender] ${route} failed (${e.message}) — leaving SPA fallback`);
       continue;
     }
-    if (!html || !html.includes('<div id="root">')) {
+    // Checking for the shell string alone isn't enough to prove React
+    // actually mounted into it — an empty, never-hydrated <div id="root">
+    // contains that exact string too, which is exactly how the base-path
+    // bug above went unnoticed (every route "succeeded" this check while
+    // writing a blank page). Require the root to actually have children.
+    if (!html || !html.includes('<div id="root">') || /<div id="root">\s*<\/div>/.test(html)) {
       console.warn(`[prerender] ${route} produced no root markup — skipped`);
       continue;
     }
