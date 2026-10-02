@@ -20,13 +20,13 @@ export default function PageTransitionOverlay() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.12, ease: [0.16, 1, 0.3, 1] }}
     >
       <motion.div
-        className="w-16 h-16 sm:w-20 sm:h-20"
+        className="w-32 h-32 sm:w-44 sm:h-44 drop-shadow-[0_8px_24px_rgba(28,92,168,0.18)]"
         initial={{ scale: 0.9, clipPath: 'inset(0 100% 0 0)' }}
         animate={{ scale: 1, clipPath: 'inset(0 0% 0 0)' }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
       >
         <img
           src={`${import.meta.env.BASE_URL}images/brand/logo-mark.png`}

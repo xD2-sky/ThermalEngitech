@@ -13,10 +13,12 @@ import PageTransition from './components/PageTransition';
 import PageTransitionOverlay from './components/PageTransitionOverlay';
 import { SITE, WHATSAPP_LINK } from './config/site';
 
-// How long the branded logo curtain stays up over a navigation — long enough
-// to fully bridge PageTransition's own exit (0.32s) + enter (0.32s) sequence
-// underneath it, with a little margin so it never reveals a blank frame.
-const TRANSITION_OVERLAY_MS = 750;
+// How long the branded logo curtain stays fully up before it starts fading,
+// timed to PageTransition's own exit (0.22s) + enter (0.22s) underneath it —
+// plus the overlay's own ~0.12s fade-out, the whole thing lands at ~0.5s
+// total, matching the plain fade/slide transition's original feel rather
+// than tacking extra time on top of it.
+const TRANSITION_OVERLAY_MS = 400;
 
 // Page components imports
 import Home from './pages/Home';
