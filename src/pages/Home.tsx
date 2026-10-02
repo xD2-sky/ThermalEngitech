@@ -366,7 +366,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto space-y-10 relative z-10">
           <Reveal className="max-w-2xl space-y-4 text-center mx-auto">
             <div className="flex items-center justify-center gap-2.5">
-              <span className="w-8 h-[2px] bg-[#DC2626]" />
               <p className="text-xs uppercase tracking-[0.18em] text-[#7FB2E4] font-semibold">
                 Where our systems run
               </p>
