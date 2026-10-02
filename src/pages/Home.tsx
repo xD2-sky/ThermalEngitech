@@ -113,7 +113,6 @@ export default function Home() {
 
           <Reveal className="max-w-2xl space-y-4">
             <div className="flex items-center gap-2.5">
-              <span className="w-8 h-[2px] bg-[#DC2626]" />
               <p className="text-[11px] uppercase tracking-[0.18em] text-[#78889B] font-semibold">
                 Our Products
               </p>
@@ -174,7 +173,7 @@ export default function Home() {
               to="/products"
               className="group inline-flex items-center gap-2.5 text-sm font-bold uppercase tracking-[0.14em] text-[#0B1B2B] hover:text-[#1C5CA8] transition-colors"
             >
-              <span className="border-b-2 border-[#0B1B2B]/20 group-hover:border-[#DC2626] pb-1 transition-colors">
+              <span className="border-b-2 border-[#0B1B2B]/20 group-hover:border-[#1C5CA8] pb-1 transition-colors">
                 Explore complete product range
               </span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -285,7 +284,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto space-y-10">
           <Reveal className="space-y-2">
             <h3 className="font-heading font-bold text-xl text-[#0B1B2B]">What Sets Us Apart</h3>
-            <span className="block w-10 h-[3px] bg-[#DC2626]" />
           </Reveal>
 
           <Reveal delay={0.05} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-6 gap-y-10">
@@ -378,7 +376,6 @@ export default function Home() {
           <Reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <div className="space-y-3">
               <div className="flex items-center gap-2.5">
-                <span className="w-8 h-[2px] bg-[#DC2626]" />
                 <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
                   Certifications &amp; Quality
                 </p>

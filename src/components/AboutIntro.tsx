@@ -109,7 +109,6 @@ export default function AboutIntro() {
             {...itemMotionProps}
             className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#78889B]"
           >
-            <span className="w-8 h-[2px] bg-[#DC2626]" />
             About Us
           </motion.p>
 

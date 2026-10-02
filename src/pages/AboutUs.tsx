@@ -69,9 +69,7 @@ export default function AboutUs() {
 
         <div className="relative z-10 max-w-4xl mx-auto w-full pt-28 sm:pt-32 pb-16 text-center space-y-5">
           <Reveal as="span" className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#7FB2E4]">
-            <span className="w-8 h-[2px] bg-[#DC2626]" />
             About Us
-            <span className="w-8 h-[2px] bg-[#DC2626]" />
           </Reveal>
           <Reveal delay={0.08}>
             <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.08]">
@@ -264,7 +262,6 @@ export default function AboutUs() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
           <div className="lg:col-span-5 space-y-7 text-left">
             <Reveal className="flex items-center gap-2.5">
-              <span className="w-8 h-[2px] bg-[#DC2626]" />
               <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
                 Our Ongoing Mission
               </p>
