@@ -389,9 +389,9 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, margin: '-50px' }}
                   transition={{ duration: 0.4, delay: (i % 5) * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                  className="rounded-xl border border-white/60 bg-white/40 backdrop-blur-md shadow-[0_8px_24px_-14px_rgba(11,27,43,0.18)] p-6 flex flex-col items-center text-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/60 hover:shadow-[0_15px_30px_-12px_rgba(28,92,168,0.25)] hover:border-[#1C5CA8]/40"
+                  className="rounded-xl bg-white/40 backdrop-blur-md shadow-[0_8px_24px_-14px_rgba(11,27,43,0.18)] p-6 flex flex-col items-center text-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/60 hover:shadow-[0_15px_30px_-12px_rgba(28,92,168,0.25)]"
                 >
-                  <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-[#1C5CA8]/12 text-[#1C5CA8]">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-white text-[#1C5CA8]">
                     <Icon className="w-6 h-6" strokeWidth={1.75} />
                   </span>
                   <span className="font-heading font-bold text-sm text-[#0B1B2B] leading-tight">{ind.name}</span>
