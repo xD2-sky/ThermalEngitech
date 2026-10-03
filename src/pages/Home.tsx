@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
 import AboutIntro from '../components/AboutIntro';
 import Reveal from '../components/Reveal';
+import RotatingGlobe from '../components/RotatingGlobe';
 import AnimatedCounter from '../components/AnimatedCounter';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { INDUSTRIES_SERVED } from '../data';
@@ -421,11 +422,9 @@ export default function Home() {
             ))}
           </Reveal>
 
-          {/* Real Earth photo — zoomed/positioned so only the sphere shows
-              (its native black space background is cropped away), then
-              soft-masked with a radial gradient so the circle's own edge
-              feathers into the white page rather than cutting in hard.
-              Faint orbit rings behind it keep the "global network" feel. */}
+          {/* Rotating Earth video — luma-keyed in RotatingGlobe so only the
+              sphere itself shows, no black backdrop. Faint orbit rings
+              behind it keep the "global network" feel. */}
           <Reveal delay={0.14} className="lg:col-span-3 relative w-full aspect-square max-w-[320px] mx-auto hidden sm:block">
             <svg className="absolute inset-0 w-full h-full text-[#1C5CA8]" viewBox="0 0 200 200" fill="none" aria-hidden="true">
               <ellipse cx="100" cy="100" rx="98" ry="40" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" />
@@ -436,17 +435,7 @@ export default function Home() {
               <circle cx="14" cy="148" r="3" fill="currentColor" fillOpacity="0.7" />
               <circle cx="160" cy="178" r="2.5" fill="currentColor" fillOpacity="0.5" />
             </svg>
-            <div
-              className="absolute inset-[12%] rounded-full shadow-[0_18px_40px_-14px_rgba(28,92,168,0.35)]"
-              style={{
-                backgroundImage: `url(${import.meta.env.BASE_URL}images/certifications-globe-earth.jpg)`,
-                backgroundSize: '240%',
-                backgroundPosition: '55% 51%',
-                backgroundRepeat: 'no-repeat',
-                WebkitMaskImage: 'radial-gradient(circle, black 62%, transparent 72%)',
-                maskImage: 'radial-gradient(circle, black 62%, transparent 72%)',
-              }}
-            />
+            <RotatingGlobe className="absolute inset-[12%] drop-shadow-[0_18px_30px_rgba(28,92,168,0.3)]" />
           </Reveal>
 
           <Reveal delay={0.18} className="lg:col-span-3 flex flex-col gap-6">

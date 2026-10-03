@@ -6,12 +6,16 @@
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import Reveal from '../components/Reveal';
+import RotatingGlobe from '../components/RotatingGlobe';
 import { CERTIFICATIONS, DESIGN_CODES } from '../data';
-import { 
-  BadgeCheck, 
-  ShieldCheck, 
-  FileCheck, 
-  Award
+import {
+  BadgeCheck,
+  ShieldCheck,
+  FileCheck,
+  Award,
+  Settings,
+  Factory,
+  BarChart3
 } from 'lucide-react';
 
 export default function Certifications() {
@@ -44,19 +48,79 @@ export default function Certifications() {
         </div>
       </div>
 
+      {/* Intro — same composition as the homepage's Certifications & Quality
+          section: copy on the left, the real Earth photo (circularly
+          masked, no hard edge) with orbit rings, and the trust-point
+          checklist on the right — ties this page visually to that section. */}
+      <div className="bg-white pt-16 sm:pt-20 pb-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <Reveal className="lg:col-span-5 space-y-4">
+            <p className="text-xs uppercase tracking-[0.18em] text-[#1C5CA8] font-semibold">
+              Globally Recognized
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.15]">
+              Standards trusted on <span className="text-[#1C5CA8]">projects worldwide</span>
+            </h2>
+            <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-md">
+              Every unit we build is checked against the same codes auditors, insurers and plant
+              engineers already recognize — in India and in export markets.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.1} className="lg:col-span-3 relative w-full aspect-square max-w-[260px] mx-auto hidden sm:block">
+            <svg className="absolute inset-0 w-full h-full text-[#1C5CA8]" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+              <ellipse cx="100" cy="100" rx="98" ry="40" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" />
+              <ellipse cx="100" cy="100" rx="98" ry="40" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" transform="rotate(60 100 100)" />
+              <ellipse cx="100" cy="100" rx="98" ry="40" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" transform="rotate(120 100 100)" />
+              <circle cx="100" cy="4" r="3.5" fill="currentColor" />
+              <circle cx="193" cy="58" r="2.5" fill="currentColor" fillOpacity="0.6" />
+              <circle cx="14" cy="148" r="3" fill="currentColor" fillOpacity="0.7" />
+              <circle cx="160" cy="178" r="2.5" fill="currentColor" fillOpacity="0.5" />
+            </svg>
+            <RotatingGlobe className="absolute inset-[12%] drop-shadow-[0_18px_30px_rgba(28,92,168,0.3)]" />
+          </Reveal>
+
+          <Reveal delay={0.16} className="lg:col-span-4 flex flex-col gap-5">
+            {[
+              { label: 'Global Compliance', icon: Settings },
+              { label: 'Quality Manufacturing', icon: Factory },
+              { label: 'Safe & Reliable Operations', icon: ShieldCheck },
+              { label: 'Proven Industry Standards', icon: BarChart3 },
+            ].map((t) => (
+              <div key={t.label} className="flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#1C5CA8]/8 text-[#1C5CA8]">
+                  <t.icon className="w-5 h-5" strokeWidth={1.75} />
+                </span>
+                <p className="text-sm font-semibold text-[#0B1B2B]">{t.label}</p>
+              </div>
+            ))}
+          </Reveal>
+        </div>
+      </div>
+
       {/* Grid of certifications */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 space-y-16">
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-          {CERTIFICATIONS.map((cert, i) => (
+          {CERTIFICATIONS.map((cert, i) => {
+            const isAsme = cert.title.includes('ASME');
+            return (
             <React.Fragment key={cert.title}>
             <Reveal
               delay={(i % 2) * 0.08}
-              className="bg-panel border border-[#E1E4E3] p-6 md:p-8 rounded-lg shadow-sm hover:shadow transition duration-200 flex flex-col justify-between h-full group hover:border-[#1C5CA8]/35 hover:-translate-y-0.5"
+              className="bg-panel border border-[#E1E4E3] p-6 md:p-8 rounded-2xl shadow-sm hover:shadow transition duration-200 flex flex-col justify-between h-full group hover:border-[#1C5CA8]/35 hover:-translate-y-0.5"
             >
               <div className="space-y-4">
-                <div className="w-12 h-12 bg-[#1C5CA8]/10 rounded-xl flex items-center justify-center text-[#1C5CA8]">
-                  <BadgeCheck className="w-6 h-6" />
+                <div className="w-12 h-12 bg-[#1C5CA8]/8 rounded-lg flex items-center justify-center text-[#1C5CA8]">
+                  {isAsme ? (
+                    <img
+                      src={`${import.meta.env.BASE_URL}images/certifications/asme-cert-seal.png`}
+                      alt="ASME certification seal"
+                      className="max-w-full max-h-full object-contain p-1"
+                    />
+                  ) : (
+                    <BadgeCheck className="w-6 h-6" />
+                  )}
                 </div>
                 <h3 className="font-heading font-extrabold text-lg text-[#0B1B2B] leading-snug group-hover:text-[#1C5CA8] transition duration-200">
                   {cert.title}
@@ -72,7 +136,8 @@ export default function Certifications() {
               </div>
             </Reveal>
             </React.Fragment>
-          ))}
+            );
+          })}
         </div>
 
         {/* Design codes & standards actually referenced in engineering */}
@@ -113,10 +178,19 @@ export default function Certifications() {
             <p className="text-xs text-slate-300 leading-relaxed font-sans">
               "All high-pressure boilers, heaters, and pressure manifolds are manufactured under continuous inspection by state-appointed or customer-approved agencies. Radiography, hydrotesting, and thickness verification are standard on every unit."
             </p>
-            <div className="pt-2 flex flex-wrap gap-x-8 gap-y-2 text-[10px] font-mono tracking-wider font-bold uppercase text-[#7FB2E4]">
-              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> Form VI certified</span>
-              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> Class 1 IBR boiler standards</span>
-              <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> ASME U & S compliance capabilities</span>
+            <div className="pt-4 flex flex-col sm:flex-row flex-wrap gap-x-10 gap-y-4">
+              {[
+                { label: 'Form VI certified', icon: ShieldCheck },
+                { label: 'Class 1 IBR boiler standards', icon: Award },
+                { label: 'ASME U & S compliance capabilities', icon: BadgeCheck },
+              ].map((t) => (
+                <div key={t.label} className="flex items-center gap-2.5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-[#7FB2E4]">
+                    <t.icon className="w-4 h-4" strokeWidth={1.75} />
+                  </span>
+                  <p className="text-xs font-semibold text-white">{t.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </Reveal>
