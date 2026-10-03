@@ -372,12 +372,12 @@ export default function Home() {
           with a thin orbit ring behind it for the "global network" feel,
           and a trust-point checklist. */}
       <div className="bg-white py-24 sm:py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <Reveal className="lg:col-span-3 space-y-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-8 items-center">
+          <Reveal className="lg:col-span-3 space-y-5">
             <p className="text-xs uppercase tracking-[0.18em] text-[#1C5CA8] font-semibold">
               Our Certifications
             </p>
-            <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.12]">
+            <h2 className="text-[1.65rem] sm:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.015em] leading-[1.22]">
               Recognized Standards for <span className="text-[#1C5CA8]">Worldwide Projects</span>
             </h2>
             <p className="text-base text-[#47566A] leading-relaxed">

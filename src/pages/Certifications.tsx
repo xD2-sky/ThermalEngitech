@@ -53,7 +53,7 @@ export default function Certifications() {
           masked, no hard edge) with orbit rings, and the trust-point
           checklist on the right — ties this page visually to that section. */}
       <div className="bg-white pt-16 sm:pt-20 pb-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <Reveal className="lg:col-span-5 space-y-4">
             <p className="text-xs uppercase tracking-[0.18em] text-[#1C5CA8] font-semibold">
               Globally Recognized
