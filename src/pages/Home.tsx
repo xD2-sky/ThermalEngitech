@@ -36,7 +36,8 @@ import {
   Beaker,
   Candy,
   Shirt,
-  Zap
+  Zap,
+  BarChart3
 } from 'lucide-react';
 
 // Explicit map (not a wildcard import) so unused lucide icons still tree-shake out of the bundle.
@@ -364,66 +365,102 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Certifications & Quality — pure white background per explicit spec (no
-          blue/gray/gradient/tint). Four larger cards, each a horizontal
-          mark-then-details tile. ASME uses the real seal graphic (verified,
-          uploaded by Sanjay); ISO/IBR/TEMA use a large styled wordmark — no
-          licensed source files for those organizations' exact trademarked
-          artwork, and no Indian State Emblem regardless of genuine IBR
-          compliance (its use is legally restricted independent of that). */}
-      <div className="bg-white pt-16 sm:pt-20 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <Reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-            <div className="space-y-3">
-              <div className="flex items-center gap-2.5">
-                <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
-                  Certifications &amp; Quality
-                </p>
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]">
-                Built to the standards your plant is <span className="text-[#1C5CA8]">audited against</span>.
-              </h2>
-            </div>
+      {/* Certifications & Quality — "Recognized Standards for Worldwide
+          Projects": text + CTA, four simple logo tiles, a real Earth photo
+          (circularly masked, soft shadow, faint glow — no hard black edge)
+          with a thin orbit ring behind it for the "global network" feel,
+          and a trust-point checklist. */}
+      <div className="bg-white py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <Reveal className="lg:col-span-3 space-y-5">
+            <p className="text-xs uppercase tracking-[0.18em] text-[#1C5CA8] font-semibold">
+              Our Certifications
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.15]">
+              Recognized Standards for <span className="text-[#1C5CA8]">Worldwide Projects</span>
+            </h2>
+            <p className="text-sm text-[#47566A] leading-relaxed">
+              Our commitment to quality is validated through certifications from leading global and
+              national bodies.
+            </p>
             <Link
               to="/certifications"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#1C5CA8] hover:text-[#103E72] transition-colors shrink-0"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#103E72] hover:bg-[#0B1B2B] text-white px-6 py-3 text-sm font-semibold transition-colors duration-200"
             >
-              <span>View all certifications</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>View all certificates</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Link>
           </Reveal>
 
-          <Reveal delay={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
+          <Reveal delay={0.08} className="lg:col-span-3 grid grid-cols-2 gap-3">
             {[
-              { label: 'ISO 9001:2015', desc: 'Quality management system', authority: 'International Organization for Standardization', seal: null, icon: ShieldCheck },
-              { label: 'ASME', desc: 'Design & fabrication standards', authority: 'American Society of Mechanical Engineers', seal: 'asme-cert-seal.png', icon: null },
-              { label: 'IBR 1950', desc: 'Indian Boiler Regulations', authority: 'Directorate of Boilers, India', seal: null, icon: Award },
-              { label: 'TEMA', desc: 'Heat exchanger standards', authority: 'Tubular Exchanger Manufacturers Association', seal: null, icon: Layers },
-            ].map((c) => (
-              <div
-                key={c.label}
-                className="group flex flex-col items-start gap-5 bg-panel border border-[#E4E7EC] rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 p-7 sm:p-8 transition-all duration-300"
-              >
-                <div className="shrink-0 w-16 h-16 flex items-center justify-center rounded-xl bg-[#1C5CA8]/8">
+              { label: 'ISO 9001:2015', desc: 'Quality Management System', seal: null, icon: ShieldCheck },
+              { label: 'ASME', desc: 'Design & Fabrication Standards', seal: 'asme-cert-seal.png', icon: null },
+              { label: 'IBR 1950', desc: 'Indian Boiler Regulations', seal: null, icon: Award },
+              { label: 'TEMA', desc: 'Heat Exchanger Standards', seal: null, icon: Layers },
+            ].map((c, i) => (
+              <React.Fragment key={c.label}>
+              <Reveal delay={0.12 + i * 0.06} className="bg-white border border-[#E4E7EC] rounded-xl p-4 flex flex-col gap-3 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#1C5CA8]/8">
                   {c.seal ? (
                     <img
                       src={`${import.meta.env.BASE_URL}images/certifications/${c.seal}`}
                       alt={`${c.label} certification seal`}
-                      className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                      className="max-w-full max-h-full object-contain p-1"
                     />
                   ) : (
-                    <c.icon className="w-8 h-8 text-[#1C5CA8] transition-transform duration-300 group-hover:scale-110" strokeWidth={1.75} />
+                    <c.icon className="w-5 h-5 text-[#1C5CA8]" strokeWidth={1.75} />
                   )}
                 </div>
-                <div className="space-y-1 text-left">
-                  <p className="font-heading font-bold text-base text-[#0B1B2B]">{c.label}</p>
-                  <p className="text-sm text-[#78889B]">{c.desc}</p>
+                <div className="space-y-0.5">
+                  <p className="font-heading font-bold text-xs text-[#0B1B2B] leading-tight">{c.label}</p>
+                  <p className="text-[10px] text-[#78889B] leading-snug">{c.desc}</p>
                 </div>
-                <div className="pt-4 mt-auto border-t border-[#E4E7EC] w-full">
-                  <p className="text-[10px] font-mono font-bold uppercase tracking-wide text-[#78889B]">
-                    {c.authority}
-                  </p>
-                </div>
+              </Reveal>
+              </React.Fragment>
+            ))}
+          </Reveal>
+
+          {/* Real Earth photo — zoomed/positioned so only the sphere shows
+              (its native black space background is cropped away), then
+              soft-masked with a radial gradient so the circle's own edge
+              feathers into the white page rather than cutting in hard.
+              Faint orbit rings behind it keep the "global network" feel. */}
+          <Reveal delay={0.14} className="lg:col-span-3 relative w-full aspect-square max-w-[280px] mx-auto hidden sm:block">
+            <svg className="absolute inset-0 w-full h-full text-[#1C5CA8]" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+              <ellipse cx="100" cy="100" rx="98" ry="40" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" />
+              <ellipse cx="100" cy="100" rx="98" ry="40" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" transform="rotate(60 100 100)" />
+              <ellipse cx="100" cy="100" rx="98" ry="40" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" transform="rotate(120 100 100)" />
+              <circle cx="100" cy="4" r="3.5" fill="currentColor" />
+              <circle cx="193" cy="58" r="2.5" fill="currentColor" fillOpacity="0.6" />
+              <circle cx="14" cy="148" r="3" fill="currentColor" fillOpacity="0.7" />
+              <circle cx="160" cy="178" r="2.5" fill="currentColor" fillOpacity="0.5" />
+            </svg>
+            <div
+              className="absolute inset-[12%] rounded-full shadow-[0_18px_40px_-14px_rgba(28,92,168,0.35)]"
+              style={{
+                backgroundImage: `url(${import.meta.env.BASE_URL}images/certifications-globe-earth.jpg)`,
+                backgroundSize: '240%',
+                backgroundPosition: '55% 51%',
+                backgroundRepeat: 'no-repeat',
+                WebkitMaskImage: 'radial-gradient(circle, black 62%, transparent 72%)',
+                maskImage: 'radial-gradient(circle, black 62%, transparent 72%)',
+              }}
+            />
+          </Reveal>
+
+          <Reveal delay={0.18} className="lg:col-span-3 flex flex-col gap-5">
+            {[
+              { label: 'Global Compliance', icon: Settings },
+              { label: 'Quality Manufacturing', icon: Factory },
+              { label: 'Safe & Reliable Operations', icon: ShieldCheck },
+              { label: 'Proven Industry Standards', icon: BarChart3 },
+            ].map((t) => (
+              <div key={t.label} className="flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1C5CA8]/8 text-[#1C5CA8]">
+                  <t.icon className="w-4.5 h-4.5" strokeWidth={1.75} />
+                </span>
+                <p className="text-sm font-semibold text-[#0B1B2B]">{t.label}</p>
               </div>
             ))}
           </Reveal>
