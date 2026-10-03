@@ -370,29 +370,29 @@ export default function Home() {
           (circularly masked, soft shadow, faint glow — no hard black edge)
           with a thin orbit ring behind it for the "global network" feel,
           and a trust-point checklist. */}
-      <div className="bg-white py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <Reveal className="lg:col-span-3 space-y-5">
+      <div className="bg-white py-24 sm:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <Reveal className="lg:col-span-3 space-y-6">
             <p className="text-xs uppercase tracking-[0.18em] text-[#1C5CA8] font-semibold">
               Our Certifications
             </p>
-            <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.12]">
               Recognized Standards for <span className="text-[#1C5CA8]">Worldwide Projects</span>
             </h2>
-            <p className="text-sm text-[#47566A] leading-relaxed">
+            <p className="text-base text-[#47566A] leading-relaxed">
               Our commitment to quality is validated through certifications from leading global and
               national bodies.
             </p>
             <Link
               to="/certifications"
-              className="group inline-flex items-center gap-2 rounded-full bg-[#103E72] hover:bg-[#0B1B2B] text-white px-6 py-3 text-sm font-semibold transition-colors duration-200"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#103E72] hover:bg-[#0B1B2B] text-white px-7 py-3.5 text-sm font-semibold transition-colors duration-200"
             >
               <span>View all certificates</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Link>
           </Reveal>
 
-          <Reveal delay={0.08} className="lg:col-span-3 grid grid-cols-2 gap-3">
+          <Reveal delay={0.08} className="lg:col-span-3 grid grid-cols-2 gap-4">
             {[
               { label: 'ISO 9001:2015', desc: 'Quality Management System', seal: null, icon: ShieldCheck },
               { label: 'ASME', desc: 'Design & Fabrication Standards', seal: 'asme-cert-seal.png', icon: null },
@@ -400,8 +400,8 @@ export default function Home() {
               { label: 'TEMA', desc: 'Heat Exchanger Standards', seal: null, icon: Layers },
             ].map((c, i) => (
               <React.Fragment key={c.label}>
-              <Reveal delay={0.12 + i * 0.06} className="bg-white border border-[#E4E7EC] rounded-xl p-4 flex flex-col gap-3 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-[#1C5CA8]/8">
+              <Reveal delay={0.12 + i * 0.06} className="bg-white border border-[#E4E7EC] rounded-xl p-5 flex flex-col gap-3.5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-[#1C5CA8]/8">
                   {c.seal ? (
                     <img
                       src={`${import.meta.env.BASE_URL}images/certifications/${c.seal}`}
@@ -409,12 +409,12 @@ export default function Home() {
                       className="max-w-full max-h-full object-contain p-1"
                     />
                   ) : (
-                    <c.icon className="w-5 h-5 text-[#1C5CA8]" strokeWidth={1.75} />
+                    <c.icon className="w-6 h-6 text-[#1C5CA8]" strokeWidth={1.75} />
                   )}
                 </div>
-                <div className="space-y-0.5">
-                  <p className="font-heading font-bold text-xs text-[#0B1B2B] leading-tight">{c.label}</p>
-                  <p className="text-[10px] text-[#78889B] leading-snug">{c.desc}</p>
+                <div className="space-y-1">
+                  <p className="font-heading font-bold text-sm text-[#0B1B2B] leading-tight">{c.label}</p>
+                  <p className="text-xs text-[#78889B] leading-snug">{c.desc}</p>
                 </div>
               </Reveal>
               </React.Fragment>
@@ -426,7 +426,7 @@ export default function Home() {
               soft-masked with a radial gradient so the circle's own edge
               feathers into the white page rather than cutting in hard.
               Faint orbit rings behind it keep the "global network" feel. */}
-          <Reveal delay={0.14} className="lg:col-span-3 relative w-full aspect-square max-w-[280px] mx-auto hidden sm:block">
+          <Reveal delay={0.14} className="lg:col-span-3 relative w-full aspect-square max-w-[320px] mx-auto hidden sm:block">
             <svg className="absolute inset-0 w-full h-full text-[#1C5CA8]" viewBox="0 0 200 200" fill="none" aria-hidden="true">
               <ellipse cx="100" cy="100" rx="98" ry="40" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" />
               <ellipse cx="100" cy="100" rx="98" ry="40" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" transform="rotate(60 100 100)" />
@@ -449,32 +449,30 @@ export default function Home() {
             />
           </Reveal>
 
-          <Reveal delay={0.18} className="lg:col-span-3 flex flex-col gap-5">
+          <Reveal delay={0.18} className="lg:col-span-3 flex flex-col gap-6">
             {[
               { label: 'Global Compliance', icon: Settings },
               { label: 'Quality Manufacturing', icon: Factory },
               { label: 'Safe & Reliable Operations', icon: ShieldCheck },
               { label: 'Proven Industry Standards', icon: BarChart3 },
             ].map((t) => (
-              <div key={t.label} className="flex items-center gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1C5CA8]/8 text-[#1C5CA8]">
-                  <t.icon className="w-4.5 h-4.5" strokeWidth={1.75} />
+              <div key={t.label} className="flex items-center gap-3.5">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#1C5CA8]/8 text-[#1C5CA8]">
+                  <t.icon className="w-5 h-5" strokeWidth={1.75} />
                 </span>
-                <p className="text-sm font-semibold text-[#0B1B2B]">{t.label}</p>
+                <p className="text-base font-semibold text-[#0B1B2B]">{t.label}</p>
               </div>
             ))}
           </Reveal>
         </div>
       </div>
 
-      {/* Quote CTA — brought in line with the rest of the site's photo-forward
-          language (main Hero, Why Thermal Engitech's photo card): a lighter
-          directional scrim so the photo actually reads, a bright clean
-          stainless-steel plant photo instead of the old rust-toned one (which
-          clashed with the site's cool blue palette), an eyebrow label like
-          every other section, and more generous padding so it reads as a
-          real closing moment rather than a slim afterthought bar. */}
-      <div className="bg-white pt-10 sm:pt-12 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
+      {/* Quote CTA — a short, wide banner strip rather than a tall block:
+          full-width panel with reduced vertical padding so it reads at a
+          glance without pushing the page's total height past a normal
+          100%-zoom viewport, while keeping the same photo/scrim treatment,
+          copy and button. */}
+      <div className="bg-white pt-8 sm:pt-10 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <Reveal className="relative overflow-hidden rounded-3xl shadow-xl shadow-[#1C5CA8]/20">
             <div className="absolute inset-0">
@@ -487,15 +485,15 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/92 via-[#0B1B2B]/55 to-[#0B1B2B]/10" />
             </div>
 
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-10 sm:p-14 md:p-20">
-              <div className="lg:col-span-8 space-y-4 text-left">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center px-8 py-7 sm:px-10 sm:py-8 md:px-14 md:py-10">
+              <div className="lg:col-span-8 space-y-2 text-left">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7FB2E4]">
                   Ready when you are
                 </p>
-                <h2 className="font-heading font-extrabold text-3xl sm:text-4xl md:text-[2.75rem] text-white tracking-[-0.01em] leading-[1.08]">
+                <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-white tracking-[-0.01em] leading-[1.1]">
                   Let's plan your next project together.
                 </h2>
-                <p className="text-sm sm:text-base text-white/80 leading-relaxed max-w-xl">
+                <p className="text-sm text-white/80 leading-relaxed max-w-xl">
                   Our team will help you design a custom solution based on your process, space
                   constraints and plant requirements.
                 </p>
