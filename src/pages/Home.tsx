@@ -395,14 +395,14 @@ export default function Home() {
 
           <Reveal delay={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
             {[
-              { label: 'ISO 9001:2015', desc: 'Quality management system', seal: null, icon: ShieldCheck },
-              { label: 'ASME', desc: 'Design & fabrication standards', seal: 'asme-cert-seal.png', icon: null },
-              { label: 'IBR 1950', desc: 'Indian Boiler Regulations', seal: null, icon: Award },
-              { label: 'TEMA', desc: 'Heat exchanger standards', seal: null, icon: Layers },
+              { label: 'ISO 9001:2015', desc: 'Quality management system', authority: 'International Organization for Standardization', seal: null, icon: ShieldCheck },
+              { label: 'ASME', desc: 'Design & fabrication standards', authority: 'American Society of Mechanical Engineers', seal: 'asme-cert-seal.png', icon: null },
+              { label: 'IBR 1950', desc: 'Indian Boiler Regulations', authority: 'Directorate of Boilers, India', seal: null, icon: Award },
+              { label: 'TEMA', desc: 'Heat exchanger standards', authority: 'Tubular Exchanger Manufacturers Association', seal: null, icon: Layers },
             ].map((c) => (
               <div
                 key={c.label}
-                className="group flex flex-col items-start gap-5 bg-panel border border-[#E4E7EC] rounded-2xl shadow-sm hover:shadow-md p-7 sm:p-8 transition-all duration-300"
+                className="group flex flex-col items-start gap-5 bg-panel border border-[#E4E7EC] rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 p-7 sm:p-8 transition-all duration-300"
               >
                 <div className="shrink-0 w-16 h-16 flex items-center justify-center rounded-xl bg-[#1C5CA8]/8">
                   {c.seal ? (
@@ -419,31 +419,43 @@ export default function Home() {
                   <p className="font-heading font-bold text-base text-[#0B1B2B]">{c.label}</p>
                   <p className="text-sm text-[#78889B]">{c.desc}</p>
                 </div>
+                <div className="pt-4 mt-auto border-t border-[#E4E7EC] w-full">
+                  <p className="text-[10px] font-mono font-bold uppercase tracking-wide text-[#78889B]">
+                    {c.authority}
+                  </p>
+                </div>
               </div>
             ))}
           </Reveal>
         </div>
       </div>
 
-      {/* Quote CTA — premium blue gradient panel with a real industrial photo
-          filling the entire panel, tinted by a gradient scrim so the white
-          text and button stay legible over it. */}
+      {/* Quote CTA — brought in line with the rest of the site's photo-forward
+          language (main Hero, Why Thermal Engitech's photo card): a lighter
+          directional scrim so the photo actually reads, a bright clean
+          stainless-steel plant photo instead of the old rust-toned one (which
+          clashed with the site's cool blue palette), an eyebrow label like
+          every other section, and more generous padding so it reads as a
+          real closing moment rather than a slim afterthought bar. */}
       <div className="bg-white pt-10 sm:pt-12 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <Reveal className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#103E72] via-[#1C5CA8] to-[#2F7BD4] shadow-xl shadow-[#1C5CA8]/20">
+          <Reveal className="relative overflow-hidden rounded-3xl shadow-xl shadow-[#1C5CA8]/20">
             <div className="absolute inset-0">
               <img
-                src={`${import.meta.env.BASE_URL}images/hero-boiler-room.jpg`}
+                src={`${import.meta.env.BASE_URL}images/hero-pipes-light.jpg`}
                 alt=""
                 aria-hidden="true"
-                className="w-full h-full object-cover object-[center_40%]"
+                className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#103E72]/95 via-[#103E72]/70 via-60% to-[#103E72]/15" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/92 via-[#0B1B2B]/55 to-[#0B1B2B]/10" />
             </div>
 
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center p-10 md:p-16">
-              <div className="lg:col-span-8 space-y-3 text-left">
-                <h2 className="font-heading font-extrabold text-2xl sm:text-3xl md:text-[2.25rem] text-white tracking-[-0.01em] leading-[1.1]">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-10 sm:p-14 md:p-20">
+              <div className="lg:col-span-8 space-y-4 text-left">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7FB2E4]">
+                  Ready when you are
+                </p>
+                <h2 className="font-heading font-extrabold text-3xl sm:text-4xl md:text-[2.75rem] text-white tracking-[-0.01em] leading-[1.08]">
                   Let's plan your next project together.
                 </h2>
                 <p className="text-sm sm:text-base text-white/80 leading-relaxed max-w-xl">
@@ -454,7 +466,7 @@ export default function Home() {
               <div className="lg:col-span-4 lg:text-right">
                 <Link
                   to="/request-quote"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-panel-blue text-[#103E72] px-6 py-3 text-sm font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-white hover:bg-panel-blue text-[#103E72] px-7 py-3.5 text-sm font-semibold transition-all duration-300 shadow-md hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   <span>Start a Consultation</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
