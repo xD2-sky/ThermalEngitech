@@ -147,7 +147,10 @@ export default function Home() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
-        <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
+        {/* Wider than this page's usual max-w-7xl — on purpose, so the cards
+            get real horizontal room to read as large/prominent without
+            adding page height (every other homepage section stays at 7xl). */}
+        <div className="max-w-[100rem] mx-auto space-y-8 sm:space-y-10 relative z-10">
 
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-10">
             <Reveal className="max-w-2xl space-y-3">
@@ -186,7 +189,9 @@ export default function Home() {
                     background (not a full-bleed photo tile per card) — ghost
                     number + category tag up top, the product photo contained
                     within the card, then real spec rows pulled from the
-                    catalog before the CTA. */}
+                    catalog before the CTA. Prominence now comes from the
+                    wider container above giving each card more width, not
+                    from extra internal height/padding. */}
                 <Link to={c.href} className="group relative flex flex-col h-full rounded-2xl border border-white/15 bg-[#0B1B2B]/50 backdrop-blur-md p-6 shadow-[0_10px_32px_-10px_rgba(0,0,0,0.5)] hover:border-[#7FB2E4]/40 hover:bg-[#0B1B2B]/65 transition-all duration-300 focus:outline-none">
                   <div className="flex items-start justify-between mb-3">
                     <span className="font-heading font-extrabold text-5xl text-white/10 leading-none select-none">
