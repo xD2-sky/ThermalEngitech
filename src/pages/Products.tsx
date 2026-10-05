@@ -21,7 +21,7 @@ const ICONS: Record<string, React.ComponentType<{ className?: string; strokeWidt
 export default function Products() {
   useDocumentMeta(
     'Product Catalogue',
-    'Explore our full range of IBR & ASME certified industrial heating equipment — steam boilers, thermic fluid heaters, heat exchangers, pressure reducing stations, air pre heaters and more, manufactured in Dhamatwan, Gujarat.'
+    'Explore our full range of IBR & ASME certified industrial heating equipment — steam boilers, thermic fluid heaters, heat exchangers, pressure reducing stations, air preheaters and more, manufactured in Dhamatwan, Gujarat.'
   );
 
   const categories = getCategories();

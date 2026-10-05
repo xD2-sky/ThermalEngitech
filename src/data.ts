@@ -20,9 +20,10 @@ export const PRODUCTS: Product[] = [
       'High insulation efficiency with pre-fitted 100mm high-density mineral wool'
     ],
     specifications: [
-      { label: 'Capacity Range', value: '1.0 Ton/hr to 30.0 Tons/hr (1000 to 30000 kg/hr)' },
-      { label: 'Operating Pressures', value: '10.5 kg/cm², 17.5 kg/cm², up to 28.0 kg/cm²' },
-      { label: 'Compatible Fuels', value: 'Light Diesel Oil (LDO), HSD, Natural Gas, LPG, Furnace Oil' },
+      { label: 'Capacity Range', value: '0.5 Ton/hr to 20.0 Tons/hr (500 to 20,000 kg/hr)' },
+      { label: 'Operating Pressure', value: 'Up to 25.0 kg/cm²' },
+      { label: 'Compatible Fuels', value: 'Light Diesel Oil (LDO), HSD, Natural Gas, LPG, Furnace Oil, Dual Fuel' },
+      { label: 'Steam Temperature', value: 'Up to 225°C' },
       { label: 'Thermal Efficiency', value: '88% (Up to 94% with external economizer & preheater)' },
       { label: 'Compliance Code', value: 'IBR 1950 Rules (Form VI) & ASME Sec I' }
     ],
@@ -62,9 +63,9 @@ export const PRODUCTS: Product[] = [
       'Adapts flawlessly from cheap agricultural biomass briquettes to high-grade coal'
     ],
     specifications: [
-      { label: 'Capacity Range', value: '2.0 Tons/hr to 20.0 Tons/hr' },
-      { label: 'Working Pressures', value: '10.5 to 25.0 kg/cm² configurations' },
-      { label: 'Fuel Adaptability', value: 'Coal, Biomass Briquettes, Wood, Husk, Mustard Straw, Petcoke' },
+      { label: 'Capacity Range', value: '2.0 Tons/hr to 15.0 Tons/hr' },
+      { label: 'Working Pressure', value: 'Up to 21.0 kg/cm²' },
+      { label: 'Fuel Adaptability', value: 'Coal, Wood, Lignite, Husk, Saw Dust, Biomass Briquettes' },
       { label: 'Performance Rank', value: 'Highly recommended for heavy dyeing & washing chemical plants' },
       { label: 'Automation Level', value: 'Semi-automatic pneumatic fuel feeding or automated screw assembly' }
     ],
@@ -83,9 +84,9 @@ export const PRODUCTS: Product[] = [
       'Guarantees high fuel energy recovery using a high-density convective passage design'
     ],
     specifications: [
-      { label: 'Capacity Range', value: '4.0 Tons/hr to 25.0 Tons/hr' },
-      { label: 'Operating Pressures', value: '17.5 kg/cm², 24.5 kg/cm², up to 32.0 kg/cm²' },
-      { label: 'Fuels Supported', value: 'Imported/Indian Coal, Agro Briquettes, Husk, Biomass Waste, Wood chips' },
+      { label: 'Capacity Range', value: '1.0 Ton/hr to 10.0 Tons/hr' },
+      { label: 'Operating Pressure', value: '10.54 to 21.0 kg/cm²' },
+      { label: 'Fuels Supported', value: 'Coal, Wood, Husk, Agro Waste' },
       { label: 'Boiler Metallurgy', value: 'High grade seamless carbon steel tubes to ASTM A210 Gr. A1' },
       { label: 'System Accessories', value: 'Pneumatic ash handling, bag filter unit compatibility' }
     ],
@@ -106,8 +107,9 @@ export const PRODUCTS: Product[] = [
       'Saves high-pressure construction costs compared to high-pressure steam boilers'
     ],
     specifications: [
-      { label: 'Thermal Output', value: '1,00,000 kcal/hr to 40,00,000 kcal/hr' },
-      { label: 'Max Operating Temp', value: 'Up to 300°C (Special organic oils up to 320°C)' },
+      { label: 'Thermal Output', value: '1,00,000 kcal/hr to 30,00,000 kcal/hr' },
+      { label: 'Max Operating Temp', value: 'Up to 400°C' },
+      { label: 'Circulating System', value: 'Up to 5-7 kg/cm²' },
       { label: 'Draft Configuration', value: 'Forced draft clean-air burner loop' },
       { label: 'Oil Circulation Code', value: 'Strictly aligned to DIN 4754 design norms' },
       { label: 'Controls', value: 'Microprocessor based burner controllers with high temperature trip switches' }
@@ -124,7 +126,7 @@ export const PRODUCTS: Product[] = [
       'Inhouse fabricated thick-walled seamless coiled tubes to ASTM A106 Gr. B specifications',
       'Spacious furnace box provides optimal fuel residence time and clean flue pathing',
       'Fitted with dual high-discharge primary thermic fluid circulating pumps',
-      'Includes air pre-heater to return hot exit exhaust air back into combustion stack'
+      'Includes air preheater to return hot exit exhaust air back into combustion stack'
     ],
     specifications: [
       { label: 'Heat Capacity', value: '2,00,000 kcal/hr to 30,00,000 kcal/hr' },
@@ -148,8 +150,8 @@ export const PRODUCTS: Product[] = [
       'Equipped with advanced alarm panels indicating fluid expansion drum level limits'
     ],
     specifications: [
-      { label: 'Thermic Output', value: '1,50,000 kcal/hr to 25,00,000 kcal/hr' },
-      { label: 'Working Temperature', value: 'Normal process heating up to 280°C' },
+      { label: 'Thermic Output', value: '6,00,000 kcal/hr to 40,00,000 kcal/hr' },
+      { label: 'Working Temperature', value: 'Normal process heating up to 250°C' },
       { label: 'Fluid Pressure Rating', value: 'Testing rating 10.0 kg/cm²; operational rating 4.5 kg/cm²' },
       { label: 'Exhaust Passage', value: 'Highly efficient 4-pass convective exhaust matrix' },
       { label: 'Safety Overrides', value: 'Fluid flow sensor, low oil level interlocks, digital PID temperature controllers' }
@@ -183,8 +185,8 @@ export const PRODUCTS: Product[] = [
   // ================= AIR PRE HEATERS =================
   {
     id: 'air-pre-heater',
-    category: 'Air Pre Heaters',
-    name: 'Air Pre Heater (APH) & Economizer Block',
+    category: 'Air Preheaters',
+    name: 'Air Preheater (APH) & Economizer Block',
     tagline: 'Utilize Waste Chimney Gas Heat to Boost Overall Efficiency by 5-8%',
     description: 'Highly efficient shell and tube style heat recovery units designed to harness hot exhaust flue gases leaving the boiler or thermic fluid heater. Uses this wasted thermal energy to preheat incoming combustion air or boiler feed water, significantly reducing overall plant fuel consumption.',
     features: [
@@ -230,21 +232,21 @@ export const PRODUCTS: Product[] = [
   {
     id: 'hot-water-generator-unit',
     category: 'Hot Water Generators',
-    name: 'Hot Water Generator',
-    tagline: 'Highly Compact Package Instant Hot Water System',
-    description: 'Industrial package skid units supplying continuous hot water streams. Utilizes forced-circulation monobloc loops with automated single-button controls. Non-pressurized design removes the legal need for dedicated boiler operators or statutory local inspections.',
+    name: 'Solid Fuel Fired Hot Water Generator',
+    tagline: 'Reliable, High-Efficiency Hot Water for Solid Fuel Plants',
+    description: 'Industrial hot water generator designed for reliable and efficient hot water generation in industrial heating applications. Suitable for solid fuels such as coal, wood, lignite, paddy husk, pet coke, saw dust, bagasse and other biomass fuels. Built with safety and operational reliability in mind, it delivers efficient heat transfer with low maintenance requirements.',
     features: [
-      'Extremely quick startup - reaches operating temperatures in under 4 minutes',
-      'Rust-proof interior construction using SS304 or food-grade SS316L materials',
-      'Integrates seamlessly with existing plant recirculation loops',
-      'Incorporates highly responsive flame sensors and digital safety controllers'
+      'High thermal efficiency across the full biomass and solid-fuel range',
+      'Safe & reliable operation with robust pressure-vessel construction',
+      'Delivers high-temperature hot water for continuous process loads',
+      'Low fuel consumption relative to output',
+      'Long service life and durability with low maintenance requirements'
     ],
     specifications: [
-      { label: 'Capacity Range', value: '50,000 kcal/hr to 25,00,000 kcal/hr' },
-      { label: 'Water Temp Limit', value: 'Standard up to 90°C (Pressurized systems up to 130°C)' },
-      { label: 'Primary Fueled Fuels', value: 'Light Diesel Oil, HSD, Natural Gas, LPG' },
-      { label: 'Water Flow rate', value: '1,500 Liters/hr to 45,000 Liters/hr' },
-      { label: 'Statutory Obligation', value: 'Highly advantageous; completely exempted from IBR Boiler regulations' }
+      { label: 'Capacity Range', value: '6,00,000 kcal/hr to 1,00,00,000 kcal/hr' },
+      { label: 'Hot Water Temperature', value: 'Up to 95°C' },
+      { label: 'Fuel', value: 'Coal, Wood, Lignite, Paddy Husk, Pet Coke, Saw Dust, Bagasse, Biomass' },
+      { label: 'Circulating System', value: 'Forced hot-water circulating system' }
     ],
     imageType: 'generator'
   },

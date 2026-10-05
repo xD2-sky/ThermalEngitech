@@ -26,13 +26,13 @@ export const CATEGORY_META: Record<Product['category'], { icon: string; blurb: s
     icon: 'Gauge',
     blurb: 'Skid-mounted steam pressure regulation with integrated moisture separation.',
   },
-  'Air Pre Heaters': {
+  'Air Preheaters': {
     icon: 'Wind',
     blurb: 'Waste-heat recovery preheaters and economizers that lift overall plant efficiency.',
   },
   'Hot Water Generators': {
     icon: 'Droplets',
-    blurb: 'Compact packaged instant hot-water systems — no statutory IBR obligation.',
+    blurb: 'Solid fuel fired industrial hot water generators built for safe, reliable operation.',
   },
   'Pollution Control Equipments': {
     icon: 'Factory',

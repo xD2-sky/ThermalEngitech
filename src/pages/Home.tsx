@@ -73,16 +73,16 @@ const PRODUCT_CATEGORIES = [
     desc: 'Custom engineered shell-and-tube or plate heat exchangers and condensers matching TEMA standards.',
     href: '/products/heat-exchanger-shelltube',
     cta: 'Explore heat exchangers',
-    image: 'images/products/heat-exchanger-vessel.jpg',
+    image: 'images/products/heat-exchanger-shell-tube.png',
   },
   {
     n: '04',
     icon: Award,
-    title: 'Air Pre Heaters & Auxiliaries',
+    title: 'Air Preheater & Auxiliaries',
     desc: 'High-efficiency waste heat recovery preheaters, economizers, and air pollution control units.',
     href: '/products/air-pre-heater',
     cta: 'Explore auxiliaries',
-    image: 'images/products/packaged-boiler-unit.png',
+    image: 'images/products/air-preheater-block.png',
   },
 ];
 
@@ -146,13 +146,16 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="h-full"
               >
-                <Link to={c.href} className="group relative flex flex-col h-full min-h-[440px] rounded-2xl overflow-hidden shadow-[0_10px_28px_-14px_rgba(11,27,43,0.35)] hover:shadow-[0_20px_44px_-16px_rgba(11,27,43,0.45)] transition-shadow duration-300 focus:outline-none">
-                  {/* Image fills the panel; dark gradient at the base for text legibility */}
+                <Link to={c.href} className="group relative flex flex-col h-full min-h-[440px] rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-[0_10px_32px_-10px_rgba(0,0,0,0.5)] hover:ring-white/30 hover:shadow-[0_20px_44px_-12px_rgba(0,0,0,0.6)] transition-all duration-300 focus:outline-none">
+                  {/* object-contain (not object-cover) so the whole product is
+                      visible, not cropped to fill the panel — the dark backing
+                      color fills whatever margin the aspect-ratio mismatch
+                      leaves instead of the image being zoomed/cut to cover it. */}
                   <div className="absolute inset-0 overflow-hidden bg-[#0d1f33]">
                     <img
                       src={`${import.meta.env.BASE_URL}${c.image}`}
                       alt={c.title}
-                      className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                      className="w-full h-full object-contain p-6 transition-transform duration-500 ease-out group-hover:scale-[1.04]"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B2B] via-[#0B1B2B]/20 to-transparent transition-opacity duration-300 group-hover:from-[#0B1B2B]/95" />
@@ -265,19 +268,20 @@ export default function Home() {
               </Link>
             </Reveal>
 
-            {/* Contained diagonal-cut photo card — real photo already used elsewhere
-                on the site (verified authentic). Sits as an in-flow grid item so it's
-                vertically centered against the text column automatically, sized by
-                aspect-ratio (matching the source photo's native 4:3 so object-cover
-                needs no distortion), not stretched to the section's full height. */}
+            {/* Contained diagonal-cut photo card — a real photo of an actual
+                finished boiler on-site, not the generic/mismatched stock
+                pressure-vessel photo this used to show. Sits as an in-flow
+                grid item so it's vertically centered against the text
+                column automatically, sized by aspect-ratio, not stretched
+                to the section's full height. */}
             <Reveal delay={0.08} className="hidden lg:block lg:col-span-6">
               <div
                 className="relative w-full aspect-[4/3] rounded-[1.75rem] overflow-hidden shadow-[0_24px_54px_-18px_rgba(11,27,43,0.4)]"
                 style={{ clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0% 100%)' }}
               >
                 <img
-                  src={`${import.meta.env.BASE_URL}images/hero-steel-vessel.jpg`}
-                  alt="Precision-engineered steel pressure vessel"
+                  src={`${import.meta.env.BASE_URL}images/real-steam-boiler-site.png`}
+                  alt="A completed Thermal Engitech steam boiler ready for dispatch at the Dhamatwan facility"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />

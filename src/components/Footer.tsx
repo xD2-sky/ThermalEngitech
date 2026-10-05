@@ -17,7 +17,7 @@ export default function Footer() {
     { label: 'Steam Boilers', path: '/products/category/steam-boilers' },
     { label: 'Thermic Fluid Heaters', path: '/products/category/thermic-fluid-heaters' },
     { label: 'Pressure Reducing Stations', path: '/products/pressure-reducing-station' },
-    { label: 'Air Pre Heaters', path: '/products/air-pre-heater' },
+    { label: 'Air Preheaters', path: '/products/air-pre-heater' },
     { label: 'Heat Exchangers', path: '/products/heat-exchanger-shelltube' },
     { label: 'Hot Water Generators', path: '/products/hot-water-generator-unit' },
   ];

@@ -10,7 +10,7 @@ export interface Product {
     | 'Steam Boilers' 
     | 'Thermic Fluid Heaters' 
     | 'Pressure Reducing Stations' 
-    | 'Air Pre Heaters' 
+    | 'Air Preheaters' 
     | 'Heat Exchangers' 
     | 'Hot Water Generators' 
     | 'Pollution Control Equipments' 
