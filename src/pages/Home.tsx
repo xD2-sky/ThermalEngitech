@@ -202,7 +202,7 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <div className="relative h-28 mb-4 flex items-center justify-center">
+                  <div className="relative h-56 mb-4 flex items-center justify-center">
                     <img
                       src={`${import.meta.env.BASE_URL}${c.image}`}
                       alt={c.title}
