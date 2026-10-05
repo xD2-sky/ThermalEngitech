@@ -18,6 +18,15 @@ const ICONS: Record<string, React.ComponentType<{ className?: string; strokeWidt
   Flame, Thermometer, Layers, Gauge, Wind, Droplets, Factory, Wrench,
 };
 
+/** Real product renders — only set for categories we have accurate photography for.
+ *  Categories without an entry fall back to the CAD-style schematic. */
+const CATEGORY_PHOTOS: Partial<Record<string, string>> = {
+  'Steam Boilers': 'images/products/steam-boiler-skid.png',
+  'Thermic Fluid Heaters': 'images/products/multi-fuel-system.png',
+  'Heat Exchangers': 'images/products/heat-exchanger-shell-tube.png',
+  'Air Preheaters': 'images/products/air-preheater-block.png',
+};
+
 export default function Products() {
   useDocumentMeta(
     'Product Catalogue',
@@ -65,9 +74,17 @@ export default function Products() {
                   data-testid={`category-card-${c.slug}`}
                   className="group flex flex-col h-full rounded-2xl bg-panel border border-[#E4E7EC] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#1C5CA8]/40 transition-all duration-300"
                 >
-                  {/* Schematic preview */}
+                  {/* Product preview — real photo where we have one, schematic otherwise */}
                   <div className="relative flex items-center justify-center bg-white border-b border-slate-100 min-h-[180px] p-6">
-                    <ProductImage type={c.sampleImageType} />
+                    {CATEGORY_PHOTOS[c.name] ? (
+                      <img
+                        src={`${import.meta.env.BASE_URL}${CATEGORY_PHOTOS[c.name]}`}
+                        alt={`${c.name} — Thermal Engitech product render`}
+                        className="w-full h-full max-h-48 object-contain"
+                      />
+                    ) : (
+                      <ProductImage type={c.sampleImageType} />
+                    )}
                     <span className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] px-2.5 py-1 text-[10px] font-bold">
                       {c.count} {c.count === 1 ? 'model' : 'models'}
                     </span>
