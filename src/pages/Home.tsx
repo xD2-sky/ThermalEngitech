@@ -106,23 +106,30 @@ export default function Home() {
       <AboutIntro />
 
       {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
-          featured categories show here; the other 4 products live on the Products page. */}
-      <div className="relative bg-panel-blue py-14 sm:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        {/* No top/bottom fade here by design: the blend into this section lives on
-            About Us's own bottom edge (see AboutIntro.tsx), and the transition into
-            "Why Thermal Engitech" below is intentionally a clean, default cut. */}
+          featured categories show here; the other 4 products live on the Products page.
+          Photo background with the same hero-style scrim used sitewide for photo
+          sections, plus top/bottom fades to white since both neighboring sections
+          (AboutIntro above, "Why Thermal Engitech" below) are flat white. */}
+      <div className="relative py-14 sm:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <img
+          src={`${import.meta.env.BASE_URL}images/product-range-bg.jpg`}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
 
           <Reveal className="max-w-2xl space-y-4">
             <div className="flex items-center gap-2.5">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-[#78889B] font-semibold">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-[#7FB2E4] font-semibold">
                 Our Products
               </p>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.04]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.04]">
               Four Solutions.<br />Countless Possibilities.
             </h2>
-            <p className="text-[#47566A] text-sm leading-relaxed max-w-lg">
+            <p className="text-white/80 text-sm leading-relaxed max-w-lg">
               Thermal Engitech provides engineered thermal and process-heating solutions for
               industrial applications — designed and fabricated in-house to the standards your
               plant is audited against.
@@ -173,9 +180,9 @@ export default function Home() {
           <Reveal className="text-center">
             <Link
               to="/products"
-              className="group inline-flex items-center gap-2.5 text-sm font-bold uppercase tracking-[0.14em] text-[#0B1B2B] hover:text-[#1C5CA8] transition-colors"
+              className="group inline-flex items-center gap-2.5 text-sm font-bold uppercase tracking-[0.14em] text-white hover:text-[#7FB2E4] transition-colors"
             >
-              <span className="border-b-2 border-[#0B1B2B]/20 group-hover:border-[#1C5CA8] pb-1 transition-colors">
+              <span className="border-b-2 border-white/30 group-hover:border-[#7FB2E4] pb-1 transition-colors">
                 Explore complete product range
               </span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
