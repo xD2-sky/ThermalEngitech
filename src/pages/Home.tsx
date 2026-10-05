@@ -342,7 +342,7 @@ export default function Home() {
                 style={{ clipPath: 'polygon(8% 0, 100% 0, 100% 100%, 0% 100%)' }}
               >
                 <img
-                  src={`${import.meta.env.BASE_URL}images/real-steam-boiler-site.png`}
+                  src={`${import.meta.env.BASE_URL}images/real-steam-boiler-site.jpg`}
                   alt="A completed Thermal Engitech steam boiler ready for dispatch at the Dhamatwan facility"
                   className="w-full h-full object-cover"
                   loading="lazy"

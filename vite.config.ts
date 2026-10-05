@@ -7,9 +7,6 @@ export default defineConfig(() => {
   return {
     base: '/ThermalEngitech/',
     plugins: [react(), tailwindcss()],
-    define: {
-      'process.env.GOOGLE_MAPS_PLATFORM_KEY': JSON.stringify(process.env.GOOGLE_MAPS_PLATFORM_KEY || '')
-    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

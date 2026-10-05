@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -11,17 +11,19 @@ import ScrollToTop from './components/ScrollToTop';
 import Analytics from './components/Analytics';
 import { SITE, WHATSAPP_LINK } from './config/site';
 
-// Page components imports
+// Home stays in the main bundle (almost every visit starts here); every other
+// route is its own lazy chunk so a visitor only downloads the page they
+// actually land on, instead of the whole site's code up front.
 import Home from './pages/Home';
-import AboutUs from './pages/AboutUs';
-import Products from './pages/Products';
-import ProductCategory from './pages/ProductCategory';
-import ProductDetails from './pages/ProductDetails';
-import Manufacturing from './pages/Manufacturing';
-import Certifications from './pages/Certifications';
-import ContactUs from './pages/ContactUs';
-import RequestQuote from './pages/RequestQuote';
-import NotFound from './pages/NotFound';
+const AboutUs = lazy(() => import('./pages/AboutUs'));
+const Products = lazy(() => import('./pages/Products'));
+const ProductCategory = lazy(() => import('./pages/ProductCategory'));
+const ProductDetails = lazy(() => import('./pages/ProductDetails'));
+const Manufacturing = lazy(() => import('./pages/Manufacturing'));
+const Certifications = lazy(() => import('./pages/Certifications'));
+const ContactUs = lazy(() => import('./pages/ContactUs'));
+const RequestQuote = lazy(() => import('./pages/RequestQuote'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 import { MessageCircle, Phone } from 'lucide-react';
 
@@ -40,18 +42,20 @@ export default function App() {
         {/* Dynamic Route Switcher Panel — no top padding, so every page's own top
             section starts at y:0 behind the transparent navbar, matching Hero */}
         <main className="flex-1 w-full">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/category/:slug" element={<ProductCategory />} />
-            <Route path="/products/:id" element={<ProductDetails />} />
-            <Route path="/manufacturing" element={<Manufacturing />} />
-            <Route path="/certifications" element={<Certifications />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/request-quote" element={<RequestQuote />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/category/:slug" element={<ProductCategory />} />
+              <Route path="/products/:id" element={<ProductDetails />} />
+              <Route path="/manufacturing" element={<Manufacturing />} />
+              <Route path="/certifications" element={<Certifications />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/request-quote" element={<RequestQuote />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </main>
 
         {/* ================= FIXED FLOATING LEAD GENERATION WIDGETS ================= */}
