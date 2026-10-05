@@ -38,7 +38,9 @@ import {
   Candy,
   Shirt,
   Zap,
-  BarChart3
+  BarChart3,
+  Gauge,
+  Thermometer
 } from 'lucide-react';
 
 // Explicit map (not a wildcard import) so unused lucide icons still tree-shake out of the bundle.
@@ -47,42 +49,69 @@ const INDUSTRY_ICONS: Record<string, React.ComponentType<{ className?: string; s
   TreePine, Wheat, CircleDot, Flame, Beaker, Candy, Shirt, Zap
 };
 
+// Spec rows shown on each Product Range card — real values pulled from the
+// product catalog (src/data.ts), aggregated across each category's variants
+// rather than invented placeholder numbers.
 const PRODUCT_CATEGORIES = [
   {
     n: '01',
     icon: Flame,
+    tag: 'Steam Solutions',
     title: 'Steam Boilers',
     desc: 'High-efficiency dry steam boilers customized for solid fuel, gas, biomass, or oil firing.',
     href: '/products/category/steam-boilers',
     cta: 'Explore steam boilers',
     image: 'images/products/steam-boiler-skid.png',
+    specs: [
+      { icon: Gauge, label: 'Capacity', value: '0.5 – 20.0 TPH' },
+      { icon: Gauge, label: 'Pressure', value: 'Up to 25 kg/cm²' },
+      { icon: Flame, label: 'Fuel', value: 'Multi-fuel options' },
+    ],
   },
   {
     n: '02',
     icon: Wrench,
+    tag: 'Thermal Systems',
     title: 'Thermic Fluid Heaters',
     desc: 'Concentric helical coil hot-oil heaters for stable, high-temperature indirect process heating.',
     href: '/products/category/thermic-fluid-heaters',
     cta: 'Explore heaters',
     image: 'images/products/multi-fuel-system.png',
+    specs: [
+      { icon: Thermometer, label: 'Temperature', value: 'Up to 400°C' },
+      { icon: Gauge, label: 'Capacity', value: '1,00,000–40,00,000 kcal/hr' },
+      { icon: Flame, label: 'Fuel', value: 'Multiple options' },
+    ],
   },
   {
     n: '03',
     icon: Layers,
+    tag: 'Heat Transfer Solutions',
     title: 'Heat Exchangers',
     desc: 'Custom engineered shell-and-tube or plate heat exchangers and condensers matching TEMA standards.',
     href: '/products/heat-exchanger-shelltube',
     cta: 'Explore heat exchangers',
     image: 'images/products/heat-exchanger-shell-tube.png',
+    specs: [
+      { icon: Layers, label: 'Type', value: 'Shell & Tube' },
+      { icon: Settings, label: 'Material', value: 'SS304/SS316L, CS' },
+      { icon: Factory, label: 'Application', value: 'Process, Chiller Plants' },
+    ],
   },
   {
     n: '04',
     icon: Award,
+    tag: 'Auxiliary Equipments',
     title: 'Air Preheater & Auxiliaries',
     desc: 'High-efficiency waste heat recovery preheaters, economizers, and air pollution control units.',
     href: '/products/air-pre-heater',
     cta: 'Explore auxiliaries',
     image: 'images/products/air-preheater-block.png',
+    specs: [
+      { icon: Layers, label: 'Type', value: 'Shell & Tube' },
+      { icon: BarChart3, label: 'Efficiency', value: '+4% to 8%' },
+      { icon: Thermometer, label: 'Flue Temp', value: '60°C–110°C' },
+    ],
   },
 ];
 
@@ -120,21 +149,28 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
         <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 relative z-10">
 
-          <Reveal className="max-w-2xl space-y-4">
-            <div className="flex items-center gap-2.5">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-[#7FB2E4] font-semibold">
-                Our Products
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-10">
+            <Reveal className="max-w-2xl space-y-3">
+              <div className="flex items-center gap-2.5">
+                <p className="text-[11px] uppercase tracking-[0.18em] text-[#7FB2E4] font-semibold">
+                  Our Products
+                </p>
+                <span className="h-px w-8 bg-[#1C5CA8]" aria-hidden="true" />
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-heading font-extrabold tracking-[-0.02em] leading-[1.06]">
+                <span className="text-white">Four Solutions.</span>
+                <br />
+                <span className="text-[#7FB2E4]">Countless Possibilities.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.06} className="max-w-sm lg:pl-6 lg:border-l lg:border-[#1C5CA8]/40">
+              <p className="text-white/70 text-sm leading-relaxed">
+                Thermal Engitech provides engineered thermal and process-heating solutions for
+                industrial applications — designed and fabricated in-house to the standards your
+                plant is audited against.
               </p>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.04]">
-              Four Solutions.<br />Countless Possibilities.
-            </h2>
-            <p className="text-white/80 text-sm leading-relaxed max-w-lg">
-              Thermal Engitech provides engineered thermal and process-heating solutions for
-              industrial applications — designed and fabricated in-house to the standards your
-              plant is audited against.
-            </p>
-          </Reveal>
+            </Reveal>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {PRODUCT_CATEGORIES.map((c, i) => (
@@ -146,34 +182,55 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="h-full"
               >
-                <Link to={c.href} className="group relative flex flex-col h-full min-h-[440px] rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-[0_10px_32px_-10px_rgba(0,0,0,0.5)] hover:ring-white/30 hover:shadow-[0_20px_44px_-12px_rgba(0,0,0,0.6)] transition-all duration-300 focus:outline-none">
-                  {/* object-contain (not object-cover) so the whole product is
-                      visible, not cropped to fill the panel — the dark backing
-                      color fills whatever margin the aspect-ratio mismatch
-                      leaves instead of the image being zoomed/cut to cover it. */}
-                  <div className="absolute inset-0 overflow-hidden bg-[#0d1f33]">
+                {/* Bordered glass card floating on the section's own shared
+                    background (not a full-bleed photo tile per card) — ghost
+                    number + category tag up top, the product photo contained
+                    within the card, then real spec rows pulled from the
+                    catalog before the CTA. */}
+                <Link to={c.href} className="group relative flex flex-col h-full rounded-2xl border border-white/15 bg-[#0B1B2B]/50 backdrop-blur-md p-6 shadow-[0_10px_32px_-10px_rgba(0,0,0,0.5)] hover:border-[#7FB2E4]/40 hover:bg-[#0B1B2B]/65 transition-all duration-300 focus:outline-none">
+                  <div className="flex items-start justify-between mb-3">
+                    <span className="font-heading font-extrabold text-5xl text-white/10 leading-none select-none">
+                      {c.n}
+                    </span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-[#7FB2E4] text-right pt-1 max-w-[7rem]">
+                      {c.tag}
+                    </span>
+                  </div>
+
+                  <div className="relative h-28 mb-4 flex items-center justify-center">
                     <img
                       src={`${import.meta.env.BASE_URL}${c.image}`}
                       alt={c.title}
-                      className="w-full h-full object-contain p-6 transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                      className="max-w-full max-h-full object-contain transition-transform duration-500 ease-out group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B1B2B] via-[#0B1B2B]/20 to-transparent transition-opacity duration-300 group-hover:from-[#0B1B2B]/95" />
                   </div>
 
-                  {/* Content overlay */}
-                  <div className="relative z-10 flex flex-col justify-between h-full p-6">
-                    <span className="text-white/60 font-heading font-bold text-xl tracking-tight">{c.n}</span>
+                  <h3 className="font-heading font-bold text-lg text-white leading-tight mb-1.5">
+                    {c.title}
+                  </h3>
+                  <span className="block w-9 h-[2px] bg-[#1C5CA8] mb-3" aria-hidden="true" />
+                  <p className="text-slate-300 text-xs leading-relaxed line-clamp-2 mb-4">
+                    {c.desc}
+                  </p>
 
-                    <div className="space-y-2">
-                      <h3 className="font-heading font-bold text-lg text-white leading-tight">{c.title}</h3>
-                      <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
-                        {c.desc}
-                      </p>
-                      <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1C5CA8] mt-1 transition-transform duration-300 group-hover:translate-x-1">
-                        <ArrowRight className="w-4 h-4 text-white" strokeWidth={2.25} />
-                      </span>
-                    </div>
+                  <div className="space-y-1.5 mb-5 pb-5 border-b border-white/10">
+                    {c.specs.map((s) => (
+                      <div key={s.label} className="flex items-center gap-2 text-[11px]">
+                        <s.icon className="w-3.5 h-3.5 text-[#7FB2E4] shrink-0" strokeWidth={1.75} />
+                        <span className="text-white/50 w-[4.5rem] shrink-0">{s.label}</span>
+                        <span className="text-white font-semibold truncate">{s.value}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-auto flex items-center justify-between">
+                    <span className="text-sm font-bold text-white group-hover:text-[#7FB2E4] transition-colors">
+                      Explore Products
+                    </span>
+                    <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#1C5CA8] transition-transform duration-300 group-hover:translate-x-1">
+                      <ArrowRight className="w-4 h-4 text-white" strokeWidth={2.25} />
+                    </span>
                   </div>
                 </Link>
               </motion.div>
