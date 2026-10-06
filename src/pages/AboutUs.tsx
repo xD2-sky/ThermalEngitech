@@ -198,6 +198,12 @@ export default function AboutUs() {
           placeholders (real headshots to follow); no bio copy is invented
           per founder since we don't have verified details beyond name/role. */}
       <div className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-panel-blue overflow-hidden">
+        <img
+          src={`${base}images/leadership-bg-soft-blue.webp`}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         <div className="max-w-5xl mx-auto space-y-14 relative z-10">
 
           <Reveal className="text-center max-w-2xl mx-auto space-y-4">
