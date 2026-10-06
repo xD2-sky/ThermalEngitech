@@ -88,7 +88,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
         <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
           Industrial Project Integration
         </p>
-        <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#0B1B2B]">
+        <h2 className="text-4xl sm:text-5xl font-heading font-bold text-[#0B1B2B] leading-[1.1]">
           Request Sizing & Technical Quotation
         </h2>
         <p className="text-[#0B1B2B] text-sm max-w-2xl mx-auto leading-relaxed">

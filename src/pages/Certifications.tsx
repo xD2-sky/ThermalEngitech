@@ -58,7 +58,7 @@ export default function Certifications() {
             <p className="text-xs uppercase tracking-[0.18em] text-[#1C5CA8] font-semibold">
               Globally Recognized
             </p>
-            <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.15]">
+            <h2 className="text-4xl sm:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.1]">
               Standards trusted on <span className="text-[#1C5CA8]">projects worldwide</span>
             </h2>
             <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-md">

@@ -65,7 +65,7 @@ export default function AboutUs() {
             About Us
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.08]">
+            <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.08]">
               Built on Expertise.
               <br />
               <span className="text-[#7FB2E4]">Driven by Purpose.</span>
@@ -119,7 +119,7 @@ export default function AboutUs() {
                 <span className="text-[#1C5CA8]">•</span>
                 Our history & vision
               </p>
-              <h2 className="text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
+              <h2 className="text-4xl sm:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.1]">
                 Building dependable process-heat systems since 2012
               </h2>
 
@@ -200,7 +200,7 @@ export default function AboutUs() {
               <span className="text-[#1C5CA8]">•</span>
               Leadership team
             </p>
-            <h2 className="text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em]">
+            <h2 className="text-4xl sm:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.1]">
               Founded and led by the engineers who build it
             </h2>
             <p className="text-[#47566A] text-sm">
@@ -255,7 +255,7 @@ export default function AboutUs() {
               </p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-4xl sm:text-5xl md:text-[3.5rem] font-heading font-extrabold tracking-[-0.02em] leading-[1.06]">
+              <h2 className="text-4xl sm:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.06]">
                 <span className="text-[#0B1B2B]">Engineering a</span>
                 <br />
                 <span className="text-[#1C5CA8]">cleaner, safer</span>{' '}

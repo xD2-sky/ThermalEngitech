@@ -162,7 +162,7 @@ export default function Home() {
                 </p>
                 <span className="h-px w-8 bg-[#1C5CA8]" aria-hidden="true" />
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-heading font-extrabold tracking-[-0.02em] leading-[1.06]">
+              <h2 className="text-4xl sm:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.06]">
                 <span className="text-white">Four Solutions.</span>
                 <br />
                 <span className="text-[#7FB2E4]">Countless Possibilities.</span>
@@ -408,7 +408,7 @@ export default function Home() {
                 Where our systems run
               </p>
             </div>
-            <h2 className="text-3xl md:text-4xl font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.05]">
+            <h2 className="text-4xl sm:text-5xl font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.05]">
               Industries we serve
             </h2>
             <p className="text-white/80 text-sm leading-relaxed">
@@ -452,11 +452,11 @@ export default function Home() {
           and a trust-point checklist. */}
       <div className="bg-white py-24 sm:py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-8 items-center">
-          <Reveal className="lg:col-span-3 space-y-5">
+          <Reveal className="lg:col-span-5 space-y-5">
             <p className="text-xs uppercase tracking-[0.18em] text-[#1C5CA8] font-semibold">
               Our Certifications
             </p>
-            <h2 className="text-[1.65rem] sm:text-3xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.015em] leading-[1.22]">
+            <h2 className="text-4xl sm:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.015em] leading-[1.1]">
               Recognized Standards for <span className="text-[#1C5CA8]">Worldwide Projects</span>
             </h2>
             <p className="text-base text-[#47566A] leading-relaxed">
@@ -504,7 +504,7 @@ export default function Home() {
           {/* Rotating Earth video — luma-keyed in RotatingGlobe so only the
               sphere itself shows, no black backdrop. Faint orbit rings
               behind it keep the "global network" feel. */}
-          <Reveal delay={0.14} className="lg:col-span-3 relative w-full aspect-square max-w-[320px] mx-auto hidden sm:block">
+          <Reveal delay={0.14} className="lg:col-span-2 relative w-full aspect-square max-w-[320px] mx-auto hidden sm:block">
             <svg className="absolute inset-0 w-full h-full text-[#1C5CA8]" viewBox="0 0 200 200" fill="none" aria-hidden="true">
               <ellipse cx="100" cy="100" rx="98" ry="40" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" />
               <ellipse cx="100" cy="100" rx="98" ry="40" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" transform="rotate(60 100 100)" />
@@ -517,7 +517,7 @@ export default function Home() {
             <RotatingGlobe className="absolute inset-[12%] drop-shadow-[0_18px_30px_rgba(28,92,168,0.3)]" />
           </Reveal>
 
-          <Reveal delay={0.18} className="lg:col-span-3 flex flex-col gap-6">
+          <Reveal delay={0.18} className="lg:col-span-2 flex flex-col gap-6">
             {[
               { label: 'Global Compliance', icon: Settings },
               { label: 'Quality Manufacturing', icon: Factory },
@@ -558,7 +558,7 @@ export default function Home() {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7FB2E4]">
                   Ready when you are
                 </p>
-                <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-white tracking-[-0.01em] leading-[1.1]">
+                <h2 className="font-heading font-extrabold text-4xl sm:text-5xl text-white tracking-[-0.01em] leading-[1.1]">
                   Let's plan your next project together.
                 </h2>
                 <p className="text-sm text-white/80 leading-relaxed max-w-xl">
