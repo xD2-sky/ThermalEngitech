@@ -163,8 +163,14 @@ export default function Manufacturing() {
       </div>
 
       {/* 2. Shop Floor Equipment — blue */}
-      <div className="bg-panel-blue py-16 md:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <div className="relative bg-panel-blue py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <img
+          src={`${base}images/shop-floor-bg-blueprint.webp`}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="max-w-7xl mx-auto space-y-8 relative z-10">
           <Reveal className="space-y-2">
             <h3 className="text-xs uppercase font-mono font-bold tracking-[0.14em] text-[#0B1B2B]">
               Shop Floor Equipment
