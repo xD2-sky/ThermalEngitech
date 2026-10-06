@@ -97,15 +97,15 @@ export default function Navbar() {
       style={{ willChange: 'backdrop-filter, background-color' }}
       className={`fixed top-0 left-0 right-0 z-50 font-sans transition-all duration-300 ease-out ${
         scrolled
-          ? 'bg-white/85 backdrop-blur-md border-b border-[#E4E7EC] shadow-[0_4px_20px_rgba(11,27,43,0.06)]'
-          : 'bg-transparent border-b border-transparent'
+          ? 'bg-white/60 backdrop-blur-xl shadow-[0_1px_16px_rgba(11,27,43,0.08)]'
+          : 'bg-transparent'
       }`}
     >
-      <div className="flex items-center justify-between h-[4.8rem] sm:h-[5.4rem] lg:h-24 px-[1.2rem] sm:px-[2.4rem] lg:px-12">
+      <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20 px-[1.2rem] sm:px-[2.4rem] lg:px-12">
 
         {/* Logo — left */}
         <Link to="/" className="flex items-center gap-3 sm:gap-[0.9rem] shrink-0 group min-w-0">
-          <Logo className="h-[2.4rem] w-12 sm:h-12 sm:w-[3.6rem] shrink-0 transition-transform duration-300 group-hover:scale-105" />
+          <Logo className="h-8 w-10 sm:h-10 sm:w-12 shrink-0 transition-transform duration-300 group-hover:scale-105" />
           <div className="flex flex-col leading-tight min-w-0">
             <span className={`font-heading font-extrabold text-[16.8px] sm:text-[19.2px] tracking-tight truncate transition-colors duration-300 ${useDarkText ? 'text-[#0B1B2B]' : 'text-white'}`}>
               Thermal <span className="text-[#1C5CA8]">Engitech</span>
