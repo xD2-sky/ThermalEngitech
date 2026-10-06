@@ -6,7 +6,7 @@
 import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { Link } from 'react-router-dom';
-import { Target, Compass, Sparkles, ArrowRight } from 'lucide-react';
+import { Target, Compass, Sparkles, ArrowRight, User, Settings, Globe2, Users, Leaf, Factory } from 'lucide-react';
 import AnimatedCounter from '../components/AnimatedCounter';
 import Reveal from '../components/Reveal';
 
@@ -189,41 +189,80 @@ export default function AboutUs() {
 
       </div>
 
-      {/* Leadership — the original standalone band style, refined: no more
-          ISO-audit tag (didn't apply to both founders), copy and card width
-          tuned for exactly two founders instead of a 3-up grid. */}
-      <div className="relative py-20 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-panel-blue overflow-hidden">
-        <div className="max-w-7xl mx-auto space-y-12 relative z-10">
+      {/* Leadership — recreated from a reference mockup the user supplied
+          ("Leadership Behind Thermal Progress.png"): centered eyebrow with
+          flanking rules, two-tone heading, circular photo frames with a
+          decorative dual-tone ring, and a 4-point trust strip below.
+          Adapted from the reference's navy+red scheme to the site's
+          blue-only palette. Photo frames are intentionally empty
+          placeholders (real headshots to follow); no bio copy is invented
+          per founder since we don't have verified details beyond name/role. */}
+      <div className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-panel-blue overflow-hidden">
+        <div className="max-w-5xl mx-auto space-y-14 relative z-10">
 
-          <Reveal className="text-center max-w-3xl mx-auto space-y-4">
-            <p className="flex items-center justify-center gap-2 text-sm text-[#78889B]">
-              <span className="text-[#1C5CA8]">•</span>
-              Leadership team
-            </p>
+          <Reveal className="text-center max-w-2xl mx-auto space-y-4">
+            <div className="flex items-center justify-center gap-3">
+              <span className="h-px w-10 bg-[#1C5CA8]/40" aria-hidden="true" />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#1C5CA8]">Leadership</p>
+              <span className="h-px w-10 bg-[#1C5CA8]/40" aria-hidden="true" />
+            </div>
             <h2 className="text-4xl sm:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.1]">
-              Founded and led by the engineers who build it
+              Founded and led by the engineers <span className="text-[#1C5CA8]">who build it</span>
             </h2>
-            <p className="text-[#47566A] text-sm">
+            <p className="text-[#47566A] text-sm sm:text-base">
               Two co-founders, one shared discipline: engineering process-heat systems that hold up in the field.
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-10 md:gap-6 items-center">
             {leadership.map((lead, i) => (
               <React.Fragment key={i}>
-              <Reveal
-                delay={i * 0.08}
-                className="bg-white border border-[#E4E7EC] rounded-2xl p-6 shadow-sm flex items-center gap-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
-              >
-                <div className="h-14 w-14 shrink-0 rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] flex items-center justify-center font-heading font-bold text-xl">
-                  {lead.name.split(' ')[0][0]}
-                </div>
-                <div className="text-left">
-                  <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">{lead.name}</h4>
-                  <span className="text-xs font-semibold text-[#1C5CA8]">{lead.role}</span>
-                </div>
-              </Reveal>
+                {i === 1 && (
+                  <div className="hidden md:flex flex-col items-center gap-3 px-2" aria-hidden="true">
+                    <span className="w-px h-10 bg-[#1C5CA8]/15" />
+                    <Factory className="w-7 h-7 text-[#1C5CA8]/30" strokeWidth={1.25} />
+                    <span className="w-px h-10 bg-[#1C5CA8]/15" />
+                  </div>
+                )}
+                <Reveal
+                  delay={i * 0.1}
+                  className={`flex items-center gap-7 ${i === 1 ? 'md:flex-row-reverse md:text-right' : ''}`}
+                >
+                  {/* Photo frame — decorative dual-tone ring; empty placeholder
+                      until real headshots are supplied */}
+                  <div className="relative w-[176px] h-[176px] shrink-0">
+                    <svg className="absolute -inset-3 w-[200px] h-[200px]" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+                      <circle cx="100" cy="100" r="94" stroke="#7FB2E4" strokeWidth="4" strokeLinecap="round" strokeDasharray="172 563" transform="rotate(-90 100 100)" />
+                      <circle cx="100" cy="100" r="94" stroke="#103E72" strokeWidth="4" strokeLinecap="round" strokeDasharray="172 563" strokeDashoffset="-227" transform="rotate(-90 100 100)" />
+                      <circle cx="100" cy="6" r="5.5" fill="#7FB2E4" />
+                      <circle cx="100" cy="194" r="5.5" fill="#103E72" />
+                    </svg>
+                    <div className="absolute inset-0 rounded-full bg-[#1C5CA8]/6 border border-[#1C5CA8]/15 flex items-center justify-center">
+                      <User className="w-16 h-16 text-[#1C5CA8]/25" strokeWidth={1.5} />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-extrabold text-xl text-[#0B1B2B]">{lead.name}</h4>
+                    <span className="text-base font-semibold text-[#1C5CA8]">{lead.role}</span>
+                  </div>
+                </Reveal>
               </React.Fragment>
+            ))}
+          </div>
+
+          <div className="pt-10 border-t border-[#0B1B2B]/10 grid grid-cols-2 sm:grid-cols-4 gap-y-8">
+            {[
+              { icon: Settings, label: 'Experience & Commitment' },
+              { icon: Globe2, label: 'Engineering Excellence' },
+              { icon: Users, label: 'Industry Leadership' },
+              { icon: Leaf, label: 'A Cleaner Tomorrow' },
+            ].map((t, i) => (
+              <div key={t.label} className={`flex items-center gap-3 px-4 ${i > 0 ? 'sm:border-l sm:border-[#0B1B2B]/10' : ''}`}>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#1C5CA8]/8 text-[#1C5CA8]">
+                  <t.icon className="w-5 h-5" strokeWidth={1.75} />
+                </span>
+                <span className="text-sm font-bold text-[#0B1B2B] leading-tight">{t.label}</span>
+              </div>
             ))}
           </div>
 
