@@ -8,6 +8,8 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { useSearchParams } from 'react-router-dom';
 import QuoteRequest from '../components/QuoteRequest';
 import { Inquiry } from '../types';
+import { Settings, Wrench, Clock } from 'lucide-react';
+import Reveal from '../components/Reveal';
 
 export default function RequestQuote() {
   useDocumentMeta(
@@ -47,24 +49,52 @@ export default function RequestQuote() {
   return (
     <div className="space-y-0 text-left bg-white min-h-screen">
       
-      {/* Banner — full-bleed photo with a dark scrim, text on top. */}
-      <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
+      {/* Hero — photo fading to a light gradient on the left, with the intro
+          copy overlaid directly (no separate dark banner + separate centered
+          intro block underneath it, like the rest of the site). Recreated
+          from a reference mockup the user supplied ("Industrial Quote
+          Request Dashboard.png"), adapted from its navy+red scheme to the
+          site's blue-only palette. */}
+      <div className="relative overflow-hidden bg-white">
         <img
           src={`${import.meta.env.BASE_URL}images/banners/request-quote.webp`}
-          alt="Precision-machined component next to its engineering drawing"
+          alt=""
+          aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
-        <div className="relative z-10 max-w-7xl mx-auto w-full py-16 space-y-4">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#7FB2E4] uppercase">
-            Estimation Request
-          </span>
-          <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
-            Comprehensive Technical Sizing
-          </h1>
-          <p className="text-white/80 text-sm max-w-2xl leading-relaxed font-sans">
-            Submit your flow-rates and fuel type — we'll return verified calculations and drawings.
-          </p>
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/92 to-white/40" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-14 space-y-7">
+          <Reveal className="flex items-center gap-3">
+            <span className="h-[2px] w-8 bg-[#1C5CA8]" aria-hidden="true" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#1C5CA8]">Request a Quote</span>
+          </Reveal>
+          <Reveal delay={0.05} className="max-w-2xl space-y-4">
+            <h1 className="text-3xl md:text-5xl font-heading font-extrabold tracking-tight leading-[1.1]">
+              <span className="text-[#0B1B2B]">Let's Engineer the</span>{' '}
+              <span className="text-[#1C5CA8]">Right Solution.</span>
+            </h1>
+            <p className="text-[#47566A] text-sm sm:text-base leading-relaxed max-w-xl">
+              Tell us your thermal requirement — our engineering team will review the specifications
+              and prepare a customized proposal for your process.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1} className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-1">
+            {[
+              { icon: Settings, label: 'Technical Consultation' },
+              { icon: Wrench, label: 'Custom Engineering' },
+              { icon: Clock, label: 'Fast Response', sub: 'Within 24 business hours' },
+            ].map((t) => (
+              <div key={t.label} className="flex items-center gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white border border-[#1C5CA8]/20 text-[#1C5CA8] shadow-sm">
+                  <t.icon className="w-5 h-5" strokeWidth={1.75} />
+                </span>
+                <div className="leading-tight">
+                  <p className="text-sm font-bold text-[#0B1B2B]">{t.label}</p>
+                  {t.sub && <p className="text-xs text-[#78889B]">{t.sub}</p>}
+                </div>
+              </div>
+            ))}
+          </Reveal>
         </div>
       </div>
 

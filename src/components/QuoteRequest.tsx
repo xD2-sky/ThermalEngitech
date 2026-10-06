@@ -81,21 +81,10 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
   };
 
   return (
-    <div id="contact" className="space-y-12 font-sans py-4">
-      
-      {/* Intro section */}
-      <Reveal className="text-center max-w-3xl mx-auto space-y-4">
-        <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#1C5CA8]">
-          Industrial Project Integration
-        </p>
-        <h2 className="text-4xl sm:text-5xl font-heading font-bold text-[#0B1B2B] leading-[1.1]">
-          Request Sizing & Technical Quotation
-        </h2>
-        <p className="text-[#0B1B2B] text-sm max-w-2xl mx-auto leading-relaxed">
-          Submit your specs — get a verified proposal and estimate within 24 business hours.
-        </p>
-      </Reveal>
+    <div id="contact" className="font-sans">
 
+      {/* Intro copy now lives in the page's hero above this component —
+          this used to duplicate it in a second, separate centered block. */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-7xl mx-auto">
 
         {/* Fuel Consumption & Running Cost Estimator (6 Columns) */}
@@ -154,10 +143,17 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
           )}
 
           <form ref={specSheetRef} onSubmit={handleSubmit} className="space-y-6 text-left">
-            <h3 className="text-base font-heading font-semibold text-[#0B1B2B] flex items-center gap-2">
-              <Clipboard className="w-5 h-5 text-[#1C5CA8]" />
-              Thermal Engineering Spec Sheet
-            </h3>
+            <div className="flex items-start gap-4">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
+                <Clipboard className="w-5 h-5" strokeWidth={1.75} />
+              </span>
+              <div>
+                <h3 className="text-base font-heading font-bold text-[#0B1B2B]">Thermal Engineering Spec Sheet</h3>
+                <p className="text-xs text-[#78889B] mt-1 leading-relaxed">
+                  Fill in your specs and our engineering team will prepare a customized proposal.
+                </p>
+              </div>
+            </div>
 
             <hr className="border-[#E1E4E3]" />
 

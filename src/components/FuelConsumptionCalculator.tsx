@@ -80,14 +80,16 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
 
   return (
     <Reveal className="bg-panel border border-[#E1E4E3] rounded-xl p-6 md:p-8 shadow-sm space-y-6 text-left">
-      <div>
-        <h3 className="text-base font-heading font-semibold text-[#0B1B2B] flex items-center gap-2">
-          <Calculator className="w-5 h-5 text-[#1C5CA8]" />
-          Fuel Consumption &amp; Running Cost Estimator
-        </h3>
-        <p className="text-xs text-[#78889B] mt-1.5 leading-relaxed">
-          Estimate the fuel a boiler of your required capacity would burn, before you request a formal quote.
-        </p>
+      <div className="flex items-start gap-4">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
+          <Calculator className="w-5 h-5" strokeWidth={1.75} />
+        </span>
+        <div>
+          <h3 className="text-base font-heading font-bold text-[#0B1B2B]">Fuel Consumption &amp; Running Cost Estimator</h3>
+          <p className="text-xs text-[#78889B] mt-1 leading-relaxed">
+            Estimate the fuel a boiler of your required capacity would burn, before you request a formal quote.
+          </p>
+        </div>
       </div>
 
       <hr className="border-[#E1E4E3]" />
