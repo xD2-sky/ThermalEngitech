@@ -62,7 +62,7 @@ export default function RequestQuote() {
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/92 to-white/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/10" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-14 space-y-7">
           <Reveal className="flex items-center gap-3">
             <span className="h-[2px] w-8 bg-[#1C5CA8]" aria-hidden="true" />
