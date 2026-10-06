@@ -8,7 +8,7 @@ import { Inquiry } from '../types';
 import { PRODUCTS } from '../data';
 import Reveal from './Reveal';
 import FuelConsumptionCalculator from './FuelConsumptionCalculator';
-import { ChevronRight, ArrowRight, Clipboard, CheckCircle } from 'lucide-react';
+import { ChevronRight, Clipboard, CheckCircle } from 'lucide-react';
 
 interface QuoteRequestProps {
   presetProductName: string | null;
@@ -122,17 +122,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
         </div>
 
-        {/* Connector — makes the two-step relationship between the estimator
-            and the form explicit (desktop only; the two cards stack in
-            document order on mobile, which already reads as sequential). */}
-        <div className="hidden lg:flex lg:col-span-2 flex-col items-center gap-2 pt-9" aria-hidden="true">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] border border-[#1C5CA8]/20">
-            <ArrowRight className="w-5 h-5" strokeWidth={2} />
-          </span>
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#78889B] text-center leading-tight">
-            Use the<br />estimate
-          </span>
-        </div>
+        {/* Spacer — keeps the same gap between the two cards that the
+            connector (arrow + "Use the estimate" label) used to occupy. */}
+        <div className="hidden lg:block lg:col-span-2" aria-hidden="true" />
 
         {/* Contact Form Controls (5 Columns) */}
         <Reveal delay={0.05} className="lg:col-span-5 bg-panel border border-[#E1E4E3] rounded-xl shadow-sm relative overflow-hidden">
