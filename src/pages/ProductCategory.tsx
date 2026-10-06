@@ -7,6 +7,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
+import usePageAnimated from '../hooks/usePageAnimated';
 import { categoryBySlug, productsInCategory } from '../catalog';
 import ProductImage from '../components/ProductImage';
 import { ArrowLeft, ChevronRight, ShieldCheck } from 'lucide-react';
@@ -14,6 +15,7 @@ import { ArrowLeft, ChevronRight, ShieldCheck } from 'lucide-react';
 export default function ProductCategory() {
   const { slug = '' } = useParams<{ slug: string }>();
   const category = categoryBySlug(slug);
+  const alreadyAnimated = usePageAnimated();
 
   // Unknown slug → back to catalogue. Single-product category → straight to details.
   if (!category) return <Navigate to="/products" replace />;
@@ -85,10 +87,12 @@ export default function ProductCategory() {
           {products.map((prod, i) => (
             <motion.div
               key={prod.id}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              {...(alreadyAnimated ? {} : {
+                initial: { opacity: 0, y: 28 },
+                whileInView: { opacity: 1, y: 0 },
+                viewport: { once: true, margin: '-60px' },
+                transition: { duration: 0.5, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] },
+              })}
             >
               <Link
                 to={`/products/${prod.id}`}

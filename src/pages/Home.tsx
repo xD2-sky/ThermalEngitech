@@ -12,6 +12,7 @@ import Reveal from '../components/Reveal';
 import RotatingGlobe from '../components/RotatingGlobe';
 import AnimatedCounter from '../components/AnimatedCounter';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
+import usePageAnimated from '../hooks/usePageAnimated';
 import { INDUSTRIES_SERVED } from '../data';
 import {
   Factory,
@@ -117,6 +118,7 @@ const PRODUCT_CATEGORIES = [
 
 export default function Home() {
   const navigate = useNavigate();
+  const alreadyAnimated = usePageAnimated();
 
   useDocumentMeta(
     'Industrial Steam Boilers & Thermic Fluid Heaters',
@@ -179,10 +181,12 @@ export default function Home() {
             {PRODUCT_CATEGORIES.map((c, i) => (
               <motion.div
                 key={c.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                {...(alreadyAnimated ? {} : {
+                  initial: { opacity: 0, y: 24 },
+                  whileInView: { opacity: 1, y: 0 },
+                  viewport: { once: true, margin: '-60px' },
+                  transition: { duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] },
+                })}
                 className="h-full"
               >
                 {/* Bordered glass card floating on the section's own shared
@@ -418,10 +422,12 @@ export default function Home() {
               return (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.4, delay: (i % 5) * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                  {...(alreadyAnimated ? {} : {
+                    initial: { opacity: 0, y: 18 },
+                    whileInView: { opacity: 1, y: 0 },
+                    viewport: { once: true, margin: '-50px' },
+                    transition: { duration: 0.4, delay: (i % 5) * 0.05, ease: [0.16, 1, 0.3, 1] },
+                  })}
                   className="rounded-xl bg-white/40 backdrop-blur-md shadow-[0_8px_24px_-14px_rgba(11,27,43,0.18)] p-6 flex flex-col items-center text-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/60 hover:shadow-[0_15px_30px_-12px_rgba(28,92,168,0.25)]"
                 >
                   <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-white/50 backdrop-blur-sm text-[#1C5CA8]">

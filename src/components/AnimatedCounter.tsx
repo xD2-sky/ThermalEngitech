@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useInView, useReducedMotion } from 'motion/react';
+import usePageAnimated from '../hooks/usePageAnimated';
 
 interface AnimatedCounterProps {
   value: number;
@@ -13,12 +14,15 @@ interface AnimatedCounterProps {
 /**
  * Counts up from 0 to `value` the first time it scrolls into view, then
  * holds at the final value — used for the "Why Thermal Engitech" stat
- * numbers.
+ * numbers. Skips straight to the final value, with no count-up, on a page
+ * that's already been seen this session (navigating back shouldn't replay
+ * it from 0 again).
  */
 export default function AnimatedCounter({ value, duration = 4, prefix = '', suffix = '', className }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: '0px 0px 150px 0px' });
   const shouldReduceMotion = useReducedMotion();
+  const alreadyAnimated = usePageAnimated();
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
@@ -26,7 +30,7 @@ export default function AnimatedCounter({ value, duration = 4, prefix = '', suff
       setDisplay(0);
       return;
     }
-    if (shouldReduceMotion) {
+    if (shouldReduceMotion || alreadyAnimated) {
       setDisplay(value);
       return;
     }
@@ -42,7 +46,7 @@ export default function AnimatedCounter({ value, duration = 4, prefix = '', suff
     }
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [isInView, shouldReduceMotion, value, duration]);
+  }, [isInView, shouldReduceMotion, alreadyAnimated, value, duration]);
 
   return (
     <span ref={ref} className={className}>

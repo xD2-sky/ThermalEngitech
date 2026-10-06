@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'motion/react';
+import usePageAnimated from '../hooks/usePageAnimated';
 
 interface RevealProps {
   children: React.ReactNode;
@@ -17,15 +18,19 @@ interface RevealProps {
 
 /**
  * Scroll-triggered entrance wrapper. Content is always present in the DOM
- * (so it stays crawlable) — only opacity/transform animate in on view.
+ * (so it stays crawlable) — only opacity/transform animate in on view, once,
+ * the first time this page is seen this session.
  */
-export default function Reveal({ children, className, delay = 0, y = 26, as = 'div', once = false, duration = 0.6 }: RevealProps) {
+export default function Reveal({ children, className, delay = 0, y = 26, as = 'div', once = true, duration = 0.6 }: RevealProps) {
   const MotionTag = motion[as] as typeof motion.div;
   const shouldReduceMotion = useReducedMotion();
+  const alreadyAnimated = usePageAnimated();
 
   // Users who've asked the OS for reduced motion get the content immediately,
-  // with no transform/opacity animation at all.
-  if (shouldReduceMotion) {
+  // with no transform/opacity animation at all. Same for a page the visitor
+  // has already scrolled through this session — navigating back to it
+  // shouldn't replay the entrance animation, so it just renders in place.
+  if (shouldReduceMotion || alreadyAnimated) {
     return <MotionTag className={className}>{children}</MotionTag>;
   }
 

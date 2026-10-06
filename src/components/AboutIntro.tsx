@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
 import { ArrowRight, Settings, Factory, Users } from 'lucide-react';
 import Reveal from './Reveal';
+import usePageAnimated from '../hooks/usePageAnimated';
 
 // Staggered entrance for the text column: the container triggers once (on
 // scroll into view) and orchestrates each child's delay, rather than each
@@ -60,13 +61,16 @@ export default function AboutIntro() {
   const maskImgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
 
   const shouldReduceMotion = useReducedMotion();
+  const alreadyAnimated = usePageAnimated();
   // Spread onto the container/each item — empty when reduced motion is
-  // requested, so nothing here animates at all and everything just renders
-  // in its final position immediately.
-  const containerMotionProps = shouldReduceMotion
+  // requested, or this page has already been seen this session, so nothing
+  // here animates at all and everything just renders in its final position
+  // immediately.
+  const skipAnimation = shouldReduceMotion || alreadyAnimated;
+  const containerMotionProps = skipAnimation
     ? {}
     : { variants: textContainer, initial: 'hidden', whileInView: 'show', viewport: { once: true, margin: '-70px' } };
-  const itemMotionProps = shouldReduceMotion ? {} : { variants: textItem };
+  const itemMotionProps = skipAnimation ? {} : { variants: textItem };
 
   return (
     <div

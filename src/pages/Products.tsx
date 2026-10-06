@@ -7,6 +7,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
+import usePageAnimated from '../hooks/usePageAnimated';
 import { getCategories, categoryHref } from '../catalog';
 import ProductImage from '../components/ProductImage';
 import {
@@ -28,6 +29,8 @@ const CATEGORY_PHOTOS: Partial<Record<string, string>> = {
 };
 
 export default function Products() {
+  const alreadyAnimated = usePageAnimated();
+
   useDocumentMeta(
     'Product Catalogue',
     'Explore our full range of IBR & ASME certified industrial heating equipment — steam boilers, thermic fluid heaters, heat exchangers, pressure reducing stations, air preheaters and more, manufactured in Dhamatwan, Gujarat.'
@@ -64,10 +67,12 @@ export default function Products() {
             return (
               <motion.div
                 key={c.slug}
-                initial={{ opacity: 0, y: 26 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                {...(alreadyAnimated ? {} : {
+                  initial: { opacity: 0, y: 26 },
+                  whileInView: { opacity: 1, y: 0 },
+                  viewport: { once: true, margin: '-60px' },
+                  transition: { duration: 0.5, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] },
+                })}
               >
                 <Link
                   to={categoryHref(c)}
