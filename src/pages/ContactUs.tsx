@@ -42,7 +42,7 @@ export default function ContactUs() {
       {/* Banner — full-bleed photo with a dark scrim, text on top. */}
       <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
         <img
-          src={`${import.meta.env.BASE_URL}images/contact-hero-industrial.jpg`}
+          src={`${import.meta.env.BASE_URL}images/contact-hero-industrial.webp`}
           alt=""
           role="presentation"
           className="absolute inset-0 w-full h-full object-cover object-[50%_35%]"

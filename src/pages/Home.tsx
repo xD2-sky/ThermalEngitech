@@ -391,7 +391,7 @@ export default function Home() {
           them too, not just in the gaps between them. */}
       <div className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <img
-          src={`${import.meta.env.BASE_URL}images/about-hero-industrial.jpg`}
+          src={`${import.meta.env.BASE_URL}images/about-hero-industrial.webp`}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover object-top"
@@ -420,7 +420,7 @@ export default function Home() {
                   key={i}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, margin: '-50px' }}
+                  viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.4, delay: (i % 5) * 0.05, ease: [0.16, 1, 0.3, 1] }}
                   className="rounded-xl bg-white/40 backdrop-blur-md shadow-[0_8px_24px_-14px_rgba(11,27,43,0.18)] p-6 flex flex-col items-center text-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/60 hover:shadow-[0_15px_30px_-12px_rgba(28,92,168,0.25)]"
                 >
@@ -539,7 +539,7 @@ export default function Home() {
           <Reveal className="relative overflow-hidden rounded-3xl shadow-xl shadow-[#1C5CA8]/20">
             <div className="absolute inset-0">
               <img
-                src={`${import.meta.env.BASE_URL}images/hero-pipes-light.jpg`}
+                src={`${import.meta.env.BASE_URL}images/hero-pipes-light.webp`}
                 alt=""
                 aria-hidden="true"
                 className="w-full h-full object-cover"
