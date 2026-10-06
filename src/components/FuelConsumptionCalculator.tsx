@@ -79,7 +79,11 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
   };
 
   return (
-    <Reveal className="bg-panel border border-[#E1E4E3] rounded-xl p-6 md:p-8 shadow-sm space-y-6 text-left">
+    <Reveal className="bg-[#1C5CA8]/[0.045] border border-[#1C5CA8]/15 rounded-xl p-6 md:p-8 shadow-sm space-y-6 text-left">
+      {/* A faint blue tint (rather than a label or dashed border) is enough
+          to read as "belonging to" the blue side of the page-level gradient
+          wash behind this section — the form card stays plain white to
+          match the white side. */}
       <div className="flex items-start gap-4">
         <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
           <Calculator className="w-5 h-5" strokeWidth={1.75} />
@@ -92,7 +96,7 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
         </div>
       </div>
 
-      <hr className="border-[#E1E4E3]" />
+      <hr className="border-[#1C5CA8]/15" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-1.5">

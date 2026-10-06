@@ -98,13 +98,19 @@ export default function RequestQuote() {
         </div>
       </div>
 
-      {/* Request form and Fuel Consumption Estimator, side by side */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
-        <QuoteRequest
-          presetProductName={presetProduct}
-          onSubmitInquiry={handleAddInquiry}
-          savedInquiries={savedInquiries}
-        />
+      {/* Request form and Fuel Consumption Estimator, side by side — a soft
+          full-bleed gradient wash (brand blue fading to white) sits behind
+          the whole section so the two zones read as distinct at a glance,
+          without needing labels on the cards themselves. */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1C5CA8]/[0.08] via-[#1C5CA8]/[0.02] to-white" aria-hidden="true" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+          <QuoteRequest
+            presetProductName={presetProduct}
+            onSubmitInquiry={handleAddInquiry}
+            savedInquiries={savedInquiries}
+          />
+        </div>
       </div>
 
     </div>

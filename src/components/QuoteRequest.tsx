@@ -8,7 +8,7 @@ import { Inquiry } from '../types';
 import { PRODUCTS } from '../data';
 import Reveal from './Reveal';
 import FuelConsumptionCalculator from './FuelConsumptionCalculator';
-import { ChevronRight, Clipboard, CheckCircle } from 'lucide-react';
+import { ChevronRight, ArrowRight, Clipboard, CheckCircle } from 'lucide-react';
 
 interface QuoteRequestProps {
   presetProductName: string | null;
@@ -85,10 +85,10 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
       {/* Intro copy now lives in the page's hero above this component —
           this used to duplicate it in a second, separate centered block. */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start max-w-7xl mx-auto">
 
-        {/* Fuel Consumption & Running Cost Estimator (6 Columns) */}
-        <div className="lg:col-span-6 space-y-6">
+        {/* Fuel Consumption & Running Cost Estimator (5 Columns) */}
+        <div className="lg:col-span-5 space-y-6">
 
           <FuelConsumptionCalculator onApply={handleCalculatorApply} />
 
@@ -122,8 +122,20 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
         </div>
 
-        {/* Contact Form Controls (6 Columns) */}
-        <Reveal delay={0.05} className="lg:col-span-6 bg-panel border border-[#E1E4E3] rounded-xl p-6 md:p-8 shadow-sm relative overflow-hidden">
+        {/* Connector — makes the two-step relationship between the estimator
+            and the form explicit (desktop only; the two cards stack in
+            document order on mobile, which already reads as sequential). */}
+        <div className="hidden lg:flex lg:col-span-2 flex-col items-center gap-2 pt-9" aria-hidden="true">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1C5CA8]/10 text-[#1C5CA8] border border-[#1C5CA8]/20">
+            <ArrowRight className="w-5 h-5" strokeWidth={2} />
+          </span>
+          <span className="text-[10px] font-bold uppercase tracking-wider text-[#78889B] text-center leading-tight">
+            Use the<br />estimate
+          </span>
+        </div>
+
+        {/* Contact Form Controls (5 Columns) */}
+        <Reveal delay={0.05} className="lg:col-span-5 bg-panel border border-[#E1E4E3] rounded-xl shadow-sm relative overflow-hidden">
 
           {submittedTicket && (
             <div className="absolute inset-0 bg-white/98 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 animate-fadeIn">
@@ -142,7 +154,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             </div>
           )}
 
-          <form ref={specSheetRef} onSubmit={handleSubmit} className="space-y-6 text-left">
+          <form ref={specSheetRef} onSubmit={handleSubmit} className="p-6 md:p-8 space-y-6 text-left">
             <div className="flex items-start gap-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
                 <Clipboard className="w-5 h-5" strokeWidth={1.75} />
