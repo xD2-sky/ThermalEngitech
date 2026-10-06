@@ -21,10 +21,10 @@ const ICONS: Record<string, React.ComponentType<{ className?: string; strokeWidt
 /** Real product renders — only set for categories we have accurate photography for.
  *  Categories without an entry fall back to the CAD-style schematic. */
 const CATEGORY_PHOTOS: Partial<Record<string, string>> = {
-  'Steam Boilers': 'images/products/steam-boiler-skid.png',
-  'Thermic Fluid Heaters': 'images/products/multi-fuel-system.png',
-  'Heat Exchangers': 'images/products/heat-exchanger-shell-tube.png',
-  'Air Preheaters': 'images/products/air-preheater-block.png',
+  'Steam Boilers': 'images/products/steam-boiler-skid.webp',
+  'Thermic Fluid Heaters': 'images/products/multi-fuel-system.webp',
+  'Heat Exchangers': 'images/products/heat-exchanger-shell-tube.webp',
+  'Air Preheaters': 'images/products/air-preheater-block.webp',
 };
 
 export default function Products() {

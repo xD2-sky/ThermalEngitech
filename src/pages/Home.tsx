@@ -61,7 +61,7 @@ const PRODUCT_CATEGORIES = [
     desc: 'High-efficiency dry steam boilers customized for solid fuel, gas, biomass, or oil firing.',
     href: '/products/category/steam-boilers',
     cta: 'Explore steam boilers',
-    image: 'images/products/steam-boiler-skid.png',
+    image: 'images/products/steam-boiler-skid.webp',
     specs: [
       { icon: Gauge, label: 'Capacity', value: '0.5 – 20.0 TPH' },
       { icon: Gauge, label: 'Pressure', value: 'Up to 25 kg/cm²' },
@@ -76,7 +76,7 @@ const PRODUCT_CATEGORIES = [
     desc: 'Concentric helical coil hot-oil heaters for stable, high-temperature indirect process heating.',
     href: '/products/category/thermic-fluid-heaters',
     cta: 'Explore heaters',
-    image: 'images/products/multi-fuel-system.png',
+    image: 'images/products/multi-fuel-system.webp',
     specs: [
       { icon: Thermometer, label: 'Temperature', value: 'Up to 400°C' },
       { icon: Gauge, label: 'Capacity', value: '1,00,000–40,00,000 kcal/hr' },
@@ -91,7 +91,7 @@ const PRODUCT_CATEGORIES = [
     desc: 'Custom engineered shell-and-tube or plate heat exchangers and condensers matching TEMA standards.',
     href: '/products/heat-exchanger-shelltube',
     cta: 'Explore heat exchangers',
-    image: 'images/products/heat-exchanger-shell-tube.png',
+    image: 'images/products/heat-exchanger-shell-tube.webp',
     specs: [
       { icon: Layers, label: 'Type', value: 'Shell & Tube' },
       { icon: Settings, label: 'Material', value: 'SS304/SS316L, CS' },
@@ -106,7 +106,7 @@ const PRODUCT_CATEGORIES = [
     desc: 'High-efficiency waste heat recovery preheaters, economizers, and air pollution control units.',
     href: '/products/air-pre-heater',
     cta: 'Explore auxiliaries',
-    image: 'images/products/air-preheater-block.png',
+    image: 'images/products/air-preheater-block.webp',
     specs: [
       { icon: Layers, label: 'Type', value: 'Shell & Tube' },
       { icon: BarChart3, label: 'Efficiency', value: '+4% to 8%' },
@@ -181,7 +181,7 @@ export default function Home() {
                 key={c.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: '-60px' }}
+                viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="h-full"
               >
