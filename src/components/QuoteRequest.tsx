@@ -164,7 +164,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             {/* Corporate & Representative Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Registered Corporate Name *</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Company Name *</label>
                 <input
                   type="text"
                   required
@@ -175,7 +175,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Representative Engineer Name *</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Name *</label>
                 <input
                   type="text"
                   required
@@ -188,7 +188,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Professional Email *</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Email *</label>
                 <input
                   type="email"
                   required
@@ -199,7 +199,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Mobile / Contact Number *</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Phone Number *</label>
                 <input
                   type="tel"
                   required
@@ -213,7 +213,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             {/* Equipment Sizing parameters */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Required Equipment Specialty</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Equipment Required</label>
                 <select
                   value={formData.requiredProduct}
                   onChange={(e) => setFormData({ ...formData, requiredProduct: e.target.value })}
@@ -228,7 +228,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Volumetric Capacity / Heat Duty *</label>
+                <label className="text-xs font-bold text-[#0B1B2B]">Capacity Required *</label>
                 <input
                   type="text"
                   required
@@ -242,7 +242,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
             {/* Detail notes */}
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-[#0B1B2B]">Specific Sizing Limits / Operating Pressures / Fuel Preferences</label>
+              <label className="text-xs font-bold text-[#0B1B2B]">Additional Details</label>
               <textarea
                 rows={4}
                 value={formData.message}
