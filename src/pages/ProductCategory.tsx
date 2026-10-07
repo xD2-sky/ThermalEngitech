@@ -10,7 +10,23 @@ import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import usePageAnimated from '../hooks/usePageAnimated';
 import { categoryBySlug, productsInCategory } from '../catalog';
 import ProductImage from '../components/ProductImage';
-import { ArrowLeft, ChevronRight, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, ChevronRight, ShieldCheck, Gauge, Thermometer, Flame, Layers, BarChart3, Settings } from 'lucide-react';
+
+// Keyword match rather than an exact per-label lookup — each product has its
+// own differently-worded specs (30+ unique label strings across data.ts), so
+// a fixed map would miss most of them. This just needs a reasonable icon,
+// not a perfect one, to match the Home page cards' point-wise spec rows.
+function specIcon(label: string) {
+  const l = label.toLowerCase();
+  if (l.includes('pressure')) return Gauge;
+  if (l.includes('capacity') || l.includes('volume') || l.includes('output') || l.includes('flow')) return Gauge;
+  if (l.includes('temp')) return Thermometer;
+  if (l.includes('fuel')) return Flame;
+  if (l.includes('material') || l.includes('metallurgy') || l.includes('construction') || l.includes('shell') || l.includes('vessel')) return Layers;
+  if (l.includes('efficiency') || l.includes('recovery') || l.includes('performance')) return BarChart3;
+  if (l.includes('code') || l.includes('standard') || l.includes('complian') || l.includes('registration') || l.includes('safety')) return ShieldCheck;
+  return Settings;
+}
 
 export default function ProductCategory() {
   const { slug = '' } = useParams<{ slug: string }>();
@@ -103,21 +119,22 @@ export default function ProductCategory() {
                   <ProductImage type={prod.imageType} />
                 </div>
 
-                <div className="p-6 space-y-3.5 flex-1 flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <h3 className="font-heading font-bold text-[#0B1B2B] text-[15px] group-hover:text-[#1C5CA8] transition-colors line-clamp-2 leading-snug">
-                      {prod.name}
-                    </h3>
-                    <p className="text-[13px] text-[#47566A] leading-relaxed line-clamp-3">{prod.description}</p>
-                  </div>
+                <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
+                  <h3 className="font-heading font-bold text-[#0B1B2B] text-[15px] group-hover:text-[#1C5CA8] transition-colors line-clamp-2 leading-snug">
+                    {prod.name}
+                  </h3>
 
-                  <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-3">
-                    {prod.specifications?.slice(0, 2).map((sp, idx) => (
-                      <div key={idx} className="space-y-0.5">
-                        <span className="block text-[10px] font-medium text-[#78889B] tracking-wide">{sp.label}</span>
-                        <span className="block text-[12px] font-semibold text-[#0B1B2B] truncate" title={sp.value}>{sp.value}</span>
-                      </div>
-                    ))}
+                  <div className="space-y-1.5 pt-3 border-t border-slate-100">
+                    {prod.specifications?.slice(0, 3).map((sp, idx) => {
+                      const SpecIcon = specIcon(sp.label);
+                      return (
+                        <div key={idx} className="flex items-center gap-2 text-[11px]">
+                          <SpecIcon className="w-3.5 h-3.5 text-[#1C5CA8] shrink-0" strokeWidth={1.75} />
+                          <span className="text-[#78889B] w-28 shrink-0 truncate" title={sp.label}>{sp.label}</span>
+                          <span className="text-[#0B1B2B] font-semibold truncate" title={sp.value}>{sp.value}</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
