@@ -187,7 +187,6 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
             type="number"
             onWheel={blurOnWheel}
             min="0"
-            placeholder="e.g. 55"
             value={fuelPrice}
             onChange={(e) => setFuelPrice(e.target.value)}
             className={selectClass}

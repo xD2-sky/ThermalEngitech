@@ -477,7 +477,6 @@ export default function ProductDetails() {
                     <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Company Name</label>
                     <input
                       type="text"
-                      placeholder="e.g. Gujarat Synthetics Ltd."
                       value={formData.companyName}
                       onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                       className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
@@ -488,7 +487,6 @@ export default function ProductDetails() {
                     <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Contact Person</label>
                     <input
                       type="text"
-                      placeholder="e.g. Mr. S. K. Mehta"
                       value={formData.contactPerson}
                       onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
                       className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
@@ -501,7 +499,6 @@ export default function ProductDetails() {
                     <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Email Address</label>
                     <input
                       type="email"
-                      placeholder="name@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
@@ -512,7 +509,6 @@ export default function ProductDetails() {
                     <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Mobile / Phone</label>
                     <input
                       type="text"
-                      placeholder="+91 98XXX XXXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
@@ -539,7 +535,6 @@ export default function ProductDetails() {
                   <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Thermal Sizing Notes / local fuel spec</label>
                   <textarea
                     rows={3}
-                    placeholder="Provide space limitations, operational hours, or biomass briquette calorific values..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition resize-none"
