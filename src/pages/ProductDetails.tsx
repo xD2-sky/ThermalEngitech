@@ -259,11 +259,15 @@ export default function ProductDetails() {
   // Embedded inquiry form states
   const [inquirySent, setInquirySent] = useState(false);
   const [formData, setFormData] = useState({
-    companyName: '',
+    companyNameAddress: '',
     contactPerson: '',
     email: '',
     phone: '',
-    capacity: 'Under 1.0 Ton / Hour',
+    boilerType: '',
+    capacityRequired: '',
+    pressureTemperature: '',
+    fuelType: '',
+    purchaseTimeline: '',
     message: ''
   });
 
@@ -472,17 +476,17 @@ export default function ProductDetails() {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Company Name</label>
-                    <input
-                      type="text"
-                      value={formData.companyName}
-                      onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
-                    />
-                  </div>
+                <div className="space-y-1.5">
+                  <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Your Company Name &amp; Address</label>
+                  <textarea
+                    rows={2}
+                    value={formData.companyNameAddress}
+                    onChange={(e) => setFormData({ ...formData, companyNameAddress: e.target.value })}
+                    className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition resize-none"
+                  />
+                </div>
 
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Contact Person</label>
                     <input
@@ -492,9 +496,7 @@ export default function ProductDetails() {
                       className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                     />
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Email Address</label>
                     <input
@@ -504,7 +506,9 @@ export default function ProductDetails() {
                       className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                     />
                   </div>
+                </div>
 
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Mobile / Phone</label>
                     <input
@@ -514,21 +518,60 @@ export default function ProductDetails() {
                       className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                     />
                   </div>
+
+                  <div className="space-y-1.5">
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Type of Boiler</label>
+                    <input
+                      type="text"
+                      value={formData.boilerType}
+                      onChange={(e) => setFormData({ ...formData, boilerType: e.target.value })}
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                    />
+                  </div>
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Desired Capacity / Flow Sizing</label>
-                  <select
-                    value={formData.capacity}
-                    onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-                    className="w-full px-3 py-2.5 bg-[#F7F7F4] border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] transition"
-                  >
-                    <option value="Under 1.0 Ton / Hour">Under 1.0 Ton / Hour</option>
-                    <option value="1.0 - 5.0 Tons / Hour">1.0 - 5.0 Tons / Hour</option>
-                    <option value="5.0 - 15.0 Tons / Hour">5.0 - 15.0 Tons / Hour</option>
-                    <option value="Above 15.0 Tons / Hour">Above 15.0 Tons / Hour (Heavy Grid)</option>
-                    <option value="Custom Kcal Thermal Load (Heaters)">Custom Kcal Thermal Load (Heaters)</option>
-                  </select>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Capacity Required</label>
+                    <input
+                      type="text"
+                      value={formData.capacityRequired}
+                      onChange={(e) => setFormData({ ...formData, capacityRequired: e.target.value })}
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Pressure / Temperature Required</label>
+                    <input
+                      type="text"
+                      value={formData.pressureTemperature}
+                      onChange={(e) => setFormData({ ...formData, pressureTemperature: e.target.value })}
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Fuel to Be Used</label>
+                    <input
+                      type="text"
+                      value={formData.fuelType}
+                      onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Planned Purchase Timeline</label>
+                    <input
+                      type="text"
+                      value={formData.purchaseTimeline}
+                      onChange={(e) => setFormData({ ...formData, purchaseTimeline: e.target.value })}
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-1.5">
