@@ -30,6 +30,10 @@ export interface Inquiry {
   phone: string;
   requiredProduct: string;
   capacity: string;
+  boilerType?: string;
+  pressureTemperature?: string;
+  fuelType?: string;
+  purchaseTimeline?: string;
   message: string;
   timestamp?: string;
 }

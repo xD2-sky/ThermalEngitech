@@ -24,6 +24,10 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
     phone: '',
     requiredProduct: presetProductName || 'Oil / Gas Fired 3-Pass Fully Wet Back Steam Boiler',
     capacity: '',
+    boilerType: '',
+    pressureTemperature: '',
+    fuelType: '',
+    purchaseTimeline: '',
     message: ''
   });
 
@@ -76,6 +80,10 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
       contactPerson: '',
       email: '',
       phone: '',
+      boilerType: '',
+      pressureTemperature: '',
+      fuelType: '',
+      purchaseTimeline: '',
       message: ''
     }));
   };
@@ -237,6 +245,60 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
                   className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
+              </div>
+            </div>
+
+            {/* Optional technical details — grouped and labeled separately
+                from the required contact/sizing fields above, so the form
+                reads as "a few extra details if you have them" rather than
+                adding to the core question count. */}
+            <div className="space-y-4">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[#78889B]">
+                Additional Technical Details <span className="font-normal normal-case">— optional</span>
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-[#0B1B2B]">Type of Boiler</label>
+                  <input
+                    type="text"
+                    value={formData.boilerType}
+                    onChange={(e) => setFormData({ ...formData, boilerType: e.target.value })}
+                    className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-[#0B1B2B]">Fuel to Be Used</label>
+                  <input
+                    type="text"
+                    value={formData.fuelType}
+                    onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
+                    className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-[#0B1B2B]">Pressure / Temperature Required</label>
+                  <input
+                    type="text"
+                    value={formData.pressureTemperature}
+                    onChange={(e) => setFormData({ ...formData, pressureTemperature: e.target.value })}
+                    className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-[#0B1B2B]">Planned Purchase Timeline</label>
+                  <input
+                    type="text"
+                    value={formData.purchaseTimeline}
+                    onChange={(e) => setFormData({ ...formData, purchaseTimeline: e.target.value })}
+                    className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  />
+                </div>
               </div>
             </div>
 
