@@ -290,9 +290,6 @@ export default function ProductDetails() {
 
   const handleInquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.companyName || !formData.contactPerson || !formData.email || !formData.phone) {
-      return;
-    }
 
     // Persist to localStorage savedInquiries list so they display under Request a Quote history
     const newInquiry = {
@@ -477,10 +474,9 @@ export default function ProductDetails() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Company Name *</label>
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Company Name</label>
                     <input
                       type="text"
-                      required
                       placeholder="e.g. Gujarat Synthetics Ltd."
                       value={formData.companyName}
                       onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
@@ -489,10 +485,9 @@ export default function ProductDetails() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Contact Person *</label>
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Contact Person</label>
                     <input
                       type="text"
-                      required
                       placeholder="e.g. Mr. S. K. Mehta"
                       value={formData.contactPerson}
                       onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
@@ -503,10 +498,9 @@ export default function ProductDetails() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Email Address *</label>
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Email Address</label>
                     <input
                       type="email"
-                      required
                       placeholder="name@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -515,10 +509,9 @@ export default function ProductDetails() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Mobile / Phone *</label>
+                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Mobile / Phone</label>
                     <input
                       type="text"
-                      required
                       placeholder="+91 98XXX XXXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
