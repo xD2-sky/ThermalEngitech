@@ -82,10 +82,7 @@ export default function ContactUs() {
 
               <div className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-[#1C5CA8] shrink-0 mt-0.5" />
-                <div className="space-y-0.5">
-                  <a href="tel:+917069306431" className="block hover:text-[#1C5CA8] transition">+91 70693 06431</a>
-                  <span className="block text-xs text-[#78889B]">Purchase: <a href="tel:+919033047272" className="hover:text-[#1C5CA8] transition">+91 90330 47272</a></span>
-                </div>
+                <a href="tel:+917069306431" className="hover:text-[#1C5CA8] transition">+91 70693 06431</a>
               </div>
 
               <div className="flex items-center gap-3">
