@@ -24,7 +24,7 @@ const selectClass =
 const blurOnWheel = (e: React.WheelEvent<HTMLInputElement>) => e.currentTarget.blur();
 
 interface FuelConsumptionCalculatorProps {
-  onApply: (args: { product: string; capacity: string }) => void;
+  onApply: (args: { product: string; capacityTPH: number }) => void;
 }
 
 export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCalculatorProps) {
@@ -74,7 +74,7 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
     const productName = result.matches[0]?.name;
     onApply({
       product: productName || '',
-      capacity: `${result.capacityTPH} Tons/hr`,
+      capacityTPH: result.capacityTPH,
     });
   };
 

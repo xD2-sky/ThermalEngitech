@@ -29,10 +29,12 @@ export interface Inquiry {
   email: string;
   phone: string;
   requiredProduct: string;
+  equipmentCategory?: Product['category'];
   capacity: string;
   boilerType?: string;
   pressureTemperature?: string;
   fuelType?: string;
+  fuelTypeOther?: string;
   purchaseTimeline?: string;
   message: string;
   timestamp?: string;
