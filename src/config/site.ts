@@ -31,5 +31,5 @@ export const SITE = {
 } as const;
 
 export const WHATSAPP_LINK = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(
-  "Hello Thermal Engitech team, I'm interested in a technical sizing discussion for our plant."
+  'Hello, I would like to request a technical sizing consultation for our plant. Could someone from your engineering team assist?'
 )}`;
