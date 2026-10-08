@@ -17,6 +17,12 @@ import {
 const selectClass =
   'w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition';
 
+// Hides the native up/down stepper on number inputs — only applied to the
+// secondary fields (GCV, efficiency, price, hours), not the primary Required
+// Steam Capacity field, which keeps its spinner.
+const noSpinnerClass =
+  '[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none';
+
 // Number inputs otherwise silently change value when the page is scrolled
 // with the cursor resting over them (a long-standing browser quirk) —
 // blurring on wheel stops that, since nothing on this form should change
@@ -160,7 +166,7 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
             min="0"
             value={gcv}
             onChange={(e) => setGcv(parseFloat(e.target.value) || 0)}
-            className={selectClass}
+            className={`${selectClass} ${noSpinnerClass}`}
           />
         </div>
 
@@ -175,7 +181,7 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
             max="100"
             value={efficiency}
             onChange={(e) => setEfficiency(parseFloat(e.target.value) || 0)}
-            className={selectClass}
+            className={`${selectClass} ${noSpinnerClass}`}
           />
         </div>
 
@@ -189,7 +195,7 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
             min="0"
             value={fuelPrice}
             onChange={(e) => setFuelPrice(e.target.value)}
-            className={selectClass}
+            className={`${selectClass} ${noSpinnerClass}`}
           />
         </div>
 
@@ -204,7 +210,7 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
             max="24"
             value={hoursPerDay}
             onChange={(e) => setHoursPerDay(e.target.value)}
-            className={selectClass}
+            className={`${selectClass} ${noSpinnerClass}`}
           />
         </div>
       </div>
