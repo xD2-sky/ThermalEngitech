@@ -16,7 +16,6 @@ export const SITE = {
   phonePrimaryTel: '+917069306431',
   phonePurchaseDisplay: '+91 90330 47272',
   phonePurchaseTel: '+919033047272',
-  purchaseManager: 'Ramesh Samdani',
   whatsapp: '917069306431',
   email: 'info@thermalengitech.com',
 

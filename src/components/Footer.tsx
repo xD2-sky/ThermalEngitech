@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Logo from './Logo';
 import LogoWatermark from './LogoWatermark';
+import { SITE } from '../config/site';
 
 export default function Footer() {
   const quickLinks = [
@@ -87,20 +88,20 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#7FB2E4] shrink-0 mt-0.5" />
                 <span className="leading-relaxed text-slate-400">
-                  12B, Shrey Industrial Park, Road, Dhamatwan, Undrel, Gujarat 382435
+                  {SITE.address.full}
                 </span>
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-[#7FB2E4] shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
-                  <a href="mailto:info@thermalengitech.com" className="hover:text-white transition-colors">info@thermalengitech.com</a>
+                  <a href={`mailto:${SITE.email}`} className="hover:text-white transition-colors">{SITE.email}</a>
                 </span>
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-[#7FB2E4] shrink-0 mt-0.5" />
                 <span className="leading-relaxed">
-                  <a href="tel:+917069306431" className="hover:text-white transition-colors">+91 70693 06431</a><br />
-                  <span className="text-slate-400">Purchase: <a href="tel:+919033047272" className="hover:text-white transition-colors">+91 90330 47272</a></span>
+                  <a href={`tel:${SITE.phonePrimaryTel}`} className="hover:text-white transition-colors">{SITE.phonePrimaryDisplay}</a><br />
+                  <span className="text-slate-400">Purchase: <a href={`tel:${SITE.phonePurchaseTel}`} className="hover:text-white transition-colors">{SITE.phonePurchaseDisplay}</a></span>
                 </span>
               </div>
             </div>

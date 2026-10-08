@@ -424,34 +424,6 @@ export const PRODUCTS: Product[] = [
   }
 ];
 
-export const INDUSTRIES = [
-  {
-    name: 'Chemical & Petrochemical',
-    useCase: 'Distillation heating, high-pressure reaction vessels, and bulk dry air reactors.',
-    solution: 'Thermic Fluid Heaters & Heat Exchangers'
-  },
-  {
-    name: 'Textiles & Dyeing',
-    useCase: 'Sizing cylinders, high-volume batch heating, and drying chamber operations.',
-    solution: '3-Pass Wetback Steam Boilers & Heat Exchangers'
-  },
-  {
-    name: 'Food & Beverage Processing',
-    useCase: 'CIP sanitization, flash pasteurization, steam jacketed cooking vessels, and laundry dryers.',
-    solution: 'Oil/Gas Fired Steam Boilers & Hot Water Generators'
-  },
-  {
-    name: 'Pharmaceutical & Cleanroom',
-    useCase: 'Pure steam creation for sterilization autoclaves and soot-free indirect room hot air.',
-    solution: 'Stainless Steel Hot Water systems & Indirect Air Gen'
-  },
-  {
-    name: 'Refineries & Oil Storage',
-    useCase: 'Tank farm heavy petroleum viscosity reduction, asphalt heating, and line tracing.',
-    solution: 'High-Capacity Horizontal Solid Fuel & Gas Coil Heaters'
-  }
-];
-
 // The real, complete list of industries served — sourced from the company's
 // own live site, not a generic AI-invented shortlist. Icon keys map to
 // lucide-react icons in the component that renders this.
@@ -496,39 +468,6 @@ export const CERTIFICATIONS = [
   }
 ];
 
-export const MANUFACTURING_STEPS = [
-  {
-    step: '01',
-    title: 'Raw Material Testing & UT',
-    description: 'Every plate of ASTM boilers grade steel undergoes complete ultrasonic thickness inspections to verify lack of internal micro-fissures.'
-  },
-  {
-    step: '02',
-    title: 'Precision Plate Rolling & Plasma Cutting',
-    description: 'Automatic heavy plate rolling machines build high-circularity pressure shells. Plasma cutting holds geometric tolerances to within 0.5mm.'
-  },
-  {
-    step: '03',
-    title: 'Radiography Welds & ASME GTAW/SMAW',
-    description: 'Welders are certified under ASME Section IX standards. Joints are subjected to volumetric X-ray inspections to guarantee 100% weld joint efficiency.'
-  },
-  {
-    step: '04',
-    title: 'Tube Bundle Hydrostatic Pressure Testing',
-    description: 'Completed coils and tube sheets are stress-tested at 1.5x design pressure to confirm complete pressure containment integrity.'
-  },
-  {
-    step: '05',
-    title: 'Refractory Lining & Thermal Insulation',
-    description: 'Premium ceramic fiber blankets and high-alumina castable refractories minimize outer shell heat loss to room surroundings.'
-  },
-  {
-    step: '06',
-    title: 'Final Commissioning & PLC Integration',
-    description: 'Pre-firing simulation checks burner fuel-air gas mixing metrics and audits alarm safety configurations before shipping.'
-  }
-];
-
 // Real shop-floor equipment specifications, sourced from the facility's own
 // documented infrastructure — not generic filler copy.
 export const SHOP_CAPABILITIES = [
@@ -569,23 +508,6 @@ export const SHOP_CAPABILITIES = [
     value: 'Sand blasting and spray painting, with an iron-oxide coating line. 3-phase power connection with 160 KVA / 415V diesel generator backup for power failure.'
   }
 ];
-
-// Engineering & design capabilities
-export const DESIGN_CAPABILITIES = {
-  equipmentDesign: [
-    'Thermal design',
-    'Pressure part design',
-    'Combustion equipment design — coal firing, gas & oil firing, agro-waste fuel firing',
-    'Welding joints design',
-    'Stress analysis'
-  ],
-  auxiliaries: [
-    'Structural & ducting',
-    'Instrumentation',
-    'Pneumatic, electro-mechanical, electronic, electrical, process & utility pipeline'
-  ],
-  cadTools: ['AutoCAD', 'Thermal design software', 'Stress calculations & CAD drafting', 'ProE / CREO', 'STAAD analysis']
-};
 
 // Design codes and standards actually referenced in engineering — not aspirational claims.
 export const DESIGN_CODES = [
