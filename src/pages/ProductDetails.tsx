@@ -9,6 +9,7 @@ import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS } from '../data';
 import { slugify, productsInCategory } from '../catalog';
 import ProductVideoShowcase from '../components/ProductVideoShowcase';
+import HoneypotField from '../components/HoneypotField';
 import { submitToWeb3Forms } from '../config/web3forms';
 import { ArrowLeft, ShieldCheck, Cpu, CheckCircle, Mail, Phone, CheckCircle2, ChevronRight } from 'lucide-react';
 import Reveal from '../components/Reveal';
@@ -261,6 +262,7 @@ export default function ProductDetails() {
   const [inquirySent, setInquirySent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [botcheck, setBotcheck] = useState(false);
   const [formData, setFormData] = useState({
     companyNameAddress: '',
     contactPerson: '',
@@ -313,7 +315,8 @@ export default function ProductDetails() {
       pressure_temperature_required: formData.pressureTemperature,
       fuel_to_be_used: formData.fuelType,
       planned_purchase_timeline: formData.purchaseTimeline,
-      thermal_sizing_notes: formData.message
+      thermal_sizing_notes: formData.message,
+      botcheck: botcheck ? 'true' : ''
     });
 
     setSubmitting(false);
@@ -493,7 +496,8 @@ export default function ProductDetails() {
               </div>
             ) : (
               <form onSubmit={handleInquirySubmit} className="space-y-4 text-xs font-sans">
-                
+                <HoneypotField checked={botcheck} onChange={setBotcheck} />
+
                 <div className="space-y-1.5">
                   <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Target Equipment Name</label>
                   <input

@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import CompanyMap from '../components/CompanyMap';
 import Reveal from '../components/Reveal';
+import HoneypotField from '../components/HoneypotField';
 import { submitToWeb3Forms } from '../config/web3forms';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 
@@ -24,6 +25,7 @@ export default function ContactUs() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [botcheck, setBotcheck] = useState(false);
 
   const handleChange =
     (field: keyof MessageForm) =>
@@ -42,6 +44,7 @@ export default function ContactUs() {
       name: form.name,
       email: form.email,
       message: form.message,
+      botcheck: botcheck ? 'true' : '',
     });
 
     setSubmitting(false);
@@ -169,6 +172,7 @@ export default function ContactUs() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
+                <HoneypotField checked={botcheck} onChange={setBotcheck} />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
                     <label htmlFor="contact-name" className="block text-sm font-semibold text-[#0B1B2B]">Name</label>

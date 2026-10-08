@@ -9,6 +9,7 @@ import { PRODUCTS } from '../data';
 import { getCategories, productsInCategory } from '../catalog';
 import { FUEL_OPTIONS, PRESSURE_OPTIONS } from '../config/fuelEstimator';
 import { submitToWeb3Forms } from '../config/web3forms';
+import HoneypotField from './HoneypotField';
 import Reveal from './Reveal';
 import FuelConsumptionCalculator from './FuelConsumptionCalculator';
 import { ChevronRight, Clipboard, CheckCircle } from 'lucide-react';
@@ -86,6 +87,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
   const [submittedTicket, setSubmittedTicket] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [botcheck, setBotcheck] = useState(false);
   const specSheetRef = useRef<HTMLFormElement>(null);
 
   // Synchronize dynamic preset selection
@@ -162,7 +164,8 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
       fuel_to_be_used: formData.fuelType === 'other' ? (formData.fuelTypeOther || 'Other') : (formData.fuelType || ''),
       pressure_or_temperature_required: formData.pressureTemperature || '',
       planned_purchase_timeline: formData.purchaseTimeline || '',
-      additional_details: formData.message || ''
+      additional_details: formData.message || '',
+      botcheck: botcheck ? 'true' : ''
     });
 
     setSubmitting(false);
@@ -266,6 +269,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
           )}
 
           <form ref={specSheetRef} onSubmit={handleSubmit} className="p-6 md:p-8 space-y-6 text-left">
+            <HoneypotField checked={botcheck} onChange={setBotcheck} />
             <div className="flex items-start gap-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
                 <Clipboard className="w-5 h-5" strokeWidth={1.75} />
