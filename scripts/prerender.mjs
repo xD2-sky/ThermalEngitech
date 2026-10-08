@@ -46,13 +46,13 @@ const CHROME = findChrome();
 // ---- routes ----------------------------------------------------------------
 const staticRoutes = [
   '/', '/about', '/products',
-  '/manufacturing', '/certifications', '/contact', '/request-quote',
+  '/manufacturing', '/contact', '/request-quote',
 ];
 let productIds = [];
 let categorySlugs = [];
 try {
   const data = readFileSync(join(ROOT, 'src', 'data.ts'), 'utf8');
-  const block = data.slice(data.indexOf('PRODUCTS'), data.indexOf('INDUSTRIES ='));
+  const block = data.slice(data.indexOf('PRODUCTS'), data.indexOf('INDUSTRIES_SERVED ='));
   productIds = [...block.matchAll(/id:\s*'([^']+)'/g)].map((m) => m[1]);
   const counts = {};
   for (const m of block.matchAll(/category:\s*'([^']+)'/g)) counts[m[1]] = (counts[m[1]] || 0) + 1;

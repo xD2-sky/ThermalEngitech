@@ -20,7 +20,6 @@ const Products = lazy(() => import('./pages/Products'));
 const ProductCategory = lazy(() => import('./pages/ProductCategory'));
 const ProductDetails = lazy(() => import('./pages/ProductDetails'));
 const Manufacturing = lazy(() => import('./pages/Manufacturing'));
-const Certifications = lazy(() => import('./pages/Certifications'));
 const ContactUs = lazy(() => import('./pages/ContactUs'));
 const RequestQuote = lazy(() => import('./pages/RequestQuote'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -50,7 +49,6 @@ export default function App() {
               <Route path="/products/category/:slug" element={<ProductCategory />} />
               <Route path="/products/:id" element={<ProductDetails />} />
               <Route path="/manufacturing" element={<Manufacturing />} />
-              <Route path="/certifications" element={<Certifications />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/request-quote" element={<RequestQuote />} />
               <Route path="*" element={<NotFound />} />

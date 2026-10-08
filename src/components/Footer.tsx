@@ -10,7 +10,6 @@ export default function Footer() {
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
     { label: 'Manufacturing', path: '/manufacturing' },
-    { label: 'Certifications', path: '/certifications' },
     { label: 'Contact', path: '/contact' },
   ];
 

@@ -445,29 +445,6 @@ export const INDUSTRIES_SERVED = [
   { name: 'Textile Units', icon: 'Shirt' }
 ];
 
-export const CERTIFICATIONS = [
-  {
-    title: 'Indian Boiler Regulations (IBR 1950)',
-    description: 'Approved boiler and pressure vessel manufacturing facility, certified to build, weld, and heat-treat IBR boilers with Latest Amendments, backed by Form VI compliance certificates.',
-    authority: 'Directorate of Boilers, India'
-  },
-  {
-    title: 'ASME Section VIII Division 1 & 2',
-    description: 'Design and fabrication of pressure vessels and boiler components to ASME Boiler & Pressure Vessel Code, alongside IS-2825 for unfired pressure vessels.',
-    authority: 'American Society of Mechanical Engineers'
-  },
-  {
-    title: 'ISO 9001:2015 Quality Management',
-    description: 'Quality management systems covering every stage from raw structural steel receipt through volumetric testing and delivery.',
-    authority: 'ISO 9001:2015 Standard'
-  },
-  {
-    title: 'Design Codes for Pressure Parts & Heat Exchangers',
-    description: 'Combustion equipment, pressure part, and heat exchanger design referenced against ISO-R-831, BS-2970, and TEMA standards.',
-    authority: 'International Design Standards'
-  }
-];
-
 // Real shop-floor equipment specifications, sourced from the facility's own
 // documented infrastructure — not generic filler copy.
 export const SHOP_CAPABILITIES = [
@@ -507,14 +484,4 @@ export const SHOP_CAPABILITIES = [
     label: 'Surface Finish & Painting',
     value: 'Sand blasting and spray painting, with an iron-oxide coating line. 3-phase power connection with 160 KVA / 415V diesel generator backup for power failure.'
   }
-];
-
-// Design codes and standards actually referenced in engineering — not aspirational claims.
-export const DESIGN_CODES = [
-  { code: 'ASME Sec. VIII Div. 1 & 2', note: 'Pressure vessel design' },
-  { code: 'IS-2825', note: 'Unfired pressure vessels' },
-  { code: 'IBR 1950, with Latest Amendments', note: 'Indian Boiler Regulations' },
-  { code: 'ISO-R-831', note: 'Boiler design recommendations' },
-  { code: 'BS-2970', note: 'Steel tubes for boilers' },
-  { code: 'TEMA', note: 'Heat exchanger standards' }
 ];
