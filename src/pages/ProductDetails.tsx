@@ -351,7 +351,7 @@ export default function ProductDetails() {
       {/* Breadcrumbs bar with navigation shortcuts — margin-top clears the fixed
           navbar at rest; sticky top-* then holds it there once scrolled */}
       <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20 sticky top-16 sm:top-18 lg:top-20 z-30">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#78889B] font-semibold">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#5B6B80] font-semibold">
           <Link
             to={backTo}
             data-testid="product-back-btn"
@@ -391,7 +391,7 @@ export default function ProductDetails() {
           {/* Large Scale CAD View Canvas overlay */}
           <Reveal delay={0.05} className="bg-panel border border-[#E1E4E3] rounded-lg p-8 flex items-center justify-center relative shadow-xs min-h-[300px]">
             <ProductImageLarge type={product.imageType} productId={product.id} />
-            <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-[#78889B] uppercase tracking-widest px-2.5 py-1 rounded">
+            <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-[#5B6B80] uppercase tracking-widest px-2.5 py-1 rounded">
               High Resolution Schematic CAD Layout
             </span>
           </Reveal>
@@ -422,7 +422,7 @@ export default function ProductDetails() {
                   key={idx}
                   className={`grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-1 sm:gap-6 px-6 py-3.5 ${idx > 0 ? 'border-t border-slate-100' : ''}`}
                 >
-                  <span className="text-[11px] font-mono uppercase tracking-wide text-[#78889B]">{sp.label}</span>
+                  <span className="text-[11px] font-mono uppercase tracking-wide text-[#5B6B80]">{sp.label}</span>
                   <span className="text-xs sm:text-sm font-semibold text-[#0B1B2B]">{sp.value}</span>
                 </div>
               ))}
@@ -472,7 +472,7 @@ export default function ProductDetails() {
           <Reveal delay={0.05} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-sm space-y-6 text-left">
             <div className="space-y-1 border-b border-slate-100 pb-3">
               <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">Send Quick Enquiry</h4>
-              <p className="text-[11px] text-[#78889B] font-sans">
+              <p className="text-[11px] text-[#5B6B80] font-sans">
                 Submit raw sizing metrics to receive CAD layout suggestions.
               </p>
             </div>
@@ -499,8 +499,9 @@ export default function ProductDetails() {
                 <HoneypotField checked={botcheck} onChange={setBotcheck} />
 
                 <div className="space-y-1.5">
-                  <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Target Equipment Name</label>
+                  <label htmlFor="enquiry-equipment" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Target Equipment Name</label>
                   <input
+                    id="enquiry-equipment"
                     type="text"
                     disabled
                     value={product.name}
@@ -509,8 +510,9 @@ export default function ProductDetails() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Your Company Name &amp; Address</label>
+                  <label htmlFor="enquiry-companyaddr" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Your Company Name &amp; Address</label>
                   <textarea
+                    id="enquiry-companyaddr"
                     rows={2}
                     value={formData.companyNameAddress}
                     onChange={(e) => setFormData({ ...formData, companyNameAddress: e.target.value })}
@@ -520,8 +522,9 @@ export default function ProductDetails() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Contact Person</label>
+                    <label htmlFor="enquiry-contact" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Contact Person</label>
                     <input
+                      id="enquiry-contact"
                       type="text"
                       value={formData.contactPerson}
                       onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
@@ -530,8 +533,9 @@ export default function ProductDetails() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Email Address</label>
+                    <label htmlFor="enquiry-email" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Email Address</label>
                     <input
+                      id="enquiry-email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -542,8 +546,9 @@ export default function ProductDetails() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Mobile / Phone</label>
+                    <label htmlFor="enquiry-phone" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Mobile / Phone</label>
                     <input
+                      id="enquiry-phone"
                       type="text"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -552,8 +557,9 @@ export default function ProductDetails() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Type of Boiler</label>
+                    <label htmlFor="enquiry-boilertype" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Type of Boiler</label>
                     <input
+                      id="enquiry-boilertype"
                       type="text"
                       value={formData.boilerType}
                       onChange={(e) => setFormData({ ...formData, boilerType: e.target.value })}
@@ -564,8 +570,9 @@ export default function ProductDetails() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Capacity Required</label>
+                    <label htmlFor="enquiry-capacity" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Capacity Required</label>
                     <input
+                      id="enquiry-capacity"
                       type="text"
                       value={formData.capacityRequired}
                       onChange={(e) => setFormData({ ...formData, capacityRequired: e.target.value })}
@@ -574,8 +581,9 @@ export default function ProductDetails() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Pressure / Temperature Required</label>
+                    <label htmlFor="enquiry-pressuretemp" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Pressure / Temperature Required</label>
                     <input
+                      id="enquiry-pressuretemp"
                       type="text"
                       value={formData.pressureTemperature}
                       onChange={(e) => setFormData({ ...formData, pressureTemperature: e.target.value })}
@@ -586,8 +594,9 @@ export default function ProductDetails() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Fuel to Be Used</label>
+                    <label htmlFor="enquiry-fueltype" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Fuel to Be Used</label>
                     <input
+                      id="enquiry-fueltype"
                       type="text"
                       value={formData.fuelType}
                       onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
@@ -596,8 +605,9 @@ export default function ProductDetails() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Planned Purchase Timeline</label>
+                    <label htmlFor="enquiry-timeline" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Planned Purchase Timeline</label>
                     <input
+                      id="enquiry-timeline"
                       type="text"
                       value={formData.purchaseTimeline}
                       onChange={(e) => setFormData({ ...formData, purchaseTimeline: e.target.value })}
@@ -607,8 +617,9 @@ export default function ProductDetails() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Thermal Sizing Notes / local fuel spec</label>
+                  <label htmlFor="enquiry-message" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Thermal Sizing Notes / local fuel spec</label>
                   <textarea
+                    id="enquiry-message"
                     rows={3}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -644,7 +655,7 @@ export default function ProductDetails() {
                 <span>info@thermalengitech.com</span>
               </div>
             </div>
-            <p className="text-[10px] text-[#78889B] font-medium leading-relaxed font-sans pt-1 border-t border-slate-200">
+            <p className="text-[10px] text-[#5B6B80] font-medium leading-relaxed font-sans pt-1 border-t border-slate-200">
               Technical proposals returned within 24 business hours.
             </p>
           </Reveal>

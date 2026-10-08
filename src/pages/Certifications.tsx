@@ -130,7 +130,7 @@ export default function Certifications() {
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 mt-6 flex items-center justify-between text-[10px] font-mono font-bold text-[#78889B]">
+              <div className="pt-4 border-t border-slate-100 mt-6 flex items-center justify-between text-[10px] font-mono font-bold text-[#5B6B80]">
                 <span>GOVERNING BODY:</span>
                 <span className="text-[#1C5CA8] text-[11px] font-bold">{cert.authority}</span>
               </div>
@@ -160,7 +160,7 @@ export default function Certifications() {
                 </div>
                 <div className="space-y-0.5 text-left">
                   <h4 className="font-bold text-xs text-[#0B1B2B] leading-tight">{dc.code}</h4>
-                  <span className="text-[10.5px] text-[#78889B] font-medium">{dc.note}</span>
+                  <span className="text-[10.5px] text-[#5B6B80] font-medium">{dc.note}</span>
                 </div>
               </div>
             ))}

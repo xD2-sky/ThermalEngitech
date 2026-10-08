@@ -115,7 +115,7 @@ export default function AboutUs() {
 
           <div className="lg:col-span-7 space-y-6">
             <Reveal delay={0.05} className="space-y-6">
-              <p className="flex items-center gap-2 text-sm text-[#78889B]">
+              <p className="flex items-center gap-2 text-sm text-[#5B6B80]">
                 <span className="text-[#1C5CA8]">•</span>
                 Our history & vision
               </p>
@@ -135,25 +135,25 @@ export default function AboutUs() {
                 <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">
                   <AnimatedCounter value={2000} suffix="+" />
                 </span>
-                <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Commissioned plants</span>
+                <span className="text-[11px] text-[#5B6B80] uppercase tracking-wider font-semibold">Commissioned plants</span>
               </div>
               <div>
                 <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">
                   <AnimatedCounter value={7500} suffix=" m²" />
                 </span>
-                <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Dhamatwan workshop</span>
+                <span className="text-[11px] text-[#5B6B80] uppercase tracking-wider font-semibold">Dhamatwan workshop</span>
               </div>
               <div>
                 <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">
                   <AnimatedCounter value={100} suffix="%" />
                 </span>
-                <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">IBR & ASME compliant</span>
+                <span className="text-[11px] text-[#5B6B80] uppercase tracking-wider font-semibold">IBR & ASME compliant</span>
               </div>
               <div>
                 <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">
                   <AnimatedCounter value={12} suffix="+ years" />
                 </span>
-                <span className="text-[11px] text-[#78889B] uppercase tracking-wider font-semibold">Industry presence</span>
+                <span className="text-[11px] text-[#5B6B80] uppercase tracking-wider font-semibold">Industry presence</span>
               </div>
             </Reveal>
           </div>
@@ -164,7 +164,7 @@ export default function AboutUs() {
             the Home page's About Us intro (scale up, lift, deepen shadow on hover) */}
         <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#E4E7EC]">
           <Reveal className="space-y-1.5 mb-8">
-            <p className="flex items-center gap-2 text-sm text-[#78889B]">
+            <p className="flex items-center gap-2 text-sm text-[#5B6B80]">
               <span className="text-[#1C5CA8]">•</span>
               Why choose us
             </p>
@@ -179,7 +179,7 @@ export default function AboutUs() {
                 </span>
                 <div className="space-y-1">
                   <b className="text-sm font-bold text-[#0B1B2B] block">{p.title}</b>
-                  <p className="text-xs text-[#78889B] leading-relaxed">{p.desc}</p>
+                  <p className="text-xs text-[#5B6B80] leading-relaxed">{p.desc}</p>
                 </div>
               </Reveal>
               </React.Fragment>
@@ -295,7 +295,7 @@ export default function AboutUs() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
           <div className="lg:col-span-5 space-y-7 text-left">
             <Reveal className="flex items-center gap-2.5">
-              <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#5B6B80] font-semibold">
                 Our Ongoing Mission
               </p>
             </Reveal>
@@ -336,7 +336,7 @@ export default function AboutUs() {
               <h3 className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.12em] text-[#1C5CA8]">
                 General Arrangement Drawing
               </h3>
-              <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wide text-[#78889B] mt-1">
+              <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-wide text-[#5B6B80] mt-1">
                 12 TPH Diesel Fired Steam Boiler
               </p>
             </div>

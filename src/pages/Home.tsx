@@ -196,7 +196,7 @@ export default function Home() {
                     catalog before the CTA. Prominence now comes from the
                     wider container above giving each card more width, not
                     from extra internal height/padding. */}
-                <Link to={c.href} className="group relative flex flex-col h-full rounded-2xl border border-white/15 bg-[#0B1B2B]/50 backdrop-blur-md p-6 shadow-[0_10px_32px_-10px_rgba(0,0,0,0.5)] hover:border-[#7FB2E4]/40 hover:bg-[#0B1B2B]/65 transition-all duration-300 focus:outline-none">
+                <Link to={c.href} className="group relative flex flex-col h-full rounded-2xl border border-white/15 bg-[#0B1B2B]/50 backdrop-blur-md p-6 shadow-[0_10px_32px_-10px_rgba(0,0,0,0.5)] hover:border-[#7FB2E4]/40 hover:bg-[#0B1B2B]/65 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7FB2E4] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1B2B]">
                   <div className="flex items-start justify-between mb-3">
                     <span className="font-heading font-extrabold text-5xl text-white/10 leading-none select-none">
                       {c.n}
@@ -276,7 +276,7 @@ export default function Home() {
 
             <Reveal className="lg:col-span-6 space-y-5">
               <div className="flex items-center gap-2.5">
-                <p className="text-xs uppercase tracking-[0.18em] text-[#78889B] font-semibold">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#5B6B80] font-semibold">
                   Why Thermal Engitech
                 </p>
               </div>
@@ -303,25 +303,25 @@ export default function Home() {
                   <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">
                     <AnimatedCounter value={2000} suffix="+" />
                   </p>
-                  <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Systems Installed</p>
+                  <p className="text-[10px] text-[#5B6B80] uppercase tracking-wide font-semibold mt-0.5">Systems Installed</p>
                 </div>
                 <div className="pl-4">
                   <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">
                     <AnimatedCounter value={12} suffix="+ Yrs" />
                   </p>
-                  <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Industry Presence</p>
+                  <p className="text-[10px] text-[#5B6B80] uppercase tracking-wide font-semibold mt-0.5">Industry Presence</p>
                 </div>
                 <div className="pl-4">
                   <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">
                     <AnimatedCounter value={7500} suffix=" m²" />
                   </p>
-                  <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">Manufacturing Facility</p>
+                  <p className="text-[10px] text-[#5B6B80] uppercase tracking-wide font-semibold mt-0.5">Manufacturing Facility</p>
                 </div>
                 <div className="pl-4">
                   <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">
                     <AnimatedCounter value={100} suffix="%" />
                   </p>
-                  <p className="text-[10px] text-[#78889B] uppercase tracking-wide font-semibold mt-0.5">IBR & ASME Compliant</p>
+                  <p className="text-[10px] text-[#5B6B80] uppercase tracking-wide font-semibold mt-0.5">IBR & ASME Compliant</p>
                 </div>
               </div>
 
@@ -380,7 +380,7 @@ export default function Home() {
                 </span>
                 <div className="space-y-1">
                   <b className="text-sm font-bold text-[#0B1B2B] block leading-tight">{item.title}</b>
-                  <p className="text-xs text-[#78889B] leading-relaxed">{item.desc}</p>
+                  <p className="text-xs text-[#5B6B80] leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -494,7 +494,7 @@ export default function Home() {
                 </div>
                 <div className="space-y-1">
                   <p className="font-heading font-bold text-sm text-[#0B1B2B] leading-tight">{c.label}</p>
-                  <p className="text-xs text-[#78889B] leading-snug">{c.desc}</p>
+                  <p className="text-xs text-[#5B6B80] leading-snug">{c.desc}</p>
                 </div>
               </Reveal>
               </React.Fragment>

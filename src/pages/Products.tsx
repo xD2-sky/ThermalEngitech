@@ -122,7 +122,7 @@ export default function Products() {
         </div>
 
         {/* Assurance strip */}
-        <div className="mt-12 flex items-center justify-center gap-2 text-xs text-[#78889B]">
+        <div className="mt-12 flex items-center justify-center gap-2 text-xs text-[#5B6B80]">
           <ShieldCheck className="w-4 h-4 text-[#1C5CA8]" />
           <span>Every category built to IBR 1950, ASME &amp; ISO 9001:2015 standards.</span>
         </div>

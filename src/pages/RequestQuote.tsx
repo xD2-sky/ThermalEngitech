@@ -90,7 +90,7 @@ export default function RequestQuote() {
                 </span>
                 <div className="leading-tight">
                   <p className="text-sm font-bold text-[#0B1B2B]">{t.label}</p>
-                  {t.sub && <p className="text-xs text-[#78889B]">{t.sub}</p>}
+                  {t.sub && <p className="text-xs text-[#5B6B80]">{t.sub}</p>}
                 </div>
               </div>
             ))}

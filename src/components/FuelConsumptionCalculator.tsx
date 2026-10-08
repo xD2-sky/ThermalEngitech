@@ -96,7 +96,7 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
         </span>
         <div>
           <h3 className="text-base font-heading font-bold text-[#0B1B2B]">Fuel Consumption &amp; Running Cost Estimator</h3>
-          <p className="text-xs text-[#78889B] mt-1 leading-relaxed">
+          <p className="text-xs text-[#5B6B80] mt-1 leading-relaxed">
             Estimate the fuel a boiler of your required capacity would burn, before you request a formal quote.
           </p>
         </div>
@@ -106,8 +106,9 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <label className="text-xs font-bold text-[#0B1B2B]">Required Steam Capacity (Tons/hr)</label>
+          <label htmlFor="calc-capacity" className="text-xs font-bold text-[#0B1B2B]">Required Steam Capacity (Tons/hr)</label>
           <input
+            id="calc-capacity"
             type="number"
             onWheel={blurOnWheel}
             min="0"
@@ -119,8 +120,8 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-bold text-[#0B1B2B]">Fuel</label>
-          <select value={fuelId} onChange={(e) => handleFuelChange(e.target.value)} className={selectClass}>
+          <label htmlFor="calc-fuel" className="text-xs font-bold text-[#0B1B2B]">Fuel</label>
+          <select id="calc-fuel" value={fuelId} onChange={(e) => handleFuelChange(e.target.value)} className={selectClass}>
             <optgroup label="Oil / Gas Fired">
               {FUEL_OPTIONS.filter((f) => f.category === 'oil-gas').map((f) => (
                 <option key={f.id} value={f.id}>{f.label}</option>
@@ -135,8 +136,9 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-bold text-[#0B1B2B]">Operating Pressure (kg/cm²g)</label>
+          <label htmlFor="calc-pressure" className="text-xs font-bold text-[#0B1B2B]">Operating Pressure (kg/cm²g)</label>
           <select
+            id="calc-pressure"
             value={pressureBar}
             onChange={(e) => setPressureBar(parseFloat(e.target.value))}
             className={selectClass}
@@ -148,8 +150,8 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-bold text-[#0B1B2B]">Feed Water Condition</label>
-          <select value={feedWaterId} onChange={(e) => setFeedWaterId(e.target.value)} className={selectClass}>
+          <label htmlFor="calc-feedwater" className="text-xs font-bold text-[#0B1B2B]">Feed Water Condition</label>
+          <select id="calc-feedwater" value={feedWaterId} onChange={(e) => setFeedWaterId(e.target.value)} className={selectClass}>
             {FEED_WATER_OPTIONS.map((f) => (
               <option key={f.id} value={f.id}>{f.label}</option>
             ))}
@@ -157,10 +159,11 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-bold text-[#0B1B2B]">
-            Fuel GCV (kcal/{fuel.unit}) <span className="font-normal text-[#78889B]">— typical, editable</span>
+          <label htmlFor="calc-gcv" className="text-xs font-bold text-[#0B1B2B]">
+            Fuel GCV (kcal/{fuel.unit}) <span className="font-normal text-[#5B6B80]">— typical, editable</span>
           </label>
           <input
+            id="calc-gcv"
             type="number"
             onWheel={blurOnWheel}
             min="0"
@@ -171,10 +174,11 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-bold text-[#0B1B2B]">
-            Boiler Efficiency (%) <span className="font-normal text-[#78889B]">— typical, editable</span>
+          <label htmlFor="calc-efficiency" className="text-xs font-bold text-[#0B1B2B]">
+            Boiler Efficiency (%) <span className="font-normal text-[#5B6B80]">— typical, editable</span>
           </label>
           <input
+            id="calc-efficiency"
             type="number"
             onWheel={blurOnWheel}
             min="1"
@@ -186,10 +190,11 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-bold text-[#0B1B2B]">
-            Fuel Price (₹ per {fuel.unit}) <span className="font-normal text-[#78889B]">— optional</span>
+          <label htmlFor="calc-fuelprice" className="text-xs font-bold text-[#0B1B2B]">
+            Fuel Price (₹ per {fuel.unit}) <span className="font-normal text-[#5B6B80]">— optional</span>
           </label>
           <input
+            id="calc-fuelprice"
             type="number"
             onWheel={blurOnWheel}
             min="0"
@@ -200,10 +205,11 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-bold text-[#0B1B2B]">
-            Operating Hours / Day <span className="font-normal text-[#78889B]">— optional</span>
+          <label htmlFor="calc-hours" className="text-xs font-bold text-[#0B1B2B]">
+            Operating Hours / Day <span className="font-normal text-[#5B6B80]">— optional</span>
           </label>
           <input
+            id="calc-hours"
             type="number"
             onWheel={blurOnWheel}
             min="0"
@@ -219,19 +225,19 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
         <div className="bg-white border border-[#1C5CA8]/20 rounded-lg p-5 space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
             <div>
-              <p className="text-[10px] uppercase tracking-wider text-[#78889B] font-bold">Fuel Consumption</p>
+              <p className="text-[10px] uppercase tracking-wider text-[#5B6B80] font-bold">Fuel Consumption</p>
               <p className="text-lg font-heading font-extrabold text-[#0B1B2B]">
                 {result.fuelPerHr.toLocaleString('en-IN', { maximumFractionDigits: 1 })} {fuel.unit}/hr
               </p>
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-wider text-[#78889B] font-bold">Running Cost / hr</p>
+              <p className="text-[10px] uppercase tracking-wider text-[#5B6B80] font-bold">Running Cost / hr</p>
               <p className="text-lg font-heading font-extrabold text-[#0B1B2B]">
                 {result.costPerHr !== null ? `₹${result.costPerHr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}` : '—'}
               </p>
             </div>
             <div>
-              <p className="text-[10px] uppercase tracking-wider text-[#78889B] font-bold">Running Cost / day</p>
+              <p className="text-[10px] uppercase tracking-wider text-[#5B6B80] font-bold">Running Cost / day</p>
               <p className="text-lg font-heading font-extrabold text-[#0B1B2B]">
                 {result.costPerDay !== null ? `₹${result.costPerDay.toLocaleString('en-IN', { maximumFractionDigits: 0 })}` : '—'}
               </p>
@@ -247,13 +253,13 @@ export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCa
             <ArrowRight className="w-4 h-4 stroke-[2.5]" />
           </button>
 
-          <p className="text-[10.5px] text-[#78889B] leading-relaxed">
+          <p className="text-[10.5px] text-[#5B6B80] leading-relaxed">
             Estimate only, for budgetary planning — actual consumption depends on burner tuning, fuel quality, and
             site conditions. Final figures are confirmed in your formal quotation.
           </p>
         </div>
       ) : (
-        <p className="text-xs text-[#78889B]">Enter a steam capacity, fuel GCV, and boiler efficiency above to see your estimate.</p>
+        <p className="text-xs text-[#5B6B80]">Enter a steam capacity, fuel GCV, and boiler efficiency above to see your estimate.</p>
       )}
     </Reveal>
   );

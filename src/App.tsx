@@ -65,11 +65,11 @@ export default function App() {
           <a
             href={`tel:${SITE.phonePrimaryTel}`}
             data-testid="floating-call-btn"
-            className="flex items-center gap-2 px-3.5 py-2.5 bg-[#0B1B2B] hover:bg-[#1C5CA8] text-white text-xs font-semibold rounded-full shadow-lg transition-colors duration-200 group border border-white/15"
+            className="flex items-center gap-2 min-h-11 px-3.5 py-2.5 bg-[#0B1B2B] hover:bg-[#1C5CA8] focus-visible:bg-[#1C5CA8] text-white text-xs font-semibold rounded-full shadow-lg transition-colors duration-200 group border border-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7FB2E4] focus-visible:ring-offset-2"
             title="Call our engineering coordinator"
           >
             <Phone className="w-4 h-4 text-[#7FB2E4]" />
-            <span className="max-w-0 overflow-hidden group-hover:max-w-[145px] transition-all duration-300 ease-in-out whitespace-nowrap">
+            <span className="max-w-0 overflow-hidden group-hover:max-w-[145px] group-focus-visible:max-w-[145px] transition-all duration-300 ease-in-out whitespace-nowrap">
               {SITE.phonePrimaryDisplay}
             </span>
           </a>
@@ -80,7 +80,7 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             data-testid="floating-whatsapp-btn"
-            className="flex items-center gap-2.5 px-4 py-3 bg-[#1F9D57] hover:bg-[#1B8B4D] text-white font-semibold text-sm rounded-full shadow-lg transition-colors duration-200"
+            className="flex items-center gap-2.5 min-h-11 px-4 py-3 bg-[#1F9D57] hover:bg-[#1B8B4D] focus-visible:bg-[#1B8B4D] text-white font-semibold text-sm rounded-full shadow-lg transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1F9D57]"
           >
             <MessageCircle className="w-5 h-5 text-white" />
             <span>Chat on WhatsApp</span>

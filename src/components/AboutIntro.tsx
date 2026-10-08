@@ -111,7 +111,7 @@ export default function AboutIntro() {
         <motion.div className="lg:col-span-6 space-y-6 text-left" {...containerMotionProps}>
           <motion.p
             {...itemMotionProps}
-            className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#78889B]"
+            className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#5B6B80]"
           >
             About Us
           </motion.p>

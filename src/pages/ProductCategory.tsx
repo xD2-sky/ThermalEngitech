@@ -66,7 +66,7 @@ export default function ProductCategory() {
       {/* Breadcrumb — margin-top clears the fixed navbar (this thin utility bar
           sits below it, unlike hero/banner sections which extend behind it) */}
       <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#78889B] font-semibold">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#5B6B80] font-semibold">
           <Link to="/products" className="flex items-center gap-1.5 text-[#1C5CA8] hover:underline" data-testid="back-to-catalogue">
             <ArrowLeft className="w-4 h-4" />
             <span>All categories</span>
@@ -130,7 +130,7 @@ export default function ProductCategory() {
                       return (
                         <div key={idx} className="flex items-center gap-2 text-[11px]">
                           <SpecIcon className="w-3.5 h-3.5 text-[#1C5CA8] shrink-0" strokeWidth={1.75} />
-                          <span className="text-[#78889B] w-28 shrink-0 truncate" title={sp.label}>{sp.label}</span>
+                          <span className="text-[#5B6B80] w-28 shrink-0 truncate" title={sp.label}>{sp.label}</span>
                           <span className="text-[#0B1B2B] font-semibold truncate" title={sp.value}>{sp.value}</span>
                         </div>
                       );
@@ -139,7 +139,7 @@ export default function ProductCategory() {
                 </div>
 
                 <div className="px-6 py-4 bg-white border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[12px] font-medium text-[#78889B] flex items-center gap-1.5">
+                  <span className="text-[12px] font-medium text-[#5B6B80] flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4 text-[#1C5CA8]" />
                     IBR certified
                   </span>

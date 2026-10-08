@@ -110,7 +110,7 @@ export default function Navbar() {
             <span className={`font-heading font-extrabold text-[16.8px] sm:text-[19.2px] tracking-tight truncate transition-colors duration-300 ${useDarkText ? 'text-[#0B1B2B]' : 'text-white'}`}>
               Thermal <span className="text-[#1C5CA8]">Engitech</span>
             </span>
-            <span className={`text-[10.8px] tracking-[0.16em] uppercase hidden sm:block transition-colors duration-300 ${useDarkText ? 'text-[#78889B]' : 'text-white/70'}`}>Pvt. Ltd.</span>
+            <span className={`text-[10.8px] tracking-[0.16em] uppercase hidden sm:block transition-colors duration-300 ${useDarkText ? 'text-[#5B6B80]' : 'text-white/70'}`}>Pvt. Ltd.</span>
           </div>
         </Link>
 

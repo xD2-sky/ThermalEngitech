@@ -58,7 +58,7 @@ export default function ContactUs() {
   };
 
   const inputClass =
-    'w-full rounded-lg border border-[#E1E4E3] px-4 py-3 text-sm text-[#0B1B2B] placeholder:text-[#9AA6B2] focus:outline-none focus:border-[#1C5CA8] transition-colors';
+    'w-full rounded-lg border border-[#E1E4E3] px-4 py-3 text-sm text-[#0B1B2B] placeholder:text-[#5B6B80] focus:outline-none focus:border-[#1C5CA8] transition-colors';
 
   return (
     <div className="space-y-0 text-left bg-white min-h-screen">
@@ -138,7 +138,7 @@ export default function ContactUs() {
               </div>
             </div>
 
-            <p className="text-xs text-[#78889B] leading-relaxed font-sans pt-1">
+            <p className="text-xs text-[#5B6B80] leading-relaxed font-sans pt-1">
               * Critical breakdowns and troubleshooting hotlines remain accessible on a 24/7 cycle for registered contractual clients.
             </p>
           </Reveal>
@@ -153,7 +153,7 @@ export default function ContactUs() {
               <h3 className="font-heading font-extrabold text-lg text-[#0B1B2B]">
                 Send Us a Message
               </h3>
-              <p className="text-sm text-[#78889B] font-sans">
+              <p className="text-sm text-[#5B6B80] font-sans">
                 General questions and plant-visit requests — we'll reply within 24 working hours. For a sizing
                 calculation and technical quotation, use{' '}
                 <Link to="/request-quote" className="text-[#1C5CA8] font-semibold hover:underline">

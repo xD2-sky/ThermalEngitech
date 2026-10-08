@@ -175,7 +175,7 @@ export default function Manufacturing() {
             <h3 className="text-xs uppercase font-mono font-bold tracking-[0.14em] text-[#0B1B2B]">
               Shop Floor Equipment
             </h3>
-            <p className="text-xs text-[#78889B] font-sans">
+            <p className="text-xs text-[#5B6B80] font-sans">
               Real machine specifications documented from the facility's own equipment register.
             </p>
           </Reveal>

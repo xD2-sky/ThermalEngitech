@@ -233,8 +233,8 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
                     <div className="space-y-0.5">
                       <b className="text-[#0B1B2B] block text-[12px]">{inq.companyName}</b>
-                      <span className="text-[#78889B] block text-[10.5px]">Item Selected: {inq.requiredProduct}</span>
-                      <span className="text-[#78889B] block text-[10.5px]">Capacity: {inq.capacity}</span>
+                      <span className="text-[#5B6B80] block text-[10.5px]">Item Selected: {inq.requiredProduct}</span>
+                      <span className="text-[#5B6B80] block text-[10.5px]">Capacity: {inq.capacity}</span>
                     </div>
                   </div>
                 ))}
@@ -276,7 +276,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               </span>
               <div>
                 <h3 className="text-base font-heading font-bold text-[#0B1B2B]">Thermal Engineering Spec Sheet</h3>
-                <p className="text-xs text-[#78889B] mt-1 leading-relaxed">
+                <p className="text-xs text-[#5B6B80] mt-1 leading-relaxed">
                   Fill in your specs and our engineering team will prepare a customized proposal.
                 </p>
               </div>
@@ -287,8 +287,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             {/* Corporate & Representative Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Company Name *</label>
+                <label htmlFor="quote-company" className="text-xs font-bold text-[#0B1B2B]">Company Name *</label>
                 <input
+                  id="quote-company"
                   type="text"
                   required
                   value={formData.companyName}
@@ -298,8 +299,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Name *</label>
+                <label htmlFor="quote-name" className="text-xs font-bold text-[#0B1B2B]">Name *</label>
                 <input
+                  id="quote-name"
                   type="text"
                   required
                   value={formData.contactPerson}
@@ -311,8 +313,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Email *</label>
+                <label htmlFor="quote-email" className="text-xs font-bold text-[#0B1B2B]">Email *</label>
                 <input
+                  id="quote-email"
                   type="email"
                   required
                   value={formData.email}
@@ -322,8 +325,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Phone Number *</label>
+                <label htmlFor="quote-phone" className="text-xs font-bold text-[#0B1B2B]">Phone Number *</label>
                 <input
+                  id="quote-phone"
                   type="tel"
                   required
                   value={formData.phone}
@@ -341,8 +345,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 applies to fired equipment, so it's kept out of this pair. */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Equipment Required</label>
+                <label htmlFor="quote-equipment" className="text-xs font-bold text-[#0B1B2B]">Equipment Required</label>
                 <select
+                  id="quote-equipment"
                   value={formData.equipmentCategory}
                   onChange={(e) => handleCategoryChange(e.target.value as Product['category'])}
                   className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
@@ -354,8 +359,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">Capacity Required *</label>
+                <label htmlFor="quote-capacity" className="text-xs font-bold text-[#0B1B2B]">Capacity Required *</label>
                 <select
+                  id="quote-capacity"
                   required
                   value={formData.capacity}
                   onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
@@ -371,10 +377,11 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
             {categoryModels.length > 1 && (
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-[#0B1B2B]">
-                  Specific Model <span className="font-normal text-[#78889B] normal-case">— optional</span>
+                <label htmlFor="quote-model" className="text-xs font-bold text-[#0B1B2B]">
+                  Specific Model <span className="font-normal text-[#5B6B80] normal-case">— optional</span>
                 </label>
                 <select
+                  id="quote-model"
                   value={formData.requiredProduct}
                   onChange={(e) => setFormData({ ...formData, requiredProduct: e.target.value })}
                   className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
@@ -395,15 +402,16 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 entirely for categories like Heat Exchangers that have
                 neither — fewer irrelevant questions, not more. */}
             <div className="space-y-4">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-[#78889B]">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-[#5B6B80]">
                 Additional Technical Details <span className="font-normal normal-case">— optional</span>
               </p>
 
               {isFiredEquipment && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-[#0B1B2B]">Type of Boiler</label>
+                    <label htmlFor="quote-boilertype" className="text-xs font-bold text-[#0B1B2B]">Type of Boiler</label>
                     <select
+                      id="quote-boilertype"
                       value={formData.boilerType}
                       onChange={(e) => setFormData({ ...formData, boilerType: e.target.value })}
                       className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
@@ -416,8 +424,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-[#0B1B2B]">Fuel to Be Used</label>
+                    <label htmlFor="quote-fueltype" className="text-xs font-bold text-[#0B1B2B]">Fuel to Be Used</label>
                     <select
+                      id="quote-fueltype"
                       value={formData.fuelType}
                       onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
                       className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
@@ -441,8 +450,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
               {isFiredEquipment && formData.fuelType === 'other' && (
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#0B1B2B]">Please specify the fuel</label>
+                  <label htmlFor="quote-fuelother" className="text-xs font-bold text-[#0B1B2B]">Please specify the fuel</label>
                   <input
+                    id="quote-fuelother"
                     type="text"
                     value={formData.fuelTypeOther}
                     onChange={(e) => setFormData({ ...formData, fuelTypeOther: e.target.value })}
@@ -453,10 +463,11 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#0B1B2B]">
+                  <label htmlFor="quote-pressuretemp" className="text-xs font-bold text-[#0B1B2B]">
                     {isHeaterCategory ? 'Operating Temperature Required' : 'Operating Pressure Required'}
                   </label>
                   <select
+                    id="quote-pressuretemp"
                     value={formData.pressureTemperature}
                     onChange={(e) => setFormData({ ...formData, pressureTemperature: e.target.value })}
                     className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
@@ -469,8 +480,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-[#0B1B2B]">Planned Purchase Timeline</label>
+                  <label htmlFor="quote-timeline" className="text-xs font-bold text-[#0B1B2B]">Planned Purchase Timeline</label>
                   <select
+                    id="quote-timeline"
                     value={formData.purchaseTimeline}
                     onChange={(e) => setFormData({ ...formData, purchaseTimeline: e.target.value })}
                     className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
@@ -486,8 +498,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
             {/* Detail notes */}
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-[#0B1B2B]">Additional Details</label>
+              <label htmlFor="quote-message" className="text-xs font-bold text-[#0B1B2B]">Additional Details</label>
               <textarea
+                id="quote-message"
                 rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
