@@ -8,6 +8,7 @@ import { Inquiry, Product } from '../types';
 import { PRODUCTS } from '../data';
 import { getCategories, productsInCategory } from '../catalog';
 import { FUEL_OPTIONS, PRESSURE_OPTIONS } from '../config/fuelEstimator';
+import { submitToWeb3Forms } from '../config/web3forms';
 import Reveal from './Reveal';
 import FuelConsumptionCalculator from './FuelConsumptionCalculator';
 import { ChevronRight, Clipboard, CheckCircle } from 'lucide-react';
@@ -83,6 +84,8 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
   });
 
   const [submittedTicket, setSubmittedTicket] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const specSheetRef = useRef<HTMLFormElement>(null);
 
   // Synchronize dynamic preset selection
@@ -134,17 +137,45 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
     specSheetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.companyName || !formData.contactPerson || !formData.email || !formData.phone) {
       return;
     }
 
+    setSubmitting(true);
+    setSubmitError('');
+
+    const finalRequiredProduct = formData.requiredProduct || `${formData.equipmentCategory} (any model)`;
+
+    const result = await submitToWeb3Forms({
+      subject: `New Quote Request — ${formData.equipmentCategory || 'Equipment'}`,
+      company_name: formData.companyName,
+      contact_person: formData.contactPerson,
+      email: formData.email,
+      phone: formData.phone,
+      equipment_category: formData.equipmentCategory || '',
+      specific_model: finalRequiredProduct,
+      capacity_required: formData.capacity,
+      type_of_boiler: formData.boilerType || '',
+      fuel_to_be_used: formData.fuelType === 'other' ? (formData.fuelTypeOther || 'Other') : (formData.fuelType || ''),
+      pressure_or_temperature_required: formData.pressureTemperature || '',
+      planned_purchase_timeline: formData.purchaseTimeline || '',
+      additional_details: formData.message || ''
+    });
+
+    setSubmitting(false);
+
+    if (!result.success) {
+      setSubmitError("Couldn't send your request — please try again, or email us directly at info@thermalengitech.com.");
+      return;
+    }
+
     const ticketId = 'TE-INQ-' + Math.floor(100000 + Math.random() * 900000);
     const newInquiry: Inquiry = {
       ...formData,
-      requiredProduct: formData.requiredProduct || `${formData.equipmentCategory} (any model)`,
+      requiredProduct: finalRequiredProduct,
       id: ticketId,
       timestamp: new Date().toLocaleDateString()
     };
@@ -462,11 +493,15 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-[#0D1B2A] hover:bg-[#1C5CA8] text-white font-heading font-semibold text-xs uppercase tracking-wider rounded-lg shadow-md hover:shadow-lg transition duration-200 cursor-pointer flex items-center justify-center gap-2"
+              disabled={submitting}
+              className="w-full py-3.5 bg-[#0D1B2A] hover:bg-[#1C5CA8] disabled:opacity-60 disabled:cursor-not-allowed text-white font-heading font-semibold text-xs uppercase tracking-wider rounded-lg shadow-md hover:shadow-lg transition duration-200 cursor-pointer flex items-center justify-center gap-2"
             >
-              <span>Submit Sizing Specs to Engineering Division</span>
-              <ChevronRight className="w-4 h-4 stroke-[2.5]" />
+              <span>{submitting ? 'Sending…' : 'Submit Sizing Specs to Engineering Division'}</span>
+              {!submitting && <ChevronRight className="w-4 h-4 stroke-[2.5]" />}
             </button>
+            {submitError && (
+              <p className="text-xs text-red-600 font-medium text-center">{submitError}</p>
+            )}
           </form>
 
         </Reveal>

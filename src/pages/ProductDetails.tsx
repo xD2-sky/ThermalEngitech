@@ -9,6 +9,7 @@ import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS } from '../data';
 import { slugify, productsInCategory } from '../catalog';
 import ProductVideoShowcase from '../components/ProductVideoShowcase';
+import { submitToWeb3Forms } from '../config/web3forms';
 import { ArrowLeft, ShieldCheck, Cpu, CheckCircle, Mail, Phone, CheckCircle2, ChevronRight } from 'lucide-react';
 import Reveal from '../components/Reveal';
 
@@ -258,6 +259,8 @@ export default function ProductDetails() {
 
   // Embedded inquiry form states
   const [inquirySent, setInquirySent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [formData, setFormData] = useState({
     companyNameAddress: '',
     contactPerson: '',
@@ -292,8 +295,33 @@ export default function ProductDetails() {
   const backTo = categorySiblings > 1 ? `/products/category/${slugify(product.category)}` : '/products';
   const backLabel = categorySiblings > 1 ? product.category : 'Products';
 
-  const handleInquirySubmit = (e: React.FormEvent) => {
+  const handleInquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    setSubmitting(true);
+    setSubmitError('');
+
+    const result = await submitToWeb3Forms({
+      subject: `New Quick Enquiry — ${product.name}`,
+      target_equipment: product.name,
+      company_name_address: formData.companyNameAddress,
+      contact_person: formData.contactPerson,
+      email: formData.email,
+      phone: formData.phone,
+      type_of_boiler: formData.boilerType,
+      capacity_required: formData.capacityRequired,
+      pressure_temperature_required: formData.pressureTemperature,
+      fuel_to_be_used: formData.fuelType,
+      planned_purchase_timeline: formData.purchaseTimeline,
+      thermal_sizing_notes: formData.message
+    });
+
+    setSubmitting(false);
+
+    if (!result.success) {
+      setSubmitError("Couldn't send your enquiry — please try again, or email us directly at info@thermalengitech.com.");
+      return;
+    }
 
     // Persist to localStorage savedInquiries list so they display under Request a Quote history
     const newInquiry = {
@@ -586,10 +614,14 @@ export default function ProductDetails() {
 
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] py-3.5 text-sm font-semibold text-white shadow-sm transition-colors cursor-pointer"
+                  disabled={submitting}
+                  className="w-full inline-flex items-center justify-center rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] disabled:opacity-60 disabled:cursor-not-allowed py-3.5 text-sm font-semibold text-white shadow-sm transition-colors cursor-pointer"
                 >
-                  Submit sizing enquiry
+                  {submitting ? 'Sending…' : 'Submit sizing enquiry'}
                 </button>
+                {submitError && (
+                  <p className="text-xs text-red-600 font-medium text-center">{submitError}</p>
+                )}
 
               </form>
             )}

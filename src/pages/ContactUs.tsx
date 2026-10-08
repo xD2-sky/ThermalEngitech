@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import CompanyMap from '../components/CompanyMap';
 import Reveal from '../components/Reveal';
+import { submitToWeb3Forms } from '../config/web3forms';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 
 type MessageForm = { name: string; email: string; message: string };
@@ -21,6 +22,8 @@ export default function ContactUs() {
 
   const [form, setForm] = useState<MessageForm>(EMPTY_FORM);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handleChange =
     (field: keyof MessageForm) =>
@@ -28,8 +31,26 @@ export default function ContactUs() {
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
     };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
+    setSubmitError('');
+
+    const result = await submitToWeb3Forms({
+      subject: 'New Contact Message — Thermal Engitech Website',
+      from_name: form.name,
+      name: form.name,
+      email: form.email,
+      message: form.message,
+    });
+
+    setSubmitting(false);
+
+    if (!result.success) {
+      setSubmitError("Couldn't send your message — please try again, or email us directly at info@thermalengitech.com.");
+      return;
+    }
+
     setSubmitted(true);
   };
 
@@ -162,9 +183,16 @@ export default function ContactUs() {
                   <label htmlFor="contact-message" className="block text-sm font-semibold text-[#0B1B2B]">Message</label>
                   <textarea id="contact-message" name="message" required rows={4} value={form.message} onChange={handleChange('message')} placeholder="How can we help?" className={`${inputClass} resize-none`} />
                 </div>
-                <button type="submit" className="inline-flex items-center justify-center rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white text-sm font-semibold px-8 py-3.5 transition-colors">
-                  Send Message
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="inline-flex items-center justify-center rounded-full bg-[#1C5CA8] hover:bg-[#103E72] disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold px-8 py-3.5 transition-colors"
+                >
+                  {submitting ? 'Sending…' : 'Send Message'}
                 </button>
+                {submitError && (
+                  <p className="text-xs text-red-600 font-medium">{submitError}</p>
+                )}
               </form>
             )}
           </Reveal>
