@@ -14,8 +14,6 @@ export const SITE = {
   // Contact — verified from the company's own records
   phonePrimaryDisplay: '+91 70693 06431',
   phonePrimaryTel: '+917069306431',
-  phonePurchaseDisplay: '+91 90330 47272',
-  phonePurchaseTel: '+919033047272',
   whatsapp: '917069306431',
   email: 'info@thermalengitech.com',
 

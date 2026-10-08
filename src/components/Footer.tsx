@@ -99,10 +99,7 @@ export default function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-[#7FB2E4] shrink-0 mt-0.5" />
-                <span className="leading-relaxed">
-                  <a href={`tel:${SITE.phonePrimaryTel}`} className="hover:text-white transition-colors">{SITE.phonePrimaryDisplay}</a><br />
-                  <span className="text-slate-400">Purchase: <a href={`tel:${SITE.phonePurchaseTel}`} className="hover:text-white transition-colors">{SITE.phonePurchaseDisplay}</a></span>
-                </span>
+                <a href={`tel:${SITE.phonePrimaryTel}`} className="hover:text-white transition-colors">{SITE.phonePrimaryDisplay}</a>
               </div>
             </div>
           </div>
