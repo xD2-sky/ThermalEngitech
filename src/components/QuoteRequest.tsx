@@ -29,7 +29,7 @@ const FIRED_EQUIPMENT_CATEGORIES: Product['category'][] = ['Steam Boilers', 'The
 const BOILER_TYPE_OPTIONS = [
   '3-Pass Fully Wet Back',
   'Multi-Fuel Combi-Thermal',
-  'Smoke Cum Water Tube (Membrane Wall)',
+  'Smoke Cum Water Tube (Membrane)',
   'Horizontal Configuration',
   'Vertical Configuration',
 ];
@@ -264,14 +264,14 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
               <button
                 onClick={() => setSubmittedTicket(null)}
-                className="mt-6 px-5 py-2.5 bg-[#0D1B2A] hover:bg-[#1C5CA8] text-white text-xs font-bold rounded-lg transition"
+                className="mt-6 px-5 py-2 bg-[#0D1B2A] hover:bg-[#1C5CA8] text-white text-xs font-bold rounded-lg transition"
               >
                 Submit Another Specification Form
               </button>
             </div>
           )}
 
-          <form ref={specSheetRef} onSubmit={handleSubmit} className="p-6 md:p-8 space-y-5 text-left">
+          <form ref={specSheetRef} onSubmit={handleSubmit} className="p-6 md:p-7 space-y-4 text-left">
             <HoneypotField checked={botcheck} onChange={setBotcheck} />
             <div className="flex items-start gap-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
@@ -296,8 +296,15 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 "Type of Boiler" further down is a different question again
                 — the engineering configuration/style — and only applies to
                 fired equipment, so it's kept out of this group. */}
+            {/* Company/Name/Email share a row — free-text fields tolerate a
+                narrower box fine, since the visitor can still scroll/see
+                what they typed. Equipment Required and Capacity Required
+                are selects with long option text ("Pollution Control
+                Equipments", "Above 15.0 Tons / Hour (Heavy Grid)") that
+                genuinely clips below ~250px, so those stay two-up instead
+                of packed in with everything else. */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 <label htmlFor="quote-company" className="text-xs font-bold text-[#0B1B2B]">Company Name *</label>
                 <input
                   id="quote-company"
@@ -305,11 +312,11 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   required
                   value={formData.companyName}
                   onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                 />
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 <label htmlFor="quote-name" className="text-xs font-bold text-[#0B1B2B]">Name *</label>
                 <input
                   id="quote-name"
@@ -317,11 +324,11 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   required
                   value={formData.contactPerson}
                   onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                 />
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 <label htmlFor="quote-email" className="text-xs font-bold text-[#0B1B2B]">Email *</label>
                 <input
                   id="quote-email"
@@ -329,11 +336,13 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
+            </div>
 
-              <div className="space-y-1.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1">
                 <label htmlFor="quote-phone" className="text-xs font-bold text-[#0B1B2B]">Phone Number *</label>
                 <input
                   id="quote-phone"
@@ -341,43 +350,43 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 <label htmlFor="quote-equipment" className="text-xs font-bold text-[#0B1B2B]">Equipment Required</label>
                 <select
                   id="quote-equipment"
                   value={formData.equipmentCategory}
                   onChange={(e) => handleCategoryChange(e.target.value as Product['category'])}
-                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 >
                   {getCategories().map((cat) => (
                     <option key={cat.name} value={cat.name}>{cat.name}</option>
                   ))}
                 </select>
               </div>
+            </div>
 
-              <div className="space-y-1.5">
-                <label htmlFor="quote-capacity" className="text-xs font-bold text-[#0B1B2B]">Capacity Required *</label>
-                <select
-                  id="quote-capacity"
-                  required
-                  value={formData.capacity}
-                  onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                >
-                  <option value="" disabled>Select a range</option>
-                  {CAPACITY_OPTIONS.map((c) => (
-                    <option key={c} value={c}>{c}</option>
-                  ))}
-                </select>
-              </div>
+            <div className="space-y-1">
+              <label htmlFor="quote-capacity" className="text-xs font-bold text-[#0B1B2B]">Capacity Required *</label>
+              <select
+                id="quote-capacity"
+                required
+                value={formData.capacity}
+                onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
+                className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+              >
+                <option value="" disabled>Select a range</option>
+                {CAPACITY_OPTIONS.map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
             </div>
 
             {categoryModels.length > 1 && (
-              <div className="space-y-1.5">
+              <div className="space-y-1">
                 <label htmlFor="quote-model" className="text-xs font-bold text-[#0B1B2B]">
                   Specific Model <span className="font-normal text-[#5B6B80] normal-case">— optional</span>
                 </label>
@@ -385,7 +394,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   id="quote-model"
                   value={formData.requiredProduct}
                   onChange={(e) => setFormData({ ...formData, requiredProduct: e.target.value })}
-                  className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 >
                   <option value="">Any model in this category</option>
                   {categoryModels.map((prod) => (
@@ -407,57 +416,55 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 Additional Technical Details <span className="font-normal normal-case">— optional</span>
               </p>
 
-              {/* Four fields in one row for fired equipment (where Type of
-                  Boiler and Fuel to Be Used apply), two for everything else
-                  — Operating Pressure/Temperature and Planned Purchase
-                  Timeline always apply, Type of Boiler/Fuel to Be Used only
-                  for combustion equipment. Packed this tightly (rather than
-                  two separate two-field rows) to keep this card's overall
-                  height in line with the estimator card beside it. */}
-              <div className={`grid grid-cols-1 sm:grid-cols-2 ${isFiredEquipment ? 'lg:grid-cols-4' : ''} gap-4`}>
-                {isFiredEquipment && (
-                  <>
-                    <div className="space-y-1.5">
-                      <label htmlFor="quote-boilertype" className="text-xs font-bold text-[#0B1B2B]">Type of Boiler</label>
-                      <select
-                        id="quote-boilertype"
-                        value={formData.boilerType}
-                        onChange={(e) => setFormData({ ...formData, boilerType: e.target.value })}
-                        className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                      >
-                        <option value="">Not sure — need advice</option>
-                        {BOILER_TYPE_OPTIONS.map((t) => (
-                          <option key={t} value={t}>{t}</option>
+              {/* Two fields per row — these selects' longest options
+                  ("Smoke Cum Water Tube (Membrane Wall)", "Just exploring /
+                  planning phase") clip below roughly half this card's
+                  width, so despite being four related fields they can't
+                  safely share one row the way the plainer fields above do. */}
+              {isFiredEquipment && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label htmlFor="quote-boilertype" className="text-xs font-bold text-[#0B1B2B]">Type of Boiler</label>
+                    <select
+                      id="quote-boilertype"
+                      value={formData.boilerType}
+                      onChange={(e) => setFormData({ ...formData, boilerType: e.target.value })}
+                      className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                    >
+                      <option value="">Not sure — need advice</option>
+                      {BOILER_TYPE_OPTIONS.map((t) => (
+                        <option key={t} value={t}>{t}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label htmlFor="quote-fueltype" className="text-xs font-bold text-[#0B1B2B]">Fuel to Be Used</label>
+                    <select
+                      id="quote-fueltype"
+                      value={formData.fuelType}
+                      onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
+                      className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                    >
+                      <option value="">Not sure / open to recommendation</option>
+                      <optgroup label="Oil / Gas Fired">
+                        {FUEL_OPTIONS.filter((f) => f.category === 'oil-gas').map((f) => (
+                          <option key={f.id} value={f.label}>{f.label}</option>
                         ))}
-                      </select>
-                    </div>
+                      </optgroup>
+                      <optgroup label="Solid Fuel Fired">
+                        {FUEL_OPTIONS.filter((f) => f.category === 'solid').map((f) => (
+                          <option key={f.id} value={f.label}>{f.label}</option>
+                        ))}
+                      </optgroup>
+                      <option value="other">Other (specify below)</option>
+                    </select>
+                  </div>
+                </div>
+              )}
 
-                    <div className="space-y-1.5">
-                      <label htmlFor="quote-fueltype" className="text-xs font-bold text-[#0B1B2B]">Fuel to Be Used</label>
-                      <select
-                        id="quote-fueltype"
-                        value={formData.fuelType}
-                        onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
-                        className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                      >
-                        <option value="">Not sure / open to recommendation</option>
-                        <optgroup label="Oil / Gas Fired">
-                          {FUEL_OPTIONS.filter((f) => f.category === 'oil-gas').map((f) => (
-                            <option key={f.id} value={f.label}>{f.label}</option>
-                          ))}
-                        </optgroup>
-                        <optgroup label="Solid Fuel Fired">
-                          {FUEL_OPTIONS.filter((f) => f.category === 'solid').map((f) => (
-                            <option key={f.id} value={f.label}>{f.label}</option>
-                          ))}
-                        </optgroup>
-                        <option value="other">Other (specify below)</option>
-                      </select>
-                    </div>
-                  </>
-                )}
-
-                <div className="space-y-1.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1">
                   <label htmlFor="quote-pressuretemp" className="text-xs font-bold text-[#0B1B2B]">
                     {isHeaterCategory ? 'Operating Temperature Required' : 'Operating Pressure Required'}
                   </label>
@@ -465,7 +472,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                     id="quote-pressuretemp"
                     value={formData.pressureTemperature}
                     onChange={(e) => setFormData({ ...formData, pressureTemperature: e.target.value })}
-                    className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                    className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                   >
                     <option value="">Not sure</option>
                     {(isHeaterCategory ? TEMPERATURE_OPTIONS : PRESSURE_SELECT_OPTIONS).map((v) => (
@@ -474,13 +481,13 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   </select>
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-1">
                   <label htmlFor="quote-timeline" className="text-xs font-bold text-[#0B1B2B]">Planned Purchase Timeline</label>
                   <select
                     id="quote-timeline"
                     value={formData.purchaseTimeline}
                     onChange={(e) => setFormData({ ...formData, purchaseTimeline: e.target.value })}
-                    className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                    className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                   >
                     <option value="">Not decided yet</option>
                     {PURCHASE_TIMELINE_OPTIONS.map((t) => (
@@ -491,28 +498,28 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               </div>
 
               {isFiredEquipment && formData.fuelType === 'other' && (
-                <div className="space-y-1.5">
+                <div className="space-y-1">
                   <label htmlFor="quote-fuelother" className="text-xs font-bold text-[#0B1B2B]">Please specify the fuel</label>
                   <input
                     id="quote-fuelother"
                     type="text"
                     value={formData.fuelTypeOther}
                     onChange={(e) => setFormData({ ...formData, fuelTypeOther: e.target.value })}
-                    className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                    className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                   />
                 </div>
               )}
             </div>
 
             {/* Detail notes */}
-            <div className="space-y-1.5">
+            <div className="space-y-1">
               <label htmlFor="quote-message" className="text-xs font-bold text-[#0B1B2B]">Additional Details</label>
               <textarea
                 id="quote-message"
                 rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition leading-relaxed"
+                className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition leading-relaxed"
               />
             </div>
 
