@@ -207,12 +207,15 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
       {/* Intro copy now lives in the page's hero above this component —
           this used to duplicate it in a second, separate centered block. */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-stretch max-w-7xl mx-auto">
 
-        {/* Fuel Consumption & Running Cost Estimator (5 Columns) */}
-        <div className="lg:col-span-5 space-y-6">
+        {/* Fuel Consumption & Running Cost Estimator (5 Columns) — a flex
+            column so the estimator card can grow to match the spec sheet
+            card's height (which varies with the Additional Technical
+            Details fields) rather than the two ending up visibly uneven. */}
+        <div className="lg:col-span-5 flex flex-col gap-6">
 
-          <FuelConsumptionCalculator onApply={handleCalculatorApply} />
+          <FuelConsumptionCalculator onApply={handleCalculatorApply} className="flex-1" />
 
           {/* Active Queued Session Tickets */}
           {savedInquiries.length > 0 && (
