@@ -42,7 +42,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
           src={`${import.meta.env.BASE_URL}images/hero-industrial-skyline.jpg`}
           alt="Industrial process-heating facility skyline against an open sky"
           className="w-full h-[112%] object-cover animate-hero-kenburns"
-          style={{ objectPosition: 'center 82%' }}
+          style={{ objectPosition: 'center 35%' }}
           loading="eager"
           fetchPriority="high"
         />
