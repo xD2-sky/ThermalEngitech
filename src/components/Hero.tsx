@@ -3,8 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import React from 'react';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 interface HeroProps {
@@ -12,96 +11,61 @@ interface HeroProps {
   onViewProducts: () => void;
 }
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
-};
-const item = {
-  hidden: { opacity: 0, y: 22 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } },
-};
-
 export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
-  const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '14%']);
-
   return (
     <section
-      ref={sectionRef}
       id="hero"
       className="relative bg-[#F7F9FC] text-[#0B1B2B] overflow-hidden font-sans min-h-[100svh] lg:min-h-[100vh] flex items-center py-10"
     >
-      {/* Full-bleed background photo — bright, natural daylight treatment. Softened
-          slightly and the surroundings lightened toward white/light-gray, but the
-          boiler's own natural red/black colors are left intact, not desaturated.
-          Subtle parallax on scroll for depth. */}
-      <motion.picture style={{ y: imgY }} className="absolute inset-0 block">
-        <source srcSet={`${import.meta.env.BASE_URL}images/hero-industrial-skyline.webp`} type="image/webp" />
+      {/* Full-bleed background photo — a process plant on a riverside against
+          open sky. The structure/chimneys sit in the right half of the frame,
+          leaving the left clear for text. Static, no parallax/zoom. */}
+      <picture className="absolute inset-0 block">
         <img
-          src={`${import.meta.env.BASE_URL}images/hero-industrial-skyline.jpg`}
-          alt="Industrial process-heating facility skyline against an open sky"
-          className="w-full h-[112%] object-cover animate-hero-kenburns"
-          style={{ objectPosition: 'center 35%' }}
+          src={`${import.meta.env.BASE_URL}images/hero-plant-riverside.jpg`}
+          alt="An industrial process plant beside a river, reflected on the water under an open sky"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: 'center 15%' }}
           loading="eager"
           fetchPriority="high"
         />
-      </motion.picture>
+      </picture>
 
-      {/* Light-neutral CSS scrim, kept minimal now that the photo itself carries
-          real contrast — just enough to keep text legible on the left, easing
-          off quickly toward the right so most of the photo reads through clearly. */}
-      <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(248,249,251,0.4)_0%,rgba(248,249,251,0.22)_35%,rgba(248,249,251,0.06)_65%,rgba(248,249,251,0)_100%)]" />
+      {/* Light-neutral CSS scrim — just enough to keep text legible on the
+          left, easing off quickly toward the right so most of the photo
+          reads through clearly. */}
+      <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(248,249,251,0.22)_0%,rgba(248,249,251,0.12)_30%,rgba(248,249,251,0.04)_55%,rgba(248,249,251,0)_80%)]" />
+
+      {/* Separate top band so the fixed navbar (dark text on this route)
+          stays legible across its full width, not just on the left where
+          the diagonal scrim above is strongest. */}
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#F7F9FC]/80 to-transparent" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-[clamp(1rem,3vw,2rem)]">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="max-w-2xl"
-        >
-          <motion.div
-            variants={item}
-            className="inline-flex items-center gap-2 rounded-full border border-[#0B1B2B]/12 bg-white pl-3 pr-4 py-1.5 text-[#47566A] text-xs font-medium shadow-sm"
-          >
+        <div className="max-w-2xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#0B1B2B]/12 bg-white pl-3 pr-4 py-1.5 text-[#47566A] text-xs font-medium shadow-sm">
             <ShieldCheck className="w-3.5 h-3.5 shrink-0 text-[#1C5CA8]" />
             <span>ISO 9001:2015 · ASME · IBR 1950</span>
-          </motion.div>
+          </div>
 
-          <h1 className="mt-7 text-[clamp(2.2rem,1.5rem+2.4vw,4rem)] font-heading font-extrabold leading-[1.04] tracking-[-0.025em] text-[#0B1B2B]">
-            <span className="block overflow-hidden pb-4">
-              <motion.span
-                className="block animate-gradient-flow"
-                initial={{ y: '110%' }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Industrial heat systems,
-              </motion.span>
-            </span>
-            <span className="block overflow-hidden pb-4">
-              <motion.span
-                className="block animate-gradient-flow"
-                initial={{ y: '110%' }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.8, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              >
-                built to keep running
-              </motion.span>
-            </span>
+          <h1 className="mt-7 text-[clamp(2.2rem,1.5rem+2.4vw,4rem)] font-heading font-extrabold leading-[1.04] tracking-[-0.025em]">
+            <span className="block text-[#0B1B2B]">Industrial heat systems,</span>
+            <span className="block text-[#1C5CA8]">built to keep running</span>
           </h1>
 
-          <motion.p
-            variants={item}
-            className="mt-6 text-[clamp(0.98rem,0.9rem+0.3vw,1.18rem)] text-[#47566A] leading-relaxed max-w-xl"
-          >
-            Thermal Engitech designs and manufactures steam boilers, thermic fluid heaters and
-            process-heat systems for plants where unplanned downtime is not an option — built in
-            Dhamatwan, Gujarat, and certified to both Indian and export standards.
-          </motion.p>
+          <p className="mt-6 text-[clamp(0.98rem,0.9rem+0.3vw,1.18rem)] font-medium leading-relaxed max-w-md">
+            <span className="text-[#0B1B2B]">
+              Thermal Engitech designs and manufactures steam boilers, thermic fluid heaters and
+              process-heat systems for plants where unplanned{' '}
+            </span>
+            <span className="text-white">
+              downtime is not an option — built in
+              Dhamatwan, Gujarat, and certified to both Indian and export standards.
+            </span>
+          </p>
 
           {/* Buttons — smaller, quieter pills; less heavy shadow/glow than before */}
-          <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <button
               onClick={onViewProducts}
               data-testid="hero-explore-btn"
@@ -118,8 +82,8 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
             >
               Request a quote
             </button>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
