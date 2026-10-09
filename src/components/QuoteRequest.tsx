@@ -244,12 +244,15 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
         </div>
 
-        {/* Spacer — keeps the same gap between the two cards that the
-            connector (arrow + "Use the estimate" label) used to occupy. */}
-        <div className="hidden lg:block lg:col-span-2" aria-hidden="true" />
+        {/* Spacer — keeps a gap between the two cards that the connector
+            (arrow + "Use the estimate" label) used to occupy. Narrower than
+            before so the spec sheet card (below) can be wider — it packs
+            more fields per row to match the estimator's height, so its
+            fields need the extra room. */}
+        <div className="hidden lg:block lg:col-span-1" aria-hidden="true" />
 
-        {/* Contact Form Controls (5 Columns) */}
-        <Reveal delay={0.05} className="lg:col-span-5 bg-panel border border-[#E1E4E3] rounded-xl shadow-sm relative overflow-hidden">
+        {/* Contact Form Controls (6 Columns) */}
+        <Reveal delay={0.05} className="lg:col-span-6 bg-panel border border-[#E1E4E3] rounded-xl shadow-sm relative overflow-hidden">
 
           {submittedTicket && (
             <div className="absolute inset-0 bg-white/98 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 animate-fadeIn">
@@ -284,8 +287,16 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
             <hr className="border-[#E1E4E3]" />
 
-            {/* Corporate & Representative Information */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Corporate & Representative Information, plus Equipment
+                Sizing — packed three to a row (wrapping into two rows)
+                instead of two, so this card doesn't run taller than the
+                estimator beside it. "Equipment Required" picks the broad
+                category; "Specific Model" (below, only when the category
+                has more than one) narrows it to an exact catalog item.
+                "Type of Boiler" further down is a different question again
+                — the engineering configuration/style — and only applies to
+                fired equipment, so it's kept out of this group. */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="space-y-1.5">
                 <label htmlFor="quote-company" className="text-xs font-bold text-[#0B1B2B]">Company Name *</label>
                 <input
@@ -309,9 +320,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
                 />
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label htmlFor="quote-email" className="text-xs font-bold text-[#0B1B2B]">Email *</label>
                 <input
@@ -335,15 +344,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                 />
               </div>
-            </div>
 
-            {/* Equipment Sizing parameters — "Equipment Required" picks the
-                broad category; "Specific Model" (below, only when the
-                category has more than one) narrows it to an exact catalog
-                item. "Type of Boiler" further down is a different question
-                again — the engineering configuration/style — and only
-                applies to fired equipment, so it's kept out of this pair. */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label htmlFor="quote-equipment" className="text-xs font-bold text-[#0B1B2B]">Equipment Required</label>
                 <select
@@ -406,62 +407,56 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                 Additional Technical Details <span className="font-normal normal-case">— optional</span>
               </p>
 
-              {isFiredEquipment && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label htmlFor="quote-boilertype" className="text-xs font-bold text-[#0B1B2B]">Type of Boiler</label>
-                    <select
-                      id="quote-boilertype"
-                      value={formData.boilerType}
-                      onChange={(e) => setFormData({ ...formData, boilerType: e.target.value })}
-                      className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                    >
-                      <option value="">Not sure — need advice</option>
-                      {BOILER_TYPE_OPTIONS.map((t) => (
-                        <option key={t} value={t}>{t}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label htmlFor="quote-fueltype" className="text-xs font-bold text-[#0B1B2B]">Fuel to Be Used</label>
-                    <select
-                      id="quote-fueltype"
-                      value={formData.fuelType}
-                      onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
-                      className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                    >
-                      <option value="">Not sure / open to recommendation</option>
-                      <optgroup label="Oil / Gas Fired">
-                        {FUEL_OPTIONS.filter((f) => f.category === 'oil-gas').map((f) => (
-                          <option key={f.id} value={f.label}>{f.label}</option>
+              {/* Four fields in one row for fired equipment (where Type of
+                  Boiler and Fuel to Be Used apply), two for everything else
+                  — Operating Pressure/Temperature and Planned Purchase
+                  Timeline always apply, Type of Boiler/Fuel to Be Used only
+                  for combustion equipment. Packed this tightly (rather than
+                  two separate two-field rows) to keep this card's overall
+                  height in line with the estimator card beside it. */}
+              <div className={`grid grid-cols-1 sm:grid-cols-2 ${isFiredEquipment ? 'lg:grid-cols-4' : ''} gap-4`}>
+                {isFiredEquipment && (
+                  <>
+                    <div className="space-y-1.5">
+                      <label htmlFor="quote-boilertype" className="text-xs font-bold text-[#0B1B2B]">Type of Boiler</label>
+                      <select
+                        id="quote-boilertype"
+                        value={formData.boilerType}
+                        onChange={(e) => setFormData({ ...formData, boilerType: e.target.value })}
+                        className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                      >
+                        <option value="">Not sure — need advice</option>
+                        {BOILER_TYPE_OPTIONS.map((t) => (
+                          <option key={t} value={t}>{t}</option>
                         ))}
-                      </optgroup>
-                      <optgroup label="Solid Fuel Fired">
-                        {FUEL_OPTIONS.filter((f) => f.category === 'solid').map((f) => (
-                          <option key={f.id} value={f.label}>{f.label}</option>
-                        ))}
-                      </optgroup>
-                      <option value="other">Other (specify below)</option>
-                    </select>
-                  </div>
-                </div>
-              )}
+                      </select>
+                    </div>
 
-              {isFiredEquipment && formData.fuelType === 'other' && (
-                <div className="space-y-1.5">
-                  <label htmlFor="quote-fuelother" className="text-xs font-bold text-[#0B1B2B]">Please specify the fuel</label>
-                  <input
-                    id="quote-fuelother"
-                    type="text"
-                    value={formData.fuelTypeOther}
-                    onChange={(e) => setFormData({ ...formData, fuelTypeOther: e.target.value })}
-                    className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                  />
-                </div>
-              )}
+                    <div className="space-y-1.5">
+                      <label htmlFor="quote-fueltype" className="text-xs font-bold text-[#0B1B2B]">Fuel to Be Used</label>
+                      <select
+                        id="quote-fueltype"
+                        value={formData.fuelType}
+                        onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
+                        className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                      >
+                        <option value="">Not sure / open to recommendation</option>
+                        <optgroup label="Oil / Gas Fired">
+                          {FUEL_OPTIONS.filter((f) => f.category === 'oil-gas').map((f) => (
+                            <option key={f.id} value={f.label}>{f.label}</option>
+                          ))}
+                        </optgroup>
+                        <optgroup label="Solid Fuel Fired">
+                          {FUEL_OPTIONS.filter((f) => f.category === 'solid').map((f) => (
+                            <option key={f.id} value={f.label}>{f.label}</option>
+                          ))}
+                        </optgroup>
+                        <option value="other">Other (specify below)</option>
+                      </select>
+                    </div>
+                  </>
+                )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label htmlFor="quote-pressuretemp" className="text-xs font-bold text-[#0B1B2B]">
                     {isHeaterCategory ? 'Operating Temperature Required' : 'Operating Pressure Required'}
@@ -494,6 +489,19 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                   </select>
                 </div>
               </div>
+
+              {isFiredEquipment && formData.fuelType === 'other' && (
+                <div className="space-y-1.5">
+                  <label htmlFor="quote-fuelother" className="text-xs font-bold text-[#0B1B2B]">Please specify the fuel</label>
+                  <input
+                    id="quote-fuelother"
+                    type="text"
+                    value={formData.fuelTypeOther}
+                    onChange={(e) => setFormData({ ...formData, fuelTypeOther: e.target.value })}
+                    className="w-full text-xs px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Detail notes */}
