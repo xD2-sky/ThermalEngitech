@@ -137,10 +137,6 @@ export default function ContactUs() {
                 <span>Plant Closed</span>
               </div>
             </div>
-
-            <p className="text-xs text-[#5B6B80] leading-relaxed font-sans pt-1">
-              * Critical breakdowns and troubleshooting hotlines remain accessible on a 24/7 cycle for registered contractual clients.
-            </p>
           </Reveal>
 
         </div>
@@ -201,12 +197,17 @@ export default function ContactUs() {
             )}
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <CompanyMap />
-          </Reveal>
-
         </div>
 
+      </div>
+
+      {/* Map — full width, below the two-column layout rather than
+          squeezed into a side column, since this is the section visitors
+          actually use to locate/navigate to the plant. */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-20">
+        <Reveal>
+          <CompanyMap />
+        </Reveal>
       </div>
 
     </div>

@@ -13,8 +13,8 @@ import Reveal from '../components/Reveal';
 
 export default function RequestQuote() {
   useDocumentMeta(
-    'Fuel Consumption & Running Cost Calculator',
-    'Estimate boiler fuel consumption and running cost by capacity and fuel type — then request a technical sizing quotation. Free online calculator.'
+    'Request a Quote',
+    'Request a technical sizing quotation for steam boilers, thermic fluid heaters and process-heat systems — our engineering team reviews your specification and responds within 24 business hours.'
   );
 
   const [searchParams] = useSearchParams();
