@@ -271,7 +271,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             </div>
           )}
 
-          <form ref={specSheetRef} onSubmit={handleSubmit} className="p-6 md:p-8 space-y-6 text-left">
+          <form ref={specSheetRef} onSubmit={handleSubmit} className="p-6 md:p-8 space-y-5 text-left">
             <HoneypotField checked={botcheck} onChange={setBotcheck} />
             <div className="flex items-start gap-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
