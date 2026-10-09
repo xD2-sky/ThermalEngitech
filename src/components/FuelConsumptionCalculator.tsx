@@ -31,10 +31,9 @@ const blurOnWheel = (e: React.WheelEvent<HTMLInputElement>) => e.currentTarget.b
 
 interface FuelConsumptionCalculatorProps {
   onApply: (args: { product: string; capacityTPH: number }) => void;
-  className?: string;
 }
 
-export default function FuelConsumptionCalculator({ onApply, className = '' }: FuelConsumptionCalculatorProps) {
+export default function FuelConsumptionCalculator({ onApply }: FuelConsumptionCalculatorProps) {
   const [capacity, setCapacity] = useState('5');
   const [fuelId, setFuelId] = useState('ldo-hsd');
   const [pressureBar, setPressureBar] = useState(10.5);
@@ -86,7 +85,7 @@ export default function FuelConsumptionCalculator({ onApply, className = '' }: F
   };
 
   return (
-    <Reveal className={`bg-[#1C5CA8]/[0.045] border border-[#1C5CA8]/15 rounded-xl p-6 md:p-8 shadow-sm space-y-6 text-left flex flex-col h-full ${className}`}>
+    <Reveal className="bg-[#1C5CA8]/[0.045] border border-[#1C5CA8]/15 rounded-xl p-6 md:p-8 shadow-sm space-y-6 text-left">
       {/* A faint blue tint (rather than a label or dashed border) is enough
           to read as "belonging to" the blue side of the page-level gradient
           wash behind this section — the form card stays plain white to
