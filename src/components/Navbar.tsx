@@ -78,7 +78,7 @@ export default function Navbar() {
   // banner — dark text is correct there, same as the default. Once
   // scrolled, every route converges on the same white/blurred bar with
   // dark text, unchanged.
-  const DARK_BANNER_ROUTES = ['/products', '/manufacturing', '/contact', '/about'];
+  const DARK_BANNER_ROUTES = ['/', '/products', '/manufacturing', '/contact', '/about'];
   // GitHub Pages 301-redirects a bare "/about" to "/about/" (trailing
   // slash) on every direct load/refresh. The prerendered HTML for that
   // page was generated with pathname "/about" (no slash) baked in, so it
