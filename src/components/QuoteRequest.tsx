@@ -12,7 +12,7 @@ import { submitToWeb3Forms } from '../config/web3forms';
 import HoneypotField from './HoneypotField';
 import Reveal from './Reveal';
 import FuelConsumptionCalculator from './FuelConsumptionCalculator';
-import { ChevronRight, Clipboard, CheckCircle } from 'lucide-react';
+import { ChevronRight, Clipboard, CheckCircle, ShieldCheck } from 'lucide-react';
 
 interface QuoteRequestProps {
   presetProductName: string | null;
@@ -37,14 +37,40 @@ const BOILER_TYPE_OPTIONS = [
 const TEMPERATURE_OPTIONS = ['Up to 200°C', '200°C – 300°C', '300°C – 400°C', 'Above 400°C'];
 const PRESSURE_SELECT_OPTIONS = PRESSURE_OPTIONS.map((p) => `${p.bar} kg/cm²g`);
 
-const CAPACITY_OPTIONS = [
+// Steam Boilers are sized in steam Tons/Hour; Thermic Fluid Heaters and Hot
+// Water Generators are sized in thermal output (kcal/hr) instead — per the
+// actual "Capacity Range"/"Thermal Output" spec values in data.ts, a boiler's
+// TPH bands don't describe either of those correctly. Every other category
+// (Pressure Reducing Stations, Air Preheaters, Heat Exchangers, Pollution
+// Control, Other Equipments) has its own native unit entirely (pipe size,
+// surface area, gas volume...) with no single dropdown that fits all of
+// them, so those get a free-text field with a relevant placeholder instead
+// of forced steam/thermal bands.
+const STEAM_CAPACITY_OPTIONS = [
   'Under 1.0 Ton / Hour',
   '1.0 - 5.0 Tons / Hour',
   '5.0 - 15.0 Tons / Hour',
   'Above 15.0 Tons / Hour (Heavy Grid)',
-  'Custom Kcal Thermal Load (Heaters)',
   'Not sure / Other — describe below',
 ];
+
+const THERMAL_CAPACITY_OPTIONS = [
+  'Under 2,00,000 kcal/hr',
+  '2,00,000 - 10,00,000 kcal/hr',
+  '10,00,000 - 50,00,000 kcal/hr',
+  'Above 50,00,000 kcal/hr',
+  'Not sure / Other — describe below',
+];
+
+const THERMAL_OUTPUT_CATEGORIES: Product['category'][] = ['Thermic Fluid Heaters', 'Hot Water Generators'];
+
+const CAPACITY_PLACEHOLDERS: Partial<Record<Product['category'], string>> = {
+  'Pressure Reducing Stations': 'e.g. DN80 inlet, 10 → 3.5 kg/cm²g outlet',
+  'Air Preheaters': 'e.g. flue gas volume or duct size',
+  'Heat Exchangers': 'e.g. 50 m² heat transfer area',
+  'Pollution Control Equipments': 'e.g. 10,000 Nm³/hr gas volume',
+  'Other Equipments': 'e.g. tank volume, pipe size, or duty required',
+};
 
 const PURCHASE_TIMELINE_OPTIONS = [
   'Immediate (within 1 month)',
@@ -105,11 +131,20 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
   const categoryModels = formData.equipmentCategory ? productsInCategory(formData.equipmentCategory) : [];
   const isFiredEquipment = !!formData.equipmentCategory && FIRED_EQUIPMENT_CATEGORIES.includes(formData.equipmentCategory);
   const isHeaterCategory = formData.equipmentCategory === 'Thermic Fluid Heaters';
+  const isSteamBoilerCategory = formData.equipmentCategory === 'Steam Boilers';
+  const isThermalOutputCategory = THERMAL_OUTPUT_CATEGORIES.includes(formData.equipmentCategory);
+  const capacityOptions = isSteamBoilerCategory
+    ? STEAM_CAPACITY_OPTIONS
+    : isThermalOutputCategory
+      ? THERMAL_CAPACITY_OPTIONS
+      : null;
 
   // Picking a different equipment category changes what the rest of the
   // form even means (a Heat Exchanger has no "fuel" or "boiler type", a
-  // heater's operating figure is a temperature, not a pressure) — so those
-  // dependent fields are reset rather than left showing a stale answer.
+  // heater's operating figure is a temperature, not a pressure, and its
+  // capacity is measured in an entirely different unit than a boiler's) —
+  // so those dependent fields are reset rather than left showing a stale
+  // answer in the new category's terms.
   const handleCategoryChange = (category: Product['category']) => {
     const models = productsInCategory(category);
     const stillFired = FIRED_EQUIPMENT_CATEGORIES.includes(category);
@@ -120,7 +155,8 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
       boilerType: stillFired ? prev.boilerType : '',
       fuelType: stillFired ? prev.fuelType : '',
       fuelTypeOther: stillFired ? prev.fuelTypeOther : '',
-      pressureTemperature: ''
+      pressureTemperature: '',
+      capacity: ''
     }));
   };
 
@@ -209,10 +245,35 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
           this used to duplicate it in a second, separate centered block. */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start max-w-7xl mx-auto">
 
-        {/* Fuel Consumption & Running Cost Estimator (5 Columns) */}
+        {/* Left column (5 Columns) — the fuel estimator is built around
+            steam capacity math specifically (it only ever recommends
+            Steam Boiler models), so it only makes sense to show for that
+            one category. Every other category gets a general trust panel
+            instead, so the page doesn't look boiler-fixated when someone
+            arrives here from, say, an Air Preheater or Pollution Control
+            product page. */}
         <div className="lg:col-span-5 space-y-6">
 
-          <FuelConsumptionCalculator onApply={handleCalculatorApply} />
+          {isSteamBoilerCategory ? (
+            <FuelConsumptionCalculator onApply={handleCalculatorApply} />
+          ) : (
+            <Reveal className="bg-[#0D1B2A] text-white p-6 rounded-lg space-y-4 border border-white/5 relative overflow-hidden shadow-md">
+              <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
+              <div className="relative z-10 space-y-3 text-left">
+                <span className="text-[10px] uppercase font-mono font-extrabold text-[#7FB2E4] tracking-wider">
+                  Engineering Authority
+                </span>
+                <h4 className="text-lg font-heading font-extrabold">IBR 1950 & ASME Certified</h4>
+                <p className="text-slate-300 text-xs leading-relaxed font-sans">
+                  Approved up to 32kg/cm². Mill test certifications accompany every component.
+                </p>
+                <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-[#1C5CA8] pt-2 border-t border-white/10 font-mono">
+                  <ShieldCheck className="w-4 h-4 shrink-0" />
+                  <span>Guaranteed joint radiography audits</span>
+                </div>
+              </div>
+            </Reveal>
+          )}
 
           {/* Active Queued Session Tickets */}
           {savedInquiries.length > 0 && (
@@ -355,9 +416,10 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               </div>
 
               <div className="space-y-1">
-                <label htmlFor="quote-equipment" className="text-xs font-bold text-[#0B1B2B]">Equipment Required</label>
+                <label htmlFor="quote-equipment" className="text-xs font-bold text-[#0B1B2B]">Equipment Required *</label>
                 <select
                   id="quote-equipment"
+                  required
                   value={formData.equipmentCategory}
                   onChange={(e) => handleCategoryChange(e.target.value as Product['category'])}
                   className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
@@ -370,19 +432,29 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="quote-capacity" className="text-xs font-bold text-[#0B1B2B]">Capacity Required *</label>
-              <select
-                id="quote-capacity"
-                required
-                value={formData.capacity}
-                onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-                className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-              >
-                <option value="" disabled>Select a range</option>
-                {CAPACITY_OPTIONS.map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </select>
+              <label htmlFor="quote-capacity" className="text-xs font-bold text-[#0B1B2B]">Capacity Required</label>
+              {capacityOptions ? (
+                <select
+                  id="quote-capacity"
+                  value={formData.capacity}
+                  onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
+                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                >
+                  <option value="" disabled>Select a range</option>
+                  {capacityOptions.map((c) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  id="quote-capacity"
+                  type="text"
+                  value={formData.capacity}
+                  onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
+                  placeholder={CAPACITY_PLACEHOLDERS[formData.equipmentCategory] || 'Describe the size or duty required'}
+                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium placeholder:font-normal placeholder:text-[#9AA7B8] focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
+                />
+              )}
             </div>
 
             {categoryModels.length > 1 && (
