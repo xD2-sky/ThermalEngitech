@@ -20,6 +20,7 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'pressure-reducing-station': 'images/products/pressure-reducing-station-skid.webp',
   'hot-water-generator-unit': 'images/products/hot-water-generator.webp',
   'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
+  'chimney-pollution': 'images/products/industrial-chimney.webp',
 };
 
 // Re-using CAD layout illustrations for high-contrast detail views

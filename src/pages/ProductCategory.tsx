@@ -16,6 +16,7 @@ import { ArrowLeft, ChevronRight, ShieldCheck, Gauge, Thermometer, Flame, Layers
  *  for. Products without an entry fall back to the CAD-style schematic. */
 const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
+  'chimney-pollution': 'images/products/industrial-chimney.webp',
 };
 
 // Keyword match rather than an exact per-label lookup — each product has its
