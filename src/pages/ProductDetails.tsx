@@ -14,6 +14,13 @@ import { submitToWeb3Forms } from '../config/web3forms';
 import { ArrowLeft, ShieldCheck, Cpu, CheckCircle, Mail, Phone, CheckCircle2, ChevronRight } from 'lucide-react';
 import Reveal from '../components/Reveal';
 
+// Steam Boilers and Thermic Fluid Heaters keep the detailed embedded sizing
+// form (capacity/pressure/fuel/boiler-type) — those fields are genuinely
+// relevant for fired equipment. Every other category routes to Request a
+// Quote instead, which already asks only what's relevant per category
+// rather than duplicating a one-size-fits-all form on every product page.
+const DETAILED_FORM_CATEGORIES: string[] = ['Steam Boilers', 'Thermic Fluid Heaters'];
+
 /** Real product renders — only set for products we have accurate photography
  *  for. Products without an entry fall back to the CAD-style schematic. */
 const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
@@ -21,6 +28,8 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'hot-water-generator-unit': 'images/products/hot-water-generator.webp',
   'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
   'chimney-pollution': 'images/products/industrial-chimney.webp',
+  'heat-exchanger-shelltube': 'images/products/heat-exchanger-shell-tube.webp',
+  'air-pre-heater': 'images/products/air-preheater-block.webp',
 };
 
 // Re-using CAD layout illustrations for high-contrast detail views
@@ -277,7 +286,8 @@ export default function ProductDetails() {
       : { noindex: true }
   );
 
-  // Embedded inquiry form states
+  // Embedded inquiry form states — only used by the detailed form shown for
+  // Steam Boilers / Thermic Fluid Heaters (see DETAILED_FORM_CATEGORIES).
   const [inquirySent, setInquirySent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -315,6 +325,7 @@ export default function ProductDetails() {
   const categorySiblings = productsInCategory(product.category).length;
   const backTo = categorySiblings > 1 ? `/products/category/${slugify(product.category)}` : '/products';
   const backLabel = categorySiblings > 1 ? product.category : 'Products';
+  const showDetailedForm = DETAILED_FORM_CATEGORIES.includes(product.category);
 
   const handleInquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -487,179 +498,203 @@ export default function ProductDetails() {
             </div>
           </Reveal>
 
-          {/* Form container */}
-          <Reveal delay={0.05} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-sm space-y-6 text-left">
-            <div className="space-y-1 border-b border-slate-100 pb-3">
-              <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">Send Quick Enquiry</h4>
-              <p className="text-[11px] text-[#5B6B80] font-sans">
-                Submit raw sizing metrics to receive CAD layout suggestions.
-              </p>
-            </div>
-
-            {inquirySent ? (
-              <div className="bg-[#10B981]/5 border border-[#10B981]/25 rounded-xl p-6 text-center space-y-4 font-sans py-10">
-                <CheckCircle className="w-12 h-12 text-[#10B981] mx-auto" />
-                <div className="space-y-1.5">
-                  <h4 className="font-heading font-bold text-[#0B1B2B] text-sm">Enquiry Received Successfully</h4>
-                  <p className="text-xs text-[#47566A] leading-normal">
-                    An engineering assessor will reach out shortly.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setInquirySent(false)}
-                  className="px-4 py-2 border border-[#E1E4E3] bg-white text-xs font-semibold rounded-lg hover:bg-panel text-[#0B1B2B] transition"
-                >
-                  Send another request
-                </button>
+          {showDetailedForm ? (
+            /* Steam Boilers / Thermic Fluid Heaters keep the detailed
+               embedded sizing form — capacity, pressure, boiler type and
+               fuel are all genuinely relevant for fired equipment. */
+            <Reveal delay={0.05} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-sm space-y-6 text-left">
+              <div className="space-y-1 border-b border-slate-100 pb-3">
+                <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">Send Quick Enquiry</h4>
+                <p className="text-[11px] text-[#5B6B80] font-sans">
+                  Submit raw sizing metrics to receive CAD layout suggestions.
+                </p>
               </div>
-            ) : (
-              <form onSubmit={handleInquirySubmit} className="space-y-4 text-xs font-sans">
-                <HoneypotField checked={botcheck} onChange={setBotcheck} />
 
-                <div className="space-y-1.5">
-                  <label htmlFor="enquiry-equipment" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Target Equipment Name</label>
-                  <input
-                    id="enquiry-equipment"
-                    type="text"
-                    disabled
-                    value={product.name}
-                    className="w-full px-3 py-2.5 bg-panel border border-[#E1E4E3] rounded-lg text-[#47566A] font-semibold cursor-not-allowed outline-none"
-                  />
+              {inquirySent ? (
+                <div className="bg-[#10B981]/5 border border-[#10B981]/25 rounded-xl p-6 text-center space-y-4 font-sans py-10">
+                  <CheckCircle className="w-12 h-12 text-[#10B981] mx-auto" />
+                  <div className="space-y-1.5">
+                    <h4 className="font-heading font-bold text-[#0B1B2B] text-sm">Enquiry Received Successfully</h4>
+                    <p className="text-xs text-[#47566A] leading-normal">
+                      An engineering assessor will reach out shortly.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setInquirySent(false)}
+                    className="px-4 py-2 border border-[#E1E4E3] bg-white text-xs font-semibold rounded-lg hover:bg-panel text-[#0B1B2B] transition"
+                  >
+                    Send another request
+                  </button>
                 </div>
+              ) : (
+                <form onSubmit={handleInquirySubmit} className="space-y-4 text-xs font-sans">
+                  <HoneypotField checked={botcheck} onChange={setBotcheck} />
 
-                <div className="space-y-1.5">
-                  <label htmlFor="enquiry-companyaddr" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Your Company Name &amp; Address</label>
-                  <textarea
-                    id="enquiry-companyaddr"
-                    rows={2}
-                    value={formData.companyNameAddress}
-                    onChange={(e) => setFormData({ ...formData, companyNameAddress: e.target.value })}
-                    className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition resize-none"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label htmlFor="enquiry-contact" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Contact Person</label>
+                    <label htmlFor="enquiry-equipment" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Target Equipment Name</label>
                     <input
-                      id="enquiry-contact"
+                      id="enquiry-equipment"
                       type="text"
-                      value={formData.contactPerson}
-                      onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      disabled
+                      value={product.name}
+                      className="w-full px-3 py-2.5 bg-panel border border-[#E1E4E3] rounded-lg text-[#47566A] font-semibold cursor-not-allowed outline-none"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="enquiry-email" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Email Address</label>
-                    <input
-                      id="enquiry-email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                    <label htmlFor="enquiry-companyaddr" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Your Company Name &amp; Address</label>
+                    <textarea
+                      id="enquiry-companyaddr"
+                      rows={2}
+                      value={formData.companyNameAddress}
+                      onChange={(e) => setFormData({ ...formData, companyNameAddress: e.target.value })}
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition resize-none"
                     />
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label htmlFor="enquiry-contact" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Contact Person</label>
+                      <input
+                        id="enquiry-contact"
+                        type="text"
+                        value={formData.contactPerson}
+                        onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
+                        className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label htmlFor="enquiry-email" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Email Address</label>
+                      <input
+                        id="enquiry-email"
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label htmlFor="enquiry-phone" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Mobile / Phone</label>
+                      <input
+                        id="enquiry-phone"
+                        type="text"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label htmlFor="enquiry-boilertype" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Type of Boiler</label>
+                      <input
+                        id="enquiry-boilertype"
+                        type="text"
+                        value={formData.boilerType}
+                        onChange={(e) => setFormData({ ...formData, boilerType: e.target.value })}
+                        className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label htmlFor="enquiry-capacity" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Capacity Required</label>
+                      <input
+                        id="enquiry-capacity"
+                        type="text"
+                        value={formData.capacityRequired}
+                        onChange={(e) => setFormData({ ...formData, capacityRequired: e.target.value })}
+                        className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label htmlFor="enquiry-pressuretemp" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Pressure / Temperature Required</label>
+                      <input
+                        id="enquiry-pressuretemp"
+                        type="text"
+                        value={formData.pressureTemperature}
+                        onChange={(e) => setFormData({ ...formData, pressureTemperature: e.target.value })}
+                        className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label htmlFor="enquiry-fueltype" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Fuel to Be Used</label>
+                      <input
+                        id="enquiry-fueltype"
+                        type="text"
+                        value={formData.fuelType}
+                        onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
+                        className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label htmlFor="enquiry-timeline" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Planned Purchase Timeline</label>
+                      <input
+                        id="enquiry-timeline"
+                        type="text"
+                        value={formData.purchaseTimeline}
+                        onChange={(e) => setFormData({ ...formData, purchaseTimeline: e.target.value })}
+                        className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-1.5">
-                    <label htmlFor="enquiry-phone" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Mobile / Phone</label>
-                    <input
-                      id="enquiry-phone"
-                      type="text"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
+                    <label htmlFor="enquiry-message" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Thermal Sizing Notes / local fuel spec</label>
+                    <textarea
+                      id="enquiry-message"
+                      rows={3}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition resize-none"
                     />
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label htmlFor="enquiry-boilertype" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Type of Boiler</label>
-                    <input
-                      id="enquiry-boilertype"
-                      type="text"
-                      value={formData.boilerType}
-                      onChange={(e) => setFormData({ ...formData, boilerType: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
-                    />
-                  </div>
-                </div>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full inline-flex items-center justify-center rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] disabled:opacity-60 disabled:cursor-not-allowed py-3.5 text-sm font-semibold text-white shadow-sm transition-colors cursor-pointer"
+                  >
+                    {submitting ? 'Sending…' : 'Submit sizing enquiry'}
+                  </button>
+                  {submitError && (
+                    <p className="text-xs text-red-600 font-medium text-center">{submitError}</p>
+                  )}
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label htmlFor="enquiry-capacity" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Capacity Required</label>
-                    <input
-                      id="enquiry-capacity"
-                      type="text"
-                      value={formData.capacityRequired}
-                      onChange={(e) => setFormData({ ...formData, capacityRequired: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label htmlFor="enquiry-pressuretemp" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Pressure / Temperature Required</label>
-                    <input
-                      id="enquiry-pressuretemp"
-                      type="text"
-                      value={formData.pressureTemperature}
-                      onChange={(e) => setFormData({ ...formData, pressureTemperature: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label htmlFor="enquiry-fueltype" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Fuel to Be Used</label>
-                    <input
-                      id="enquiry-fueltype"
-                      type="text"
-                      value={formData.fuelType}
-                      onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label htmlFor="enquiry-timeline" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Planned Purchase Timeline</label>
-                    <input
-                      id="enquiry-timeline"
-                      type="text"
-                      value={formData.purchaseTimeline}
-                      onChange={(e) => setFormData({ ...formData, purchaseTimeline: e.target.value })}
-                      className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label htmlFor="enquiry-message" className="font-bold text-[#0B1B2B] block uppercase tracking-wide">Thermal Sizing Notes / local fuel spec</label>
-                  <textarea
-                    id="enquiry-message"
-                    rows={3}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3 py-2.5 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full inline-flex items-center justify-center rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] disabled:opacity-60 disabled:cursor-not-allowed py-3.5 text-sm font-semibold text-white shadow-sm transition-colors cursor-pointer"
-                >
-                  {submitting ? 'Sending…' : 'Submit sizing enquiry'}
-                </button>
-                {submitError && (
-                  <p className="text-xs text-red-600 font-medium text-center">{submitError}</p>
-                )}
-
-              </form>
-            )}
-          </Reveal>
+                </form>
+              )}
+            </Reveal>
+          ) : (
+            /* Every other category routes to Request a Quote instead of
+               duplicating its form here — that form already asks only
+               what's relevant per equipment category, instead of a
+               one-size-fits-all set of boiler/capacity/fuel fields that
+               don't apply to e.g. a chimney or a heat exchanger. */
+            <Reveal delay={0.05} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-sm space-y-4 text-left">
+              <div className="space-y-1 border-b border-slate-100 pb-3">
+                <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">Request a Quote</h4>
+                <p className="text-[11px] text-[#5B6B80] font-sans">
+                  Get a technical sizing quotation for this equipment — our engineering team reviews your specification and responds within 24 business hours.
+                </p>
+              </div>
+              <Link
+                to={`/request-quote?product=${encodeURIComponent(product.name)}`}
+                className="w-full inline-flex items-center justify-center rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] py-3.5 text-sm font-semibold text-white shadow-sm transition-colors"
+              >
+                Request a Quote for This Equipment
+              </Link>
+            </Reveal>
+          )}
 
           {/* Quick contact helpline */}
           <Reveal delay={0.1} className="bg-panel border border-[#E1E4E3] rounded-lg p-6 text-left space-y-4">
