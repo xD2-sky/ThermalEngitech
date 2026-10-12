@@ -34,18 +34,21 @@ const BOILER_TYPE_OPTIONS = [
   'Vertical Configuration',
 ];
 
-const TEMPERATURE_OPTIONS = ['Up to 200°C', '200°C – 300°C', '300°C – 400°C', 'Above 400°C'];
 const PRESSURE_SELECT_OPTIONS = PRESSURE_OPTIONS.map((p) => `${p.bar} kg/cm²g`);
 
-// Steam Boilers are sized in steam Tons/Hour; Thermic Fluid Heaters and Hot
-// Water Generators are sized in thermal output (kcal/hr) instead — per the
-// actual "Capacity Range"/"Thermal Output" spec values in data.ts, a boiler's
-// TPH bands don't describe either of those correctly. Every other category
-// (Pressure Reducing Stations, Air Preheaters, Heat Exchangers, Pollution
-// Control, Other Equipments) has its own native unit entirely (pipe size,
-// surface area, gas volume...) with no single dropdown that fits all of
-// them, so those get a free-text field with a relevant placeholder instead
-// of forced steam/thermal bands.
+// Steam Boilers and Thermic Fluid Heaters are treated as full equivalents on
+// this page — same Fuel Consumption Estimator, same Tons/Hour capacity
+// dropdown, same "Operating Pressure" field — per an explicit decision to
+// keep these two in parity rather than split them by their technically
+// different native unit (a heater's real rating is kcal/hr, not steam
+// Tons/Hour). Hot Water Generators keeps its own kcal/hr dropdown. Every
+// other category (Pressure Reducing Stations, Air Preheaters, Heat
+// Exchangers, Pollution Control, Other Equipments) has its own native unit
+// entirely (pipe size, surface area, gas volume...) with no single dropdown
+// that fits all of them, so those get a free-text field with a relevant
+// placeholder instead of forced steam/thermal bands.
+const STEAM_LIKE_CATEGORIES: Product['category'][] = ['Steam Boilers', 'Thermic Fluid Heaters'];
+
 const STEAM_CAPACITY_OPTIONS = [
   'Under 1.0 Ton / Hour',
   '1.0 - 5.0 Tons / Hour',
@@ -62,7 +65,7 @@ const THERMAL_CAPACITY_OPTIONS = [
   'Not sure / Other — describe below',
 ];
 
-const THERMAL_OUTPUT_CATEGORIES: Product['category'][] = ['Thermic Fluid Heaters', 'Hot Water Generators'];
+const THERMAL_OUTPUT_CATEGORIES: Product['category'][] = ['Hot Water Generators'];
 
 const CAPACITY_PLACEHOLDERS: Partial<Record<Product['category'], string>> = {
   'Pressure Reducing Stations': 'e.g. DN80 inlet, 10 → 3.5 kg/cm²g outlet',
@@ -130,18 +133,16 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
   const categoryModels = formData.equipmentCategory ? productsInCategory(formData.equipmentCategory) : [];
   const isFiredEquipment = !!formData.equipmentCategory && FIRED_EQUIPMENT_CATEGORIES.includes(formData.equipmentCategory);
-  const isHeaterCategory = formData.equipmentCategory === 'Thermic Fluid Heaters';
-  const isSteamBoilerCategory = formData.equipmentCategory === 'Steam Boilers';
+  const isSteamLikeCategory = STEAM_LIKE_CATEGORIES.includes(formData.equipmentCategory);
   const isThermalOutputCategory = THERMAL_OUTPUT_CATEGORIES.includes(formData.equipmentCategory);
-  const capacityOptions = isSteamBoilerCategory
+  const capacityOptions = isSteamLikeCategory
     ? STEAM_CAPACITY_OPTIONS
     : isThermalOutputCategory
       ? THERMAL_CAPACITY_OPTIONS
       : null;
 
   // Picking a different equipment category changes what the rest of the
-  // form even means (a Heat Exchanger has no "fuel" or "boiler type", a
-  // heater's operating figure is a temperature, not a pressure, and its
+  // form even means (a Heat Exchanger has no "fuel" or "boiler type", and its
   // capacity is measured in an entirely different unit than a boiler's) —
   // so those dependent fields are reset rather than left showing a stale
   // answer in the new category's terms.
@@ -162,14 +163,16 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
   // Carries the Fuel Consumption Estimator's result straight into this form —
   // the two panels sit side by side, so this just needs to update the shared
-  // state and (on narrower screens, where they stack) bring the form into view.
-  // The estimator only ever recommends Steam Boiler models, so the category
-  // is fixed accordingly.
+  // state and (on narrower screens, where they stack) bring the form into
+  // view. This panel is only ever shown for Steam Boilers or Thermic Fluid
+  // Heaters (see isSteamLikeCategory), so the category is never changed here
+  // — but the estimator's recommended model is always a Steam Boiler name,
+  // which would be wrong to apply while "Thermic Fluid Heaters" stays
+  // selected, so that part only carries over for Steam Boilers specifically.
   const handleCalculatorApply = (args: { product: string; capacityTPH: number }) => {
     setFormData(prev => ({
       ...prev,
-      equipmentCategory: 'Steam Boilers',
-      requiredProduct: args.product || prev.requiredProduct,
+      requiredProduct: prev.equipmentCategory === 'Steam Boilers' ? (args.product || prev.requiredProduct) : prev.requiredProduct,
       capacity: capacityBand(args.capacityTPH)
     }));
     specSheetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -254,7 +257,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             product page. */}
         <div className="lg:col-span-5 space-y-6">
 
-          {isSteamBoilerCategory ? (
+          {isSteamLikeCategory ? (
             <FuelConsumptionCalculator onApply={handleCalculatorApply} />
           ) : (
             <Reveal className="bg-[#0D1B2A] text-white p-6 rounded-lg space-y-4 border border-white/5 relative overflow-hidden shadow-md">
@@ -538,7 +541,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label htmlFor="quote-pressuretemp" className="text-xs font-bold text-[#0B1B2B]">
-                    {isHeaterCategory ? 'Operating Temperature Required' : 'Operating Pressure Required'}
+                    Operating Pressure Required
                   </label>
                   <select
                     id="quote-pressuretemp"
@@ -547,7 +550,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
                     className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
                   >
                     <option value="">Not sure</option>
-                    {(isHeaterCategory ? TEMPERATURE_OPTIONS : PRESSURE_SELECT_OPTIONS).map((v) => (
+                    {PRESSURE_SELECT_OPTIONS.map((v) => (
                       <option key={v} value={v}>{v}</option>
                     ))}
                   </select>
