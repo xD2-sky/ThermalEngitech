@@ -21,7 +21,7 @@ export const PRODUCTS: Product[] = [
     ],
     specifications: [
       { label: 'Capacity Range', value: '0.5 Ton/hr to 20.0 Tons/hr (500 to 20,000 kg/hr)' },
-      { label: 'Operating Pressure', value: 'Up to 25.0 kg/cm²' },
+      { label: 'Operating Pressure', value: 'Up to 40.0 kg/cm²' },
       { label: 'Compatible Fuels', value: 'Light Diesel Oil (LDO), HSD, Natural Gas, LPG, Furnace Oil, Dual Fuel' },
       { label: 'Steam Temperature', value: 'Up to 225°C' },
       { label: 'Thermal Efficiency', value: '88% (Up to 94% with external economizer & preheater)' },
@@ -150,7 +150,7 @@ export const PRODUCTS: Product[] = [
       'Equipped with advanced alarm panels indicating fluid expansion drum level limits'
     ],
     specifications: [
-      { label: 'Thermic Output', value: '6,00,000 kcal/hr to 40,00,000 kcal/hr' },
+      { label: 'Thermic Output', value: '6,00,000 kcal/hr to 1,00,00,000 kcal/hr' },
       { label: 'Working Temperature', value: 'Normal process heating up to 250°C' },
       { label: 'Fluid Pressure Rating', value: 'Testing rating 10.0 kg/cm²; operational rating 4.5 kg/cm²' },
       { label: 'Exhaust Passage', value: 'Highly efficient 4-pass convective exhaust matrix' },

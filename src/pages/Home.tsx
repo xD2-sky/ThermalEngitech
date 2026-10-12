@@ -65,7 +65,7 @@ const PRODUCT_CATEGORIES = [
     image: 'images/products/steam-boiler-skid.webp',
     specs: [
       { icon: Gauge, label: 'Capacity', value: '0.5 – 20.0 TPH' },
-      { icon: Gauge, label: 'Pressure', value: 'Up to 25 kg/cm²' },
+      { icon: Gauge, label: 'Pressure', value: 'Up to 40 kg/cm²' },
       { icon: Flame, label: 'Fuel', value: 'Multi-fuel options' },
     ],
   },
@@ -80,7 +80,7 @@ const PRODUCT_CATEGORIES = [
     image: 'images/products/multi-fuel-system.webp',
     specs: [
       { icon: Thermometer, label: 'Temperature', value: 'Up to 400°C' },
-      { icon: Gauge, label: 'Capacity', value: '1,00,000–40,00,000 kcal/hr' },
+      { icon: Gauge, label: 'Capacity', value: '1,00,000–1,00,00,000 kcal/hr' },
       { icon: Flame, label: 'Fuel', value: 'Multiple options' },
     ],
   },
