@@ -27,6 +27,7 @@ const CATEGORY_PHOTOS: Partial<Record<string, string>> = {
   'Heat Exchangers': 'images/products/heat-exchanger-shell-tube.webp',
   'Air Preheaters': 'images/products/air-preheater-block.webp',
   'Pressure Reducing Stations': 'images/products/pressure-reducing-station-skid.webp',
+  'Hot Water Generators': 'images/products/hot-water-generator.webp',
 };
 
 export default function Products() {

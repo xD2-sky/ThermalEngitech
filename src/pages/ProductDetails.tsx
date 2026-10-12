@@ -18,6 +18,8 @@ import Reveal from '../components/Reveal';
  *  for. Products without an entry fall back to the CAD-style schematic. */
 const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'pressure-reducing-station': 'images/products/pressure-reducing-station-skid.webp',
+  'hot-water-generator-unit': 'images/products/hot-water-generator.webp',
+  'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
 };
 
 // Re-using CAD layout illustrations for high-contrast detail views

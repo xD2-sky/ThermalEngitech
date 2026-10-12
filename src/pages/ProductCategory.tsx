@@ -12,6 +12,12 @@ import { categoryBySlug, productsInCategory } from '../catalog';
 import ProductImage from '../components/ProductImage';
 import { ArrowLeft, ChevronRight, ShieldCheck, Gauge, Thermometer, Flame, Layers, BarChart3, Settings } from 'lucide-react';
 
+/** Real product renders — only set for products we have accurate photography
+ *  for. Products without an entry fall back to the CAD-style schematic. */
+const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
+  'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
+};
+
 // Keyword match rather than an exact per-label lookup — each product has its
 // own differently-worded specs (30+ unique label strings across data.ts), so
 // a fixed map would miss most of them. This just needs a reasonable icon,
@@ -116,7 +122,15 @@ export default function ProductCategory() {
                 className="flex flex-col h-full bg-panel border border-[#E4E7EC] rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-[#1C5CA8]/40 transition-all duration-300 group"
               >
                 <div className="p-6 bg-white border-b border-slate-100 flex items-center justify-center relative min-h-[200px]">
-                  <ProductImage type={prod.imageType} />
+                  {PRODUCT_PHOTOS[prod.id] ? (
+                    <img
+                      src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[prod.id]}`}
+                      alt={`${prod.name} — Thermal Engitech product render`}
+                      className="max-w-full max-h-48 w-auto h-auto"
+                    />
+                  ) : (
+                    <ProductImage type={prod.imageType} />
+                  )}
                 </div>
 
                 <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
