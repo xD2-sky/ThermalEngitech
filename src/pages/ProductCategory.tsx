@@ -16,7 +16,10 @@ import { ArrowLeft, ChevronRight, ShieldCheck, Gauge, Thermometer, Flame, Layers
  *  for. Products without an entry fall back to the CAD-style schematic. */
 const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
-  'chimney-pollution': 'images/products/industrial-chimney.webp',
+  // Cropped to the top platforms/ladder section — the full-height shot
+  // (used on the detail page) is too tall/narrow to read as anything but
+  // a thin sliver inside this card's roughly-square photo area.
+  'chimney-pollution': 'images/products/industrial-chimney-thumb.webp',
 };
 
 // Keyword match rather than an exact per-label lookup — each product has its
@@ -122,12 +125,12 @@ export default function ProductCategory() {
                 data-testid={`product-card-${prod.id}`}
                 className="flex flex-col h-full bg-panel border border-[#E4E7EC] rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-[#1C5CA8]/40 transition-all duration-300 group"
               >
-                <div className="p-6 bg-white border-b border-slate-100 flex items-center justify-center relative min-h-[200px]">
+                <div className="p-6 bg-white border-b border-slate-100 flex items-center justify-center relative min-h-[260px]">
                   {PRODUCT_PHOTOS[prod.id] ? (
                     <img
                       src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[prod.id]}`}
                       alt={`${prod.name} — Thermal Engitech product render`}
-                      className="max-w-full max-h-48 w-auto h-auto"
+                      className="max-w-full max-h-64 w-auto h-auto"
                     />
                   ) : (
                     <ProductImage type={prod.imageType} />
