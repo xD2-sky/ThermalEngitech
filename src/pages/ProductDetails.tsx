@@ -28,6 +28,7 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'hot-water-generator-unit': 'images/products/hot-water-generator.webp',
   'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
   'chimney-pollution': 'images/products/industrial-chimney.webp',
+  'bag-filter-pollution': 'images/products/bag-filter-system.webp',
   'heat-exchanger-shelltube': 'images/products/heat-exchanger-shell-tube.webp',
   'air-pre-heater': 'images/products/air-preheater-block.webp',
 };

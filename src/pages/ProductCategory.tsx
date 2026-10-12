@@ -20,6 +20,7 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   // (used on the detail page) is too tall/narrow to read as anything but
   // a thin sliver inside this card's roughly-square photo area.
   'chimney-pollution': 'images/products/industrial-chimney-thumb.webp',
+  'bag-filter-pollution': 'images/products/bag-filter-system.webp',
 };
 
 // Keyword match rather than an exact per-label lookup — each product has its
