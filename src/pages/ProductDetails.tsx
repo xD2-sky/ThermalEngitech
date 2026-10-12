@@ -14,8 +14,24 @@ import { submitToWeb3Forms } from '../config/web3forms';
 import { ArrowLeft, ShieldCheck, Cpu, CheckCircle, Mail, Phone, CheckCircle2, ChevronRight } from 'lucide-react';
 import Reveal from '../components/Reveal';
 
+/** Real product renders — only set for products we have accurate photography
+ *  for. Products without an entry fall back to the CAD-style schematic. */
+const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
+  'pressure-reducing-station': 'images/products/pressure-reducing-station-skid.webp',
+};
+
 // Re-using CAD layout illustrations for high-contrast detail views
 function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'generator' | 'exchanger' | 'prs' | 'preheater' | 'pollution' | 'other'; productId?: string }) {
+  if (productId && PRODUCT_PHOTOS[productId]) {
+    return (
+      <img
+        src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[productId]}`}
+        alt="Thermal Engitech product render"
+        className="max-w-full max-h-[480px] w-auto h-auto"
+      />
+    );
+  }
+
   if (productId === 'oil-gas-3pass-wetback') {
     return (
       <svg viewBox="0 0 450 300" fill="none" className="w-full h-full max-h-72 drop-shadow-lg">
@@ -392,7 +408,7 @@ export default function ProductDetails() {
           <Reveal delay={0.05} className="bg-panel border border-[#E1E4E3] rounded-lg p-8 flex items-center justify-center relative shadow-xs min-h-[300px]">
             <ProductImageLarge type={product.imageType} productId={product.id} />
             <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-[#5B6B80] uppercase tracking-widest px-2.5 py-1 rounded">
-              High Resolution Schematic CAD Layout
+              {PRODUCT_PHOTOS[product.id] ? 'Product Photograph' : 'High Resolution Schematic CAD Layout'}
             </span>
           </Reveal>
 

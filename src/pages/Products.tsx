@@ -26,6 +26,7 @@ const CATEGORY_PHOTOS: Partial<Record<string, string>> = {
   'Thermic Fluid Heaters': 'images/products/multi-fuel-system.webp',
   'Heat Exchangers': 'images/products/heat-exchanger-shell-tube.webp',
   'Air Preheaters': 'images/products/air-preheater-block.webp',
+  'Pressure Reducing Stations': 'images/products/pressure-reducing-station-skid.webp',
 };
 
 export default function Products() {
