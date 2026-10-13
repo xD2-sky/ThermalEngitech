@@ -136,7 +136,7 @@ export default function ProductCategory() {
                 data-testid={`product-card-${prod.id}`}
                 className="flex flex-col h-full bg-panel border border-[#E4E7EC] rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-[#1C5CA8]/40 transition-all duration-300 group"
               >
-                <div className="p-6 bg-white border-b border-slate-100 flex items-center justify-center relative min-h-[260px]">
+                <div className="p-6 bg-panel border-b border-[#E1E4E3] flex items-center justify-center relative min-h-[260px]">
                   {PRODUCT_PHOTOS[prod.id] ? (
                     <img
                       src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[prod.id]}`}
@@ -152,6 +152,9 @@ export default function ProductCategory() {
                   ) : (
                     <ProductImage type={prod.imageType} />
                   )}
+                  <span className="absolute bottom-3 left-3 bg-white font-mono text-[8px] text-[#5B6B80] uppercase tracking-widest px-2 py-1 rounded">
+                    {PRODUCT_PHOTOS[prod.id] ? 'Product Photograph' : 'High Resolution Schematic CAD Layout'}
+                  </span>
                 </div>
 
                 <div className="p-6 space-y-3 flex-1 flex flex-col justify-between">
