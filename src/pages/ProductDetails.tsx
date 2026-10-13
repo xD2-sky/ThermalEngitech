@@ -26,7 +26,6 @@ const DETAILED_FORM_CATEGORIES: string[] = ['Steam Boilers', 'Thermic Fluid Heat
 const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'pressure-reducing-station': 'images/products/pressure-reducing-station-skid.webp',
   'hot-water-generator-unit': 'images/products/hot-water-generator.webp',
-  'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
   'chimney-pollution': 'images/products/industrial-chimney.webp',
   'bag-filter-pollution': 'images/products/bag-filter-system.webp',
   'heat-exchanger-shelltube': 'images/products/heat-exchanger-shell-tube.webp',
@@ -42,6 +41,9 @@ const PRODUCT_SCHEMATICS: Partial<Record<string, string>> = {
   'condensate-tank': 'images/products/condensate-tank.webp',
   'steam-boiler-feed-water-tank': 'images/products/steam-boiler-feed-water-tank.webp',
   'blow-down-tank': 'images/products/blow-down-tank.webp',
+  'expansion-tank': 'images/products/expansion-tank.webp',
+  'wet-scrubber-pollution': 'images/products/wet-scrubber-pollution.webp',
+  'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
 };
 
 // Re-using CAD layout illustrations for high-contrast detail views

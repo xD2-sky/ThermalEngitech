@@ -15,7 +15,6 @@ import { ArrowLeft, ChevronRight, ShieldCheck, Gauge, Thermometer, Flame, Layers
 /** Real product renders — only set for products we have accurate photography
  *  for. Products without an entry fall back to the CAD-style schematic. */
 const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
-  'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
   // Cropped to the top platforms/ladder section — the full-height shot
   // (used on the detail page) is too tall/narrow to read as anything but
   // a thin sliver inside this card's roughly-square photo area.
@@ -31,6 +30,9 @@ const PRODUCT_SCHEMATICS: Partial<Record<string, string>> = {
   'condensate-tank': 'images/products/condensate-tank.webp',
   'steam-boiler-feed-water-tank': 'images/products/steam-boiler-feed-water-tank.webp',
   'blow-down-tank': 'images/products/blow-down-tank.webp',
+  'expansion-tank': 'images/products/expansion-tank.webp',
+  'wet-scrubber-pollution': 'images/products/wet-scrubber-pollution.webp',
+  'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
 };
 
 // Keyword match rather than an exact per-label lookup — each product has its
