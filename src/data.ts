@@ -402,6 +402,27 @@ export const PRODUCTS: Product[] = [
     imageType: 'other'
   },
   {
+    id: 'blow-down-tank',
+    category: 'Other Equipments',
+    name: 'Blow Down Tank',
+    tagline: 'Safe Atmospheric Discharge Vessel for High-Pressure Boiler Blowdown',
+    description: 'A rugged flash-type collection vessel designed to safely receive high-temperature, high-pressure water discharged during boiler blowdown operations. Internal diffuser baffling dissipates flash steam energy and velocity, cooling the effluent to safe levels before it reaches plant drain or effluent treatment systems.',
+    features: [
+      'Internal anti-splash diffuser pipe breaks down incoming blowdown velocity and flash energy',
+      'Large oval manway provides full access for periodic internal inspection and cleaning',
+      'Dished top and bottom heads engineered for safe venting of flash steam to atmosphere',
+      'Mounted on triple structural support legs anchored to individual concrete plinths'
+    ],
+    specifications: [
+      { label: 'Volume Capacity', value: '500 Liters to 5,000 Liters volume rating' },
+      { label: 'Construction Shell', value: 'Boiler Quality Steel IS 2002 or SA 516 Gr. 70' },
+      { label: 'Design Pressure Rating', value: 'Built to safely handle discharge up to 10.0 kg/cm²' },
+      { label: 'Discharge Temp Handling', value: 'Rated for incoming blowdown water up to 180°C' },
+      { label: 'Design Codes', value: 'IBR statutory approval & ASME Sec VIII Div 1 guidelines' }
+    ],
+    imageType: 'other'
+  },
+  {
     id: 'expansion-tank',
     category: 'Other Equipments',
     name: 'Expansion Cum De-Aerator Tank',

@@ -23,6 +23,16 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'bag-filter-pollution': 'images/products/bag-filter-system.webp',
 };
 
+/** Real manufacturer AutoCAD elevation drawings — same source images as the
+ *  product detail page, shown on the category card in place of the abstract
+ *  CAD-style icon fallback. */
+const PRODUCT_SCHEMATICS: Partial<Record<string, string>> = {
+  'steam-distribution-header': 'images/products/steam-distribution-header.webp',
+  'condensate-tank': 'images/products/condensate-tank.webp',
+  'steam-boiler-feed-water-tank': 'images/products/steam-boiler-feed-water-tank.webp',
+  'blow-down-tank': 'images/products/blow-down-tank.webp',
+};
+
 // Keyword match rather than an exact per-label lookup — each product has its
 // own differently-worded specs (30+ unique label strings across data.ts), so
 // a fixed map would miss most of them. This just needs a reasonable icon,
@@ -131,6 +141,12 @@ export default function ProductCategory() {
                     <img
                       src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[prod.id]}`}
                       alt={`${prod.name} — Thermal Engitech product render`}
+                      className="max-w-full max-h-64 w-auto h-auto"
+                    />
+                  ) : PRODUCT_SCHEMATICS[prod.id] ? (
+                    <img
+                      src={`${import.meta.env.BASE_URL}${PRODUCT_SCHEMATICS[prod.id]}`}
+                      alt={`${prod.name} — Thermal Engitech manufacturer CAD elevation drawing`}
                       className="max-w-full max-h-64 w-auto h-auto"
                     />
                   ) : (

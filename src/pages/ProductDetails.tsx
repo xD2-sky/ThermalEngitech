@@ -33,6 +33,17 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'air-pre-heater': 'images/products/air-preheater-block.webp',
 };
 
+/** Real manufacturer AutoCAD elevation drawings — cropped from the original
+ *  title-blocked sheets. These render in place of the abstract SVG fallback
+ *  (still captioned "High Resolution Schematic CAD Layout", which is now
+ *  literally accurate rather than a generic placeholder). */
+const PRODUCT_SCHEMATICS: Partial<Record<string, string>> = {
+  'steam-distribution-header': 'images/products/steam-distribution-header.webp',
+  'condensate-tank': 'images/products/condensate-tank.webp',
+  'steam-boiler-feed-water-tank': 'images/products/steam-boiler-feed-water-tank.webp',
+  'blow-down-tank': 'images/products/blow-down-tank.webp',
+};
+
 // Re-using CAD layout illustrations for high-contrast detail views
 function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'generator' | 'exchanger' | 'prs' | 'preheater' | 'pollution' | 'other'; productId?: string }) {
   if (productId && PRODUCT_PHOTOS[productId]) {
@@ -40,6 +51,16 @@ function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'g
       <img
         src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[productId]}`}
         alt="Thermal Engitech product render"
+        className="max-w-full max-h-[480px] w-auto h-auto"
+      />
+    );
+  }
+
+  if (productId && PRODUCT_SCHEMATICS[productId]) {
+    return (
+      <img
+        src={`${import.meta.env.BASE_URL}${PRODUCT_SCHEMATICS[productId]}`}
+        alt="Thermal Engitech manufacturer CAD elevation drawing"
         className="max-w-full max-h-[480px] w-auto h-auto"
       />
     );
