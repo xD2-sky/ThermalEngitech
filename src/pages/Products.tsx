@@ -28,6 +28,8 @@ const CATEGORY_PHOTOS: Partial<Record<string, string>> = {
   'Air Preheaters': 'images/products/air-preheater-block.webp',
   'Pressure Reducing Stations': 'images/products/pressure-reducing-station-skid.webp',
   'Hot Water Generators': 'images/products/hot-water-generator.webp',
+  'Pollution Control Equipments': 'images/products/bag-filter-system.webp',
+  'Other Equipments': 'images/products/condensate-tank.webp',
 };
 
 export default function Products() {
