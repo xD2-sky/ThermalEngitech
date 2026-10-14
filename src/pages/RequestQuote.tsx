@@ -55,15 +55,15 @@ export default function RequestQuote() {
           from a reference mockup the user supplied ("Industrial Quote
           Request Dashboard.png"), adapted from its navy+red scheme to the
           site's blue-only palette. */}
-      <div className="relative overflow-hidden bg-white">
+      <div className="relative overflow-hidden min-h-[300px] flex items-center bg-white mt-16 sm:mt-18 lg:mt-20 px-4 sm:px-6 lg:px-8">
         <img
           src={`${import.meta.env.BASE_URL}images/banners/request-quote.webp`}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/10" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-14 space-y-7">
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/30 to-transparent" />
+        <div className="relative z-10 max-w-7xl mx-auto w-full py-16 space-y-5">
           <Reveal className="flex items-center gap-3">
             <span className="h-[2px] w-8 bg-[#1C5CA8]" aria-hidden="true" />
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#1C5CA8]">Request a Quote</span>
