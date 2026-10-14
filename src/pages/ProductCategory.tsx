@@ -20,6 +20,8 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   // a thin sliver inside this card's roughly-square photo area.
   'chimney-pollution': 'images/products/industrial-chimney-thumb.webp',
   'bag-filter-pollution': 'images/products/bag-filter-system.webp',
+  'oil-gas-3pass-wetback': 'images/products/oil-gas-3pass-wetback.webp',
+  'smokecum-watertube-membrane': 'images/products/smokecum-watertube-membrane.webp',
 };
 
 /** Real manufacturer AutoCAD elevation drawings — same source images as the
@@ -86,25 +88,12 @@ export default function ProductCategory() {
   return (
     <div className="text-left bg-white min-h-screen">
 
-      {/* Breadcrumb — margin-top clears the fixed navbar (this thin utility bar
-          sits below it, unlike hero/banner sections which extend behind it) */}
-      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#5B6B80] font-semibold">
-          <Link to="/products" className="flex items-center gap-1.5 text-[#1C5CA8] hover:underline" data-testid="back-to-catalogue">
-            <ArrowLeft className="w-4 h-4" />
-            <span>All categories</span>
-          </Link>
-          <div className="flex items-center gap-2">
-            <Link to="/products" className="hover:text-[#1C5CA8]">Products</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-[#0B1B2B] font-extrabold">{category.name}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Banner — full-bleed photo with a dark scrim, text on top. One
-          distinct, relevant photo per category, named to match category.slug. */}
-      <div className="relative overflow-hidden min-h-[300px] flex items-center px-4 sm:px-6 lg:px-8">
+      {/* Banner — full-bleed photo with a dark scrim, text on top, first in
+          the page so it sits behind the fixed navbar like every other
+          page's hero (see data-hero-banner / Navbar's category-route check).
+          One distinct, relevant photo per category, named to match
+          category.slug. */}
+      <div data-hero-banner className="relative overflow-hidden min-h-[300px] flex items-center px-4 sm:px-6 lg:px-8">
         <img
           src={`${import.meta.env.BASE_URL}images/categories/${category.slug}.jpg`}
           alt={`${category.name} — representative industrial equipment`}
@@ -117,6 +106,22 @@ export default function ProductCategory() {
           </span>
           <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">{category.name}</h1>
           <p className="text-white/80 text-sm max-w-2xl leading-relaxed">{category.blurb}</p>
+        </div>
+      </div>
+
+      {/* Breadcrumb — now below the banner instead of clearing the navbar
+          itself, so no margin-top is needed here anymore. */}
+      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#5B6B80] font-semibold">
+          <Link to="/products" className="flex items-center gap-1.5 text-[#1C5CA8] hover:underline" data-testid="back-to-catalogue">
+            <ArrowLeft className="w-4 h-4" />
+            <span>All categories</span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <Link to="/products" className="hover:text-[#1C5CA8]">Products</Link>
+            <ChevronRight className="w-3.5 h-3.5" />
+            <span className="text-[#0B1B2B] font-extrabold">{category.name}</span>
+          </div>
         </div>
       </div>
 

@@ -87,15 +87,13 @@ export default function Navbar() {
   // Only these specific routes have a dark full-bleed photo banner
   // starting at y:0 (extending behind the navbar) instead — so the
   // unscrolled navbar needs light text there. Category pages (/products/
-  // category/:slug) do have a dark banner, but it's preceded by a plain
-  // white breadcrumb bar that clears the navbar via margin-top, so what's
-  // actually behind the navbar at scroll:0 is that white bar, not the
-  // banner — dark text is correct there, same as the default. On dark-banner
-  // routes, text only flips to dark once the hero itself has scrolled past
-  // the bar (see `pastHero`) — not at the first 20px of scroll, which would
-  // leave it dark-on-dark while a tall hero (Home's is a full viewport
-  // height) is still on screen underneath. Every route converges on the
-  // same white/blurred bar with dark text once both conditions are met.
+  // category/:slug) have the same dark banner first too, matched below by
+  // prefix since the slug varies. On dark-banner routes, text only flips to
+  // dark once the hero itself has scrolled past the bar (see `pastHero`) —
+  // not at the first 20px of scroll, which would leave it dark-on-dark
+  // while a tall hero (Home's is a full viewport height) is still on screen
+  // underneath. Every route converges on the same white/blurred bar with
+  // dark text once both conditions are met.
   const DARK_BANNER_ROUTES = ['/', '/products', '/manufacturing', '/contact', '/about', '/request-quote'];
   // GitHub Pages 301-redirects a bare "/about" to "/about/" (trailing
   // slash) on every direct load/refresh. The prerendered HTML for that
@@ -107,7 +105,7 @@ export default function Navbar() {
   // logo/nav text color via its transition — normalizing away a trailing
   // slash (except for the root path) keeps both cases matching.
   const normalizedPath = location.pathname !== '/' ? location.pathname.replace(/\/$/, '') : location.pathname;
-  const isDarkBannerRoute = DARK_BANNER_ROUTES.includes(normalizedPath);
+  const isDarkBannerRoute = DARK_BANNER_ROUTES.includes(normalizedPath) || normalizedPath.startsWith('/products/category/');
   const useDarkText = !isDarkBannerRoute || pastHero;
   // On dark-banner routes, the white/blurred chrome must appear in lockstep
   // with the text turning dark — gating it on the raw 20px `scrolled`

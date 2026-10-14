@@ -21,6 +21,8 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'bag-filter-pollution': 'images/products/bag-filter-system.webp',
   'heat-exchanger-shelltube': 'images/products/heat-exchanger-shell-tube.webp',
   'air-pre-heater': 'images/products/air-preheater-block.webp',
+  'oil-gas-3pass-wetback': 'images/products/oil-gas-3pass-wetback.webp',
+  'smokecum-watertube-membrane': 'images/products/smokecum-watertube-membrane.webp',
 };
 
 /** Real manufacturer AutoCAD elevation drawings — cropped from the original
