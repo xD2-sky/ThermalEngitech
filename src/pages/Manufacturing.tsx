@@ -92,11 +92,32 @@ export default function Manufacturing() {
   return (
     <div className="space-y-0 text-left bg-white min-h-screen">
 
-      {/* 1. Intro / hero — white. The large shop-floor photo on the right
-          carries the "hero" visual weight, so there's no separate full-bleed
-          banner above this like other pages — matches the reference's own
-          composition, which opens directly on this split layout. */}
-      <div ref={introRef} className="relative overflow-hidden bg-white pt-28 sm:pt-32 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
+      {/* Banner — full-bleed photo with a dark scrim, text on top. Same
+          pattern as every other page's header, restored here for
+          consistency. */}
+      <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
+        <img
+          src={`${base}images/manufacturing-hero-industrial.webp`}
+          alt=""
+          role="presentation"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
+        <div className="relative z-10 max-w-7xl mx-auto w-full py-16 space-y-4">
+          <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#7FB2E4]">
+            Dhamatwan Workshop Facility
+          </p>
+          <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white tracking-tight">
+            Inside Our Manufacturing Facility
+          </h1>
+          <p className="text-white/80 text-sm max-w-3xl leading-relaxed">
+            7,500 m² in Dhamatwan, Gujarat — approved under IBR 1950 to roll, weld, and inspect heavy-duty thermal systems.
+          </p>
+        </div>
+      </div>
+
+      {/* 1. Intro — white */}
+      <div ref={introRef} className="relative overflow-hidden bg-white py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/3 w-[560px] h-[560px] rounded-full bg-[#1C5CA8]/[0.06] pointer-events-none" aria-hidden="true" />
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10">
@@ -137,11 +158,11 @@ export default function Manufacturing() {
               </p>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
               <span className="text-[#0B1B2B]">Precision Heavy</span>
               <br />
               <span className="text-[#1C5CA8]">Fabrication Capacity</span>
-            </h1>
+            </h2>
 
             <p className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-md">
               Our manufacturing processes follow strict quality standards, ensuring durability,
@@ -163,18 +184,18 @@ export default function Manufacturing() {
             </div>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <a
-                href="#shop-floor-equipment"
-                className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-6 py-3 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
-              >
-                <span>Explore Our Manufacturing</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </a>
               <Link
                 to="/products"
+                className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-6 py-3 text-sm font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
+              >
+                <span>Explore Our Products</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              </Link>
+              <Link
+                to="/request-quote"
                 className="inline-flex items-center rounded-full border border-[#0B1B2B]/15 bg-white text-[#0B1B2B] hover:border-[#0B1B2B]/40 px-6 py-3 text-sm font-semibold transition-colors duration-200"
               >
-                View Our Products
+                Request a Quote
               </Link>
             </div>
           </Reveal>
@@ -222,7 +243,7 @@ export default function Manufacturing() {
       </div>
 
       {/* 2. Shop Floor Equipment — blue */}
-      <div id="shop-floor-equipment" className="relative bg-panel-blue py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="relative bg-panel-blue py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <img
           src={`${base}images/shop-floor-bg-blueprint.webp`}
           alt=""
