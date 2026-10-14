@@ -8,7 +8,7 @@ import { motion } from 'motion/react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import usePageAnimated from '../hooks/usePageAnimated';
-import { categoryBySlug, productsInCategory } from '../catalog';
+import { categoryBySlug, productsInCategory, getCategories, categoryHref } from '../catalog';
 import ProductImage from '../components/ProductImage';
 import { ArrowLeft, ChevronRight, ShieldCheck, Gauge, Thermometer, Flame, Layers, BarChart3, Settings } from 'lucide-react';
 
@@ -109,24 +109,52 @@ export default function ProductCategory() {
         </div>
       </div>
 
-      {/* Breadcrumb — now below the banner instead of clearing the navbar
-          itself, so no margin-top is needed here anymore. */}
-      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#5B6B80] font-semibold">
-          <Link to="/products" className="flex items-center gap-1.5 text-[#1C5CA8] hover:underline" data-testid="back-to-catalogue">
-            <ArrowLeft className="w-4 h-4" />
-            <span>All categories</span>
-          </Link>
-          <div className="flex items-center gap-2">
-            <Link to="/products" className="hover:text-[#1C5CA8]">Products</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-[#0B1B2B] font-extrabold">{category.name}</span>
-          </div>
+      {/* Category pill nav — floating over the hero/body seam via a negative
+          top margin, so it reads as one premium component straddling both
+          rather than a plain bar clearing the navbar. Doubles as a category
+          switcher (was a static breadcrumb before) using the same
+          getCategories()/categoryHref() the Products index itself uses, so
+          the link targets stay correct automatically for single-product
+          categories. Horizontally scrollable with the scrollbar hidden so it
+          degrades gracefully once there are more categories than fit. */}
+      <div className="relative z-20 -mt-7 px-4 sm:px-6 lg:px-8 font-sans">
+        <div className="max-w-7xl mx-auto">
+          <nav
+            aria-label="Product categories"
+            className="inline-flex max-w-full items-center gap-0.5 overflow-x-auto rounded-full border border-[#1C5CA8]/15 bg-[#EAF2FC]/95 backdrop-blur-md p-1 shadow-[0_8px_28px_rgba(11,27,43,0.14)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            <Link
+              to="/products"
+              data-testid="back-to-catalogue"
+              className="shrink-0 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] font-semibold text-[#1C5CA8]/65 hover:text-[#1C5CA8] hover:bg-white/70 transition-all duration-200"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">All</span>
+            </Link>
+            <span className="shrink-0 w-px h-5 bg-[#1C5CA8]/15" />
+            {getCategories().map((c) => {
+              const active = c.slug === category.slug;
+              return (
+                <Link
+                  key={c.slug}
+                  to={categoryHref(c)}
+                  data-testid={`category-pill-${c.slug}`}
+                  className={`shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 text-[12px] font-semibold transition-all duration-200 ${
+                    active
+                      ? 'bg-[#1C5CA8] text-white shadow-[0_2px_10px_rgba(28,92,168,0.35)]'
+                      : 'text-[#2A5885] hover:bg-white/70 hover:text-[#1C5CA8]'
+                  }`}
+                >
+                  {c.name}
+                </Link>
+              );
+            })}
+          </nav>
         </div>
       </div>
 
       {/* Product grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 md:pt-12 md:pb-20">
         <div className={`grid grid-cols-1 gap-8 ${gridCols}`}>
           {products.map((prod, i) => (
             <motion.div
