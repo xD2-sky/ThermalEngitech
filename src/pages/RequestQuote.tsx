@@ -62,7 +62,7 @@ export default function RequestQuote() {
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/15 to-transparent" />
         {/* Dedicated scrim for just the navbar strip — the hero's own
             left-to-right white fade (above) only guarantees contrast on the
             left, where the headline sits, and goes fully transparent on the
