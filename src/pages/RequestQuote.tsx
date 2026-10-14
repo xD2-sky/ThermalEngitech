@@ -55,7 +55,7 @@ export default function RequestQuote() {
           from a reference mockup the user supplied ("Industrial Quote
           Request Dashboard.png"), adapted from its navy+red scheme to the
           site's blue-only palette. */}
-      <div className="relative overflow-hidden min-h-[300px] flex items-center bg-white mt-16 sm:mt-18 lg:mt-20 px-4 sm:px-6 lg:px-8">
+      <div data-hero-banner className="relative overflow-hidden min-h-[300px] flex items-center bg-white px-4 sm:px-6 lg:px-8">
         <img
           src={`${import.meta.env.BASE_URL}images/banners/request-quote.webp`}
           alt=""
@@ -63,6 +63,15 @@ export default function RequestQuote() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/30 to-transparent" />
+        {/* Dedicated scrim for just the navbar strip — the hero's own
+            left-to-right white fade (above) only guarantees contrast on the
+            left, where the headline sits, and goes fully transparent on the
+            right, where nav links/phone number/CTA sit when unscrolled and
+            the bar is still see-through. This top-to-bottom band darkens
+            that strip uniformly so white nav text reads across its full
+            width, fading out well above where the hero's own content
+            starts. */}
+        <div className="absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b from-[#0B1B2B]/55 to-transparent" />
         <div className="relative z-10 max-w-7xl mx-auto w-full py-16 space-y-5">
           <Reveal className="flex items-center gap-3">
             <span className="h-[2px] w-8 bg-[#1C5CA8]" aria-hidden="true" />

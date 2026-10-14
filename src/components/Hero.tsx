@@ -15,6 +15,7 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
   return (
     <section
       id="hero"
+      data-hero-banner
       className="relative bg-[#0B1B2B] overflow-hidden font-sans min-h-[100svh] lg:min-h-[100vh] flex items-center py-10"
     >
       {/* Full-bleed background photo — an Indian refinery/process plant

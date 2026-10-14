@@ -51,7 +51,7 @@ export default function AboutUs() {
     <div className="space-y-0 text-left bg-white">
 
       {/* Page header — full-bleed photo with a dark scrim, text on top, matching the other pages' banners */}
-      <div className="relative overflow-hidden min-h-[360px] flex items-end px-4 sm:px-6 lg:px-8">
+      <div data-hero-banner className="relative overflow-hidden min-h-[360px] flex items-end px-4 sm:px-6 lg:px-8">
         <img
           src={`${base}images/about-hero-industrial.webp`}
           alt=""

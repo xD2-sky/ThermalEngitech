@@ -12,6 +12,13 @@ import { SITE } from '../config/site';
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // Whether the page's own dark hero banner (marked with [data-hero-banner])
+  // has been scrolled fully past the navbar strip. Tracked separately from
+  // `scrolled` because a tall hero (Home's is a full viewport height) stays
+  // on screen well past the 20px "scrolled" threshold — flipping to dark
+  // text that early left nav links unreadable (dark-on-dark) for however
+  // much of the hero was still visible underneath the bar.
+  const [pastHero, setPastHero] = useState(false);
   const location = useLocation();
 
   // useLayoutEffect, not useEffect: on a reload where the browser restores
@@ -21,7 +28,15 @@ export default function Navbar() {
   // (non-hero, likely white) content is actually behind it at that scroll
   // position. Measuring before paint avoids that flash.
   useLayoutEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    // Nav is h-14/h-16/h-20 (56/64/80px) across breakpoints — 90 covers the
+    // tallest case plus a small buffer, so text flips to dark right as the
+    // hero's bottom edge clears the bar, not before.
+    const NAV_HEIGHT_PX = 90;
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      const hero = document.querySelector('[data-hero-banner]');
+      setPastHero(hero ? hero.getBoundingClientRect().bottom <= NAV_HEIGHT_PX : true);
+    };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -40,7 +55,7 @@ export default function Navbar() {
       window.removeEventListener('scroll', handleScroll);
       window.clearInterval(interval);
     };
-  }, []);
+  }, [location.pathname]);
 
   // Close the mobile menu on any route change — not just the navItems/CTA
   // links inside the dropdown that happen to call setMobileOpen(false).
@@ -75,10 +90,13 @@ export default function Navbar() {
   // category/:slug) do have a dark banner, but it's preceded by a plain
   // white breadcrumb bar that clears the navbar via margin-top, so what's
   // actually behind the navbar at scroll:0 is that white bar, not the
-  // banner — dark text is correct there, same as the default. Once
-  // scrolled, every route converges on the same white/blurred bar with
-  // dark text, unchanged.
-  const DARK_BANNER_ROUTES = ['/', '/products', '/manufacturing', '/contact', '/about'];
+  // banner — dark text is correct there, same as the default. On dark-banner
+  // routes, text only flips to dark once the hero itself has scrolled past
+  // the bar (see `pastHero`) — not at the first 20px of scroll, which would
+  // leave it dark-on-dark while a tall hero (Home's is a full viewport
+  // height) is still on screen underneath. Every route converges on the
+  // same white/blurred bar with dark text once both conditions are met.
+  const DARK_BANNER_ROUTES = ['/', '/products', '/manufacturing', '/contact', '/about', '/request-quote'];
   // GitHub Pages 301-redirects a bare "/about" to "/about/" (trailing
   // slash) on every direct load/refresh. The prerendered HTML for that
   // page was generated with pathname "/about" (no slash) baked in, so it
@@ -90,13 +108,20 @@ export default function Navbar() {
   // slash (except for the root path) keeps both cases matching.
   const normalizedPath = location.pathname !== '/' ? location.pathname.replace(/\/$/, '') : location.pathname;
   const isDarkBannerRoute = DARK_BANNER_ROUTES.includes(normalizedPath);
-  const useDarkText = scrolled || !isDarkBannerRoute;
+  const useDarkText = !isDarkBannerRoute || pastHero;
+  // On dark-banner routes, the white/blurred chrome must appear in lockstep
+  // with the text turning dark — gating it on the raw 20px `scrolled`
+  // instead of `pastHero` left a window (any tall hero past 20px) where the
+  // bar had already turned white but the text, still waiting for the hero
+  // to clear, stayed white too: invisible white-on-white nav links. Other
+  // routes have no hero to wait for, so they keep the original 20px cue.
+  const showScrolledChrome = isDarkBannerRoute ? pastHero : scrolled;
 
   return (
     <nav
       style={{ willChange: 'backdrop-filter, background-color' }}
       className={`fixed top-0 left-0 right-0 z-50 font-sans transition-all duration-300 ease-out ${
-        scrolled
+        showScrolledChrome
           ? 'bg-white/60 backdrop-blur-xl shadow-[0_1px_16px_rgba(11,27,43,0.08)]'
           : 'bg-transparent'
       }`}

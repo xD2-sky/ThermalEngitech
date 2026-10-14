@@ -46,7 +46,7 @@ export default function Products() {
     <div className="text-left bg-white min-h-screen">
 
       {/* Banner — full-bleed photo with a dark scrim, text on top. */}
-      <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
+      <div data-hero-banner className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
         <img
           src={`${import.meta.env.BASE_URL}images/banners/products.webp`}
           alt="Close-up of industrial valves and pipework on a boiler skid"

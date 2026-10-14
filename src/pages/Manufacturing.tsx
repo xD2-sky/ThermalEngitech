@@ -95,7 +95,7 @@ export default function Manufacturing() {
       {/* Banner — full-bleed photo with a dark scrim, text on top. Same
           pattern as every other page's header, restored here for
           consistency. */}
-      <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
+      <div data-hero-banner className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
         <img
           src={`${base}images/manufacturing-hero-industrial.webp`}
           alt=""

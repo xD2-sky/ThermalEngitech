@@ -64,7 +64,7 @@ export default function ContactUs() {
     <div className="space-y-0 text-left bg-white min-h-screen">
       
       {/* Banner — full-bleed photo with a dark scrim, text on top. */}
-      <div className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
+      <div data-hero-banner className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
         <img
           src={`${import.meta.env.BASE_URL}images/contact-hero-industrial.webp`}
           alt=""
