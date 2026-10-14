@@ -94,10 +94,10 @@ export default function Manufacturing() {
           consistent all the way to the end of the page. */}
 
       {/* 1. Intro — white */}
-      <div ref={introRef} className="relative overflow-hidden bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+      <div ref={introRef} className="relative overflow-hidden bg-white py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/3 w-[560px] h-[560px] rounded-full bg-[#1C5CA8]/[0.06] pointer-events-none" aria-hidden="true" />
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center relative z-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10">
           <Reveal className="lg:col-span-6 space-y-5">
             <div className="inline-flex items-center divide-x divide-[#0B1B2B]/10 rounded-xl border border-[#0B1B2B]/12 bg-white shadow-sm">
               <div className="flex items-center gap-2 pl-4 pr-4 py-2.5">

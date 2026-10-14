@@ -393,7 +393,7 @@ export default function Home() {
           treatment used across the site's hero banners. Cards are frosted
           glass (translucent + backdrop-blur), so the photo shows through
           them too, not just in the gaps between them. */}
-      <div className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div className="relative py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <img
           src={`${import.meta.env.BASE_URL}images/about-hero-industrial.webp`}
           alt=""
@@ -450,7 +450,7 @@ export default function Home() {
           (circularly masked, soft shadow, faint glow — no hard black edge)
           with a thin orbit ring behind it for the "global network" feel,
           and a trust-point checklist. */}
-      <div className="bg-white pt-24 sm:pt-28 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8">
+      <div className="bg-white pt-12 sm:pt-14 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-8 items-center">
           <Reveal className="lg:col-span-5 space-y-5">
             <p className="text-xs uppercase tracking-[0.18em] text-[#1C5CA8] font-semibold">
