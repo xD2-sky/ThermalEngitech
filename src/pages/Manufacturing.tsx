@@ -17,7 +17,7 @@ import {
 const MANUFACTURING_DETAIL_SHOTS = [
   { src: 'images/manufacturing-details/structural-joint.jpg', alt: 'Close-up of a welded structural joint and access door hardware' },
   { src: 'images/manufacturing-details/tube-bundle.jpg', alt: 'Close-up of the boiler tube bundle and furnace tube sheet' },
-  { src: 'images/manufacturing-details/flange-plate.jpg', alt: 'Rows of precision-machined threaded bushings ready for assembly' },
+  { src: 'images/manufacturing-details/flange-plate.jpg', alt: 'Close-up of a burner firing a live test flame against a boiler shell in the workshop' },
   { src: 'images/manufacturing-details/pipe-fitting.jpg', alt: 'Close-up of a pipe fitting being welded to a steel baseplate, weld pool and shielding gas smoke visible' },
 ];
 
