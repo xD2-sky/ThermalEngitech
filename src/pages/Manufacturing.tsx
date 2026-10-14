@@ -89,18 +89,26 @@ export default function Manufacturing() {
   const { scrollYProgress } = useScroll({ target: introRef, offset: ['start end', 'end start'] });
   const photoY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%']);
 
+  // Same scroll-linked photo drift as the Home page's About section
+  // (AboutIntro.tsx) — same useScroll offset and useTransform range,
+  // applied here to the hero banner photo instead of a logo-masked one.
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: heroScrollYProgress } = useScroll({ target: heroRef, offset: ['start end', 'end start'] });
+  const heroPhotoY = useTransform(heroScrollYProgress, [0, 1], ['-8%', '8%']);
+
   return (
     <div className="space-y-0 text-left bg-white min-h-screen">
 
       {/* Banner — full-bleed photo with a dark scrim, text on top. Same
           pattern as every other page's header, restored here for
           consistency. */}
-      <div data-hero-banner className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
-        <img
+      <div ref={heroRef} data-hero-banner className="relative overflow-hidden min-h-[360px] flex items-center px-4 sm:px-6 lg:px-8">
+        <motion.img
           src={`${base}images/manufacturing-hero-industrial.webp`}
           alt=""
           role="presentation"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-x-0 h-[120%] w-full object-cover"
+          style={{ top: '-10%', y: heroPhotoY }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
         <div className="relative z-10 max-w-7xl mx-auto w-full py-16 space-y-4">

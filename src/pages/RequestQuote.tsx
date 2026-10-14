@@ -49,12 +49,8 @@ export default function RequestQuote() {
   return (
     <div className="space-y-0 text-left bg-white min-h-screen">
       
-      {/* Hero — photo fading to a light gradient on the left, with the intro
-          copy overlaid directly (no separate dark banner + separate centered
-          intro block underneath it, like the rest of the site). Recreated
-          from a reference mockup the user supplied ("Industrial Quote
-          Request Dashboard.png"), adapted from its navy+red scheme to the
-          site's blue-only palette. */}
+      {/* Hero — same full-bleed photo + dark navy scrim + white text
+          treatment as every other page's banner. */}
       <div data-hero-banner className="relative overflow-hidden min-h-[300px] flex items-center bg-white px-4 sm:px-6 lg:px-8">
         <img
           src={`${import.meta.env.BASE_URL}images/banners/request-quote.webp`}
@@ -62,27 +58,18 @@ export default function RequestQuote() {
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/15 to-transparent" />
-        {/* Dedicated scrim for just the navbar strip — the hero's own
-            left-to-right white fade (above) only guarantees contrast on the
-            left, where the headline sits, and goes fully transparent on the
-            right, where nav links/phone number/CTA sit when unscrolled and
-            the bar is still see-through. This top-to-bottom band darkens
-            that strip uniformly so white nav text reads across its full
-            width, fading out well above where the hero's own content
-            starts. */}
-        <div className="absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b from-[#0B1B2B]/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/80 via-[#0B1B2B]/60 to-[#0B1B2B]/35" />
         <div className="relative z-10 max-w-7xl mx-auto w-full py-16 space-y-5">
           <Reveal className="flex items-center gap-3">
-            <span className="h-[2px] w-8 bg-[#1C5CA8]" aria-hidden="true" />
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#1C5CA8]">Request a Quote</span>
+            <span className="h-[2px] w-8 bg-[#7FB2E4]" aria-hidden="true" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#7FB2E4]">Request a Quote</span>
           </Reveal>
           <Reveal delay={0.05} className="max-w-2xl space-y-4">
             <h1 className="text-3xl md:text-5xl font-heading font-extrabold tracking-tight leading-[1.1]">
-              <span className="text-[#0B1B2B]">Let's Engineer the</span>{' '}
-              <span className="text-[#1C5CA8]">Right Solution.</span>
+              <span className="text-white">Let's Engineer the</span>{' '}
+              <span className="text-[#7FB2E4]">Right Solution.</span>
             </h1>
-            <p className="text-[#47566A] text-sm sm:text-base leading-relaxed max-w-xl">
+            <p className="text-white/80 text-sm sm:text-base leading-relaxed max-w-xl">
               Tell us your thermal requirement — our engineering team will review the specifications
               and prepare a customized proposal for your process.
             </p>
@@ -98,8 +85,8 @@ export default function RequestQuote() {
                   <t.icon className="w-5 h-5" strokeWidth={1.75} />
                 </span>
                 <div className="leading-tight">
-                  <p className="text-sm font-bold text-[#0B1B2B]">{t.label}</p>
-                  {t.sub && <p className="text-xs text-[#5B6B80]">{t.sub}</p>}
+                  <p className="text-sm font-bold text-white">{t.label}</p>
+                  {t.sub && <p className="text-xs text-white/70">{t.sub}</p>}
                 </div>
               </div>
             ))}
