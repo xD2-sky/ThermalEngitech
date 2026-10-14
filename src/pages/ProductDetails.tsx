@@ -23,6 +23,10 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'air-pre-heater': 'images/products/air-preheater-block.webp',
   'oil-gas-3pass-wetback': 'images/products/oil-gas-3pass-wetback.webp',
   'smokecum-watertube-membrane': 'images/products/smokecum-watertube-membrane.webp',
+  'hybrid-combithermal': 'images/products/hybrid-combithermal.webp',
+  'solid-fuel-3pass-wetback': 'images/products/solid-fuel-3pass-wetback.webp',
+  'oil-gas-3pass-horizontal-heater': 'images/products/oil-gas-3pass-horizontal-heater.webp',
+  'solid-fuel-4pass-vertical-heater': 'images/products/solid-fuel-4pass-vertical-heater.webp',
 };
 
 /** Real manufacturer AutoCAD elevation drawings — cropped from the original
