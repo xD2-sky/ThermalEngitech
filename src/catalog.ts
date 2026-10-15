@@ -54,7 +54,6 @@ export interface CategoryInfo {
   blurb: string;
   icon: string;
   sampleImageType: Product['imageType'];
-  singleProductId?: string;
 }
 
 /** All categories that have at least one product, in the defined display order. */
@@ -69,7 +68,6 @@ export function getCategories(): CategoryInfo[] {
         blurb: CATEGORY_META[name].blurb,
         icon: CATEGORY_META[name].icon,
         sampleImageType: items[0]?.imageType ?? 'other',
-        singleProductId: items.length === 1 ? items[0].id : undefined,
       } as CategoryInfo;
     })
     .filter((c) => c.count > 0);
@@ -83,7 +81,9 @@ export function productsInCategory(name: string): Product[] {
   return PRODUCTS.filter((p) => p.category === name);
 }
 
-/** Where a category card should navigate: direct to details if it has a single product. */
+/** Every category card navigates to its shared category grid page — even a
+ *  1-product category shows that page first, same as every other category,
+ *  instead of jumping straight to the product's own detail page. */
 export function categoryHref(c: CategoryInfo): string {
-  return c.singleProductId ? `/products/${c.singleProductId}` : `/products/category/${c.slug}`;
+  return `/products/category/${c.slug}`;
 }

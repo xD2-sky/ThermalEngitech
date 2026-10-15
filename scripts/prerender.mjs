@@ -57,8 +57,8 @@ try {
   const counts = {};
   for (const m of block.matchAll(/category:\s*'([^']+)'/g)) counts[m[1]] = (counts[m[1]] || 0) + 1;
   const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-  // Only multi-product categories get a dedicated listing page (single-product ones redirect to details)
-  categorySlugs = Object.entries(counts).filter(([, n]) => n > 1).map(([name]) => slugify(name));
+  // Every category gets a dedicated listing page, even ones with just one product
+  categorySlugs = Object.keys(counts).map((name) => slugify(name));
 } catch (e) {
   console.warn('[prerender] could not parse product ids:', e.message);
 }

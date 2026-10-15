@@ -62,21 +62,21 @@ export default function ProductCategory() {
   const category = categoryBySlug(slug);
   const alreadyAnimated = usePageAnimated();
 
-  // Unknown slug → back to catalogue. Single-product category → straight to details.
+  // Unknown slug → back to catalogue.
   if (!category) return <Navigate to="/products" replace />;
-  if (category.singleProductId) return <Navigate to={`/products/${category.singleProductId}`} replace />;
 
   const products = productsInCategory(category.name);
   const n = products.length;
   const gridCols =
-    n === 4 ? 'sm:grid-cols-2 max-w-4xl mx-auto'
+    n === 1 ? 'max-w-sm mx-auto'
+    : n === 4 ? 'sm:grid-cols-2 max-w-4xl mx-auto'
     : n === 3 ? 'sm:grid-cols-2 lg:grid-cols-3'
     : n === 2 ? 'sm:grid-cols-2 max-w-3xl mx-auto'
     : 'sm:grid-cols-2 lg:grid-cols-3';
 
   useDocumentMeta(
     category.name,
-    `${category.name} by Thermal Engitech — ${category.count} IBR & ASME certified models. ${category.blurb}`,
+    `${category.name} by Thermal Engitech — ${category.count} IBR & ASME certified ${category.count === 1 ? 'model' : 'models'}. ${category.blurb}`,
     {
       jsonLd: {
         '@context': 'https://schema.org',

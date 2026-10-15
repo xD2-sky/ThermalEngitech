@@ -7,7 +7,7 @@ import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS } from '../data';
-import { slugify, productsInCategory } from '../catalog';
+import { slugify } from '../catalog';
 import ProductVideoShowcase from '../components/ProductVideoShowcase';
 import { ArrowLeft, ShieldCheck, Cpu, Mail, Phone, CheckCircle2, ChevronRight } from 'lucide-react';
 import Reveal from '../components/Reveal';
@@ -324,9 +324,8 @@ export default function ProductDetails() {
     );
   }
 
-  const categorySiblings = productsInCategory(product.category).length;
-  const backTo = categorySiblings > 1 ? `/products/category/${slugify(product.category)}` : '/products';
-  const backLabel = categorySiblings > 1 ? product.category : 'Products';
+  const backTo = `/products/category/${slugify(product.category)}`;
+  const backLabel = product.category;
 
   return (
     <div className="bg-white min-h-screen text-left">
