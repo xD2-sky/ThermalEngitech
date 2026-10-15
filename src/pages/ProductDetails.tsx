@@ -52,11 +52,17 @@ function ProductImageLarge({
   productId?: string;
 }) {
   if (productId && PRODUCT_PHOTOS[productId]) {
+    // These are real photos with an opaque studio-gray backdrop baked into
+    // the pixels (not transparent like the CAD schematics below) — filling
+    // the box edge-to-edge with object-cover means that backdrop reaches
+    // the panel's own rounded edges with nothing exposed in between, so
+    // there's no mismatched-gray seam between the photo's own background
+    // and the surrounding panel.
     return (
       <img
         src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[productId]}`}
         alt="Thermal Engitech product render"
-        className="max-w-full max-h-[480px] w-auto h-auto"
+        className="w-full h-full object-cover"
       />
     );
   }
@@ -275,21 +281,21 @@ export default function ProductDetails() {
           </p>
         </Reveal>
 
-        {/* Hero: image + overview, side by side */}
-        <Reveal delay={0.05} className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 items-stretch">
-          <div className="bg-panel rounded-2xl p-6 flex items-center justify-center relative min-h-[260px]">
+        {/* Product visual — full-width panel, aspect-locked so every product
+            (photo or CAD schematic) occupies the same footprint. Real
+            photos (opaque studio-gray backdrop) fill the box edge-to-edge
+            with no padding, so that backdrop reaches the panel's own
+            rounded corners with nothing exposed in between — no mismatched
+            seam. CAD schematics (transparent background) keep the padded,
+            centered, contained treatment, since there's no backdrop to
+            clash with there. */}
+        <Reveal delay={0.05} className={`bg-panel rounded-2xl relative overflow-hidden ${PRODUCT_PHOTOS[product.id] ? '' : 'p-8'}`}>
+          <div className={`w-full aspect-[16/10] flex items-center justify-center ${PRODUCT_PHOTOS[product.id] ? '' : 'max-w-3xl mx-auto'}`}>
             <ProductImageLarge type={product.imageType} productId={product.id} />
-            <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-slate-soft uppercase tracking-widest px-2.5 py-1 rounded">
-              {PRODUCT_PHOTOS[product.id] ? 'Product Photograph' : 'High Resolution Schematic CAD Layout'}
-            </span>
           </div>
-          <div className="bg-white border border-line rounded-2xl p-7 shadow-sm">
-            <h3 className="text-sm font-heading font-bold uppercase tracking-wide text-blue mb-3 flex items-center gap-2">
-              <Settings className="w-[18px] h-[18px]" />
-              <span>Design &amp; Operations Overview</span>
-            </h3>
-            <p className="text-sm text-slate leading-relaxed">{product.description}</p>
-          </div>
+          <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-slate-soft uppercase tracking-widest px-2.5 py-1 rounded">
+            {PRODUCT_PHOTOS[product.id] ? 'Product Photograph' : 'High Resolution Schematic CAD Layout'}
+          </span>
         </Reveal>
 
         {/* Video Showcase (Steam Boilers and Thermic Fluid Heaters only) */}
