@@ -114,16 +114,20 @@ export default function AboutUs() {
           </Reveal>
 
           <div className="lg:col-span-7 space-y-6">
-            <Reveal delay={0.05} className="space-y-6">
-              <p className="flex items-center gap-2 text-sm text-[#5B6B80]">
-                <span className="text-[#1C5CA8]">•</span>
-                Our history & vision
-              </p>
-              <h2 className="text-4xl sm:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.1]">
-                Building dependable process-heat systems since 2012
+            <Reveal delay={0.05} className="space-y-5">
+              <div className="flex items-center gap-2">
+                <span className="h-[2px] w-6 rounded-full bg-blue" aria-hidden="true" />
+                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-blue">
+                  Our History &amp; Vision
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+                <span className="text-ink">Building Dependable</span>
+                <br />
+                <span className="text-blue">Process-Heat Systems Since 2012.</span>
               </h2>
 
-              <p className="text-sm text-[#47566A] leading-relaxed">
+              <p className="text-sm sm:text-base text-slate leading-relaxed max-w-2xl mt-4">
                 Founded 2012 in Gujarat, now a full heavy-engineering plant in Dhamatwan — trusted
                 across India and export markets for complete boiler assemblies, heaters, and accessories.
               </p>
@@ -181,14 +185,16 @@ export default function AboutUs() {
 
           <Reveal className="text-center max-w-2xl mx-auto space-y-4">
             <div className="flex items-center justify-center gap-3">
-              <span className="h-px w-10 bg-[#1C5CA8]/40" aria-hidden="true" />
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#1C5CA8]">Leadership</p>
-              <span className="h-px w-10 bg-[#1C5CA8]/40" aria-hidden="true" />
+              <span className="h-px w-10 bg-blue/40" aria-hidden="true" />
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-blue">Leadership</span>
+              <span className="h-px w-10 bg-blue/40" aria-hidden="true" />
             </div>
-            <h2 className="text-4xl sm:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.1]">
-              Founded and led by the engineers <span className="text-[#1C5CA8]">who build it</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+              <span className="text-ink">Founded and led by</span>
+              <br />
+              <span className="text-blue">the engineers who build it.</span>
             </h2>
-            <p className="text-[#47566A] text-sm sm:text-base">
+            <p className="text-sm sm:text-base text-slate leading-relaxed max-w-2xl mx-auto mt-4">
               Two co-founders, one shared discipline: engineering process-heat systems that hold up in the field.
             </p>
           </Reveal>
@@ -291,21 +297,21 @@ export default function AboutUs() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           <div className="lg:col-span-5 space-y-5 text-left">
-            <Reveal className="flex items-center gap-2.5">
-              <p className="text-xs uppercase tracking-[0.18em] text-[#5B6B80] font-semibold">
+            <Reveal className="flex items-center gap-2">
+              <span className="h-[2px] w-6 rounded-full bg-blue" aria-hidden="true" />
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-blue">
                 Our Ongoing Mission
-              </p>
+              </span>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-4xl sm:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.06]">
-                <span className="text-[#0B1B2B]">Engineering a</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+                <span className="text-ink">Engineering a</span>
                 <br />
-                <span className="text-[#1C5CA8]">cleaner, safer</span>{' '}
-                <span className="text-[#0B1B2B]">tomorrow.</span>
+                <span className="text-blue">cleaner, safer tomorrow.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="text-base sm:text-lg text-[#47566A] leading-relaxed">
+              <p className="text-base sm:text-lg text-slate leading-relaxed max-w-2xl mt-4">
                 "To manufacture and deploy thermodynamic units that outperform standard parameters, reduce
                 ambient emissions to local pollution board standards, and empower chemical, food, and
                 textile grids with total thermal security."

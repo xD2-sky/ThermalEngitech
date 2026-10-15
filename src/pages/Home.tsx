@@ -155,17 +155,17 @@ export default function Home() {
         <div className="max-w-[100rem] mx-auto space-y-8 sm:space-y-10 relative z-10">
 
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-10">
-            <Reveal className="max-w-2xl space-y-3">
-              <div className="flex items-center gap-2.5">
-                <p className="text-[11px] uppercase tracking-[0.18em] text-[#7FB2E4] font-semibold">
+            <Reveal className="max-w-2xl">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="h-[2px] w-6 rounded-full bg-sky" aria-hidden="true" />
+                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-sky">
                   Our Products
-                </p>
-                <span className="h-px w-8 bg-[#1C5CA8]" aria-hidden="true" />
+                </span>
               </div>
-              <h2 className="text-4xl sm:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.06]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
                 <span className="text-white">Four Solutions.</span>
                 <br />
-                <span className="text-[#7FB2E4]">Countless Possibilities.</span>
+                <span className="text-sky">Countless Possibilities.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.06} className="max-w-sm lg:pl-6 lg:border-l lg:border-[#1C5CA8]/40">
@@ -275,23 +275,24 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
             <Reveal className="lg:col-span-6 space-y-5">
-              <div className="flex items-center gap-2.5">
-                <p className="text-xs uppercase tracking-[0.18em] text-[#5B6B80] font-semibold">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="h-[2px] w-6 rounded-full bg-blue" aria-hidden="true" />
+                <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-blue">
                   Why Thermal Engitech
-                </p>
+                </span>
               </div>
 
-              <h2 className="text-4xl sm:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
-                <span className="text-[#0B1B2B]">Engineering Built Around</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+                <span className="text-ink">Engineering Built Around</span>
                 <br />
-                <span className="text-[#1C5CA8]">Your Process.</span>
+                <span className="text-blue">Your Process.</span>
               </h2>
 
               <div className="space-y-1.5 max-w-lg">
-                <p className="text-sm sm:text-base font-semibold text-[#0B1B2B] leading-relaxed">
+                <p className="text-sm sm:text-base font-semibold text-ink leading-relaxed">
                   Creating Value for Our Customers Since 2012.
                 </p>
-                <p className="text-sm sm:text-base text-[#47566A] leading-relaxed">
+                <p className="text-sm sm:text-base text-slate leading-relaxed">
                   For more than a decade, we've helped reduce fuel costs by 20–70% — depending on
                   your location — while lowering carbon footprint through higher-quality,
                   better-engineered equipment.
@@ -408,17 +409,20 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
         <div className="max-w-7xl mx-auto space-y-10 relative z-10">
-          <Reveal className="max-w-2xl space-y-4 text-center mx-auto">
-            <div className="flex items-center justify-center gap-2.5">
-              <p className="text-xs uppercase tracking-[0.18em] text-[#7FB2E4] font-semibold">
+          <Reveal className="max-w-2xl text-center mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <span className="h-[2px] w-6 rounded-full bg-sky" aria-hidden="true" />
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-sky">
                 Where our systems run
-              </p>
+              </span>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-heading font-extrabold text-white tracking-[-0.02em] leading-[1.05]">
-              Industries we serve
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+              <span className="text-white">Fifteen Industries.</span>
+              <br />
+              <span className="text-sky">One Requirement in Common.</span>
             </h2>
-            <p className="text-white/80 text-sm leading-relaxed">
-              Fifteen industries, one requirement in common: heat that can't fail.
+            <p className="text-sm sm:text-base text-white/75 leading-relaxed max-w-2xl mt-4 mx-auto">
+              From process heat to utility steam — our systems run wherever reliability isn't optional.
             </p>
           </Reveal>
 
@@ -459,13 +463,18 @@ export default function Home() {
       <div className="bg-white pt-12 sm:pt-14 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-8 items-center">
           <Reveal className="lg:col-span-5 space-y-5">
-            <p className="text-xs uppercase tracking-[0.18em] text-[#1C5CA8] font-semibold">
-              Our Certifications
-            </p>
-            <h2 className="text-4xl sm:text-5xl font-heading font-extrabold text-[#0B1B2B] tracking-[-0.015em] leading-[1.1]">
-              Recognized Standards for <span className="text-[#1C5CA8]">Worldwide Projects</span>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="h-[2px] w-6 rounded-full bg-blue" aria-hidden="true" />
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-blue">
+                Our Certifications
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+              <span className="text-ink">Recognized Standards</span>
+              <br />
+              <span className="text-blue">Worldwide Projects.</span>
             </h2>
-            <p className="text-base text-[#47566A] leading-relaxed">
+            <p className="text-sm sm:text-base text-slate leading-relaxed max-w-2xl">
               Our commitment to quality is validated through certifications from leading global and
               national bodies.
             </p>
@@ -559,14 +568,19 @@ export default function Home() {
             </div>
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center px-8 py-7 sm:px-10 sm:py-8 md:px-14 md:py-10">
-              <div className="lg:col-span-8 space-y-2 text-left">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#7FB2E4]">
-                  Ready when you are
-                </p>
-                <h2 className="font-heading font-extrabold text-4xl sm:text-5xl text-white tracking-[-0.01em] leading-[1.1]">
-                  Let's plan your next project together.
+              <div className="lg:col-span-8 text-left">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="h-[2px] w-6 rounded-full bg-sky" aria-hidden="true" />
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-sky">
+                    Ready when you are
+                  </span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+                  <span className="text-white">Let's plan your next</span>
+                  <br />
+                  <span className="text-sky">project together.</span>
                 </h2>
-                <p className="text-sm text-white/80 leading-relaxed max-w-xl">
+                <p className="text-sm sm:text-base text-white/75 leading-relaxed max-w-xl mt-4">
                   Our team will help you design a custom solution based on your process, space
                   constraints and plant requirements.
                 </p>

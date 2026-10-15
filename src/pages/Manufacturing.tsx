@@ -360,14 +360,19 @@ export default function Manufacturing() {
         <div className="max-w-7xl mx-auto relative z-10 space-y-10">
 
           {/* Section header */}
-          <Reveal className="space-y-3 max-w-3xl">
-            <h3 className="text-xs uppercase font-mono font-bold tracking-[0.14em] text-blue">
-              Shop Floor Equipment
-            </h3>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold tracking-[-0.02em] text-ink leading-tight">
-              Real machine specifications from our equipment register
+          <Reveal className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="h-[2px] w-6 rounded-full bg-blue" aria-hidden="true" />
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-blue">
+                Shop Floor Equipment
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+              <span className="text-ink">Real machine specs</span>
+              <br />
+              <span className="text-blue">from our register</span>
             </h2>
-            <p className="text-sm text-slate leading-relaxed">
+            <p className="text-sm sm:text-base text-slate leading-relaxed max-w-2xl mt-4">
               Every capability on our floor is documented, rated, and available for inspection.
             </p>
           </Reveal>
@@ -408,17 +413,19 @@ export default function Manufacturing() {
       <section className="bg-white py-16 md:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-10">
 
-          <Reveal className="space-y-3 max-w-3xl">
-            <div className="flex items-center gap-2">
+          <Reveal className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-3">
               <span className="h-[2px] w-6 rounded-full bg-blue" aria-hidden="true" />
-              <h3 className="text-xs uppercase font-mono font-bold tracking-[0.14em] text-blue">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-blue">
                 Quality Assurance
-              </h3>
+              </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold tracking-[-0.02em] text-ink leading-tight">
-              Verified at every stage
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]">
+              <span className="text-ink">Verified at</span>
+              <br />
+              <span className="text-blue">Every Stage.</span>
             </h2>
-            <p className="text-sm text-slate leading-relaxed">
+            <p className="text-sm sm:text-base text-slate leading-relaxed max-w-2xl mt-4">
               Documented checks and third-party inspections accompany each fabrication stage — from raw material to final assembly.
             </p>
           </Reveal>

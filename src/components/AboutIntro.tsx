@@ -109,25 +109,28 @@ export default function AboutIntro() {
         {/* Content — staggered cascade: eyebrow, heading, paragraph, highlights
             and CTA each rise into place in sequence rather than all at once. */}
         <motion.div className="lg:col-span-6 space-y-6 text-left" {...containerMotionProps}>
-          <motion.p
+          <motion.div
             {...itemMotionProps}
-            className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#5B6B80]"
+            className="flex items-center gap-2"
           >
-            About Us
-          </motion.p>
+            <span className="h-[2px] w-6 rounded-full bg-blue" aria-hidden="true" />
+            <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-blue">
+              About Us
+            </span>
+          </motion.div>
 
           <motion.h2
             {...itemMotionProps}
-            className="text-3xl md:text-4xl lg:text-[2.75rem] font-heading font-extrabold text-[#0B1B2B] tracking-[-0.02em] leading-[1.08]"
+            className="text-3xl sm:text-4xl md:text-5xl font-heading font-extrabold tracking-[-0.02em] leading-[1.08]"
           >
-            Built on Expertise.
+            <span className="text-ink">Built on Expertise.</span>
             <br />
-            <span className="text-[#1C5CA8]">Driven by Purpose.</span>
+            <span className="text-blue">Driven by Purpose.</span>
           </motion.h2>
 
           <motion.p
             {...itemMotionProps}
-            className="text-sm sm:text-base text-[#47566A] leading-relaxed max-w-xl"
+            className="text-sm sm:text-base text-slate leading-relaxed max-w-xl"
           >
             Thermal Engitech is a Gujarat-based engineering and manufacturing company delivering
             reliable, efficient thermal and process-heating solutions — steam boilers, thermic
