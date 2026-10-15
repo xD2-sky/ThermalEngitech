@@ -10,7 +10,11 @@ import { PRODUCTS } from '../data';
 import { Product } from '../types';
 import { slugify } from '../catalog';
 import ProductVideoShowcase from '../components/ProductVideoShowcase';
-import { ArrowLeft, ShieldCheck, Cpu, Mail, Phone, CheckCircle2, ChevronRight, Gauge, Thermometer, Flame, Layers, BarChart3, Settings, Award, Clock, Rocket } from 'lucide-react';
+import {
+  ArrowLeft, ShieldCheck, Cpu, Mail, Phone, CheckCircle2, ChevronRight,
+  Gauge, Thermometer, Flame, Layers, BarChart3, Settings, Award, Clock,
+  Rocket, FileText,
+} from 'lucide-react';
 import Reveal from '../components/Reveal';
 
 /** Real product renders — only set for products we have accurate photography
@@ -30,10 +34,6 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'solid-fuel-4pass-vertical-heater': 'images/products/solid-fuel-4pass-vertical-heater.webp',
 };
 
-/** Real manufacturer AutoCAD elevation drawings — cropped from the original
- *  title-blocked sheets. These render in place of the abstract SVG fallback
- *  (still captioned "High Resolution Schematic CAD Layout", which is now
- *  literally accurate rather than a generic placeholder). */
 const PRODUCT_SCHEMATICS: Partial<Record<string, string>> = {
   'steam-distribution-header': 'images/products/steam-distribution-header.webp',
   'condensate-tank': 'images/products/condensate-tank.webp',
@@ -44,8 +44,13 @@ const PRODUCT_SCHEMATICS: Partial<Record<string, string>> = {
   'multi-cyclone-dust-collector': 'images/products/multi-cyclone-dust-collector.webp',
 };
 
-// Re-using CAD layout illustrations for high-contrast detail views
-function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'generator' | 'exchanger' | 'prs' | 'preheater' | 'pollution' | 'other'; productId?: string }) {
+function ProductImageLarge({
+  type,
+  productId,
+}: {
+  type: Product['imageType'];
+  productId?: string;
+}) {
   if (productId && PRODUCT_PHOTOS[productId]) {
     return (
       <img
@@ -66,136 +71,19 @@ function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'g
     );
   }
 
-  if (productId === 'oil-gas-3pass-wetback') {
-    return (
-      <svg viewBox="0 0 450 300" fill="none" className="w-full h-full max-h-72 drop-shadow-lg">
-        {/* Base Stone Tiled Isometric Platform */}
-        <path d="M 50,210 L 220,270 L 400,210 L 230,150 Z" fill="url(#base-grad)" stroke="#455A64" strokeWidth="1.5" />
-        
-        {/* Isometric Grid Tile Lines to replicate the grey paved base */}
-        <path d="M 84,198 L 254,258 M 118,186 L 288,246 M 152,174 L 322,234 M 186,162 L 356,222 M 220,150 L 390,210" stroke="#445565" strokeWidth="0.8" opacity="0.4" />
-        <path d="M 106,230 L 294,161 M 162,250 L 350,181 M 218,270 L 406,201" stroke="#445565" strokeWidth="0.8" opacity="0.4" />
-
-        <defs>
-          <linearGradient id="base-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#7C8A9A" />
-            <stop offset="100%" stopColor="#78909C" />
-          </linearGradient>
-          <linearGradient id="boiler-red" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#D9614A" />
-            <stop offset="40%" stopColor="#D32F2F" />
-            <stop offset="100%" stopColor="#B71C1C" />
-          </linearGradient>
-          <linearGradient id="boiler-red-front" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#C1352A" />
-            <stop offset="100%" stopColor="#5A1F12" />
-          </linearGradient>
-          <linearGradient id="chimney-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#FFFFFF" />
-            <stop offset="50%" stopColor="#EEECE6" />
-            <stop offset="100%" stopColor="#D8DBDD" />
-          </linearGradient>
-          <linearGradient id="burner-dark" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#33383E" />
-            <stop offset="100%" stopColor="#0D1B2A" />
-          </linearGradient>
-        </defs>
-
-        {/* Supporting Saddles / Legs (Black metal blocks) */}
-        <rect x="170" y="200" width="30" height="25" fill="#14181C" rx="2" />
-        <rect x="235" y="185" width="30" height="22" fill="#14181C" rx="2" />
-
-        {/* Main Red Boiler Cylinder body in perspective */}
-        <path d="M 170,130 L 275,103 A 38 42 0 0 1 275,187 L 170,230 Z" fill="url(#boiler-red)" />
-        
-        {/* Front face cap */}
-        <ellipse cx="170" cy="180" rx="45" ry="50" fill="url(#boiler-red-front)" stroke="#B71C1C" strokeWidth="1.5" />
-        
-        {/* Front Plate Outer Ring of Bolts */}
-        <circle cx="170" cy="180" r="38" stroke="#EEECE6" strokeWidth="1" strokeDasharray="3 5" opacity="0.6" />
-        <circle cx="170" cy="180" r="28" stroke="#33383E" strokeWidth="1" strokeDasharray="4 6" opacity="0.8" />
-
-        {/* "THERMAL ENGITECH" brand stamp text */}
-        <text x="210" y="165" fill="#E7C77A" fontSize="7" fontFamily="sans-serif" fontWeight="900" letterSpacing="0.5" transform="rotate(-13 210 165)" opacity="0.85">THERMAL ENGITECH</text>
-
-        {/* Industrial Burner mounted on the front face ellipse */}
-        <rect x="135" y="170" width="30" height="24" fill="url(#burner-dark)" stroke="#4B5563" rx="3" />
-        <circle cx="150" cy="182" r="8" fill="#D32F2F" stroke="#14181C" strokeWidth="1" />
-        <rect x="123" y="178" width="12" height="15" fill="#1F2937" rx="1" />
-        <line x1="120" y1="185" x2="135" y2="185" stroke="#8A94A0" strokeWidth="2" />
-
-        {/* Angled transition flue gas white duct going to the chimney */}
-        <path d="M 258,125 L 305,95 L 315,95 L 268,128 Z" fill="url(#chimney-grad)" stroke="#9AA6AF" strokeWidth="1" />
-
-        {/* Tall White Vertical Chimney Stack */}
-        <rect x="305" y="45" width="18" height="180" fill="url(#chimney-grad)" stroke="#9AA6AF" strokeWidth="1" />
-        
-        {/* Chimney Top Cone */}
-        <polygon points="302,45 314,25 326,45" fill="url(#chimney-grad)" stroke="#7C8A9A" strokeWidth="1" />
-        
-        {/* Circular Gallery/Platform at top of Chimney */}
-        <ellipse cx="314" cy="90" rx="20" ry="6" fill="#FFFFFF" stroke="#7C8A9A" strokeWidth="1.5" />
-        {/* Railings on the platform */}
-        <ellipse cx="314" cy="82" rx="20" ry="6" fill="none" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="294" y1="82" x2="294" y2="90" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="304" y1="84" x2="304" y2="90" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="314" y1="85" x2="314" y2="91" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="324" y1="84" x2="324" y2="90" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="334" y1="82" x2="334" y2="90" stroke="#7C8A9A" strokeWidth="1" />
-
-        {/* Access Ladder climbing up the Chimney stack */}
-        <line x1="325" y1="90" x2="325" y2="225" stroke="#7C8A9A" strokeWidth="1.5" />
-        <line x1="331" y1="90" x2="331" y2="225" stroke="#7C8A9A" strokeWidth="1.5" />
-        {/* Ladder rungs */}
-        <line x1="325" y1="105" x2="331" y2="105" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="325" y1="118" x2="331" y2="118" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="325" y1="131" x2="331" y2="131" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="325" y1="144" x2="331" y2="144" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="325" y1="157" x2="331" y2="157" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="325" y1="170" x2="331" y2="170" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="325" y1="183" x2="331" y2="183" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="325" y1="196" x2="331" y2="196" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="325" y1="209" x2="331" y2="209" stroke="#7C8A9A" strokeWidth="1" />
-        <line x1="325" y1="222" x2="331" y2="222" stroke="#7C8A9A" strokeWidth="1" />
-
-        {/* Chimney flared supporting base */}
-        <polygon points="298,225 330,225 324,215 304,215" fill="url(#chimney-grad)" stroke="#7C8A9A" strokeWidth="1" />
-
-        {/* Blue Valves and Controls on Top of Boiler */}
-        <rect x="210" y="123" width="6" height="15" fill="#1C5CA8" stroke="#1B2A3D" strokeWidth="0.8" />
-        <circle cx="213" cy="120" r="4" fill="#2F7BD4" />
-        <rect x="235" y="117" width="6" height="15" fill="#1C5CA8" stroke="#1B2A3D" strokeWidth="0.8" />
-        <circle cx="238" cy="114" r="4" fill="#2F7BD4" />
-        <rect x="185" y="115" width="8" height="20" fill="#1C5CA8" stroke="#1B2A3D" strokeWidth="0.8" />
-        <ellipse cx="189" cy="112" rx="7" ry="3" fill="#2F7BD4" stroke="#1C5CA8" strokeWidth="1" />
-
-        {/* Feed Water Pumps assembly */}
-        <path d="M 255,162 V 220 H 270" fill="none" stroke="#33383E" strokeWidth="3" strokeLinecap="round" />
-        <rect x="264" y="210" width="12" height="22" fill="#33383E" rx="1" stroke="#0D1B2A" strokeWidth="1" />
-        <rect x="278" y="208" width="12" height="22" fill="#33383E" rx="1" stroke="#0D1B2A" strokeWidth="1" />
-        <rect x="266" y="202" width="8" height="8" fill="#1C5CA8" rx="1" />
-        <rect x="280" y="200" width="8" height="8" fill="#1C5CA8" rx="1" />
-      </svg>
-    );
-  }
-
+  // Schematic fallback (kept identical to the previous implementation)
   switch (type) {
     case 'boiler':
       return (
         <svg viewBox="0 0 320 200" fill="none" className="w-full h-full max-h-72 drop-shadow-lg">
-          {/* Main Boiler Saturated Shell Cylinder */}
           <rect x="50" y="45" width="220" height="110" rx="55" fill="#0D1B2A" stroke="#1C5CA8" strokeWidth="4.5" />
           <rect x="58" y="53" width="204" height="94" rx="47" fill="#0D1B2A" opacity="0.9" />
-          
           <line x1="68" y1="80" x2="252" y2="80" stroke="#2F7BD4" strokeWidth="3" strokeDasharray="6 6" />
           <line x1="68" y1="100" x2="252" y2="100" stroke="#2F7BD4" strokeWidth="3" />
           <line x1="68" y1="120" x2="252" y2="120" stroke="#2F7BD4" strokeWidth="3" strokeDasharray="6 6" />
-
-          {/* Drum steam release nozzle */}
           <rect x="145" y="15" width="30" height="30" fill="#17222E" stroke="#1C5CA8" strokeWidth="2.5" />
           <line x1="145" y1="24" x2="175" y2="24" stroke="#2F7BD4" strokeWidth="2" />
           <path d="M160 5 V15" stroke="#EF4444" strokeWidth="3" />
-
           <rect x="80" y="155" width="25" height="15" fill="#1B2A3D" stroke="#1C5CA8" strokeWidth="2.5" />
           <rect x="215" y="155" width="25" height="15" fill="#1B2A3D" stroke="#1C5CA8" strokeWidth="2.5" />
           <line x1="65" y1="170" x2="255" y2="170" stroke="#1C5CA8" strokeWidth="5" />
@@ -208,7 +96,6 @@ function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'g
           <path d="M70 70 Q90 55 110 70 T150 70 T190 70 T230 70" fill="none" stroke="#1C5CA8" strokeWidth="4" />
           <path d="M70 95 Q90 80 110 95 T150 95 T190 95 T230 95" fill="none" stroke="#1C5CA8" strokeWidth="4" />
           <path d="M70 120 Q90 105 110 120 T150 120 T190 120 T230 120" fill="none" stroke="#1B3A63" strokeWidth="4" />
-
           <rect x="25" y="70" width="25" height="60" fill="#1B2A3D" stroke="#1C5CA8" strokeWidth="4" />
           <line x1="10" y1="100" x2="25" y2="100" stroke="#EF4444" strokeWidth="5" />
         </svg>
@@ -272,9 +159,8 @@ function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'g
   }
 }
 
-// Keyword match rather than a per-label lookup — same approach as the
-// category grid's specIcon(), just duplicated locally here since this is a
-// one-product trial, not yet a shared layout.
+// Keyword match rather than a per-label lookup — same approach across
+// product layouts.
 function specIcon(label: string) {
   const l = label.toLowerCase();
   if (l.includes('pressure')) return Gauge;
@@ -288,190 +174,10 @@ function specIcon(label: string) {
 }
 
 // A spec value like "0.5 Ton/hr to 20.0 Tons/hr (500 to 20,000 kg/hr)" reads
-// better as a bold headline value plus a smaller parenthetical note below it
-// — splits that out generically wherever a spec happens to end in "(...)",
-// falls back to a single line otherwise.
+// better as a bold headline value plus a smaller parenthetical note below it.
 function splitSpecValue(value: string): [string, string | null] {
   const m = value.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
   return m ? [m[1], m[2]] : [value, null];
-}
-
-/** Trial layout for a single product (oil-gas-3pass-wetback) — built from a
- *  design the user sourced externally and asked to preview before deciding
- *  whether to roll it out to every product page. Single flowing column
- *  instead of the shared layout's two-column sidebar: hero image paired
- *  with the overview text, a scannable icon-per-spec grid, then features
- *  and certifications side by side, closing with a full-width quote
- *  banner. Colors/icons are adapted to the site's own palette (lucide
- *  instead of Font Awesome, the real product photo instead of a generic
- *  icon) rather than copied verbatim from the source file. */
-function ProductDetailsTrialLayout({ product, backTo, backLabel }: { product: Product; backTo: string; backLabel: string }) {
-  return (
-    <div className="bg-white min-h-screen text-left">
-
-      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20 sticky top-16 sm:top-18 lg:top-20 z-30">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#5B6B80] font-semibold">
-          <Link
-            to={backTo}
-            data-testid="product-back-btn"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#1C5CA8]/8 hover:bg-[#1C5CA8]/15 text-[#1C5CA8] px-3.5 py-2 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to {backLabel}</span>
-          </Link>
-          <div className="hidden sm:flex items-center gap-2">
-            <Link to="/products" className="hover:text-[#1C5CA8]">Products</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <Link to={backTo} className="text-[#1C5CA8] hover:underline">{product.category}</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-[#0B1B2B] font-extrabold truncate max-w-[120px] sm:max-w-none">{product.name}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 space-y-10">
-
-        {/* Header */}
-        <Reveal className="space-y-4">
-          <span className="text-xs font-mono font-bold tracking-wider text-[#1C5CA8] bg-[#1C5CA8]/10 px-3 py-1.5 rounded-full uppercase">
-            {product.category}
-          </span>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-tight leading-tight">
-            {product.name}
-          </h1>
-          <p className="text-[#1C5CA8] text-sm md:text-base font-semibold font-sans leading-relaxed border-l-4 border-[#7FB2E4] pl-4">
-            "{product.tagline}"
-          </p>
-        </Reveal>
-
-        {/* Hero: image + overview, side by side */}
-        <Reveal delay={0.05} className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 items-stretch">
-          <div className="bg-panel rounded-2xl p-6 flex items-center justify-center relative min-h-[260px]">
-            <ProductImageLarge type={product.imageType} productId={product.id} />
-            <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-[#5B6B80] uppercase tracking-widest px-2.5 py-1 rounded">
-              {PRODUCT_PHOTOS[product.id] ? 'Product Photograph' : 'High Resolution Schematic CAD Layout'}
-            </span>
-          </div>
-          <div className="bg-white border border-[#E1E4E3] rounded-2xl p-7 shadow-sm">
-            <h3 className="text-sm font-heading font-bold uppercase tracking-wide text-[#1C5CA8] mb-3 flex items-center gap-2">
-              <Settings className="w-[18px] h-[18px]" />
-              <span>Design & Operations Overview</span>
-            </h3>
-            <p className="text-sm text-[#244a5e] leading-relaxed">{product.description}</p>
-          </div>
-        </Reveal>
-
-        {/* Video Showcase (Only for Steam Boilers and Thermic Fluid Heaters) */}
-        {(product.category === 'Steam Boilers' || product.category === 'Thermic Fluid Heaters') && (
-          <ProductVideoShowcase productId={product.id} />
-        )}
-
-        {/* Technical Specifications — icon-per-spec scannable grid */}
-        <Reveal delay={0.1} className="space-y-5">
-          <h2 className="text-xl font-heading font-bold text-[#0B1B2B] flex items-center gap-2.5">
-            <Cpu className="w-5 h-5 text-[#1C5CA8]" />
-            <span>Technical Specifications</span>
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {product.specifications?.map((sp, idx) => {
-              const SpecIcon = specIcon(sp.label);
-              const [mainValue, note] = splitSpecValue(sp.value);
-              return (
-                <div
-                  key={idx}
-                  className="bg-[#F9FCFF] border border-[#E5F0F8] rounded-xl p-5 flex items-start gap-4 transition-all duration-150 hover:bg-white hover:border-[#B8D6E9] hover:shadow-[0_8px_18px_-8px_rgba(26,88,120,0.15)]"
-                >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#1C5CA8]/10 text-[#1C5CA8]">
-                    <SpecIcon className="w-[18px] h-[18px]" strokeWidth={1.75} />
-                  </span>
-                  <div className="min-w-0">
-                    <div className="text-[11px] font-mono font-bold uppercase tracking-wide text-[#5B6B80] mb-1">{sp.label}</div>
-                    <div className="text-sm font-bold text-[#0B1B2B] leading-snug">{mainValue}</div>
-                    {note && <div className="text-xs text-[#5B6B80] mt-0.5">{note}</div>}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </Reveal>
-
-        {/* Key Performance Features + Engineering Authority, side by side */}
-        <Reveal delay={0.15} className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-7">
-          <div className="bg-panel border border-[#E1E4E3] rounded-2xl p-7">
-            <h3 className="text-base font-heading font-bold text-[#0B1B2B] mb-5 flex items-center gap-2">
-              <Rocket className="w-[18px] h-[18px] text-[#1C5CA8]" />
-              <span>Key Performance Features</span>
-            </h3>
-            <div className="space-y-4">
-              {product.features?.map((feat, idx) => (
-                <div key={idx} className="flex gap-2.5 items-start">
-                  <CheckCircle2 className="w-4 h-4 text-[#1C5CA8] shrink-0 mt-0.5" />
-                  <span className="text-sm text-[#1d4257] font-medium leading-relaxed">{feat}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-white border border-[#E1E4E3] rounded-2xl p-7 shadow-sm flex flex-col">
-            <h3 className="text-base font-heading font-bold text-[#0B1B2B] mb-4 flex items-center gap-2">
-              <Award className="w-[18px] h-[18px] text-[#1C5CA8]" />
-              <span>Engineering Authority</span>
-            </h3>
-            <div className="flex items-center gap-3 bg-[#F2F9FF] border-l-4 border-[#1C5CA8] rounded-xl px-4 py-3.5 mb-4">
-              <ShieldCheck className="w-7 h-7 text-[#1C5CA8] shrink-0" />
-              <div>
-                <strong className="block text-sm text-[#0B1B2B]">IBR 1950 & ASME Certified</strong>
-                <span className="text-xs text-[#5B6B80]">Approved up to 32kg/cm²</span>
-              </div>
-            </div>
-            <ul className="space-y-2.5">
-              <li className="flex items-center gap-2.5 text-[13px] text-[#1e4c63]">
-                <CheckCircle2 className="w-4 h-4 text-[#22A67A] shrink-0" />
-                <span>Mill test certifications accompany every component</span>
-              </li>
-              <li className="flex items-center gap-2.5 text-[13px] text-[#1e4c63]">
-                <CheckCircle2 className="w-4 h-4 text-[#22A67A] shrink-0" />
-                <span>Guaranteed joint radiography audits</span>
-              </li>
-            </ul>
-          </div>
-        </Reveal>
-
-        {/* Request a Quote — full-width closing banner */}
-        <Reveal delay={0.2} className="rounded-[28px] bg-gradient-to-r from-[#0D1B2A] to-[#1C4D64] text-white p-8 sm:p-10 flex flex-wrap items-center justify-between gap-7">
-          <div className="space-y-1.5 max-w-md">
-            <h3 className="text-xl sm:text-2xl font-heading font-extrabold">Request a Quote for This Equipment</h3>
-            <p className="text-slate-300 text-sm">
-              Get a technical sizing quotation — our engineering team reviews your specification and responds within 24 business hours.
-            </p>
-          </div>
-          <div className="flex flex-col items-start sm:items-end gap-2.5">
-            <Link
-              to={`/request-quote?product=${encodeURIComponent(product.name)}`}
-              className="inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#2F7BD4] hover:scale-[1.02] text-white font-bold px-7 py-3.5 text-sm shadow-[0_8px_16px_-6px_rgba(0,0,0,0.3)] transition-all whitespace-nowrap"
-            >
-              Request a Quote
-            </Link>
-            <div className="flex flex-wrap items-center gap-4 text-xs text-[#B0D0E2]">
-              <span className="flex items-center gap-1.5">
-                <Phone className="w-3.5 h-3.5 text-[#7FB2E4]" />
-                Sales: <a href="tel:+917069306431" className="text-white font-medium border-b border-dotted border-white/30">+91 70693 06431</a>
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-[#7FB2E4]" />
-                <a href="mailto:info@thermalengitech.com" className="text-white font-medium border-b border-dotted border-white/30">info@thermalengitech.com</a>
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5 text-[11px] text-[#9BBDD0]">
-              <Clock className="w-3 h-3" />
-              <span>Technical proposals returned within 24 business hours.</span>
-            </div>
-          </div>
-        </Reveal>
-
-      </div>
-    </div>
-  );
 }
 
 export default function ProductDetails() {
@@ -513,13 +219,13 @@ export default function ProductDetails() {
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center space-y-6">
-        <h2 className="text-2xl font-bold font-heading text-[#0B1B2B]">Product Configuration Not Found</h2>
-        <p className="text-[#47566A] max-w-sm mx-auto text-xs leading-normal">
+        <h2 className="text-2xl font-bold font-heading text-ink">Product Configuration Not Found</h2>
+        <p className="text-slate max-w-sm mx-auto text-xs leading-normal">
           The requested system schematic could not be loaded. It may have been archived or updated.
         </p>
         <Link
           to="/products"
-          className="inline-flex items-center justify-center rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] px-5 py-3 text-sm font-semibold text-white transition-colors"
+          className="inline-flex items-center justify-center rounded-md bg-blue hover:bg-blue-2 px-5 py-3 text-sm font-semibold text-white transition-colors"
         >
           Return to catalog
         </Link>
@@ -530,178 +236,172 @@ export default function ProductDetails() {
   const backTo = `/products/category/${slugify(product.category)}`;
   const backLabel = product.category;
 
-  // Trial — see ProductDetailsTrialLayout's own comment for why this is
-  // scoped to one product only.
-  if (product.id === 'oil-gas-3pass-wetback') {
-    return <ProductDetailsTrialLayout product={product} backTo={backTo} backLabel={backLabel} />;
-  }
-
   return (
     <div className="bg-white min-h-screen text-left">
-      
-      {/* Breadcrumbs bar with navigation shortcuts — margin-top clears the fixed
-          navbar at rest; sticky top-* then holds it there once scrolled */}
-      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20 sticky top-16 sm:top-18 lg:top-20 z-30">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#5B6B80] font-semibold">
+
+      {/* Breadcrumb bar — clears the fixed navbar at rest; sticks below it once scrolled */}
+      <div className="bg-white border-b border-line py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20 sticky top-16 sm:top-18 lg:top-20 z-30">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-soft font-semibold">
           <Link
             to={backTo}
             data-testid="product-back-btn"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[#1C5CA8]/8 hover:bg-[#1C5CA8]/15 text-[#1C5CA8] px-3.5 py-2 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-full bg-blue/8 hover:bg-blue/15 text-blue px-3.5 py-2 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to {backLabel}</span>
           </Link>
           <div className="hidden sm:flex items-center gap-2">
-            <Link to="/products" className="hover:text-[#1C5CA8]">Products</Link>
+            <Link to="/products" className="hover:text-blue">Products</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <Link to={`/products/category/${slugify(product.category)}`} className="text-[#1C5CA8] hover:underline">{product.category}</Link>
+            <Link to={backTo} className="text-blue hover:underline">{product.category}</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-[#0B1B2B] font-extrabold truncate max-w-[120px] sm:max-w-none">{product.name}</span>
+            <span className="text-ink font-extrabold truncate max-w-[120px] sm:max-w-none">{product.name}</span>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
-        
-        {/* Left Column (Product Spec, Features, CAD View) */}
-        <div className="lg:col-span-7 space-y-10">
-          
-          {/* Header */}
-          <Reveal className="space-y-4">
-            <span className="text-xs font-mono font-bold tracking-wider text-[#1C5CA8] bg-[#1C5CA8]/10 px-3 py-1.5 rounded-full uppercase">
-              {product.category}
-            </span>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-tight leading-tight">
-              {product.name}
-            </h1>
-            <p className="text-[#1C5CA8] text-sm md:text-base font-semibold font-sans leading-relaxed">
-              "{product.tagline}"
-            </p>
-          </Reveal>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 space-y-10">
 
-          {/* Large Scale CAD View Canvas overlay */}
-          <Reveal delay={0.05} className="bg-panel border border-[#E1E4E3] rounded-lg p-8 flex items-center justify-center relative shadow-xs min-h-[300px]">
+        {/* Header */}
+        <Reveal className="space-y-4">
+          <span className="text-xs font-mono font-bold tracking-wider text-blue bg-blue/10 px-3 py-1.5 rounded-full uppercase">
+            {product.category}
+          </span>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold text-ink tracking-tight leading-tight">
+            {product.name}
+          </h1>
+          <p className="text-blue text-sm md:text-base font-semibold font-sans leading-relaxed border-l-4 border-sky pl-4">
+            "{product.tagline}"
+          </p>
+        </Reveal>
+
+        {/* Hero: image + overview, side by side */}
+        <Reveal delay={0.05} className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 items-stretch">
+          <div className="bg-panel rounded-2xl p-6 flex items-center justify-center relative min-h-[260px]">
             <ProductImageLarge type={product.imageType} productId={product.id} />
-            <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-[#5B6B80] uppercase tracking-widest px-2.5 py-1 rounded">
+            <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-slate-soft uppercase tracking-widest px-2.5 py-1 rounded">
               {PRODUCT_PHOTOS[product.id] ? 'Product Photograph' : 'High Resolution Schematic CAD Layout'}
             </span>
-          </Reveal>
-
-          {/* Video Showcase (Only for Steam Boilers and Thermic Fluid Heaters) */}
-          {(product.category === 'Steam Boilers' || product.category === 'Thermic Fluid Heaters') && (
-            <ProductVideoShowcase productId={product.id} />
-          )}
-
-          {/* Sizing description breakdown */}
-          <Reveal delay={0.1} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg space-y-4">
-            <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 pb-3">
-              Design & Operations Overview
+          </div>
+          <div className="bg-white border border-line rounded-2xl p-7 shadow-sm">
+            <h3 className="text-sm font-heading font-bold uppercase tracking-wide text-blue mb-3 flex items-center gap-2">
+              <Settings className="w-[18px] h-[18px]" />
+              <span>Design &amp; Operations Overview</span>
             </h3>
-            <p className="text-xs text-[#47566A] leading-relaxed font-sans">
-              {product.description}
-            </p>
-          </Reveal>
+            <p className="text-sm text-slate leading-relaxed">{product.description}</p>
+          </div>
+        </Reveal>
 
-          {/* Technical specifications — the data existed but was never surfaced before */}
-          <Reveal delay={0.1} className="bg-panel border border-[#E1E4E3] rounded-lg overflow-hidden">
-            <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 px-6 pt-6 pb-3">
-              Technical Specifications
-            </h3>
-            <div>
-              {product.specifications?.map((sp, idx) => (
+        {/* Video Showcase (Steam Boilers and Thermic Fluid Heaters only) */}
+        {(product.category === 'Steam Boilers' || product.category === 'Thermic Fluid Heaters') && (
+          <ProductVideoShowcase productId={product.id} />
+        )}
+
+        {/* Technical Specifications — icon-per-spec scannable grid */}
+        <Reveal delay={0.1} className="space-y-5">
+          <h2 className="text-xl font-heading font-bold text-ink flex items-center gap-2.5">
+            <Cpu className="w-5 h-5 text-blue" />
+            <span>Technical Specifications</span>
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {product.specifications?.map((sp, idx) => {
+              const SpecIcon = specIcon(sp.label);
+              const [mainValue, note] = splitSpecValue(sp.value);
+              return (
                 <div
                   key={idx}
-                  className={`grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-1 sm:gap-6 px-6 py-3.5 ${idx > 0 ? 'border-t border-slate-100' : ''}`}
+                  className="bg-panel border border-line rounded-xl p-5 flex items-start gap-4 transition-all duration-150 hover:bg-white hover:border-blue/30 hover:shadow-sm"
                 >
-                  <span className="text-[11px] font-mono uppercase tracking-wide text-[#5B6B80]">{sp.label}</span>
-                  <span className="text-xs sm:text-sm font-semibold text-[#0B1B2B]">{sp.value}</span>
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue/10 text-blue">
+                    <SpecIcon className="w-[18px] h-[18px]" strokeWidth={1.75} />
+                  </span>
+                  <div className="min-w-0">
+                    <div className="text-[11px] font-mono font-bold uppercase tracking-wide text-slate-soft mb-1">{sp.label}</div>
+                    <div className="text-sm font-bold text-ink leading-snug">{mainValue}</div>
+                    {note && <div className="text-xs text-slate-soft mt-0.5">{note}</div>}
+                  </div>
                 </div>
-              ))}
-            </div>
-          </Reveal>
+              );
+            })}
+          </div>
+        </Reveal>
 
-          {/* Features and standards ticks */}
-          <Reveal delay={0.15} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg space-y-6">
-            <h3 className="text-base font-heading font-bold tracking-tight text-[#0B1B2B] border-b border-slate-100 pb-3 flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-[#1C5CA8]" />
+        {/* Key Performance Features + Engineering Authority, side by side */}
+        <Reveal delay={0.15} className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-7">
+          <div className="bg-panel border border-line rounded-2xl p-7">
+            <h3 className="text-base font-heading font-bold text-ink mb-5 flex items-center gap-2">
+              <Rocket className="w-[18px] h-[18px] text-blue" />
               <span>Key Performance Features</span>
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-4">
               {product.features?.map((feat, idx) => (
                 <div key={idx} className="flex gap-2.5 items-start">
-                  <CheckCircle2 className="w-4 h-4 text-[#1C5CA8] shrink-0 mt-0.5" />
-                  <span className="text-xs text-[#47566A] font-sans leading-relaxed">{feat}</span>
+                  <CheckCircle2 className="w-4 h-4 text-blue shrink-0 mt-0.5" />
+                  <span className="text-sm text-slate font-medium leading-relaxed">{feat}</span>
                 </div>
               ))}
             </div>
-          </Reveal>
+          </div>
 
-        </div>
-
-        {/* Right Column (Sidebar Quick Enquiry contact form) */}
-        <div className="lg:col-span-5 space-y-8">
-
-          {/* Quick specs short highlight */}
-          <Reveal className="bg-[#0D1B2A] text-white p-6 rounded-lg space-y-4 border border-white/5 relative overflow-hidden shadow-md">
-            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
-            <div className="relative z-10 space-y-3 text-left">
-              <span className="text-[10px] uppercase font-mono font-extrabold text-[#7FB2E4] tracking-wider">
-                Engineering Authority
-              </span>
-              <h4 className="text-lg font-heading font-extrabold">IBR 1950 & ASME Certified</h4>
-              <p className="text-slate-300 text-xs leading-relaxed font-sans">
-                Approved up to 32kg/cm². Mill test certifications accompany every component.
-              </p>
-              <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-[#1C5CA8] pt-2 border-t border-white/10 font-mono">
-                <ShieldCheck className="w-4 h-4 shrink-0" />
-                <span>Guaranteed joint radiography audits</span>
+          <div className="bg-white border border-line rounded-2xl p-7 shadow-sm flex flex-col">
+            <h3 className="text-base font-heading font-bold text-ink mb-4 flex items-center gap-2">
+              <Award className="w-[18px] h-[18px] text-blue" />
+              <span>Engineering Authority</span>
+            </h3>
+            <div className="flex items-center gap-3 bg-panel-blue border-l-4 border-blue rounded-xl px-4 py-3.5 mb-4">
+              <ShieldCheck className="w-7 h-7 text-blue shrink-0" />
+              <div>
+                <strong className="block text-sm text-ink">IBR 1950 &amp; ASME Certified</strong>
+                <span className="text-xs text-slate-soft">Approved up to 32 kg/cm²</span>
               </div>
             </div>
-          </Reveal>
+            <ul className="space-y-2.5">
+              <li className="flex items-center gap-2.5 text-[13px] text-slate">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Mill test certifications accompany every component</span>
+              </li>
+              <li className="flex items-center gap-2.5 text-[13px] text-slate">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Guaranteed joint radiography audits</span>
+              </li>
+            </ul>
+          </div>
+        </Reveal>
 
-          {/* Every product routes to the shared Request a Quote form rather
-              than duplicating an embedded form here — that form already
-              asks only what's relevant per equipment category (fuel/boiler
-              type for fired equipment, a dedicated capacity dropdown for
-              steam-like categories, free-text sizing for everything else)
-              instead of maintaining a second, parallel form per category. */}
-          <Reveal delay={0.05} className="bg-panel border border-[#E1E4E3] p-6 rounded-lg shadow-sm space-y-4 text-left">
-            <div className="space-y-1 border-b border-slate-100 pb-3">
-              <h4 className="font-heading font-extrabold text-base text-[#0B1B2B]">Request a Quote</h4>
-              <p className="text-[11px] text-[#5B6B80] font-sans">
-                Get a technical sizing quotation for this equipment — our engineering team reviews your specification and responds within 24 business hours.
-              </p>
-            </div>
+        {/* Request a Quote — full-width closing banner */}
+        <Reveal delay={0.2} className="rounded-[28px] bg-gradient-to-r from-ink-2 to-blue-dark text-white p-8 sm:p-10 flex flex-wrap items-center justify-between gap-7">
+          <div className="space-y-1.5 max-w-md">
+            <h3 className="text-xl sm:text-2xl font-heading font-extrabold">Request a Quote for This Equipment</h3>
+            <p className="text-slate-300 text-sm">
+              Get a technical sizing quotation — our engineering team reviews your specification and responds within 24 business hours.
+            </p>
+          </div>
+          <div className="flex flex-col items-start sm:items-end gap-2.5">
             <Link
               to={`/request-quote?product=${encodeURIComponent(product.name)}`}
-              className="w-full inline-flex items-center justify-center rounded-md bg-[#1C5CA8] hover:bg-[#2F7BD4] py-3.5 text-sm font-semibold text-white shadow-sm transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-blue hover:bg-blue-2 hover:scale-[1.02] text-white font-bold px-7 py-3.5 text-sm shadow-lg transition-all whitespace-nowrap"
             >
-              Request a Quote for This Equipment
+              <FileText className="w-4 h-4" />
+              Request a Quote
             </Link>
-          </Reveal>
-
-          {/* Quick contact helpline */}
-          <Reveal delay={0.1} className="bg-panel border border-[#E1E4E3] rounded-lg p-6 text-left space-y-4">
-            <h5 className="font-heading font-bold text-xs text-[#0B1B2B] uppercase tracking-wider">Helpline</h5>
-            <div className="space-y-3 font-sans text-xs">
-              <div className="flex items-center gap-2 text-[#47566A]">
-                <Phone className="w-4 h-4 text-[#1C5CA8] shrink-0" />
-                <span>Sales: +91 70693 06431</span>
-              </div>
-              <div className="flex items-center gap-2 text-[#47566A]">
-                <Mail className="w-4 h-4 text-[#1C5CA8] shrink-0" />
-                <span>info@thermalengitech.com</span>
-              </div>
+            <div className="flex flex-wrap items-center gap-4 text-xs text-sky">
+              <span className="flex items-center gap-1.5">
+                <Phone className="w-3.5 h-3.5" />
+                Sales: <a href="tel:+917069306431" className="text-white font-medium border-b border-dotted border-white/30">+91 70693 06431</a>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Mail className="w-3.5 h-3.5" />
+                <a href="mailto:info@thermalengitech.com" className="text-white font-medium border-b border-dotted border-white/30">info@thermalengitech.com</a>
+              </span>
             </div>
-            <p className="text-[10px] text-[#5B6B80] font-medium leading-relaxed font-sans pt-1 border-t border-slate-200">
-              Technical proposals returned within 24 business hours.
-            </p>
-          </Reveal>
-
-        </div>
+            <div className="flex items-center gap-1.5 text-[11px] text-slate-300">
+              <Clock className="w-3 h-3" />
+              <span>Technical proposals returned within 24 business hours.</span>
+            </div>
+          </div>
+        </Reveal>
 
       </div>
-
     </div>
   );
 }

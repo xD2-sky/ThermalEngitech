@@ -22,7 +22,6 @@ export default function RequestQuote() {
 
   const [savedInquiries, setSavedInquiries] = useState<Inquiry[]>([]);
 
-  // Local storage synchronization of inquiry logs
   useEffect(() => {
     try {
       const existing = localStorage.getItem('thermal_saved_inquiries');
@@ -48,9 +47,8 @@ export default function RequestQuote() {
 
   return (
     <div className="space-y-0 text-left bg-white min-h-screen">
-      
-      {/* Hero — same full-bleed photo + dark navy scrim + white text
-          treatment as every other page's banner. */}
+
+      {/* Hero — full-bleed photo + dark navy scrim + white text */}
       <div data-hero-banner className="relative overflow-hidden min-h-[300px] flex items-center bg-white px-4 sm:px-6 lg:px-8">
         <img
           src={`${import.meta.env.BASE_URL}images/banners/request-quote.webp`}
@@ -58,16 +56,16 @@ export default function RequestQuote() {
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/80 via-[#0B1B2B]/60 to-[#0B1B2B]/35" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/60 to-ink/35" />
         <div className="relative z-10 max-w-7xl mx-auto w-full py-16 space-y-5">
           <Reveal className="flex items-center gap-3">
-            <span className="h-[2px] w-8 bg-[#7FB2E4]" aria-hidden="true" />
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#7FB2E4]">Request a Quote</span>
+            <span className="h-[2px] w-8 bg-sky" aria-hidden="true" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-sky">Request a Quote</span>
           </Reveal>
           <Reveal delay={0.05} className="max-w-2xl space-y-4">
             <h1 className="text-3xl md:text-5xl font-heading font-extrabold tracking-tight leading-[1.1]">
               <span className="text-white">Let's Engineer the</span>{' '}
-              <span className="text-[#7FB2E4]">Right Solution.</span>
+              <span className="text-sky">Right Solution.</span>
             </h1>
             <p className="text-white/80 text-sm sm:text-base leading-relaxed max-w-xl">
               Tell us your thermal requirement — our engineering team will review the specifications
@@ -81,7 +79,7 @@ export default function RequestQuote() {
               { icon: Clock, label: 'Fast Response', sub: 'Within 24 business hours' },
             ].map((t) => (
               <div key={t.label} className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white border border-[#1C5CA8]/20 text-[#1C5CA8] shadow-sm">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white border border-blue/20 text-blue shadow-sm">
                   <t.icon className="w-5 h-5" strokeWidth={1.75} />
                 </span>
                 <div className="leading-tight">
@@ -94,12 +92,9 @@ export default function RequestQuote() {
         </div>
       </div>
 
-      {/* Request form and Fuel Consumption Estimator, side by side — a soft
-          full-bleed gradient wash (brand blue fading to white) sits behind
-          the whole section so the two zones read as distinct at a glance,
-          without needing labels on the cards themselves. */}
+      {/* Form + Fuel Estimator section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1C5CA8]/[0.08] via-[#1C5CA8]/[0.02] to-white" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue/[0.08] via-blue/[0.02] to-white" aria-hidden="true" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <QuoteRequest
             presetProductName={presetProduct}

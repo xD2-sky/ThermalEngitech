@@ -20,10 +20,6 @@ interface QuoteRequestProps {
   savedInquiries: Inquiry[];
 }
 
-// Categories that are actually fired by a fuel and built in distinct
-// engineering configurations — the only ones where "Type of Boiler" and
-// "Fuel to Be Used" mean anything. A Heat Exchanger or Pollution Control
-// unit has neither, so those two fields stay hidden outside this set.
 const FIRED_EQUIPMENT_CATEGORIES: Product['category'][] = ['Steam Boilers', 'Thermic Fluid Heaters', 'Hot Water Generators'];
 
 const BOILER_TYPE_OPTIONS = [
@@ -36,17 +32,6 @@ const BOILER_TYPE_OPTIONS = [
 
 const PRESSURE_SELECT_OPTIONS = PRESSURE_OPTIONS.map((p) => `${p.bar} kg/cm²g`);
 
-// Steam Boilers and Thermic Fluid Heaters are treated as full equivalents on
-// this page — same Fuel Consumption Estimator, same Tons/Hour capacity
-// dropdown, same "Operating Pressure" field — per an explicit decision to
-// keep these two in parity rather than split them by their technically
-// different native unit (a heater's real rating is kcal/hr, not steam
-// Tons/Hour). Hot Water Generators keeps its own kcal/hr dropdown. Every
-// other category (Pressure Reducing Stations, Air Preheaters, Heat
-// Exchangers, Pollution Control, Other Equipments) has its own native unit
-// entirely (pipe size, surface area, gas volume...) with no single dropdown
-// that fits all of them, so those get a free-text field with a relevant
-// placeholder instead of forced steam/thermal bands.
 const STEAM_LIKE_CATEGORIES: Product['category'][] = ['Steam Boilers', 'Thermic Fluid Heaters'];
 
 const STEAM_CAPACITY_OPTIONS = [
@@ -83,9 +68,6 @@ const PURCHASE_TIMELINE_OPTIONS = [
   'Just exploring / planning phase',
 ];
 
-// Matches a raw TPH figure from the Fuel Estimator to the same capacity
-// bands offered in the dropdown, so "Use These Figures" can fill it in
-// without the visitor having to re-select it themselves.
 function capacityBand(tph: number): string {
   if (tph < 1) return 'Under 1.0 Ton / Hour';
   if (tph <= 5) return '1.0 - 5.0 Tons / Hour';
@@ -110,7 +92,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
     fuelType: '',
     fuelTypeOther: '',
     purchaseTimeline: '',
-    message: ''
+    message: '',
   });
 
   const [submittedTicket, setSubmittedTicket] = useState<string | null>(null);
@@ -119,14 +101,13 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
   const [botcheck, setBotcheck] = useState(false);
   const specSheetRef = useRef<HTMLFormElement>(null);
 
-  // Synchronize dynamic preset selection
   useEffect(() => {
     if (presetProductName) {
       const category = PRODUCTS.find((p) => p.name === presetProductName)?.category;
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
         requiredProduct: presetProductName,
-        ...(category ? { equipmentCategory: category } : {})
+        ...(category ? { equipmentCategory: category } : {}),
       }));
     }
   }, [presetProductName]);
@@ -141,15 +122,10 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
       ? THERMAL_CAPACITY_OPTIONS
       : null;
 
-  // Picking a different equipment category changes what the rest of the
-  // form even means (a Heat Exchanger has no "fuel" or "boiler type", and its
-  // capacity is measured in an entirely different unit than a boiler's) —
-  // so those dependent fields are reset rather than left showing a stale
-  // answer in the new category's terms.
   const handleCategoryChange = (category: Product['category']) => {
     const models = productsInCategory(category);
     const stillFired = FIRED_EQUIPMENT_CATEGORIES.includes(category);
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       equipmentCategory: category,
       requiredProduct: models.length === 1 ? models[0].name : '',
@@ -157,33 +133,22 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
       fuelType: stillFired ? prev.fuelType : '',
       fuelTypeOther: stillFired ? prev.fuelTypeOther : '',
       pressureTemperature: '',
-      capacity: ''
+      capacity: '',
     }));
   };
 
-  // Carries the Fuel Consumption Estimator's result straight into this form —
-  // the two panels sit side by side, so this just needs to update the shared
-  // state and (on narrower screens, where they stack) bring the form into
-  // view. This panel is only ever shown for Steam Boilers or Thermic Fluid
-  // Heaters (see isSteamLikeCategory), so the category is never changed here
-  // — but the estimator's recommended model is always a Steam Boiler name,
-  // which would be wrong to apply while "Thermic Fluid Heaters" stays
-  // selected, so that part only carries over for Steam Boilers specifically.
   const handleCalculatorApply = (args: { product: string; capacityTPH: number }) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       requiredProduct: prev.equipmentCategory === 'Steam Boilers' ? (args.product || prev.requiredProduct) : prev.requiredProduct,
-      capacity: capacityBand(args.capacityTPH)
+      capacity: capacityBand(args.capacityTPH),
     }));
     specSheetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!formData.companyName || !formData.contactPerson || !formData.email || !formData.phone) {
-      return;
-    }
+    if (!formData.companyName || !formData.contactPerson || !formData.email || !formData.phone) return;
 
     setSubmitting(true);
     setSubmitError('');
@@ -204,7 +169,7 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
       pressure_or_temperature_required: formData.pressureTemperature || '',
       planned_purchase_timeline: formData.purchaseTimeline || '',
       additional_details: formData.message || '',
-      botcheck: botcheck ? 'true' : ''
+      botcheck: botcheck ? 'true' : '',
     });
 
     setSubmitting(false);
@@ -219,14 +184,13 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
       ...formData,
       requiredProduct: finalRequiredProduct,
       id: ticketId,
-      timestamp: new Date().toLocaleDateString()
+      timestamp: new Date().toLocaleDateString(),
     };
 
     onSubmitInquiry(newInquiry);
     setSubmittedTicket(ticketId);
 
-    // Reset simple entry fields
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       companyName: '',
       contactPerson: '',
@@ -237,40 +201,37 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
       fuelType: '',
       fuelTypeOther: '',
       purchaseTimeline: '',
-      message: ''
+      message: '',
     }));
   };
 
+  // Shared field classes — token-driven, matching the site's input voice
+  const inputClass =
+    'w-full text-xs px-3 py-2 bg-white border border-line rounded-lg text-ink font-medium focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue/20 transition';
+  const selectClass =
+    'w-full text-xs px-3 py-2 bg-white border border-line rounded-lg text-ink font-semibold focus:outline-none focus:border-blue focus:ring-1 focus:ring-blue/20 transition';
+  const labelClass = 'text-xs font-bold text-ink';
+
   return (
     <div id="contact" className="font-sans">
-
-      {/* Intro copy now lives in the page's hero above this component —
-          this used to duplicate it in a second, separate centered block. */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start max-w-7xl mx-auto">
 
-        {/* Left column (5 Columns) — the fuel estimator is built around
-            steam capacity math specifically (it only ever recommends
-            Steam Boiler models), so it only makes sense to show for that
-            one category. Every other category gets a general trust panel
-            instead, so the page doesn't look boiler-fixated when someone
-            arrives here from, say, an Air Preheater or Pollution Control
-            product page. */}
+        {/* Left column — Fuel estimator (for steam-like) or trust panel */}
         <div className="lg:col-span-5 space-y-6">
-
           {isSteamLikeCategory ? (
             <FuelConsumptionCalculator onApply={handleCalculatorApply} />
           ) : (
-            <Reveal className="bg-[#0D1B2A] text-white p-6 rounded-lg space-y-4 border border-white/5 relative overflow-hidden shadow-md">
+            <Reveal className="bg-ink text-white p-6 rounded-lg space-y-4 border border-white/5 relative overflow-hidden shadow-md">
               <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
               <div className="relative z-10 space-y-3 text-left">
-                <span className="text-[10px] uppercase font-mono font-extrabold text-[#7FB2E4] tracking-wider">
+                <span className="text-[10px] uppercase font-mono font-extrabold text-sky tracking-wider">
                   Engineering Authority
                 </span>
-                <h4 className="text-lg font-heading font-extrabold">IBR 1950 & ASME Certified</h4>
+                <h4 className="text-lg font-heading font-extrabold">IBR 1950 &amp; ASME Certified</h4>
                 <p className="text-slate-300 text-xs leading-relaxed font-sans">
-                  Approved up to 32kg/cm². Mill test certifications accompany every component.
+                  Approved up to 32 kg/cm². Mill test certifications accompany every component.
                 </p>
-                <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-[#1C5CA8] pt-2 border-t border-white/10 font-mono">
+                <div className="flex items-center gap-2 text-[10px] uppercase font-bold text-sky pt-2 border-t border-white/10 font-mono">
                   <ShieldCheck className="w-4 h-4 shrink-0" />
                   <span>Guaranteed joint radiography audits</span>
                 </div>
@@ -278,57 +239,49 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             </Reveal>
           )}
 
-          {/* Active Queued Session Tickets */}
+          {/* Submitted tickets from localStorage */}
           {savedInquiries.length > 0 && (
-            <div className="bg-panel border border-[#E1E4E3] rounded-xl p-6 space-y-4 animate-fadeIn text-left">
-              <h3 className="text-sm font-heading font-bold text-[#0B1B2B] uppercase tracking-wider">
+            <div className="bg-panel border border-line rounded-xl p-6 space-y-4 animate-fadeIn text-left">
+              <h3 className="text-sm font-heading font-bold text-ink uppercase tracking-wider">
                 Submitted Tickets ({savedInquiries.length})
               </h3>
-
               <div className="space-y-3">
                 {savedInquiries.map((inq) => (
-                  <div key={inq.id} className="bg-white border border-[#E1E4E3] p-4 rounded-lg space-y-2 text-xs">
+                  <div key={inq.id} className="bg-white border border-line p-4 rounded-lg space-y-2 text-xs">
                     <div className="flex justify-between items-center">
-                      <span className="font-mono text-[#1C5CA8] font-bold text-[11px]">{inq.id}</span>
-                      <span className="px-2 py-0.5 bg-[#1C5CA8]/10 text-[#1C5CA8] rounded-full text-[9px] font-bold">
+                      <span className="font-mono text-blue font-bold text-[11px]">{inq.id}</span>
+                      <span className="px-2 py-0.5 bg-blue/10 text-blue rounded-full text-[9px] font-bold">
                         RECEIVED
                       </span>
                     </div>
-
                     <div className="space-y-0.5">
-                      <b className="text-[#0B1B2B] block text-[12px]">{inq.companyName}</b>
-                      <span className="text-[#5B6B80] block text-[10.5px]">Item Selected: {inq.requiredProduct}</span>
-                      <span className="text-[#5B6B80] block text-[10.5px]">Capacity: {inq.capacity}</span>
+                      <b className="text-ink block text-[12px]">{inq.companyName}</b>
+                      <span className="text-slate-soft block text-[10.5px]">Item Selected: {inq.requiredProduct}</span>
+                      <span className="text-slate-soft block text-[10.5px]">Capacity: {inq.capacity}</span>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           )}
-
         </div>
 
-        {/* Spacer — keeps a gap between the two cards that the connector
-            (arrow + "Use the estimate" label) used to occupy. Narrower than
-            before so the spec sheet card (below) can be wider — it packs
-            more fields per row to match the estimator's height, so its
-            fields need the extra room. */}
         <div className="hidden lg:block lg:col-span-1" aria-hidden="true" />
 
-        {/* Contact Form Controls (6 Columns) */}
-        <Reveal delay={0.05} className="lg:col-span-6 bg-panel border border-[#E1E4E3] rounded-xl shadow-sm relative overflow-hidden">
+        {/* Spec sheet form */}
+        <Reveal delay={0.05} className="lg:col-span-6 bg-panel border border-line rounded-xl shadow-sm relative overflow-hidden">
 
           {submittedTicket && (
             <div className="absolute inset-0 bg-white/98 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-6 animate-fadeIn">
-              <CheckCircle className="w-16 h-16 text-[#1C5CA8] mb-4" />
-              <h3 className="text-2xl font-heading font-bold text-[#0B1B2B]">Quotation Ticket Dispatched</h3>
-              <p className="text-sm text-[#0B1B2B] max-w-md mt-2 leading-relaxed">
-                Thank you! Your thermodynamic specifications ticket <b className="text-[#1C5CA8] font-bold">{submittedTicket}</b> has been queued. Our systems engineers will contact your representative.
+              <CheckCircle className="w-16 h-16 text-blue mb-4" />
+              <h3 className="text-2xl font-heading font-bold text-ink">Quotation Ticket Dispatched</h3>
+              <p className="text-sm text-ink max-w-md mt-2 leading-relaxed">
+                Thank you! Your thermodynamic specifications ticket{' '}
+                <b className="text-blue font-bold">{submittedTicket}</b> has been queued. Our systems engineers will contact your representative.
               </p>
-
               <button
                 onClick={() => setSubmittedTicket(null)}
-                className="mt-6 px-5 py-2 bg-[#0D1B2A] hover:bg-[#1C5CA8] text-white text-xs font-bold rounded-lg transition"
+                className="mt-6 px-5 py-2 bg-ink hover:bg-blue text-white text-xs font-bold rounded-lg transition"
               >
                 Submit Another Specification Form
               </button>
@@ -338,95 +291,52 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
           <form ref={specSheetRef} onSubmit={handleSubmit} className="p-6 md:p-7 space-y-4 text-left">
             <HoneypotField checked={botcheck} onChange={setBotcheck} />
             <div className="flex items-start gap-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#1C5CA8]/10 text-[#1C5CA8]">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue/10 text-blue">
                 <Clipboard className="w-5 h-5" strokeWidth={1.75} />
               </span>
               <div>
-                <h3 className="text-base font-heading font-bold text-[#0B1B2B]">Thermal Engineering Spec Sheet</h3>
-                <p className="text-xs text-[#5B6B80] mt-1 leading-relaxed">
+                <h3 className="text-base font-heading font-bold text-ink">Thermal Engineering Spec Sheet</h3>
+                <p className="text-xs text-slate-soft mt-1 leading-relaxed">
                   Fill in your specs and our engineering team will prepare a customized proposal.
                 </p>
               </div>
             </div>
 
-            <hr className="border-[#E1E4E3]" />
+            <hr className="border-line" />
 
-            {/* Corporate & Representative Information, plus Equipment
-                Sizing — packed three to a row (wrapping into two rows)
-                instead of two, so this card doesn't run taller than the
-                estimator beside it. "Equipment Required" picks the broad
-                category; "Specific Model" (below, only when the category
-                has more than one) narrows it to an exact catalog item.
-                "Type of Boiler" further down is a different question again
-                — the engineering configuration/style — and only applies to
-                fired equipment, so it's kept out of this group. */}
-            {/* Company/Name/Email share a row — free-text fields tolerate a
-                narrower box fine, since the visitor can still scroll/see
-                what they typed. Equipment Required and Capacity Required
-                are selects with long option text ("Pollution Control
-                Equipments", "Above 15.0 Tons / Hour (Heavy Grid)") that
-                genuinely clips below ~250px, so those stay two-up instead
-                of packed in with everything else. */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="space-y-1">
-                <label htmlFor="quote-company" className="text-xs font-bold text-[#0B1B2B]">Company Name *</label>
-                <input
-                  id="quote-company"
-                  type="text"
-                  required
-                  value={formData.companyName}
+                <label htmlFor="quote-company" className={labelClass}>Company Name *</label>
+                <input id="quote-company" type="text" required value={formData.companyName}
                   onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
-                />
+                  className={inputClass} />
               </div>
-
               <div className="space-y-1">
-                <label htmlFor="quote-name" className="text-xs font-bold text-[#0B1B2B]">Name *</label>
-                <input
-                  id="quote-name"
-                  type="text"
-                  required
-                  value={formData.contactPerson}
+                <label htmlFor="quote-name" className={labelClass}>Name *</label>
+                <input id="quote-name" type="text" required value={formData.contactPerson}
                   onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] transition"
-                />
+                  className={inputClass} />
               </div>
-
               <div className="space-y-1">
-                <label htmlFor="quote-email" className="text-xs font-bold text-[#0B1B2B]">Email *</label>
-                <input
-                  id="quote-email"
-                  type="email"
-                  required
-                  value={formData.email}
+                <label htmlFor="quote-email" className={labelClass}>Email *</label>
+                <input id="quote-email" type="email" required value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                />
+                  className={inputClass} />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label htmlFor="quote-phone" className="text-xs font-bold text-[#0B1B2B]">Phone Number *</label>
-                <input
-                  id="quote-phone"
-                  type="tel"
-                  required
-                  value={formData.phone}
+                <label htmlFor="quote-phone" className={labelClass}>Phone Number *</label>
+                <input id="quote-phone" type="tel" required value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                />
+                  className={inputClass} />
               </div>
-
               <div className="space-y-1">
-                <label htmlFor="quote-equipment" className="text-xs font-bold text-[#0B1B2B]">Equipment Required *</label>
-                <select
-                  id="quote-equipment"
-                  required
-                  value={formData.equipmentCategory}
+                <label htmlFor="quote-equipment" className={labelClass}>Equipment Required *</label>
+                <select id="quote-equipment" required value={formData.equipmentCategory}
                   onChange={(e) => handleCategoryChange(e.target.value as Product['category'])}
-                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                >
+                  className={selectClass}>
                   {getCategories().map((cat) => (
                     <option key={cat.name} value={cat.name}>{cat.name}</option>
                   ))}
@@ -435,42 +345,32 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
             </div>
 
             <div className="space-y-1">
-              <label htmlFor="quote-capacity" className="text-xs font-bold text-[#0B1B2B]">Capacity Required</label>
+              <label htmlFor="quote-capacity" className={labelClass}>Capacity Required</label>
               {capacityOptions ? (
-                <select
-                  id="quote-capacity"
-                  value={formData.capacity}
+                <select id="quote-capacity" value={formData.capacity}
                   onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
-                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                >
+                  className={selectClass}>
                   <option value="" disabled>Select a range</option>
                   {capacityOptions.map((c) => (
                     <option key={c} value={c}>{c}</option>
                   ))}
                 </select>
               ) : (
-                <input
-                  id="quote-capacity"
-                  type="text"
-                  value={formData.capacity}
+                <input id="quote-capacity" type="text" value={formData.capacity}
                   onChange={(e) => setFormData({ ...formData, capacity: e.target.value })}
                   placeholder={CAPACITY_PLACEHOLDERS[formData.equipmentCategory] || 'Describe the size or duty required'}
-                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium placeholder:font-normal placeholder:text-[#9AA7B8] focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                />
+                  className={`${inputClass} placeholder:font-normal placeholder:text-slate-soft`} />
               )}
             </div>
 
             {categoryModels.length > 1 && (
               <div className="space-y-1">
-                <label htmlFor="quote-model" className="text-xs font-bold text-[#0B1B2B]">
-                  Specific Model <span className="font-normal text-[#5B6B80] normal-case">— optional</span>
+                <label htmlFor="quote-model" className={labelClass}>
+                  Specific Model <span className="font-normal text-slate-soft normal-case">— optional</span>
                 </label>
-                <select
-                  id="quote-model"
-                  value={formData.requiredProduct}
+                <select id="quote-model" value={formData.requiredProduct}
                   onChange={(e) => setFormData({ ...formData, requiredProduct: e.target.value })}
-                  className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-semibold focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                >
+                  className={selectClass}>
                   <option value="">Any model in this category</option>
                   {categoryModels.map((prod) => (
                     <option key={prod.id} value={prod.name}>{prod.name}</option>
@@ -479,48 +379,29 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               </div>
             )}
 
-            {/* Optional technical details — grouped and labeled separately
-                from the required contact/sizing fields above, so the form
-                reads as "a few extra details if you have them" rather than
-                adding to the core question count. Type of Boiler and Fuel
-                to Be Used only apply to fired equipment, so they drop out
-                entirely for categories like Heat Exchangers that have
-                neither — fewer irrelevant questions, not more. */}
             <div className="space-y-4">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-[#5B6B80]">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-soft">
                 Additional Technical Details <span className="font-normal normal-case">— optional</span>
               </p>
 
-              {/* Two fields per row — these selects' longest options
-                  ("Smoke Cum Water Tube (Membrane Wall)", "Just exploring /
-                  planning phase") clip below roughly half this card's
-                  width, so despite being four related fields they can't
-                  safely share one row the way the plainer fields above do. */}
               {isFiredEquipment && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label htmlFor="quote-boilertype" className="text-xs font-bold text-[#0B1B2B]">Type of Boiler</label>
-                    <select
-                      id="quote-boilertype"
-                      value={formData.boilerType}
+                    <label htmlFor="quote-boilertype" className={labelClass}>Type of Boiler</label>
+                    <select id="quote-boilertype" value={formData.boilerType}
                       onChange={(e) => setFormData({ ...formData, boilerType: e.target.value })}
-                      className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                    >
+                      className={selectClass}>
                       <option value="">Not sure — need advice</option>
                       {BOILER_TYPE_OPTIONS.map((t) => (
                         <option key={t} value={t}>{t}</option>
                       ))}
                     </select>
                   </div>
-
                   <div className="space-y-1">
-                    <label htmlFor="quote-fueltype" className="text-xs font-bold text-[#0B1B2B]">Fuel to Be Used</label>
-                    <select
-                      id="quote-fueltype"
-                      value={formData.fuelType}
+                    <label htmlFor="quote-fueltype" className={labelClass}>Fuel to Be Used</label>
+                    <select id="quote-fueltype" value={formData.fuelType}
                       onChange={(e) => setFormData({ ...formData, fuelType: e.target.value })}
-                      className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                    >
+                      className={selectClass}>
                       <option value="">Not sure / open to recommendation</option>
                       <optgroup label="Oil / Gas Fired">
                         {FUEL_OPTIONS.filter((f) => f.category === 'oil-gas').map((f) => (
@@ -540,30 +421,21 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label htmlFor="quote-pressuretemp" className="text-xs font-bold text-[#0B1B2B]">
-                    Operating Pressure Required
-                  </label>
-                  <select
-                    id="quote-pressuretemp"
-                    value={formData.pressureTemperature}
+                  <label htmlFor="quote-pressuretemp" className={labelClass}>Operating Pressure Required</label>
+                  <select id="quote-pressuretemp" value={formData.pressureTemperature}
                     onChange={(e) => setFormData({ ...formData, pressureTemperature: e.target.value })}
-                    className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                  >
+                    className={selectClass}>
                     <option value="">Not sure</option>
                     {PRESSURE_SELECT_OPTIONS.map((v) => (
                       <option key={v} value={v}>{v}</option>
                     ))}
                   </select>
                 </div>
-
                 <div className="space-y-1">
-                  <label htmlFor="quote-timeline" className="text-xs font-bold text-[#0B1B2B]">Planned Purchase Timeline</label>
-                  <select
-                    id="quote-timeline"
-                    value={formData.purchaseTimeline}
+                  <label htmlFor="quote-timeline" className={labelClass}>Planned Purchase Timeline</label>
+                  <select id="quote-timeline" value={formData.purchaseTimeline}
                     onChange={(e) => setFormData({ ...formData, purchaseTimeline: e.target.value })}
-                    className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                  >
+                    className={selectClass}>
                     <option value="">Not decided yet</option>
                     {PURCHASE_TIMELINE_OPTIONS.map((t) => (
                       <option key={t} value={t}>{t}</option>
@@ -574,35 +446,23 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
 
               {isFiredEquipment && formData.fuelType === 'other' && (
                 <div className="space-y-1">
-                  <label htmlFor="quote-fuelother" className="text-xs font-bold text-[#0B1B2B]">Please specify the fuel</label>
-                  <input
-                    id="quote-fuelother"
-                    type="text"
-                    value={formData.fuelTypeOther}
+                  <label htmlFor="quote-fuelother" className={labelClass}>Please specify the fuel</label>
+                  <input id="quote-fuelother" type="text" value={formData.fuelTypeOther}
                     onChange={(e) => setFormData({ ...formData, fuelTypeOther: e.target.value })}
-                    className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition"
-                  />
+                    className={inputClass} />
                 </div>
               )}
             </div>
 
-            {/* Detail notes */}
             <div className="space-y-1">
-              <label htmlFor="quote-message" className="text-xs font-bold text-[#0B1B2B]">Additional Details</label>
-              <textarea
-                id="quote-message"
-                rows={4}
-                value={formData.message}
+              <label htmlFor="quote-message" className={labelClass}>Additional Details</label>
+              <textarea id="quote-message" rows={4} value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full text-xs px-3 py-2 bg-white border border-[#E1E4E3] rounded-lg text-[#0B1B2B] font-medium focus:outline-none focus:border-[#1C5CA8] focus:bg-white transition leading-relaxed"
-              />
+                className={`${inputClass} leading-relaxed`} />
             </div>
 
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full py-3.5 bg-[#0D1B2A] hover:bg-[#1C5CA8] disabled:opacity-60 disabled:cursor-not-allowed text-white font-heading font-semibold text-xs uppercase tracking-wider rounded-lg shadow-md hover:shadow-lg transition duration-200 cursor-pointer flex items-center justify-center gap-2"
-            >
+            <button type="submit" disabled={submitting}
+              className="w-full py-3.5 bg-ink hover:bg-blue disabled:opacity-60 disabled:cursor-not-allowed text-white font-heading font-semibold text-xs uppercase tracking-wider rounded-lg shadow-md hover:shadow-lg transition duration-200 cursor-pointer flex items-center justify-center gap-2">
               <span>{submitting ? 'Sending…' : 'Submit Sizing Specs to Engineering Division'}</span>
               {!submitting && <ChevronRight className="w-4 h-4 stroke-[2.5]" />}
             </button>
@@ -610,11 +470,9 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               <p className="text-xs text-red-600 font-medium text-center">{submitError}</p>
             )}
           </form>
-
         </Reveal>
 
       </div>
-
     </div>
   );
 }
