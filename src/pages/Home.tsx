@@ -358,6 +358,12 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Divider between Why Thermal Engitech and What Sets Us Apart —
+          same treatment as the About page's pillars/mission divider. */}
+      <div className="bg-white px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto border-t border-[#0B1B2B]/10" />
+      </div>
+
       {/* What Sets Us Apart — 6-point differentiator grid */}
       <div className="bg-white pt-8 sm:pt-10 pb-10 sm:pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto space-y-10">
@@ -526,6 +532,12 @@ export default function Home() {
             ))}
           </Reveal>
         </div>
+      </div>
+
+      {/* Divider between Our Certifications and the Quote CTA banner —
+          same treatment as the other white-to-white section dividers. */}
+      <div className="bg-white px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto border-t border-[#0B1B2B]/10" />
       </div>
 
       {/* Quote CTA — a short, wide banner strip rather than a tall block:
