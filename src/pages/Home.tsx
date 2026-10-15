@@ -307,7 +307,7 @@ export default function Home() {
                 </div>
                 <div className="pl-4">
                   <p className="text-2xl font-heading font-extrabold text-[#0B1B2B]">
-                    <AnimatedCounter value={12} suffix="+ Yrs" />
+                    <AnimatedCounter value={14} suffix="+ Yrs" />
                   </p>
                   <p className="text-[10px] text-[#5B6B80] uppercase tracking-wide font-semibold mt-0.5">Industry Presence</p>
                 </div>
@@ -372,7 +372,7 @@ export default function Home() {
               { icon: ShieldCheck, title: 'Certified Quality', desc: 'Volumetric-qualified welders and radiographic weld checks on every pressure joint.' },
               { icon: Flame, title: 'Fuel Flexibility', desc: 'Diesel, gas, biomass, agri-waste, wood chips, charcoal — tuned to your fuel.' },
               { icon: FileText, title: 'Audit-Ready Compliance', desc: 'ISO 9001:2015, ASME, and IBR 1950 documentation for every unit.' },
-              { icon: Handshake, title: 'Proven Track Record', desc: '12+ years and 2,000+ installations across India and export markets.' },
+              { icon: Handshake, title: 'Proven Track Record', desc: '14+ years and 2,000+ installations across India and export markets.' },
             ].map((item) => (
               <div key={item.title} className="group flex items-start gap-3.5">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#1C5CA8]/8 text-[#1C5CA8] transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-[#1C5CA8]/12">

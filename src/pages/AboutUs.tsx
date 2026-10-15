@@ -151,40 +151,13 @@ export default function AboutUs() {
               </div>
               <div>
                 <span className="block text-2xl md:text-3xl font-heading font-extrabold text-[#0B1B2B]">
-                  <AnimatedCounter value={12} suffix="+ years" />
+                  <AnimatedCounter value={14} suffix="+ years" />
                 </span>
                 <span className="text-[11px] text-[#5B6B80] uppercase tracking-wider font-semibold">Industry presence</span>
               </div>
             </Reveal>
           </div>
 
-        </div>
-
-        {/* Foundational pillars — icon-highlight row, same hover-forward treatment as
-            the Home page's About Us intro (scale up, lift, deepen shadow on hover) */}
-        <div className="max-w-7xl mx-auto mt-16 pt-10 border-t border-[#E4E7EC]">
-          <Reveal className="space-y-1.5 mb-8">
-            <p className="flex items-center gap-2 text-sm text-[#5B6B80]">
-              <span className="text-[#1C5CA8]">•</span>
-              Why choose us
-            </p>
-            <h3 className="font-heading font-bold text-lg text-[#0B1B2B]">Our foundational pillars</h3>
-          </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {PILLARS.map((p, i) => (
-              <React.Fragment key={p.title}>
-              <Reveal delay={i * 0.08} className="group flex items-start gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#0B1B2B]/5 text-[#0B1B2B] shadow-sm transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-white">
-                  <p.icon className="w-5 h-5 transition-colors duration-300 group-hover:text-[#1C5CA8]" strokeWidth={1.75} />
-                </span>
-                <div className="space-y-1">
-                  <b className="text-sm font-bold text-[#0B1B2B] block">{p.title}</b>
-                  <p className="text-xs text-[#5B6B80] leading-relaxed">{p.desc}</p>
-                </div>
-              </Reveal>
-              </React.Fragment>
-            ))}
-          </div>
         </div>
 
       </div>
@@ -197,14 +170,14 @@ export default function AboutUs() {
           blue-only palette. Photo frames are intentionally empty
           placeholders (real headshots to follow); no bio copy is invented
           per founder since we don't have verified details beyond name/role. */}
-      <div className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-panel-blue overflow-hidden">
+      <div className="relative py-14 sm:py-16 px-4 sm:px-6 lg:px-8 border-y border-[#E4E7EC] bg-panel-blue overflow-hidden">
         <img
           src={`${base}images/leadership-bg-soft-blue.webp`}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="max-w-5xl mx-auto space-y-14 relative z-10">
+        <div className="max-w-5xl mx-auto space-y-10 relative z-10">
 
           <Reveal className="text-center max-w-2xl mx-auto space-y-4">
             <div className="flex items-center justify-center gap-3">
@@ -220,7 +193,7 @@ export default function AboutUs() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-10 md:gap-6 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 items-center">
             {leadership.map((lead, i) => (
               <React.Fragment key={i}>
                 {i === 1 && (
@@ -236,15 +209,15 @@ export default function AboutUs() {
                 >
                   {/* Photo frame — decorative dual-tone ring; empty placeholder
                       until real headshots are supplied */}
-                  <div className="relative w-[176px] h-[176px] shrink-0">
-                    <svg className="absolute -inset-3 w-[200px] h-[200px]" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+                  <div className="relative w-[132px] h-[132px] shrink-0">
+                    <svg className="absolute -inset-3 w-[156px] h-[156px]" viewBox="0 0 200 200" fill="none" aria-hidden="true">
                       <circle cx="100" cy="100" r="94" stroke="#7FB2E4" strokeWidth="4" strokeLinecap="round" strokeDasharray="172 563" transform="rotate(-90 100 100)" />
                       <circle cx="100" cy="100" r="94" stroke="#103E72" strokeWidth="4" strokeLinecap="round" strokeDasharray="172 563" strokeDashoffset="-227" transform="rotate(-90 100 100)" />
                       <circle cx="100" cy="6" r="5.5" fill="#7FB2E4" />
                       <circle cx="100" cy="194" r="5.5" fill="#103E72" />
                     </svg>
                     <div className="absolute inset-0 rounded-full bg-[#1C5CA8]/6 border border-[#1C5CA8]/15 flex items-center justify-center">
-                      <User className="w-16 h-16 text-[#1C5CA8]/25" strokeWidth={1.5} />
+                      <User className="w-12 h-12 text-[#1C5CA8]/25" strokeWidth={1.5} />
                     </div>
                   </div>
                   <div>
@@ -256,7 +229,7 @@ export default function AboutUs() {
             ))}
           </div>
 
-          <div className="pt-10 border-t border-[#0B1B2B]/10 grid grid-cols-2 sm:grid-cols-4 gap-y-8">
+          <div className="pt-8 border-t border-[#0B1B2B]/10 grid grid-cols-2 sm:grid-cols-4 gap-y-6">
             {[
               { icon: Settings, label: 'Experience & Commitment' },
               { icon: Globe2, label: 'Engineering Excellence' },
@@ -275,12 +248,12 @@ export default function AboutUs() {
         </div>
       </div>
 
-      {/* Mission — text and the general-arrangement drawing share one
-          continuous blueprint-canvas surface (soft blue gradient,
-          decorative corner arcs) instead of the drawing sitting in
-          its own separate white card — the whole section reads as a single
-          designed composition rather than text-plus-a-dropped-in-image. */}
-      <div className="relative overflow-hidden bg-white py-20 sm:py-28 px-4 sm:px-6 lg:px-8">
+      {/* Why choose us / Foundational pillars, merged into one continuous
+          section with Mission below (shared background, single padding,
+          a divider rather than two stacked full-padding sections) so the
+          two read as one composition — pillars as the "proof" lead-in,
+          Mission as the forward-looking close. */}
+      <div className="relative overflow-hidden bg-white py-14 sm:py-16 px-4 sm:px-6 lg:px-8">
 
         <svg className="absolute -bottom-24 -left-24 w-[420px] h-[420px] text-[#1C5CA8]/[0.08] pointer-events-none" viewBox="0 0 400 400" fill="none" aria-hidden="true">
           <circle cx="200" cy="200" r="190" stroke="currentColor" strokeWidth="1.5" />
@@ -292,8 +265,32 @@ export default function AboutUs() {
           <circle cx="200" cy="200" r="130" stroke="currentColor" strokeWidth="1.5" />
         </svg>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
-          <div className="lg:col-span-5 space-y-7 text-left">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <Reveal className="space-y-1.5 mb-6">
+            <p className="flex items-center gap-2 text-sm text-[#5B6B80]">
+              <span className="text-[#1C5CA8]">•</span>
+              Why choose us
+            </p>
+            <h3 className="font-heading font-bold text-lg text-[#0B1B2B]">Our foundational pillars</h3>
+          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pb-10 mb-10 border-b border-[#0B1B2B]/10">
+            {PILLARS.map((p, i) => (
+              <React.Fragment key={p.title}>
+              <Reveal delay={i * 0.08} className="group flex items-start gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#0B1B2B]/5 text-[#0B1B2B] shadow-sm transition-all duration-300 ease-out group-hover:scale-125 group-hover:-translate-y-1 group-hover:shadow-lg group-hover:bg-white">
+                  <p.icon className="w-5 h-5 transition-colors duration-300 group-hover:text-[#1C5CA8]" strokeWidth={1.75} />
+                </span>
+                <div className="space-y-1">
+                  <b className="text-sm font-bold text-[#0B1B2B] block">{p.title}</b>
+                  <p className="text-xs text-[#5B6B80] leading-relaxed">{p.desc}</p>
+                </div>
+              </Reveal>
+              </React.Fragment>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          <div className="lg:col-span-5 space-y-5 text-left">
             <Reveal className="flex items-center gap-2.5">
               <p className="text-xs uppercase tracking-[0.18em] text-[#5B6B80] font-semibold">
                 Our Ongoing Mission
@@ -317,14 +314,14 @@ export default function AboutUs() {
             <Reveal delay={0.15} className="pt-2 flex items-center gap-4">
               <Link
                 to="/products"
-                className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-8 py-4 text-base font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
+                className="group inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#103E72] text-white px-7 py-3.5 text-base font-semibold transition-colors duration-200 shadow-[0_8px_24px_-8px_rgba(28,92,168,0.5)]"
               >
                 <span>View our products</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center rounded-full border border-[#0B1B2B]/15 bg-white text-[#0B1B2B] hover:border-[#0B1B2B]/40 px-8 py-4 text-base font-semibold transition-colors duration-200"
+                className="inline-flex items-center rounded-full border border-[#0B1B2B]/15 bg-white text-[#0B1B2B] hover:border-[#0B1B2B]/40 px-7 py-3.5 text-base font-semibold transition-colors duration-200"
               >
                 Get in touch
               </Link>
@@ -346,6 +343,7 @@ export default function AboutUs() {
               className="w-full h-auto lg:w-[155%] lg:max-w-none"
             />
           </Reveal>
+        </div>
         </div>
       </div>
 
