@@ -77,7 +77,7 @@ function ProductImageLarge({
       <img
         src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[productId]}`}
         alt="Thermal Engitech product render"
-        className={RAW_STUDIO_PHOTOS.has(productId) ? 'w-full h-full object-cover' : 'max-w-full max-h-[480px] w-auto h-auto'}
+        className={RAW_STUDIO_PHOTOS.has(productId) ? 'w-full h-full object-cover' : 'max-w-full max-h-full w-auto h-auto'}
       />
     );
   }
@@ -87,7 +87,7 @@ function ProductImageLarge({
       <img
         src={`${import.meta.env.BASE_URL}${PRODUCT_SCHEMATICS[productId]}`}
         alt="Thermal Engitech manufacturer CAD elevation drawing"
-        className="max-w-full max-h-[480px] w-auto h-auto"
+        className="max-w-full max-h-full w-auto h-auto"
       />
     );
   }
@@ -296,16 +296,20 @@ export default function ProductDetails() {
           </p>
         </Reveal>
 
-        {/* Product visual — full-width panel, aspect-locked so every product
-            (photo or CAD schematic) occupies the same footprint. Real
+        {/* Product visual — full-width panel, aspect-locked to the same
+            16:10 box at the SAME width on every product, so the box itself
+            is always identically sized regardless of photo vs. schematic
+            (previously the schematic path also capped its inner wrapper at
+            max-w-3xl, shrinking that box well below the full-width photo
+            box's height — same aspect ratio, different actual size). Real
             photos (opaque studio-gray backdrop) fill the box edge-to-edge
             with no padding, so that backdrop reaches the panel's own
             rounded corners with nothing exposed in between — no mismatched
-            seam. CAD schematics (transparent background) keep the padded,
-            centered, contained treatment, since there's no backdrop to
-            clash with there. */}
-        <Reveal delay={0.05} className={`bg-panel rounded-2xl relative overflow-hidden ${RAW_STUDIO_PHOTOS.has(product.id) ? '' : 'p-8'}`}>
-          <div className={`w-full aspect-[16/10] flex items-center justify-center ${RAW_STUDIO_PHOTOS.has(product.id) ? '' : 'max-w-3xl mx-auto'}`}>
+            seam. CAD schematics (transparent background) get padding
+            instead, for breathing room around the contained, centered
+            drawing, without changing the box's own outer size. */}
+        <Reveal delay={0.05} className="bg-panel rounded-2xl relative overflow-hidden">
+          <div className={`w-full aspect-[16/10] flex items-center justify-center ${RAW_STUDIO_PHOTOS.has(product.id) ? '' : 'p-10'}`}>
             <ProductImageLarge type={product.imageType} productId={product.id} />
           </div>
           <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-slate-soft uppercase tracking-widest px-2.5 py-1 rounded">

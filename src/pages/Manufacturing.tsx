@@ -241,7 +241,9 @@ export default function Manufacturing() {
         </div>
       </div>
 
-      {/* 2. Shop Floor Equipment — light-blue panel */}
+      {/* 2. Shop Floor Equipment — light-blue panel, faint grid-line texture
+          behind the photo background (radially masked so it fades out
+          toward the edges rather than tiling harshly to the corners). */}
       <div className="relative bg-panel-blue py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <img
           src={`${base}images/shop-floor-bg-blueprint.webp`}
@@ -249,13 +251,28 @@ export default function Manufacturing() {
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="max-w-7xl mx-auto space-y-8 relative z-10">
-          <Reveal className="space-y-2">
-            <h3 className="text-xs uppercase font-mono font-bold tracking-[0.14em] text-ink">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(28,92,168,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(28,92,168,0.04) 1px, transparent 1px)',
+            backgroundSize: '56px 56px',
+            maskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 100%)',
+          }}
+          aria-hidden="true"
+        />
+        <div className="max-w-7xl mx-auto space-y-10 relative z-10">
+          <Reveal className="max-w-2xl">
+            <p className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.16em] text-blue mb-3">
+              <span className="h-[2px] w-[22px] bg-blue" aria-hidden="true" />
               Shop Floor Equipment
-            </h3>
-            <p className="text-xs text-slate-soft font-sans">
-              Real machine specifications documented from the facility's own equipment register.
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold tracking-[-0.022em] leading-[1.12] text-ink mb-2.5">
+              Real machine specifications from our equipment register
+            </h2>
+            <p className="text-sm text-slate leading-relaxed">
+              Every capability on our floor is documented, rated, and available for inspection.
             </p>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -281,21 +298,42 @@ export default function Manufacturing() {
               );
             })}
           </div>
+        </div>
+      </div>
 
-          {/* Quality Assurance — compact badge row */}
-          <Reveal className="flex flex-wrap items-center justify-center gap-3 pt-4">
-            {QUALITY_DIRECTIVES.map((d) => (
-              <div
-                key={d.title}
-                className="inline-flex items-center gap-2 bg-white border border-line rounded-full pl-3 pr-4 py-2 shadow-xs"
-              >
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue">
-                  <d.icon className="w-3.5 h-3.5" strokeWidth={1.75} />
-                </span>
-                <span className="text-xs font-bold text-ink whitespace-nowrap">{d.title}</span>
-              </div>
-            ))}
+      {/* 3. Quality Deep-Dive — full descriptions for the same three
+          directives, on white, now that there's room to actually read them
+          (the compact pills above only ever showed the title). */}
+      <div className="bg-white py-16 md:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto space-y-10">
+          <Reveal className="max-w-2xl">
+            <p className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.16em] text-blue mb-3">
+              <span className="h-[2px] w-[22px] bg-blue" aria-hidden="true" />
+              Quality Assurance
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold tracking-[-0.022em] leading-[1.12] text-ink mb-2.5">
+              Verified at every stage
+            </h2>
+            <p className="text-sm text-slate leading-relaxed">
+              Documented checks and third-party inspections accompany each fabrication stage — from raw material to final assembly.
+            </p>
           </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {QUALITY_DIRECTIVES.map((d, i) => (
+              <React.Fragment key={d.title}>
+              <Reveal
+                delay={i * 0.06}
+                className="bg-paper border border-line rounded-2xl p-7 hover:border-blue/25 hover:bg-white hover:shadow-[0_10px_28px_-12px_rgba(28,92,168,0.12)] transition-all duration-200"
+              >
+                <span className="flex h-[46px] w-[46px] items-center justify-center rounded-xl bg-blue text-white shadow-[0_8px_18px_-8px_rgba(28,92,168,0.5)] mb-4">
+                  <d.icon className="w-5 h-5" strokeWidth={1.75} />
+                </span>
+                <h3 className="text-base font-heading font-bold text-ink mb-2">{d.title}</h3>
+                <p className="text-sm text-slate leading-relaxed">{d.description}</p>
+              </Reveal>
+              </React.Fragment>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -195,25 +195,30 @@ export default function ProductCategory() {
                 data-testid={`product-card-${prod.id}`}
                 className="flex flex-col h-full bg-panel border border-[#E4E7EC] rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-[#1C5CA8]/40 transition-all duration-300 group"
               >
-                <div className={`bg-panel border-b border-[#E1E4E3] flex items-center justify-center relative min-h-[260px] ${RAW_STUDIO_PHOTOS.has(prod.id) ? '' : 'p-6'}`}>
+                {/* Every card's image box is the same fixed h-[260px] (not
+                    min-h — a max-h-full child needs the parent to have a
+                    *definite* height to resolve the percentage against;
+                    min-height doesn't count, which let schematics render at
+                    full native size and blow the card up), full card width,
+                    no padding. RAW_STUDIO_PHOTOS fill it edge-to-edge
+                    (object-cover); everything else (already transparent or
+                    pre-matched) is contained/centered but sized up to
+                    max-w-full/max-h-full so a tall, narrow drawing (e.g. a
+                    cyclone) uses as much of that fixed box as its own shape
+                    allows, rather than being capped well below it by
+                    leftover padding or an arbitrary max-h. */}
+                <div className="bg-panel border-b border-[#E1E4E3] flex items-center justify-center relative h-[260px]">
                   {PRODUCT_PHOTOS[prod.id] ? (
-                    // Only RAW_STUDIO_PHOTOS have an opaque gray backdrop
-                    // baked into the pixels — those fill the card
-                    // edge-to-edge (object-cover) so that backdrop reaches
-                    // the card's own edges with nothing exposed in between.
-                    // Every other photo here is already transparent or
-                    // pre-matched to the panel color, so those keep the
-                    // normal contained, centered sizing.
                     <img
                       src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[prod.id]}`}
                       alt={`${prod.name} — Thermal Engitech product render`}
-                      className={RAW_STUDIO_PHOTOS.has(prod.id) ? 'w-full h-full object-cover' : 'max-w-full max-h-64 w-auto h-auto'}
+                      className={RAW_STUDIO_PHOTOS.has(prod.id) ? 'w-full h-full object-cover' : 'max-w-full max-h-full w-auto h-auto'}
                     />
                   ) : PRODUCT_SCHEMATICS[prod.id] ? (
                     <img
                       src={`${import.meta.env.BASE_URL}${PRODUCT_SCHEMATICS[prod.id]}`}
                       alt={`${prod.name} — Thermal Engitech manufacturer CAD elevation drawing`}
-                      className="max-w-full max-h-64 w-auto h-auto"
+                      className="max-w-full max-h-full w-auto h-auto"
                     />
                   ) : (
                     <ProductImage type={prod.imageType} />
