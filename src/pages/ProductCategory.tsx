@@ -32,6 +32,22 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'air-pre-heater': 'images/products/air-preheater-block.webp',
 };
 
+/** Of the PRODUCT_PHOTOS above, these five are raw, unprocessed studio
+ *  photos with an opaque gray backdrop baked into the pixels — everything
+ *  else in that map is either genuinely transparent or was already
+ *  recolored to match the site's panel background, so only these five
+ *  need the edge-to-edge/object-cover treatment to avoid a mismatched-gray
+ *  seam against the panel. Forcing that treatment on the others would just
+ *  crop good images for no reason (two of them are tall, near-portrait
+ *  cutouts that a landscape crop would mangle). */
+const RAW_STUDIO_PHOTOS = new Set([
+  'oil-gas-3pass-wetback',
+  'hybrid-combithermal',
+  'solid-fuel-3pass-wetback',
+  'oil-gas-3pass-horizontal-heater',
+  'solid-fuel-4pass-vertical-heater',
+]);
+
 /** Real manufacturer AutoCAD elevation drawings — same source images as the
  *  product detail page, shown on the category card in place of the abstract
  *  CAD-style icon fallback. */
@@ -179,12 +195,19 @@ export default function ProductCategory() {
                 data-testid={`product-card-${prod.id}`}
                 className="flex flex-col h-full bg-panel border border-[#E4E7EC] rounded-xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-[#1C5CA8]/40 transition-all duration-300 group"
               >
-                <div className="p-6 bg-panel border-b border-[#E1E4E3] flex items-center justify-center relative min-h-[260px]">
+                <div className={`bg-panel border-b border-[#E1E4E3] flex items-center justify-center relative min-h-[260px] ${RAW_STUDIO_PHOTOS.has(prod.id) ? '' : 'p-6'}`}>
                   {PRODUCT_PHOTOS[prod.id] ? (
+                    // Only RAW_STUDIO_PHOTOS have an opaque gray backdrop
+                    // baked into the pixels — those fill the card
+                    // edge-to-edge (object-cover) so that backdrop reaches
+                    // the card's own edges with nothing exposed in between.
+                    // Every other photo here is already transparent or
+                    // pre-matched to the panel color, so those keep the
+                    // normal contained, centered sizing.
                     <img
                       src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[prod.id]}`}
                       alt={`${prod.name} — Thermal Engitech product render`}
-                      className="max-w-full max-h-64 w-auto h-auto"
+                      className={RAW_STUDIO_PHOTOS.has(prod.id) ? 'w-full h-full object-cover' : 'max-w-full max-h-64 w-auto h-auto'}
                     />
                   ) : PRODUCT_SCHEMATICS[prod.id] ? (
                     <img

@@ -34,6 +34,22 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'solid-fuel-4pass-vertical-heater': 'images/products/solid-fuel-4pass-vertical-heater.webp',
 };
 
+/** Of the PRODUCT_PHOTOS above, these five are raw, unprocessed studio
+ *  photos with an opaque gray backdrop baked into the pixels — everything
+ *  else in that map is either genuinely transparent or was already
+ *  recolored to match the site's panel background, so only these five
+ *  need the edge-to-edge/object-cover treatment to avoid a mismatched-gray
+ *  seam against the panel. Forcing that treatment on the others would just
+ *  crop good images for no reason (two of them are tall, near-portrait
+ *  cutouts that a landscape crop would mangle). */
+const RAW_STUDIO_PHOTOS = new Set([
+  'oil-gas-3pass-wetback',
+  'hybrid-combithermal',
+  'solid-fuel-3pass-wetback',
+  'oil-gas-3pass-horizontal-heater',
+  'solid-fuel-4pass-vertical-heater',
+]);
+
 const PRODUCT_SCHEMATICS: Partial<Record<string, string>> = {
   'steam-distribution-header': 'images/products/steam-distribution-header.webp',
   'condensate-tank': 'images/products/condensate-tank.webp',
@@ -52,17 +68,16 @@ function ProductImageLarge({
   productId?: string;
 }) {
   if (productId && PRODUCT_PHOTOS[productId]) {
-    // These are real photos with an opaque studio-gray backdrop baked into
-    // the pixels (not transparent like the CAD schematics below) — filling
-    // the box edge-to-edge with object-cover means that backdrop reaches
-    // the panel's own rounded edges with nothing exposed in between, so
-    // there's no mismatched-gray seam between the photo's own background
-    // and the surrounding panel.
+    // RAW_STUDIO_PHOTOS have an opaque gray backdrop baked into the pixels,
+    // so they fill the box edge-to-edge (object-cover) rather than leaving
+    // panel background exposed around a mismatched gray rectangle. Every
+    // other photo here is already transparent or pre-matched to the panel
+    // color, so those keep the normal contained, centered sizing.
     return (
       <img
         src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[productId]}`}
         alt="Thermal Engitech product render"
-        className="w-full h-full object-cover"
+        className={RAW_STUDIO_PHOTOS.has(productId) ? 'w-full h-full object-cover' : 'max-w-full max-h-[480px] w-auto h-auto'}
       />
     );
   }
@@ -289,8 +304,8 @@ export default function ProductDetails() {
             seam. CAD schematics (transparent background) keep the padded,
             centered, contained treatment, since there's no backdrop to
             clash with there. */}
-        <Reveal delay={0.05} className={`bg-panel rounded-2xl relative overflow-hidden ${PRODUCT_PHOTOS[product.id] ? '' : 'p-8'}`}>
-          <div className={`w-full aspect-[16/10] flex items-center justify-center ${PRODUCT_PHOTOS[product.id] ? '' : 'max-w-3xl mx-auto'}`}>
+        <Reveal delay={0.05} className={`bg-panel rounded-2xl relative overflow-hidden ${RAW_STUDIO_PHOTOS.has(product.id) ? '' : 'p-8'}`}>
+          <div className={`w-full aspect-[16/10] flex items-center justify-center ${RAW_STUDIO_PHOTOS.has(product.id) ? '' : 'max-w-3xl mx-auto'}`}>
             <ProductImageLarge type={product.imageType} productId={product.id} />
           </div>
           <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-slate-soft uppercase tracking-widest px-2.5 py-1 rounded">
