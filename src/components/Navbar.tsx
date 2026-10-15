@@ -11,14 +11,13 @@ import { SITE } from '../config/site';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Whether the page has been scrolled away from the very top. This is the
+  // single source of truth for both the nav's background chrome and its
+  // text color — the navbar is only transparent (with light text, on the
+  // routes whose hero needs it) at scrollY 0. Any scroll at all switches it
+  // to the white/blurred bar with dark text, regardless of how tall the
+  // page's own hero banner is.
   const [scrolled, setScrolled] = useState(false);
-  // Whether the page's own dark hero banner (marked with [data-hero-banner])
-  // has been scrolled fully past the navbar strip. Tracked separately from
-  // `scrolled` because a tall hero (Home's is a full viewport height) stays
-  // on screen well past the 20px "scrolled" threshold — flipping to dark
-  // text that early left nav links unreadable (dark-on-dark) for however
-  // much of the hero was still visible underneath the bar.
-  const [pastHero, setPastHero] = useState(false);
   const location = useLocation();
 
   // useLayoutEffect, not useEffect: on a reload where the browser restores
@@ -28,14 +27,8 @@ export default function Navbar() {
   // (non-hero, likely white) content is actually behind it at that scroll
   // position. Measuring before paint avoids that flash.
   useLayoutEffect(() => {
-    // Nav is h-14/h-16/h-20 (56/64/80px) across breakpoints — 90 covers the
-    // tallest case plus a small buffer, so text flips to dark right as the
-    // hero's bottom edge clears the bar, not before.
-    const NAV_HEIGHT_PX = 90;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-      const hero = document.querySelector('[data-hero-banner]');
-      setPastHero(hero ? hero.getBoundingClientRect().bottom <= NAV_HEIGHT_PX : true);
+      setScrolled(window.scrollY > 0);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -88,12 +81,8 @@ export default function Navbar() {
   // starting at y:0 (extending behind the navbar) instead — so the
   // unscrolled navbar needs light text there. Category pages (/products/
   // category/:slug) have the same dark banner first too, matched below by
-  // prefix since the slug varies. On dark-banner routes, text only flips to
-  // dark once the hero itself has scrolled past the bar (see `pastHero`) —
-  // not at the first 20px of scroll, which would leave it dark-on-dark
-  // while a tall hero (Home's is a full viewport height) is still on screen
-  // underneath. Every route converges on the same white/blurred bar with
-  // dark text once both conditions are met.
+  // prefix since the slug varies. Every other route has a plain light page
+  // background, so dark text reads fine there even unscrolled.
   const DARK_BANNER_ROUTES = ['/', '/products', '/manufacturing', '/contact', '/about', '/request-quote'];
   // GitHub Pages 301-redirects a bare "/about" to "/about/" (trailing
   // slash) on every direct load/refresh. The prerendered HTML for that
@@ -106,14 +95,13 @@ export default function Navbar() {
   // slash (except for the root path) keeps both cases matching.
   const normalizedPath = location.pathname !== '/' ? location.pathname.replace(/\/$/, '') : location.pathname;
   const isDarkBannerRoute = DARK_BANNER_ROUTES.includes(normalizedPath) || normalizedPath.startsWith('/products/category/');
-  const useDarkText = !isDarkBannerRoute || pastHero;
-  // On dark-banner routes, the white/blurred chrome must appear in lockstep
-  // with the text turning dark — gating it on the raw 20px `scrolled`
-  // instead of `pastHero` left a window (any tall hero past 20px) where the
-  // bar had already turned white but the text, still waiting for the hero
-  // to clear, stayed white too: invisible white-on-white nav links. Other
-  // routes have no hero to wait for, so they keep the original 20px cue.
-  const showScrolledChrome = isDarkBannerRoute ? pastHero : scrolled;
+  // Text and chrome flip together, in lockstep, on the very first pixel of
+  // scroll — never while still at the top. Previously this waited for the
+  // page's own hero banner to scroll fully past the bar, which left the nav
+  // transparent for the entire hero on tall pages like Home; now every
+  // route behaves the same way regardless of hero height.
+  const useDarkText = !isDarkBannerRoute || scrolled;
+  const showScrolledChrome = scrolled;
 
   return (
     <nav
