@@ -414,7 +414,7 @@ function ProductDetailsTrialLayout({ product, backTo, backLabel }: { product: Pr
 
           <div className="bg-white border border-[#E1E4E3] rounded-2xl p-7 shadow-sm flex flex-col">
             <h3 className="text-base font-heading font-bold text-[#0B1B2B] mb-4 flex items-center gap-2">
-              <Award className="w-[18px] h-[18px] text-[#F0B400]" />
+              <Award className="w-[18px] h-[18px] text-[#1C5CA8]" />
               <span>Engineering Authority</span>
             </h3>
             <div className="flex items-center gap-3 bg-[#F2F9FF] border-l-4 border-[#1C5CA8] rounded-xl px-4 py-3.5 mb-4">
@@ -454,11 +454,11 @@ function ProductDetailsTrialLayout({ product, backTo, backLabel }: { product: Pr
             </Link>
             <div className="flex flex-wrap items-center gap-4 text-xs text-[#B0D0E2]">
               <span className="flex items-center gap-1.5">
-                <Phone className="w-3.5 h-3.5 text-[#F0B400]" />
+                <Phone className="w-3.5 h-3.5 text-[#7FB2E4]" />
                 Sales: <a href="tel:+917069306431" className="text-white font-medium border-b border-dotted border-white/30">+91 70693 06431</a>
               </span>
               <span className="flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-[#F0B400]" />
+                <Mail className="w-3.5 h-3.5 text-[#7FB2E4]" />
                 <a href="mailto:info@thermalengitech.com" className="text-white font-medium border-b border-dotted border-white/30">info@thermalengitech.com</a>
               </span>
             </div>
