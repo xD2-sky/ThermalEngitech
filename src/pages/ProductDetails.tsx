@@ -7,9 +7,10 @@ import React from 'react';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS } from '../data';
+import { Product } from '../types';
 import { slugify } from '../catalog';
 import ProductVideoShowcase from '../components/ProductVideoShowcase';
-import { ArrowLeft, ShieldCheck, Cpu, Mail, Phone, CheckCircle2, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, Cpu, Mail, Phone, CheckCircle2, ChevronRight, Gauge, Thermometer, Flame, Layers, BarChart3, Settings, Award, Clock, Rocket } from 'lucide-react';
 import Reveal from '../components/Reveal';
 
 /** Real product renders — only set for products we have accurate photography
@@ -271,6 +272,208 @@ function ProductImageLarge({ type, productId }: { type: 'boiler' | 'heater' | 'g
   }
 }
 
+// Keyword match rather than a per-label lookup — same approach as the
+// category grid's specIcon(), just duplicated locally here since this is a
+// one-product trial, not yet a shared layout.
+function specIcon(label: string) {
+  const l = label.toLowerCase();
+  if (l.includes('pressure')) return Gauge;
+  if (l.includes('capacity') || l.includes('volume') || l.includes('output') || l.includes('flow')) return Gauge;
+  if (l.includes('temp')) return Thermometer;
+  if (l.includes('fuel')) return Flame;
+  if (l.includes('material') || l.includes('metallurgy') || l.includes('construction') || l.includes('shell') || l.includes('vessel')) return Layers;
+  if (l.includes('efficiency') || l.includes('recovery') || l.includes('performance')) return BarChart3;
+  if (l.includes('code') || l.includes('standard') || l.includes('complian') || l.includes('registration') || l.includes('safety')) return ShieldCheck;
+  return Settings;
+}
+
+// A spec value like "0.5 Ton/hr to 20.0 Tons/hr (500 to 20,000 kg/hr)" reads
+// better as a bold headline value plus a smaller parenthetical note below it
+// — splits that out generically wherever a spec happens to end in "(...)",
+// falls back to a single line otherwise.
+function splitSpecValue(value: string): [string, string | null] {
+  const m = value.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+  return m ? [m[1], m[2]] : [value, null];
+}
+
+/** Trial layout for a single product (oil-gas-3pass-wetback) — built from a
+ *  design the user sourced externally and asked to preview before deciding
+ *  whether to roll it out to every product page. Single flowing column
+ *  instead of the shared layout's two-column sidebar: hero image paired
+ *  with the overview text, a scannable icon-per-spec grid, then features
+ *  and certifications side by side, closing with a full-width quote
+ *  banner. Colors/icons are adapted to the site's own palette (lucide
+ *  instead of Font Awesome, the real product photo instead of a generic
+ *  icon) rather than copied verbatim from the source file. */
+function ProductDetailsTrialLayout({ product, backTo, backLabel }: { product: Product; backTo: string; backLabel: string }) {
+  return (
+    <div className="bg-white min-h-screen text-left">
+
+      <div className="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20 sticky top-16 sm:top-18 lg:top-20 z-30">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#5B6B80] font-semibold">
+          <Link
+            to={backTo}
+            data-testid="product-back-btn"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#1C5CA8]/8 hover:bg-[#1C5CA8]/15 text-[#1C5CA8] px-3.5 py-2 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to {backLabel}</span>
+          </Link>
+          <div className="hidden sm:flex items-center gap-2">
+            <Link to="/products" className="hover:text-[#1C5CA8]">Products</Link>
+            <ChevronRight className="w-3.5 h-3.5" />
+            <Link to={backTo} className="text-[#1C5CA8] hover:underline">{product.category}</Link>
+            <ChevronRight className="w-3.5 h-3.5" />
+            <span className="text-[#0B1B2B] font-extrabold truncate max-w-[120px] sm:max-w-none">{product.name}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 space-y-10">
+
+        {/* Header */}
+        <Reveal className="space-y-4">
+          <span className="text-xs font-mono font-bold tracking-wider text-[#1C5CA8] bg-[#1C5CA8]/10 px-3 py-1.5 rounded-full uppercase">
+            {product.category}
+          </span>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold text-[#0B1B2B] tracking-tight leading-tight">
+            {product.name}
+          </h1>
+          <p className="text-[#1C5CA8] text-sm md:text-base font-semibold font-sans leading-relaxed border-l-4 border-[#7FB2E4] pl-4">
+            "{product.tagline}"
+          </p>
+        </Reveal>
+
+        {/* Hero: image + overview, side by side */}
+        <Reveal delay={0.05} className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 items-stretch">
+          <div className="bg-panel rounded-2xl p-6 flex items-center justify-center relative min-h-[260px]">
+            <ProductImageLarge type={product.imageType} productId={product.id} />
+            <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-[#5B6B80] uppercase tracking-widest px-2.5 py-1 rounded">
+              {PRODUCT_PHOTOS[product.id] ? 'Product Photograph' : 'High Resolution Schematic CAD Layout'}
+            </span>
+          </div>
+          <div className="bg-white border border-[#E1E4E3] rounded-2xl p-7 shadow-sm">
+            <h3 className="text-sm font-heading font-bold uppercase tracking-wide text-[#1C5CA8] mb-3 flex items-center gap-2">
+              <Settings className="w-[18px] h-[18px]" />
+              <span>Design & Operations Overview</span>
+            </h3>
+            <p className="text-sm text-[#244a5e] leading-relaxed">{product.description}</p>
+          </div>
+        </Reveal>
+
+        {/* Video Showcase (Only for Steam Boilers and Thermic Fluid Heaters) */}
+        {(product.category === 'Steam Boilers' || product.category === 'Thermic Fluid Heaters') && (
+          <ProductVideoShowcase productId={product.id} />
+        )}
+
+        {/* Technical Specifications — icon-per-spec scannable grid */}
+        <Reveal delay={0.1} className="space-y-5">
+          <h2 className="text-xl font-heading font-bold text-[#0B1B2B] flex items-center gap-2.5">
+            <Cpu className="w-5 h-5 text-[#1C5CA8]" />
+            <span>Technical Specifications</span>
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {product.specifications?.map((sp, idx) => {
+              const SpecIcon = specIcon(sp.label);
+              const [mainValue, note] = splitSpecValue(sp.value);
+              return (
+                <div
+                  key={idx}
+                  className="bg-[#F9FCFF] border border-[#E5F0F8] rounded-xl p-5 flex items-start gap-4 transition-all duration-150 hover:bg-white hover:border-[#B8D6E9] hover:shadow-[0_8px_18px_-8px_rgba(26,88,120,0.15)]"
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#1C5CA8]/10 text-[#1C5CA8]">
+                    <SpecIcon className="w-[18px] h-[18px]" strokeWidth={1.75} />
+                  </span>
+                  <div className="min-w-0">
+                    <div className="text-[11px] font-mono font-bold uppercase tracking-wide text-[#5B6B80] mb-1">{sp.label}</div>
+                    <div className="text-sm font-bold text-[#0B1B2B] leading-snug">{mainValue}</div>
+                    {note && <div className="text-xs text-[#5B6B80] mt-0.5">{note}</div>}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Reveal>
+
+        {/* Key Performance Features + Engineering Authority, side by side */}
+        <Reveal delay={0.15} className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-7">
+          <div className="bg-panel border border-[#E1E4E3] rounded-2xl p-7">
+            <h3 className="text-base font-heading font-bold text-[#0B1B2B] mb-5 flex items-center gap-2">
+              <Rocket className="w-[18px] h-[18px] text-[#1C5CA8]" />
+              <span>Key Performance Features</span>
+            </h3>
+            <div className="space-y-4">
+              {product.features?.map((feat, idx) => (
+                <div key={idx} className="flex gap-2.5 items-start">
+                  <CheckCircle2 className="w-4 h-4 text-[#1C5CA8] shrink-0 mt-0.5" />
+                  <span className="text-sm text-[#1d4257] font-medium leading-relaxed">{feat}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#E1E4E3] rounded-2xl p-7 shadow-sm flex flex-col">
+            <h3 className="text-base font-heading font-bold text-[#0B1B2B] mb-4 flex items-center gap-2">
+              <Award className="w-[18px] h-[18px] text-[#F0B400]" />
+              <span>Engineering Authority</span>
+            </h3>
+            <div className="flex items-center gap-3 bg-[#F2F9FF] border-l-4 border-[#1C5CA8] rounded-xl px-4 py-3.5 mb-4">
+              <ShieldCheck className="w-7 h-7 text-[#1C5CA8] shrink-0" />
+              <div>
+                <strong className="block text-sm text-[#0B1B2B]">IBR 1950 & ASME Certified</strong>
+                <span className="text-xs text-[#5B6B80]">Approved up to 32kg/cm²</span>
+              </div>
+            </div>
+            <ul className="space-y-2.5">
+              <li className="flex items-center gap-2.5 text-[13px] text-[#1e4c63]">
+                <CheckCircle2 className="w-4 h-4 text-[#22A67A] shrink-0" />
+                <span>Mill test certifications accompany every component</span>
+              </li>
+              <li className="flex items-center gap-2.5 text-[13px] text-[#1e4c63]">
+                <CheckCircle2 className="w-4 h-4 text-[#22A67A] shrink-0" />
+                <span>Guaranteed joint radiography audits</span>
+              </li>
+            </ul>
+          </div>
+        </Reveal>
+
+        {/* Request a Quote — full-width closing banner */}
+        <Reveal delay={0.2} className="rounded-[28px] bg-gradient-to-r from-[#0D1B2A] to-[#1C4D64] text-white p-8 sm:p-10 flex flex-wrap items-center justify-between gap-7">
+          <div className="space-y-1.5 max-w-md">
+            <h3 className="text-xl sm:text-2xl font-heading font-extrabold">Request a Quote for This Equipment</h3>
+            <p className="text-slate-300 text-sm">
+              Get a technical sizing quotation — our engineering team reviews your specification and responds within 24 business hours.
+            </p>
+          </div>
+          <div className="flex flex-col items-start sm:items-end gap-2.5">
+            <Link
+              to={`/request-quote?product=${encodeURIComponent(product.name)}`}
+              className="inline-flex items-center gap-2 rounded-full bg-[#1C5CA8] hover:bg-[#2F7BD4] hover:scale-[1.02] text-white font-bold px-7 py-3.5 text-sm shadow-[0_8px_16px_-6px_rgba(0,0,0,0.3)] transition-all whitespace-nowrap"
+            >
+              Request a Quote
+            </Link>
+            <div className="flex flex-wrap items-center gap-4 text-xs text-[#B0D0E2]">
+              <span className="flex items-center gap-1.5">
+                <Phone className="w-3.5 h-3.5 text-[#F0B400]" />
+                Sales: <a href="tel:+917069306431" className="text-white font-medium border-b border-dotted border-white/30">+91 70693 06431</a>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Mail className="w-3.5 h-3.5 text-[#F0B400]" />
+                <a href="mailto:info@thermalengitech.com" className="text-white font-medium border-b border-dotted border-white/30">info@thermalengitech.com</a>
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5 text-[11px] text-[#9BBDD0]">
+              <Clock className="w-3 h-3" />
+              <span>Technical proposals returned within 24 business hours.</span>
+            </div>
+          </div>
+        </Reveal>
+
+      </div>
+    </div>
+  );
+}
+
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
   const product = PRODUCTS.find((p) => p.id === id);
@@ -326,6 +529,12 @@ export default function ProductDetails() {
 
   const backTo = `/products/category/${slugify(product.category)}`;
   const backLabel = product.category;
+
+  // Trial — see ProductDetailsTrialLayout's own comment for why this is
+  // scoped to one product only.
+  if (product.id === 'oil-gas-3pass-wetback') {
+    return <ProductDetailsTrialLayout product={product} backTo={backTo} backLabel={backLabel} />;
+  }
 
   return (
     <div className="bg-white min-h-screen text-left">
@@ -431,7 +640,7 @@ export default function ProductDetails() {
 
         {/* Right Column (Sidebar Quick Enquiry contact form) */}
         <div className="lg:col-span-5 space-y-8">
-          
+
           {/* Quick specs short highlight */}
           <Reveal className="bg-[#0D1B2A] text-white p-6 rounded-lg space-y-4 border border-white/5 relative overflow-hidden shadow-md">
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />

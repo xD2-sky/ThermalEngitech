@@ -26,6 +26,10 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'solid-fuel-3pass-wetback': 'images/products/solid-fuel-3pass-wetback.webp',
   'oil-gas-3pass-horizontal-heater': 'images/products/oil-gas-3pass-horizontal-heater.webp',
   'solid-fuel-4pass-vertical-heater': 'images/products/solid-fuel-4pass-vertical-heater.webp',
+  'pressure-reducing-station': 'images/products/pressure-reducing-station-skid.webp',
+  'hot-water-generator-unit': 'images/products/hot-water-generator.webp',
+  'heat-exchanger-shelltube': 'images/products/heat-exchanger-shell-tube.webp',
+  'air-pre-heater': 'images/products/air-preheater-block.webp',
 };
 
 /** Real manufacturer AutoCAD elevation drawings — same source images as the
