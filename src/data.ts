@@ -232,11 +232,11 @@ export const PRODUCTS: Product[] = [
   {
     id: 'hot-water-generator-unit',
     category: 'Hot Water Generators',
-    name: 'Solid Fuel Fired Hot Water Generator',
-    tagline: 'Reliable, High-Efficiency Hot Water for Solid Fuel Plants',
-    description: 'Industrial hot water generator designed for reliable and efficient hot water generation in industrial heating applications. Suitable for solid fuels such as coal, wood, lignite, paddy husk, pet coke, saw dust, bagasse and other biomass fuels. Built with safety and operational reliability in mind, it delivers efficient heat transfer with low maintenance requirements.',
+    name: 'Oil / Gas Fired Hot Water Circulating System',
+    tagline: 'Reliable, High-Efficiency Hot Water for Oil & Gas Fired Plants',
+    description: 'Industrial hot water generator designed for reliable and efficient hot water generation in industrial heating applications. Suitable for oil and gas fuels such as light diesel oil (LDO), HSD, natural gas, LPG and furnace oil. Built with safety and operational reliability in mind, it delivers efficient heat transfer with low maintenance requirements.',
     features: [
-      'High thermal efficiency across the full biomass and solid-fuel range',
+      'High thermal efficiency across the full oil and gas firing range',
       'Safe & reliable operation with robust pressure-vessel construction',
       'Delivers high-temperature hot water for continuous process loads',
       'Low fuel consumption relative to output',
@@ -245,7 +245,7 @@ export const PRODUCTS: Product[] = [
     specifications: [
       { label: 'Capacity Range', value: '6,00,000 kcal/hr to 1,00,00,000 kcal/hr' },
       { label: 'Hot Water Temperature', value: 'Up to 95°C' },
-      { label: 'Fuel', value: 'Coal, Wood, Lignite, Paddy Husk, Pet Coke, Saw Dust, Bagasse, Biomass' },
+      { label: 'Fuel', value: 'Light Diesel Oil (LDO), HSD, Natural Gas, LPG, Furnace Oil' },
       { label: 'Circulating System', value: 'Forced hot-water circulating system' }
     ],
     imageType: 'generator'
@@ -255,7 +255,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'multi-cyclone-dust-collector',
     category: 'Pollution Control Equipments',
-    name: 'Multi Cyclone Dust Collector',
+    name: 'Trema Cyclone Dust Collector',
     tagline: 'High-Efficiency Centrifugal Particulate Separation Block',
     description: 'An essential pre-cleaning device for solid fuel boilers. Relies on centrifugal forces developed within multiple small swirl cyclone cones to separate fly-ash and charcoal particles from exhaust stack flue gases before venting.',
     features: [
