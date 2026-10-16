@@ -32,11 +32,24 @@ const BOILER_TYPE_OPTIONS = [
 
 const PRESSURE_SELECT_OPTIONS = PRESSURE_OPTIONS.map((p) => `${p.bar} kg/cm²g`);
 
-const TEMPERATURE_SELECT_OPTIONS = [
-  'Under 100°C',
-  '100°C - 200°C',
-  '200°C - 300°C',
-  'Above 300°C',
+// Specific rated outlet temperatures across the Thermic Fluid Heater range
+// (250°C vertical unit, up to 300°C on the 3-pass models, up to 400°C on the
+// oil/gas horizontal unit) — listed as exact values, the same way the
+// Operating Pressure dropdown lists exact bar ratings rather than ranges.
+const THERMIC_TEMPERATURE_SELECT_OPTIONS = [
+  '250°C',
+  '300°C',
+  '350°C',
+  '400°C',
+];
+
+// Hot Water Generators top out around 95°C — a much lower, separate range
+// from the Thermic Fluid Heater list above.
+const HOT_WATER_TEMPERATURE_SELECT_OPTIONS = [
+  '60°C',
+  '75°C',
+  '85°C',
+  '95°C',
 ];
 
 const STEAM_LIKE_CATEGORIES: Product['category'][] = ['Steam Boilers', 'Thermic Fluid Heaters'];
@@ -61,11 +74,6 @@ const THERMAL_CAPACITY_OPTIONS = [
 // kcal/hr thermal output, not Tons/hr steam capacity — Steam Boilers is the
 // only category that stays on the Tons/hr scale.
 const THERMAL_OUTPUT_CATEGORIES: Product['category'][] = ['Thermic Fluid Heaters', 'Hot Water Generators'];
-
-// Same two categories are rated by operating temperature rather than
-// pressure — a thermic fluid heater or hot water system runs near-ambient
-// pressure, so asking for kg/cm²g doesn't make sense there.
-const TEMPERATURE_RATED_CATEGORIES: Product['category'][] = ['Thermic Fluid Heaters', 'Hot Water Generators'];
 
 const CAPACITY_PLACEHOLDERS: Partial<Record<Product['category'], string>> = {
   'Pressure Reducing Stations': 'e.g. DN80 inlet, 10 → 3.5 kg/cm²g outlet',
@@ -131,7 +139,12 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
   const isFiredEquipment = !!formData.equipmentCategory && FIRED_EQUIPMENT_CATEGORIES.includes(formData.equipmentCategory);
   const isSteamLikeCategory = STEAM_LIKE_CATEGORIES.includes(formData.equipmentCategory);
   const isThermalOutputCategory = THERMAL_OUTPUT_CATEGORIES.includes(formData.equipmentCategory);
-  const isTemperatureRatedCategory = TEMPERATURE_RATED_CATEGORIES.includes(formData.equipmentCategory);
+  const temperatureOptions =
+    formData.equipmentCategory === 'Thermic Fluid Heaters'
+      ? THERMIC_TEMPERATURE_SELECT_OPTIONS
+      : formData.equipmentCategory === 'Hot Water Generators'
+        ? HOT_WATER_TEMPERATURE_SELECT_OPTIONS
+        : null;
   const capacityOptions = isThermalOutputCategory
     ? THERMAL_CAPACITY_OPTIONS
     : isSteamLikeCategory
@@ -438,13 +451,13 @@ export default function QuoteRequest({ presetProductName, onSubmitInquiry, saved
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label htmlFor="quote-pressuretemp" className={labelClass}>
-                    {isTemperatureRatedCategory ? 'Operating Temperature Required' : 'Operating Pressure Required'}
+                    {temperatureOptions ? 'Operating Temperature Required' : 'Operating Pressure Required'}
                   </label>
                   <select id="quote-pressuretemp" value={formData.pressureTemperature}
                     onChange={(e) => setFormData({ ...formData, pressureTemperature: e.target.value })}
                     className={selectClass}>
                     <option value="">Not sure</option>
-                    {(isTemperatureRatedCategory ? TEMPERATURE_SELECT_OPTIONS : PRESSURE_SELECT_OPTIONS).map((v) => (
+                    {(temperatureOptions || PRESSURE_SELECT_OPTIONS).map((v) => (
                       <option key={v} value={v}>{v}</option>
                     ))}
                   </select>
