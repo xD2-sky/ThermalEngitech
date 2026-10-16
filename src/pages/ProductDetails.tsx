@@ -12,8 +12,8 @@ import { slugify } from '../catalog';
 import ProductVideoShowcase from '../components/ProductVideoShowcase';
 import {
   ArrowLeft, ShieldCheck, Cpu, Mail, Phone, CheckCircle2, ChevronRight,
-  Gauge, Thermometer, Flame, Layers, BarChart3, Settings, Award, Clock,
-  Rocket, FileText,
+  Gauge, Thermometer, Flame, Layers, BarChart3, Settings, Award,
+  Rocket, ArrowRight, Check, Wind, Shield, Ruler,
 } from 'lucide-react';
 import Reveal from '../components/Reveal';
 
@@ -35,14 +35,12 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'solid-fuel-3pass-horizontal-heater': 'images/products/solid-fuel-3pass-horizontal-heater.webp',
 };
 
-/** Of the PRODUCT_PHOTOS above, these five are raw, unprocessed studio
- *  photos with an opaque gray backdrop baked into the pixels — everything
- *  else in that map is either genuinely transparent or was already
- *  recolored to match the site's panel background, so only these five
- *  need the edge-to-edge/object-cover treatment to avoid a mismatched-gray
- *  seam against the panel. Forcing that treatment on the others would just
- *  crop good images for no reason (two of them are tall, near-portrait
- *  cutouts that a landscape crop would mangle). */
+/** Of the PRODUCT_PHOTOS above, these seven are raw, unprocessed studio
+ *  photos with an opaque gray backdrop baked into the pixels — they fill
+ *  the hero card edge-to-edge (no inset) so that backdrop reaches the
+ *  card's own rounded corners with nothing exposed in between. Everything
+ *  else (schematics, pre-matched photos) keeps the card's normal inset
+ *  padding for breathing room around a centered, contained image. */
 const RAW_STUDIO_PHOTOS = new Set([
   'oil-gas-3pass-wetback',
   'hybrid-combithermal',
@@ -71,11 +69,6 @@ function ProductImageLarge({
   productId?: string;
 }) {
   if (productId && PRODUCT_PHOTOS[productId]) {
-    // RAW_STUDIO_PHOTOS have an opaque gray backdrop baked into the pixels,
-    // so they fill the box edge-to-edge (object-cover) rather than leaving
-    // panel background exposed around a mismatched gray rectangle. Every
-    // other photo here is already transparent or pre-matched to the panel
-    // color, so those keep the normal contained, centered sizing.
     return (
       <img
         src={`${import.meta.env.BASE_URL}${PRODUCT_PHOTOS[productId]}`}
@@ -95,7 +88,6 @@ function ProductImageLarge({
     );
   }
 
-  // Schematic fallback (kept identical to the previous implementation)
   switch (type) {
     case 'boiler':
       return (
@@ -204,6 +196,275 @@ function splitSpecValue(value: string): [string, string | null] {
   return m ? [m[1], m[2]] : [value, null];
 }
 
+// Hand-picked icons for Expansion Cum De-Aerator Tank's 5 specifications, in
+// their fixed data.ts order — this one product's spec set was designed
+// around these exact icons, so it keeps them instead of the generic
+// keyword-matched fallback every other product uses.
+const EXPANSION_TANK_SPEC_ICONS = [Ruler, Layers, Gauge, Wind, Shield];
+
+/**
+ * Product detail page layout — glass/tilt hero card, floating certification
+ * badge, blueprint-grid page background, and dark glowing Authority + CTA
+ * cards. Rolled out to every product.
+ */
+function ProductDetailsLayout({
+  product,
+  backTo,
+  backLabel,
+}: {
+  product: Product;
+  backTo: string;
+  backLabel: string;
+}) {
+  const tiltRef = React.useRef<HTMLDivElement>(null);
+  const isRawStudioPhoto = RAW_STUDIO_PHOTOS.has(product.id);
+
+  const handleTiltMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = tiltRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
+    el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+    const shadowX = (x - centerX) / 10;
+    const shadowY = (y - centerY) / 10;
+    el.style.boxShadow = `${-shadowX}px ${-shadowY}px 40px -10px rgba(28,92,168,0.25), inset 0 1px 0 rgba(255,255,255,1)`;
+  };
+
+  const handleTiltLeave = () => {
+    const el = tiltRef.current;
+    if (!el) return;
+    el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    el.style.boxShadow = '0 25px 50px -12px rgba(28,92,168,0.15), inset 0 1px 0 rgba(255,255,255,1)';
+  };
+
+  return (
+    <>
+      <style>{`
+        @keyframes productCertBadgeFloat {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
+        }
+        .product-cert-badge-float { animation: productCertBadgeFloat 4s ease-in-out infinite; }
+      `}</style>
+
+      <div
+        className="min-h-screen text-left"
+        style={{
+          backgroundColor: '#FBFBFC',
+          backgroundImage:
+            'linear-gradient(rgba(28,92,168,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(28,92,168,0.03) 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+        }}
+      >
+        {/* Breadcrumb bar — clears the fixed navbar at rest; sticks below it once scrolled */}
+        <div className="bg-white/80 backdrop-blur-md border-b border-line py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20 sticky top-16 sm:top-18 lg:top-20 z-30">
+          <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-soft font-semibold">
+            <Link
+              to={backTo}
+              data-testid="product-back-btn"
+              className="inline-flex items-center gap-2 rounded-full bg-blue/10 hover:bg-blue/20 text-blue px-4 py-2 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to {backLabel}</span>
+            </Link>
+            <div className="hidden sm:flex items-center gap-2">
+              <Link to="/products" className="hover:text-blue transition-colors">Products</Link>
+              <ChevronRight className="w-3 h-3" />
+              <Link to={backTo} className="text-blue hover:underline">{product.category}</Link>
+              <ChevronRight className="w-3 h-3" />
+              <span className="text-ink font-extrabold truncate max-w-[120px] sm:max-w-none">{product.name}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 space-y-20">
+
+          {/* Hero */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <Reveal className="space-y-6">
+              <div className="inline-flex items-center gap-2 bg-blue/10 text-blue px-3 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue animate-pulse" />
+                {product.category}
+              </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold text-ink tracking-tight leading-tight">
+                {product.name}
+              </h1>
+              <p className="text-blue text-sm md:text-base font-semibold leading-relaxed border-l-4 border-sky pl-4">
+                "{product.tagline}"
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.15} className="relative [perspective:1000px]">
+              <div className="absolute -top-4 -right-4 z-20 bg-white rounded-2xl shadow-xl border border-line p-4 flex items-center gap-3 product-cert-badge-float">
+                <div className="bg-blue/10 p-2 rounded-xl">
+                  <ShieldCheck className="w-6 h-6 text-blue" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-ink">IBR 1950</p>
+                  <p className="text-[10px] text-slate-soft font-medium">Certified</p>
+                </div>
+              </div>
+
+              <div
+                ref={tiltRef}
+                onMouseMove={handleTiltMove}
+                onMouseLeave={handleTiltLeave}
+                className={`rounded-3xl ${isRawStudioPhoto ? '' : 'p-8'} flex items-center justify-center aspect-[16/10] relative overflow-hidden bg-white/65 backdrop-blur-xl border border-white/90`}
+                style={{
+                  boxShadow: '0 25px 50px -12px rgba(28,92,168,0.15), inset 0 1px 0 rgba(255,255,255,1)',
+                  transformStyle: 'preserve-3d',
+                  transition: 'transform 0.15s ease-out, box-shadow 0.3s ease-out',
+                }}
+              >
+                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue/10 rounded-full blur-3xl" />
+                <div className="relative z-10 w-full h-full flex items-center justify-center">
+                  <ProductImageLarge type={product.imageType} productId={product.id} />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Video Showcase (Steam Boilers and Thermic Fluid Heaters only) */}
+          {(product.category === 'Steam Boilers' || product.category === 'Thermic Fluid Heaters') && (
+            <ProductVideoShowcase productId={product.id} />
+          )}
+
+          {/* Technical Specifications */}
+          <div>
+            <Reveal className="flex items-center gap-4 mb-10">
+              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue/10 text-blue shadow-sm">
+                <Cpu className="w-6 h-6" />
+              </span>
+              <h2 className="text-3xl font-heading font-extrabold text-ink">Technical Specifications</h2>
+            </Reveal>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {product.specifications?.map((sp, idx) => {
+                const SpecIcon =
+                  product.id === 'expansion-tank'
+                    ? EXPANSION_TANK_SPEC_ICONS[idx] ?? specIcon(sp.label)
+                    : specIcon(sp.label);
+                const [mainValue, note] = splitSpecValue(sp.value);
+                return (
+                  <React.Fragment key={idx}>
+                  <Reveal
+                    delay={idx * 0.1}
+                    className="bg-white border border-line rounded-2xl p-6 flex items-start gap-5 shadow-sm hover:shadow-[0_15px_30px_-10px_rgba(28,92,168,0.15)] transition-all duration-300 relative overflow-hidden group"
+                  >
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue/5 text-blue group-hover:bg-blue group-hover:text-white transition-all duration-300 group-hover:scale-110">
+                      <SpecIcon className="w-5 h-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-slate-soft mb-1">{sp.label}</div>
+                      <div className="text-[15px] font-bold text-ink leading-snug">{mainValue}</div>
+                      {note && <div className="text-xs text-slate-soft mt-0.5">{note}</div>}
+                    </div>
+                  </Reveal>
+                  </React.Fragment>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Features + Authority */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8">
+            <Reveal className="bg-white border border-line rounded-3xl p-10 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
+              <h3 className="text-2xl font-heading font-extrabold text-ink mb-8 flex items-center gap-3">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue/10 text-blue">
+                  <Rocket className="w-4 h-4" />
+                </span>
+                Key Performance Features
+              </h3>
+              <div className="space-y-6">
+                {product.features?.map((feat, idx) => (
+                  <div key={idx} className="flex gap-4 items-start group">
+                    <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue/10 group-hover:bg-blue transition-colors duration-300">
+                      <Check className="w-4 h-4 text-blue group-hover:text-white transition-colors duration-300" />
+                    </div>
+                    <span className="text-[15px] text-slate font-medium leading-relaxed group-hover:text-ink transition-colors">{feat}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.15} className="bg-ink rounded-3xl p-10 shadow-xl relative overflow-hidden flex flex-col justify-center border border-white/10">
+              <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue/30 rounded-full blur-[80px] pointer-events-none" />
+              <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-sky/20 rounded-full blur-[80px] pointer-events-none" />
+
+              <h3 className="text-xl font-heading font-extrabold text-white mb-8 flex items-center gap-3 relative z-10">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-sky">
+                  <Award className="w-4 h-4" />
+                </span>
+                Engineering Authority
+              </h3>
+
+              <div className="relative z-10 space-y-6">
+                <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-sm">
+                  <ShieldCheck className="w-10 h-10 text-sky shrink-0" />
+                  <div>
+                    <strong className="block text-base text-white mb-1">IBR 1950 &amp; ASME Certified</strong>
+                    <span className="text-sm text-slate-300">Approved up to 32 kg/cm²</span>
+                  </div>
+                </div>
+
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3 text-sm text-slate-200">
+                    <CheckCircle2 className="w-5 h-5 text-sky shrink-0 mt-0.5" />
+                    <span className="leading-relaxed">Mill test certifications accompany every component</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-sm text-slate-200">
+                    <CheckCircle2 className="w-5 h-5 text-sky shrink-0 mt-0.5" />
+                    <span className="leading-relaxed">Guaranteed joint radiography audits</span>
+                  </li>
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Quote CTA */}
+          <Reveal delay={0.2}>
+            <div className="bg-ink rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden border border-white/10">
+              <div className="absolute top-1/2 left-0 w-64 h-64 bg-blue/20 rounded-full blur-[80px] -translate-y-1/2 pointer-events-none" />
+
+              <div className="relative z-10 text-center md:text-left">
+                <h3 className="text-xl font-heading font-extrabold text-white mb-2">Ready to get a precise quote?</h3>
+                <p className="text-slate-300 text-sm max-w-md">Our engineering team reviews your specifications and responds within 24 business hours.</p>
+              </div>
+
+              <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4 shrink-0">
+                <div className="flex flex-col gap-2 text-center sm:text-right">
+                  <a href="tel:+917069306431" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors justify-center sm:justify-end">
+                    <Phone className="w-4 h-4 text-sky" />
+                    +91 70693 06431
+                  </a>
+                  <a href="mailto:info@thermalengitech.com" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors justify-center sm:justify-end">
+                    <Mail className="w-4 h-4 text-sky" />
+                    info@thermalengitech.com
+                  </a>
+                </div>
+                <Link
+                  to={`/request-quote?product=${encodeURIComponent(product.name)}`}
+                  className="group relative inline-flex items-center gap-3 rounded-full bg-blue text-white font-bold px-8 py-4 text-sm shadow-[0_0_20px_rgba(28,92,168,0.4)] hover:shadow-[0_0_30px_rgba(28,92,168,0.6)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 whitespace-nowrap"
+                >
+                  <span>Request a Quote</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+
+        </div>
+      </div>
+    </>
+  );
+}
+
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
   const product = PRODUCTS.find((p) => p.id === id);
@@ -260,176 +521,5 @@ export default function ProductDetails() {
   const backTo = `/products/category/${slugify(product.category)}`;
   const backLabel = product.category;
 
-  return (
-    <div className="bg-white min-h-screen text-left">
-
-      {/* Breadcrumb bar — clears the fixed navbar at rest; sticks below it once scrolled */}
-      <div className="bg-white border-b border-line py-3.5 px-4 sm:px-6 lg:px-8 font-sans mt-16 sm:mt-18 lg:mt-20 sticky top-16 sm:top-18 lg:top-20 z-30">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-slate-soft font-semibold">
-          <Link
-            to={backTo}
-            data-testid="product-back-btn"
-            className="inline-flex items-center gap-1.5 rounded-full bg-blue/8 hover:bg-blue/15 text-blue px-3.5 py-2 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to {backLabel}</span>
-          </Link>
-          <div className="hidden sm:flex items-center gap-2">
-            <Link to="/products" className="hover:text-blue">Products</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <Link to={backTo} className="text-blue hover:underline">{product.category}</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-ink font-extrabold truncate max-w-[120px] sm:max-w-none">{product.name}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 space-y-10">
-
-        {/* Header */}
-        <Reveal className="space-y-4">
-          <span className="text-xs font-mono font-bold tracking-wider text-blue bg-blue/10 px-3 py-1.5 rounded-full uppercase">
-            {product.category}
-          </span>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold text-ink tracking-tight leading-tight">
-            {product.name}
-          </h1>
-          <p className="text-blue text-sm md:text-base font-semibold font-sans leading-relaxed border-l-4 border-sky pl-4">
-            "{product.tagline}"
-          </p>
-        </Reveal>
-
-        {/* Product visual — medium-width panel (max-w-2xl, centered), aspect-locked
-            to the same 16:10 box at the SAME width on every product, so the box
-            itself is always identically sized regardless of photo vs. schematic.
-            Real photos (opaque studio-gray backdrop) fill the box edge-to-edge
-            with no padding, so that backdrop reaches the panel's own rounded
-            corners with nothing exposed in between — no mismatched seam. CAD
-            schematics (transparent background) get padding instead, for
-            breathing room around the contained, centered drawing, without
-            changing the box's own outer size. */}
-        <Reveal
-          delay={0.05}
-          className="bg-panel rounded-2xl relative overflow-hidden max-w-2xl mx-auto"
-        >
-          <div className={`w-full aspect-[16/10] flex items-center justify-center ${RAW_STUDIO_PHOTOS.has(product.id) ? '' : 'p-10'}`}>
-            <ProductImageLarge type={product.imageType} productId={product.id} />
-          </div>
-          <span className="absolute bottom-4 left-4 bg-white font-mono text-[9px] text-slate-soft uppercase tracking-widest px-2.5 py-1 rounded">
-            {PRODUCT_PHOTOS[product.id] ? 'Product Photograph' : 'High Resolution Schematic CAD Layout'}
-          </span>
-        </Reveal>
-
-        {/* Video Showcase (Steam Boilers and Thermic Fluid Heaters only) */}
-        {(product.category === 'Steam Boilers' || product.category === 'Thermic Fluid Heaters') && (
-          <ProductVideoShowcase productId={product.id} />
-        )}
-
-        {/* Technical Specifications — icon-per-spec scannable grid */}
-        <Reveal delay={0.1} className="space-y-5">
-          <h2 className="text-xl font-heading font-bold text-ink flex items-center gap-2.5">
-            <Cpu className="w-5 h-5 text-blue" />
-            <span>Technical Specifications</span>
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {product.specifications?.map((sp, idx) => {
-              const SpecIcon = specIcon(sp.label);
-              const [mainValue, note] = splitSpecValue(sp.value);
-              return (
-                <div
-                  key={idx}
-                  className="bg-panel border border-line rounded-xl p-5 flex items-start gap-4 transition-all duration-150 hover:bg-white hover:border-blue/30 hover:shadow-sm"
-                >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue/10 text-blue">
-                    <SpecIcon className="w-[18px] h-[18px]" strokeWidth={1.75} />
-                  </span>
-                  <div className="min-w-0">
-                    <div className="text-[11px] font-mono font-bold uppercase tracking-wide text-slate-soft mb-1">{sp.label}</div>
-                    <div className="text-sm font-bold text-ink leading-snug">{mainValue}</div>
-                    {note && <div className="text-xs text-slate-soft mt-0.5">{note}</div>}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </Reveal>
-
-        {/* Key Performance Features + Engineering Authority, side by side */}
-        <Reveal delay={0.15} className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-7">
-          <div className="bg-panel border border-line rounded-2xl p-7">
-            <h3 className="text-base font-heading font-bold text-ink mb-5 flex items-center gap-2">
-              <Rocket className="w-[18px] h-[18px] text-blue" />
-              <span>Key Performance Features</span>
-            </h3>
-            <div className="space-y-4">
-              {product.features?.map((feat, idx) => (
-                <div key={idx} className="flex gap-2.5 items-start">
-                  <CheckCircle2 className="w-4 h-4 text-blue shrink-0 mt-0.5" />
-                  <span className="text-sm text-slate font-medium leading-relaxed">{feat}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-white border border-line rounded-2xl p-7 shadow-sm flex flex-col">
-            <h3 className="text-base font-heading font-bold text-ink mb-4 flex items-center gap-2">
-              <Award className="w-[18px] h-[18px] text-blue" />
-              <span>Engineering Authority</span>
-            </h3>
-            <div className="flex items-center gap-3 bg-panel-blue border-l-4 border-blue rounded-xl px-4 py-3.5 mb-4">
-              <ShieldCheck className="w-7 h-7 text-blue shrink-0" />
-              <div>
-                <strong className="block text-sm text-ink">IBR 1950 &amp; ASME Certified</strong>
-                <span className="text-xs text-slate-soft">Approved up to 32 kg/cm²</span>
-              </div>
-            </div>
-            <ul className="space-y-2.5">
-              <li className="flex items-center gap-2.5 text-[13px] text-slate">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Mill test certifications accompany every component</span>
-              </li>
-              <li className="flex items-center gap-2.5 text-[13px] text-slate">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Guaranteed joint radiography audits</span>
-              </li>
-            </ul>
-          </div>
-        </Reveal>
-
-        {/* Request a Quote — full-width closing banner */}
-        <Reveal delay={0.2} className="rounded-[28px] bg-gradient-to-r from-ink-2 to-blue-dark text-white p-8 sm:p-10 flex flex-wrap items-center justify-between gap-7">
-          <div className="space-y-1.5 max-w-md">
-            <h3 className="text-xl sm:text-2xl font-heading font-extrabold">Request a Quote for This Equipment</h3>
-            <p className="text-slate-300 text-sm">
-              Get a technical sizing quotation — our engineering team reviews your specification and responds within 24 business hours.
-            </p>
-          </div>
-          <div className="flex flex-col items-start sm:items-end gap-2.5">
-            <Link
-              to={`/request-quote?product=${encodeURIComponent(product.name)}`}
-              className="inline-flex items-center gap-2 rounded-full bg-blue hover:bg-blue-2 hover:scale-[1.02] text-white font-bold px-7 py-3.5 text-sm shadow-lg transition-all whitespace-nowrap"
-            >
-              <FileText className="w-4 h-4" />
-              Request a Quote
-            </Link>
-            <div className="flex flex-wrap items-center gap-4 text-xs text-sky">
-              <span className="flex items-center gap-1.5">
-                <Phone className="w-3.5 h-3.5" />
-                Sales: <a href="tel:+917069306431" className="text-white font-medium border-b border-dotted border-white/30">+91 70693 06431</a>
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5" />
-                <a href="mailto:info@thermalengitech.com" className="text-white font-medium border-b border-dotted border-white/30">info@thermalengitech.com</a>
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5 text-[11px] text-slate-300">
-              <Clock className="w-3 h-3" />
-              <span>Technical proposals returned within 24 business hours.</span>
-            </div>
-          </div>
-        </Reveal>
-
-      </div>
-    </div>
-  );
+  return <ProductDetailsLayout product={product} backTo={backTo} backLabel={backLabel} />;
 }
