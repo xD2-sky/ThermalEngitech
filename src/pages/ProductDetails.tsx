@@ -395,8 +395,6 @@ function ProductDetailsLayout({
           {/* Quote CTA — light theme, top gradient accent */}
           <Reveal delay={0.2}>
             <div className="bg-white border border-blue/20 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition-shadow duration-300 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue to-sky" />
-
               <div className="relative z-10 text-center md:text-left">
                 <h3 className="text-xl font-heading font-extrabold text-ink mb-2">Ready to get a precise quote?</h3>
                 <p className="text-slate text-sm max-w-md">Our engineering team reviews your specifications and responds within 24 business hours.</p>
