@@ -299,19 +299,19 @@ export default function ProductDetails() {
           </p>
         </Reveal>
 
-        {/* Product visual — full-width panel, aspect-locked to the same
-            16:10 box at the SAME width on every product, so the box itself
-            is always identically sized regardless of photo vs. schematic
-            (previously the schematic path also capped its inner wrapper at
-            max-w-3xl, shrinking that box well below the full-width photo
-            box's height — same aspect ratio, different actual size). Real
-            photos (opaque studio-gray backdrop) fill the box edge-to-edge
-            with no padding, so that backdrop reaches the panel's own
-            rounded corners with nothing exposed in between — no mismatched
-            seam. CAD schematics (transparent background) get padding
-            instead, for breathing room around the contained, centered
-            drawing, without changing the box's own outer size. */}
-        <Reveal delay={0.05} className="bg-panel rounded-2xl relative overflow-hidden">
+        {/* Product visual — medium-width panel (max-w-2xl, centered), aspect-locked
+            to the same 16:10 box at the SAME width on every product, so the box
+            itself is always identically sized regardless of photo vs. schematic.
+            Real photos (opaque studio-gray backdrop) fill the box edge-to-edge
+            with no padding, so that backdrop reaches the panel's own rounded
+            corners with nothing exposed in between — no mismatched seam. CAD
+            schematics (transparent background) get padding instead, for
+            breathing room around the contained, centered drawing, without
+            changing the box's own outer size. */}
+        <Reveal
+          delay={0.05}
+          className="bg-panel rounded-2xl relative overflow-hidden max-w-2xl mx-auto"
+        >
           <div className={`w-full aspect-[16/10] flex items-center justify-center ${RAW_STUDIO_PHOTOS.has(product.id) ? '' : 'p-10'}`}>
             <ProductImageLarge type={product.imageType} productId={product.id} />
           </div>
