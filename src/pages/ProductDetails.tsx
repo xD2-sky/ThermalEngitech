@@ -11,8 +11,8 @@ import { Product } from '../types';
 import { slugify } from '../catalog';
 import ProductVideoShowcase from '../components/ProductVideoShowcase';
 import {
-  ArrowLeft, ShieldCheck, Cpu, Mail, Phone, CheckCircle2, ChevronRight,
-  Gauge, Thermometer, Flame, Layers, BarChart3, Settings, Award,
+  ArrowLeft, ShieldCheck, Cpu, Mail, Phone, ChevronRight,
+  Gauge, Thermometer, Flame, Layers, BarChart3, Settings,
   Rocket, ArrowRight, Check, Wind, Shield, Ruler,
 } from 'lucide-react';
 import Reveal from '../components/Reveal';
@@ -247,9 +247,9 @@ function ProductDetailsLayout({
       <style>{`
         @keyframes productCertBadgeFloat {
           0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-8px); }
+          50% { transform: translateY(-10px); }
         }
-        .product-cert-badge-float { animation: productCertBadgeFloat 4s ease-in-out infinite; }
+        .product-cert-badge-float { animation: productCertBadgeFloat 5s ease-in-out infinite; }
       `}</style>
 
       <div
@@ -282,31 +282,31 @@ function ProductDetailsLayout({
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 space-y-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-14">
 
           {/* Hero */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <Reveal className="space-y-6">
-              <div className="inline-flex items-center gap-2 bg-blue/10 text-blue px-3 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue animate-pulse" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <Reveal className="space-y-5">
+              <div className="inline-flex items-center gap-2 bg-blue/10 text-blue px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase">
+                <span className="w-2 h-2 rounded-full bg-blue animate-pulse" />
                 {product.category}
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading font-extrabold text-ink tracking-tight leading-tight">
                 {product.name}
               </h1>
-              <p className="text-blue text-sm md:text-base font-semibold leading-relaxed border-l-4 border-sky pl-4">
+              <p className="text-blue text-sm md:text-base font-semibold leading-relaxed border-l-4 border-sky pl-6">
                 "{product.tagline}"
               </p>
             </Reveal>
 
             <Reveal delay={0.15} className="relative [perspective:1000px]">
-              <div className="absolute -top-4 -right-4 z-20 bg-white rounded-2xl shadow-xl border border-line p-4 flex items-center gap-3 product-cert-badge-float">
-                <div className="bg-blue/10 p-2 rounded-xl">
+              <div className="absolute -top-5 -right-5 z-20 bg-white rounded-2xl shadow-xl border border-line p-5 flex items-center gap-4 product-cert-badge-float">
+                <div className="bg-blue/10 p-2.5 rounded-xl">
                   <ShieldCheck className="w-6 h-6 text-blue" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-ink">IBR 1950</p>
-                  <p className="text-[10px] text-slate-soft font-medium">Certified</p>
+                  <p className="text-sm font-bold text-ink">IBR 1950</p>
+                  <p className="text-[11px] text-slate-soft font-medium">Certified</p>
                 </div>
               </div>
 
@@ -336,14 +336,14 @@ function ProductDetailsLayout({
 
           {/* Technical Specifications */}
           <div>
-            <Reveal className="flex items-center gap-4 mb-10">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue/10 text-blue shadow-sm">
-                <Cpu className="w-6 h-6" />
+            <Reveal className="flex items-center gap-3 mb-6">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue/10 text-blue shadow-sm">
+                <Cpu className="w-5 h-5" />
               </span>
-              <h2 className="text-3xl font-heading font-extrabold text-ink">Technical Specifications</h2>
+              <h2 className="text-2xl font-heading font-extrabold text-ink">Technical Specifications</h2>
             </Reveal>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {product.specifications?.map((sp, idx) => {
                 const SpecIcon =
                   product.id === 'expansion-tank'
@@ -354,9 +354,9 @@ function ProductDetailsLayout({
                   <React.Fragment key={idx}>
                   <Reveal
                     delay={idx * 0.1}
-                    className="bg-white border border-line rounded-2xl p-6 flex items-start gap-5 shadow-sm hover:shadow-[0_15px_30px_-10px_rgba(28,92,168,0.15)] transition-all duration-300 relative overflow-hidden group"
+                    className="bg-white border border-line rounded-2xl p-5 flex items-start gap-4 shadow-sm hover:shadow-[0_15px_30px_-10px_rgba(28,92,168,0.15)] transition-all duration-300 relative overflow-hidden group"
                   >
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue/5 text-blue group-hover:bg-blue group-hover:text-white transition-all duration-300 group-hover:scale-110">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue/5 text-blue group-hover:bg-blue group-hover:text-white transition-all duration-300 group-hover:scale-110">
                       <SpecIcon className="w-5 h-5" />
                     </span>
                     <div className="min-w-0">
@@ -371,86 +371,51 @@ function ProductDetailsLayout({
             </div>
           </div>
 
-          {/* Features + Authority */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8">
-            <Reveal className="bg-white border border-line rounded-3xl p-10 shadow-sm relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
-              <h3 className="text-2xl font-heading font-extrabold text-ink mb-8 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue/10 text-blue">
-                  <Rocket className="w-4 h-4" />
-                </span>
-                Key Performance Features
-              </h3>
-              <div className="space-y-6">
-                {product.features?.map((feat, idx) => (
-                  <div key={idx} className="flex gap-4 items-start group">
-                    <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-blue/10 group-hover:bg-blue transition-colors duration-300">
-                      <Check className="w-4 h-4 text-blue group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    <span className="text-[15px] text-slate font-medium leading-relaxed group-hover:text-ink transition-colors">{feat}</span>
+          {/* Key Performance Features — full width, two-column list */}
+          <Reveal className="bg-white border border-line rounded-3xl p-8 shadow-sm relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-blue/5 rounded-full blur-3xl -mr-24 -mt-24 pointer-events-none" />
+            <h3 className="text-xl font-heading font-extrabold text-ink mb-6 flex items-center gap-3">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue/10 text-blue">
+                <Rocket className="w-4 h-4" />
+              </span>
+              Key Performance Features
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {product.features?.map((feat, idx) => (
+                <div key={idx} className="flex gap-4 items-start group">
+                  <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue/10 group-hover:bg-blue transition-colors duration-300">
+                    <Check className="w-4 h-4 text-blue group-hover:text-white transition-colors duration-300" />
                   </div>
-                ))}
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.15} className="bg-ink rounded-3xl p-10 shadow-xl relative overflow-hidden flex flex-col justify-center border border-white/10">
-              <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue/30 rounded-full blur-[80px] pointer-events-none" />
-              <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-sky/20 rounded-full blur-[80px] pointer-events-none" />
-
-              <h3 className="text-xl font-heading font-extrabold text-white mb-8 flex items-center gap-3 relative z-10">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-sky">
-                  <Award className="w-4 h-4" />
-                </span>
-                Engineering Authority
-              </h3>
-
-              <div className="relative z-10 space-y-6">
-                <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-sm">
-                  <ShieldCheck className="w-10 h-10 text-sky shrink-0" />
-                  <div>
-                    <strong className="block text-base text-white mb-1">IBR 1950 &amp; ASME Certified</strong>
-                    <span className="text-sm text-slate-300">Approved up to 32 kg/cm²</span>
-                  </div>
+                  <span className="text-sm text-slate font-medium leading-relaxed group-hover:text-ink transition-colors">{feat}</span>
                 </div>
+              ))}
+            </div>
+          </Reveal>
 
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3 text-sm text-slate-200">
-                    <CheckCircle2 className="w-5 h-5 text-sky shrink-0 mt-0.5" />
-                    <span className="leading-relaxed">Mill test certifications accompany every component</span>
-                  </li>
-                  <li className="flex items-start gap-3 text-sm text-slate-200">
-                    <CheckCircle2 className="w-5 h-5 text-sky shrink-0 mt-0.5" />
-                    <span className="leading-relaxed">Guaranteed joint radiography audits</span>
-                  </li>
-                </ul>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Quote CTA */}
+          {/* Quote CTA — light theme, top gradient accent */}
           <Reveal delay={0.2}>
-            <div className="bg-ink rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl relative overflow-hidden border border-white/10">
-              <div className="absolute top-1/2 left-0 w-64 h-64 bg-blue/20 rounded-full blur-[80px] -translate-y-1/2 pointer-events-none" />
+            <div className="bg-white border border-blue/20 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition-shadow duration-300 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue to-sky" />
 
               <div className="relative z-10 text-center md:text-left">
-                <h3 className="text-xl font-heading font-extrabold text-white mb-2">Ready to get a precise quote?</h3>
-                <p className="text-slate-300 text-sm max-w-md">Our engineering team reviews your specifications and responds within 24 business hours.</p>
+                <h3 className="text-xl font-heading font-extrabold text-ink mb-2">Ready to get a precise quote?</h3>
+                <p className="text-slate text-sm max-w-md">Our engineering team reviews your specifications and responds within 24 business hours.</p>
               </div>
 
               <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4 shrink-0">
-                <div className="flex flex-col gap-2 text-center sm:text-right">
-                  <a href="tel:+917069306431" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors justify-center sm:justify-end">
-                    <Phone className="w-4 h-4 text-sky" />
+                <div className="flex flex-col gap-3 text-center sm:text-right">
+                  <a href="tel:+917069306431" className="flex items-center gap-2 text-sm text-slate hover:text-blue transition-colors justify-center sm:justify-end font-medium">
+                    <Phone className="w-4 h-4 text-blue" />
                     +91 70693 06431
                   </a>
-                  <a href="mailto:info@thermalengitech.com" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors justify-center sm:justify-end">
-                    <Mail className="w-4 h-4 text-sky" />
+                  <a href="mailto:info@thermalengitech.com" className="flex items-center gap-2 text-sm text-slate hover:text-blue transition-colors justify-center sm:justify-end font-medium">
+                    <Mail className="w-4 h-4 text-blue" />
                     info@thermalengitech.com
                   </a>
                 </div>
                 <Link
                   to={`/request-quote?product=${encodeURIComponent(product.name)}`}
-                  className="group relative inline-flex items-center gap-3 rounded-full bg-blue text-white font-bold px-8 py-4 text-sm shadow-[0_0_20px_rgba(28,92,168,0.4)] hover:shadow-[0_0_30px_rgba(28,92,168,0.6)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 whitespace-nowrap"
+                  className="group relative inline-flex items-center gap-3 rounded-full bg-blue text-white font-bold px-8 py-4 text-sm shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 whitespace-nowrap"
                 >
                   <span>Request a Quote</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
