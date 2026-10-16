@@ -32,6 +32,7 @@ const PRODUCT_PHOTOS: Partial<Record<string, string>> = {
   'solid-fuel-3pass-wetback': 'images/products/solid-fuel-3pass-wetback.webp',
   'oil-gas-3pass-horizontal-heater': 'images/products/oil-gas-3pass-horizontal-heater.webp',
   'solid-fuel-4pass-vertical-heater': 'images/products/solid-fuel-4pass-vertical-heater.webp',
+  'solid-fuel-3pass-horizontal-heater': 'images/products/solid-fuel-3pass-horizontal-heater.webp',
 };
 
 /** Of the PRODUCT_PHOTOS above, these five are raw, unprocessed studio
@@ -48,6 +49,8 @@ const RAW_STUDIO_PHOTOS = new Set([
   'solid-fuel-3pass-wetback',
   'oil-gas-3pass-horizontal-heater',
   'solid-fuel-4pass-vertical-heater',
+  'smokecum-watertube-membrane',
+  'solid-fuel-3pass-horizontal-heater',
 ]);
 
 const PRODUCT_SCHEMATICS: Partial<Record<string, string>> = {
