@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface RotatingGlobeProps {
   className?: string;
@@ -38,8 +38,30 @@ const ZOOM = 0.99;
 export default function RotatingGlobe({ className }: RotatingGlobeProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  // This section sits well below the fold, so without this gate the
+  // 18MB source video would start downloading the instant Home mounts —
+  // only fetch it once the visitor is about to actually scroll to it.
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '600px' }
+    );
+    observer.observe(wrapper);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
+    if (!shouldLoad) return;
     const video = videoRef.current;
     const canvas = canvasRef.current;
     if (!video || !canvas) return;
@@ -108,24 +130,26 @@ export default function RotatingGlobe({ className }: RotatingGlobeProps) {
     rafId = requestAnimationFrame(draw);
 
     return () => cancelAnimationFrame(rafId);
-  }, []);
+  }, [shouldLoad]);
 
   return (
-    <div className={className}>
+    <div ref={wrapperRef} className={className}>
       {/* display:none would stop Chrome from ever advancing playback past
           the first decoded frame (no compositor layer is requesting new
           ones) — keep it laid out but invisible instead, so the video
           actually keeps playing while the canvas re-draws it. */}
-      <video
-        ref={videoRef}
-        src={`${import.meta.env.BASE_URL}videos/certifications-globe-rotating.mp4`}
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute w-px h-px opacity-0 pointer-events-none overflow-hidden"
-        aria-hidden="true"
-      />
+      {shouldLoad && (
+        <video
+          ref={videoRef}
+          src={`${import.meta.env.BASE_URL}videos/certifications-globe-rotating.mp4`}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute w-px h-px opacity-0 pointer-events-none overflow-hidden"
+          aria-hidden="true"
+        />
+      )}
       <canvas ref={canvasRef} className="w-full h-full" />
     </div>
   );
