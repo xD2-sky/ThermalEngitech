@@ -146,3 +146,22 @@ notes:
   - "Every image has alt text; decorative images use alt=\"\" with aria-hidden."
   - "Reduced-motion and repeat-view handling is centralized in Reveal.tsx — don't bypass it with a raw framer-motion usage elsewhere."
   - "Color tokens live in src/index.css under @theme — add a new token there rather than hardcoding a new hex in a component."
+
+# ---------------------------------------------------------------------------
+# Known issues
+# ---------------------------------------------------------------------------
+known-issues:
+  - "src/main.tsx mounts with createRoot instead of hydrateRoot, even though
+     scripts/prerender.mjs snapshots every route to static HTML. This means
+     the client discards and fully re-renders the prerendered DOM on every
+     load instead of reusing it — wastes the prerender's hydration benefit
+     and shows up as a full-page layout shift in Lighthouse (CLS). Switching
+     to hydrateRoot (only when #root already has children, so the plain dev
+     server still works) is the obvious fix, but it surfaces a real
+     hydration mismatch — React error #418 — most likely from the lazy()
+     -wrapped route components (App.tsx) not hydrating cleanly against the
+     prerendered Suspense boundary. Left unfixed for now: no visible glitch
+     or functional bug today, just a wasted optimization. A real fix
+     probably means dropping lazy-loading for routes (the whole site is
+     already prerendered per-route, so the code-splitting benefit is
+     smaller than usual) before flipping main.tsx to hydrateRoot."
