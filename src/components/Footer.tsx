@@ -40,7 +40,7 @@ export default function Footer() {
               <Logo className="w-12 h-11 shrink-0" />
               <div className="leading-tight">
                 <span className="font-heading font-extrabold text-[15px] text-white uppercase tracking-tight block">
-                  Thermal <span className="text-[#2F7BD4]">Engitech</span>
+                  Thermal <span className="text-[#7FB2E4]">Engitech</span>
                 </span>
                 <span className="text-[10px] tracking-[0.12em] text-slate-400 uppercase block mt-0.5">
                   Pvt. Ltd.
@@ -106,9 +106,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-slate-500">
+        <div className="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-slate-400">
           <p>© {year} Thermal Engitech Pvt. Ltd. All rights reserved.</p>
-          <p className="text-slate-500">ISO 9001:2015 · ASME · IBR 1950 certified</p>
+          <p className="text-slate-400">ISO 9001:2015 · ASME · IBR 1950 certified</p>
         </div>
       </div>
     </footer>

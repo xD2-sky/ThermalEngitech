@@ -78,7 +78,7 @@ export default function App() {
             target="_blank"
             rel="noopener noreferrer"
             data-testid="floating-whatsapp-btn"
-            className="flex items-center gap-2.5 min-h-11 px-4 py-3 bg-[#1F9D57] hover:bg-[#1B8B4D] focus-visible:bg-[#1B8B4D] text-white font-semibold text-sm rounded-full shadow-lg transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1F9D57]"
+            className="flex items-center gap-2.5 min-h-11 px-4 py-3 bg-[#1a7a44] hover:bg-[#156b3a] focus-visible:bg-[#156b3a] text-white font-semibold text-sm rounded-full shadow-lg transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a7a44]"
           >
             <MessageCircle className="w-5 h-5 text-white" />
             <span>Chat on WhatsApp</span>
