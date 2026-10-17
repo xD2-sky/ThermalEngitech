@@ -146,6 +146,7 @@ export default function Home() {
           src={`${import.meta.env.BASE_URL}images/product-range-bg.jpg`}
           alt=""
           aria-hidden="true"
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
@@ -405,6 +406,7 @@ export default function Home() {
           src={`${import.meta.env.BASE_URL}images/about-hero-industrial.webp`}
           alt=""
           aria-hidden="true"
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B1B2B]/95 via-[#0B1B2B]/80 to-[#0B1B2B]/55" />
