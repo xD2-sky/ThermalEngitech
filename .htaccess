@@ -1,0 +1,105 @@
+# ============================================================================
+#  Thermal Engitech — Apache config for Hostinger (static prerendered SPA)
+# ============================================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # ---- 301s: old WordPress site -> new site structure ----------------------
+  # Maps every real page from the old thermalengitech.com (WordPress, built
+  # on Hostinger) to its equivalent on this site, so existing search rankings
+  # and inbound links survive the swap instead of 404ing. Built from the old
+  # site's own wp-sitemap.xml plus the content of each page — not guessed
+  # from slugs alone.
+  RewriteRule ^about-us/?$ /about/ [R=301,L]
+  RewriteRule ^our-profile/?$ /about/ [R=301,L]
+  RewriteRule ^contact-us/?$ /contact/ [R=301,L]
+  RewriteRule ^infrastructure/?$ /manufacturing/ [R=301,L]
+  RewriteRule ^quality-assurance/?$ /manufacturing/ [R=301,L]
+  RewriteRule ^equipments/?$ /products/ [R=301,L]
+  RewriteRule ^boilers/?$ /products/category/steam-boilers/ [R=301,L]
+  RewriteRule ^thermic-fluid-heater/?$ /products/category/thermic-fluid-heaters/ [R=301,L]
+  RewriteRule ^pollution-control-equipments/?$ /products/category/pollution-control-equipments/ [R=301,L]
+  RewriteRule ^other-equipments/?$ /products/category/other-equipments/ [R=301,L]
+  RewriteRule ^other-steam-boiler-thermic-fluid-heater-accessories/?$ /products/category/other-equipments/ [R=301,L]
+
+  RewriteRule ^oil-gas-fired-3-pass-fully-wet-back-steam-boiler/?$ /products/oil-gas-3pass-wetback/ [R=301,L]
+  RewriteRule ^solid-fuel-fired-3-pass-fully-wet-back-steam-boiler/?$ /products/solid-fuel-3pass-wetback/ [R=301,L]
+  RewriteRule ^multi-fuel-fired-smoke-cum-water-tube-water-membrane-type/?$ /products/smokecum-watertube-membrane/ [R=301,L]
+  RewriteRule ^hybrid-multi-fuel-fired-combi-thermal-type/?$ /products/hybrid-combithermal/ [R=301,L]
+  RewriteRule ^oil-gas-fired-3-pass-horizontal-thermic-fluid-heater/?$ /products/oil-gas-3pass-horizontal-heater/ [R=301,L]
+  RewriteRule ^wood-coal-fired-3-pass-horizontal-thermic-fluid-heater/?$ /products/solid-fuel-3pass-horizontal-heater/ [R=301,L]
+  RewriteRule ^hot-water-generator/?$ /products/hot-water-generator-unit/ [R=301,L]
+  RewriteRule ^hot-water-circulating-system/?$ /products/hot-water-generator-unit/ [R=301,L]
+  RewriteRule ^air-pre-heater/?$ /products/air-pre-heater/ [R=301,L]
+  RewriteRule ^pressure-reducing-station/?$ /products/pressure-reducing-station/ [R=301,L]
+  RewriteRule ^heat-exchangers/?$ /products/heat-exchanger-shelltube/ [R=301,L]
+
+  # Judgment calls — reviewed the old page content but there's no exact
+  # equivalent on the new site, so these route to the closest match rather
+  # than a guessed specific product. Confirm these before going live:
+  RewriteRule ^vertical-thermic-fluid-heater/?$ /products/solid-fuel-4pass-vertical-heater/ [R=301,L]
+  RewriteRule ^vertical-4-pass-thermic-fluid-heater/?$ /products/solid-fuel-4pass-vertical-heater/ [R=301,L]
+  RewriteRule ^wood-coal-fired-4-pass-vertical-thermic-fluid-heater-2/?$ /products/solid-fuel-4pass-vertical-heater/ [R=301,L]
+  RewriteRule ^combi-design-biomass-boiler/?$ /products/hybrid-combithermal/ [R=301,L]
+  RewriteRule ^thermal-sib/?$ /products/category/steam-boilers/ [R=301,L]
+  RewriteRule ^thermal-max/?$ /products/category/steam-boilers/ [R=301,L]
+  RewriteRule ^careers/?$ /contact/ [R=301,L]
+
+  # Old WordPress leftovers: demo/filler blog posts (not real company
+  # content), taxonomy archives, and the old sitemap path.
+  RewriteRule ^[0-9]{4}/.*$ / [R=301,L]
+  RewriteRule ^category/.*$ / [R=301,L]
+  RewriteRule ^tag/.*$ / [R=301,L]
+  RewriteRule ^author/.*$ / [R=301,L]
+  RewriteRule ^wp-sitemap\.xml$ /sitemap.xml [R=301,L]
+
+  # Serve a prerendered directory index if it exists (e.g. /about -> /about/index.html)
+  RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI}/index.html -f
+  RewriteRule ^(.*)$ /$1/index.html [L]
+
+  # If the requested file or directory exists, serve it as-is
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Otherwise fall back to the SPA entry (client-side routing)
+  RewriteRule ^ /index.html [L]
+</IfModule>
+
+# ---- Compression -----------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml
+</IfModule>
+
+# ---- Browser caching -------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Hashed, immutable build assets — cache hard
+  <FilesMatch "\.(js|css|woff2?|ttf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|avif|svg|ico|mp4)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  # HTML should always revalidate so new deploys show up immediately
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---- Security headers ------------------------------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+ErrorDocument 404 /index.html
