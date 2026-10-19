@@ -51,8 +51,8 @@ export default function Hero({ onRequestQuote, onViewProducts }: HeroProps) {
 
           <p className="mt-6 text-[clamp(0.98rem,0.9rem+0.3vw,1.18rem)] text-white/70 leading-relaxed max-w-md">
             Thermal Engitech designs and manufactures steam boilers, thermic fluid heaters and
-            process-heat systems for plants where unplanned downtime is not an option — built in
-            Dhamatwan, Gujarat, and certified to both Indian and export standards.
+            process-heat systems for plants where unplanned downtime is not an option. Built under
+            the Make in India initiative and certified to Indian and international standards.
           </p>
 
           {/* Buttons — smaller, quieter pills; less heavy shadow/glow than before */}
