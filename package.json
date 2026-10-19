@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build && node scripts/prerender.mjs",
+    "build:hostinger": "rm -rf dist-hostinger && BASE_PATH=/ OUT_DIR=dist-hostinger vite build && BASE_PATH=/ OUT_DIR=dist-hostinger node scripts/prerender.mjs",
+    "package:hostinger": "cd dist-hostinger && zip -rq ../thermalengitech-hostinger.zip . && cd .. && unzip -l thermalengitech-hostinger.zip",
     "preview": "vite preview",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist dist-hostinger thermalengitech-hostinger.zip",
     "lint": "tsc --noEmit"
   },
   "dependencies": {

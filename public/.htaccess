@@ -2,6 +2,12 @@
 #  Thermal Engitech — Apache config for Hostinger (static prerendered SPA)
 # ============================================================================
 
+# With DirectorySlash Off below, Apache would otherwise show a raw folder
+# listing for a directory request that has no index.html match (it
+# shouldn't happen — every real directory has one — but this is the
+# standard belt-and-braces default regardless).
+Options -Indexes
+
 # Apache's own mod_dir auto-redirects a URL that maps to a real directory
 # (e.g. /about, since dist/about/ exists) to add a trailing slash — before
 # the rewrite rules below get a chance to serve that directory's index.html

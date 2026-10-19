@@ -3,9 +3,15 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
+// BASE_PATH / OUT_DIR let `npm run build:hostinger` build a root-path bundle
+// into its own output folder without touching this file — the default
+// (no env vars set) is the GitHub Pages build, unchanged.
 export default defineConfig(() => {
   return {
-    base: '/ThermalEngitech/',
+    base: process.env.BASE_PATH || '/ThermalEngitech/',
+    build: {
+      outDir: process.env.OUT_DIR || 'dist',
+    },
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

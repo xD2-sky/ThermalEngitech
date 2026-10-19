@@ -20,12 +20,13 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
-const DIST = join(ROOT, 'dist');
+const OUT_DIR = process.env.OUT_DIR || 'dist';
+const DIST = join(ROOT, OUT_DIR);
 const SITE_URL = 'https://thermalengitech.com';
 const PORT = 5079;
 
 if (!existsSync(DIST)) {
-  console.error('[prerender] dist/ not found — run `vite build` first.');
+  console.error(`[prerender] ${OUT_DIR}/ not found — run \`vite build\` first.`);
   process.exit(1);
 }
 
@@ -105,24 +106,15 @@ const MIME = {
   '.mp4': 'video/mp4', '.xml': 'application/xml', '.txt': 'text/plain',
 };
 
-// Mirrors vite.config.ts's `base` (e.g. "/ThermalEngitech/") so the asset
-// URLs baked into the built bundle (<script src="/ThermalEngitech/assets/...">)
-// resolve against this local test server the same way they do once deployed.
-// Without this, those requests 404 under headless Chrome, the bundle never
-// loads, and React never mounts — every "prerendered" page silently comes out
-// as an empty shell. Read from vite.config.ts rather than hardcoded so it
-// can't drift out of sync with the real deploy path.
-function getBasePath() {
-  try {
-    const viteConfig = readFileSync(join(ROOT, 'vite.config.ts'), 'utf8');
-    const match = viteConfig.match(/base:\s*['"]([^'"]*)['"]/);
-    if (match) return match[1] === '/' ? '' : match[1].replace(/\/$/, '');
-  } catch (e) {
-    console.warn('[prerender] could not read vite.config.ts base path:', e.message);
-  }
-  return '';
-}
-const BASE_PATH = getBasePath();
+// Mirrors vite.config.ts's `base` (same BASE_PATH env var, same default) so
+// the asset URLs baked into the built bundle
+// (<script src="/ThermalEngitech/assets/...">) resolve against this local
+// test server the same way they do once deployed. Without this, those
+// requests 404 under headless Chrome, the bundle never loads, and React
+// never mounts — every "prerendered" page silently comes out as an empty
+// shell.
+const rawBase = process.env.BASE_PATH || '/ThermalEngitech/';
+const BASE_PATH = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
 
 const server = createServer((req, res) => {
   const rawPath = decodeURIComponent(req.url.split('?')[0]);
