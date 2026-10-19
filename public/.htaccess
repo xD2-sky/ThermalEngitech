@@ -2,6 +2,17 @@
 #  Thermal Engitech — Apache config for Hostinger (static prerendered SPA)
 # ============================================================================
 
+# Apache's own mod_dir auto-redirects a URL that maps to a real directory
+# (e.g. /about, since dist/about/ exists) to add a trailing slash — before
+# the rewrite rules below get a chance to serve that directory's index.html
+# internally. Left on, every route would 301 to its slash variant (a second,
+# unwanted hop on top of any WordPress redirect above, and a mismatch with
+# the no-trailing-slash canonical/sitemap URLs). The directory-index rule
+# below handles serving index.html itself, so this default is unneeded.
+<IfModule mod_dir.c>
+  DirectorySlash Off
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -15,49 +26,55 @@
   # on Hostinger) to its equivalent on this site, so existing search rankings
   # and inbound links survive the swap instead of 404ing. Built from the old
   # site's own wp-sitemap.xml plus the content of each page — not guessed
-  # from slugs alone.
-  RewriteRule ^about-us/?$ /about/ [R=301,L]
-  RewriteRule ^our-profile/?$ /about/ [R=301,L]
-  RewriteRule ^contact-us/?$ /contact/ [R=301,L]
-  RewriteRule ^infrastructure/?$ /manufacturing/ [R=301,L]
-  RewriteRule ^quality-assurance/?$ /manufacturing/ [R=301,L]
-  RewriteRule ^equipments/?$ /products/ [R=301,L]
-  RewriteRule ^boilers/?$ /products/category/steam-boilers/ [R=301,L]
-  RewriteRule ^thermic-fluid-heater/?$ /products/category/thermic-fluid-heaters/ [R=301,L]
-  RewriteRule ^pollution-control-equipments/?$ /products/category/pollution-control-equipments/ [R=301,L]
-  RewriteRule ^other-equipments/?$ /products/category/other-equipments/ [R=301,L]
-  RewriteRule ^other-steam-boiler-thermic-fluid-heater-accessories/?$ /products/category/other-equipments/ [R=301,L]
+  # from slugs alone. Targets have no trailing slash, matching the
+  # canonical/sitemap convention — the directory-index rule further down then
+  # serves the file internally, so this is the only visible redirect hop.
+  RewriteRule ^about-us/?$ /about [R=301,L]
+  RewriteRule ^our-profile/?$ /about [R=301,L]
+  RewriteRule ^contact-us/?$ /contact [R=301,L]
+  RewriteRule ^infrastructure/?$ /manufacturing [R=301,L]
+  RewriteRule ^quality-assurance/?$ /manufacturing [R=301,L]
+  RewriteRule ^equipments/?$ /products [R=301,L]
+  RewriteRule ^boilers/?$ /products/category/steam-boilers [R=301,L]
+  RewriteRule ^thermic-fluid-heater/?$ /products/category/thermic-fluid-heaters [R=301,L]
+  RewriteRule ^pollution-control-equipments/?$ /products/category/pollution-control-equipments [R=301,L]
+  RewriteRule ^other-equipments/?$ /products/category/other-equipments [R=301,L]
+  RewriteRule ^other-steam-boiler-thermic-fluid-heater-accessories/?$ /products/category/other-equipments [R=301,L]
 
-  RewriteRule ^oil-gas-fired-3-pass-fully-wet-back-steam-boiler/?$ /products/oil-gas-3pass-wetback/ [R=301,L]
-  RewriteRule ^solid-fuel-fired-3-pass-fully-wet-back-steam-boiler/?$ /products/solid-fuel-3pass-wetback/ [R=301,L]
-  RewriteRule ^multi-fuel-fired-smoke-cum-water-tube-water-membrane-type/?$ /products/smokecum-watertube-membrane/ [R=301,L]
-  RewriteRule ^hybrid-multi-fuel-fired-combi-thermal-type/?$ /products/hybrid-combithermal/ [R=301,L]
-  RewriteRule ^oil-gas-fired-3-pass-horizontal-thermic-fluid-heater/?$ /products/oil-gas-3pass-horizontal-heater/ [R=301,L]
-  RewriteRule ^wood-coal-fired-3-pass-horizontal-thermic-fluid-heater/?$ /products/solid-fuel-3pass-horizontal-heater/ [R=301,L]
-  RewriteRule ^hot-water-generator/?$ /products/hot-water-generator-unit/ [R=301,L]
-  RewriteRule ^hot-water-circulating-system/?$ /products/hot-water-generator-unit/ [R=301,L]
-  RewriteRule ^air-pre-heater/?$ /products/air-pre-heater/ [R=301,L]
-  RewriteRule ^pressure-reducing-station/?$ /products/pressure-reducing-station/ [R=301,L]
-  RewriteRule ^heat-exchangers/?$ /products/heat-exchanger-shelltube/ [R=301,L]
+  RewriteRule ^oil-gas-fired-3-pass-fully-wet-back-steam-boiler/?$ /products/oil-gas-3pass-wetback [R=301,L]
+  RewriteRule ^solid-fuel-fired-3-pass-fully-wet-back-steam-boiler/?$ /products/solid-fuel-3pass-wetback [R=301,L]
+  RewriteRule ^multi-fuel-fired-smoke-cum-water-tube-water-membrane-type/?$ /products/smokecum-watertube-membrane [R=301,L]
+  RewriteRule ^hybrid-multi-fuel-fired-combi-thermal-type/?$ /products/hybrid-combithermal [R=301,L]
+  RewriteRule ^oil-gas-fired-3-pass-horizontal-thermic-fluid-heater/?$ /products/oil-gas-3pass-horizontal-heater [R=301,L]
+  RewriteRule ^wood-coal-fired-3-pass-horizontal-thermic-fluid-heater/?$ /products/solid-fuel-3pass-horizontal-heater [R=301,L]
+  RewriteRule ^hot-water-generator/?$ /products/hot-water-generator-unit [R=301,L]
+  RewriteRule ^hot-water-circulating-system/?$ /products/hot-water-generator-unit [R=301,L]
+  RewriteRule ^air-pre-heater/?$ /products/air-pre-heater [R=301,L]
+  RewriteRule ^pressure-reducing-station/?$ /products/pressure-reducing-station [R=301,L]
+  RewriteRule ^heat-exchangers/?$ /products/heat-exchanger-shelltube [R=301,L]
 
   # Judgment calls — reviewed the old page content but there's no exact
   # equivalent on the new site, so these route to the closest match rather
   # than a guessed specific product. Confirm these before going live:
-  RewriteRule ^vertical-thermic-fluid-heater/?$ /products/solid-fuel-4pass-vertical-heater/ [R=301,L]
-  RewriteRule ^vertical-4-pass-thermic-fluid-heater/?$ /products/solid-fuel-4pass-vertical-heater/ [R=301,L]
-  RewriteRule ^wood-coal-fired-4-pass-vertical-thermic-fluid-heater-2/?$ /products/solid-fuel-4pass-vertical-heater/ [R=301,L]
-  RewriteRule ^combi-design-biomass-boiler/?$ /products/hybrid-combithermal/ [R=301,L]
-  RewriteRule ^thermal-sib/?$ /products/category/steam-boilers/ [R=301,L]
-  RewriteRule ^thermal-max/?$ /products/category/steam-boilers/ [R=301,L]
-  RewriteRule ^careers/?$ /contact/ [R=301,L]
+  RewriteRule ^vertical-thermic-fluid-heater/?$ /products/solid-fuel-4pass-vertical-heater [R=301,L]
+  RewriteRule ^vertical-4-pass-thermic-fluid-heater/?$ /products/solid-fuel-4pass-vertical-heater [R=301,L]
+  RewriteRule ^wood-coal-fired-4-pass-vertical-thermic-fluid-heater-2/?$ /products/solid-fuel-4pass-vertical-heater [R=301,L]
+  RewriteRule ^combi-design-biomass-boiler/?$ /products/hybrid-combithermal [R=301,L]
+  RewriteRule ^thermal-sib/?$ /products/category/steam-boilers [R=301,L]
+  RewriteRule ^thermal-max/?$ /products/category/steam-boilers [R=301,L]
+  RewriteRule ^careers/?$ /contact [R=301,L]
 
-  # Old WordPress leftovers: demo/filler blog posts (not real company
-  # content), taxonomy archives, and the old sitemap path.
-  RewriteRule ^[0-9]{4}/.*$ / [R=301,L]
-  RewriteRule ^category/.*$ / [R=301,L]
-  RewriteRule ^tag/.*$ / [R=301,L]
-  RewriteRule ^author/.*$ / [R=301,L]
-  RewriteRule ^wp-sitemap\.xml$ /sitemap.xml [R=301,L]
+  # ---- Old WordPress leftovers: gone for good, not redirected ---------------
+  # Demo/filler blog posts and taxonomy/post-format archives were never real
+  # company content — redirecting them to the homepage just trains crawlers
+  # to keep requesting dead weight. 410 (not 404) tells them it's
+  # intentionally, permanently gone, so it drops out of the index faster.
+  RewriteRule ^[0-9]{4}/.*$ - [G]
+  RewriteRule ^(type|category|tag|author)/.*$ - [G]
+
+  # Old sitemap paths, including WordPress's split/paginated variants (e.g.
+  # wp-sitemap-posts-post-1.xml) -> the one real sitemap.
+  RewriteRule ^wp-sitemap.*\.xml$ /sitemap.xml [R=301,L]
 
   # Serve a prerendered directory index if it exists (e.g. /about -> /about/index.html)
   RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI}/index.html -f
@@ -68,8 +85,10 @@
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Otherwise fall back to the SPA entry (client-side routing)
-  RewriteRule ^ /index.html [L]
+  # Anything else is a genuinely unknown URL. All 34 real routes are already
+  # prerendered as actual files and matched above, so let this fall through
+  # to a real 404 (ErrorDocument below) instead of silently serving the SPA
+  # shell with a 200.
 </IfModule>
 
 # ---- Compression -----------------------------------------------------------
@@ -102,4 +121,8 @@
   Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
-ErrorDocument 404 /index.html
+# Real, branded 404 page (scripts/prerender.mjs renders the actual NotFound
+# component to dist/404.html at build time) served with a genuine 404
+# status — not the SPA shell with a 200, so crawlers and uptime checks see
+# the correct status without needing to execute JS.
+ErrorDocument 404 /404.html

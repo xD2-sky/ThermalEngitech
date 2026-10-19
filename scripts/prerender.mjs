@@ -81,18 +81,17 @@ const sitemap =
 writeFileSync(join(DIST, 'sitemap.xml'), sitemap);
 console.log(`[prerender] wrote sitemap.xml (${routes.length} urls)`);
 
-// GitHub Pages (unlike the Hostinger .htaccess above) has no rewrite rules —
-// it serves this file's content, unmodified, for any URL that isn't a real
-// file, while leaving the actual requested URL in the address bar. Copying
-// the plain app shell here (before the loop below overwrites dist/index.html
-// with prerendered Home markup) means client-side React Router still reads
-// the real location and renders the right route, including the branded 404
-// page for a genuinely unmatched path.
+// Placeholder until the real prerender below replaces it — only survives if
+// Chrome isn't available (see fallback further down). GitHub Pages (unlike
+// the Hostinger .htaccess) has no rewrite rules: it serves this file,
+// unmodified, with a 404 status for any URL that isn't a real file. On
+// Hostinger, Apache's ErrorDocument 404 serves this same file. Either way
+// the real, branded NotFound markup below (not this bare shell) is what
+// visitors and crawlers should see.
 writeFileSync(join(DIST, '404.html'), readFileSync(join(DIST, 'index.html'), 'utf8'));
-console.log('[prerender] wrote 404.html (GitHub Pages SPA fallback)');
 
 if (!CHROME) {
-  console.warn('[prerender] No Chrome binary found — skipping HTML prerender (SPA fallback still works).');
+  console.warn('[prerender] No Chrome binary found — skipping HTML prerender; 404.html left as the bare SPA shell.');
   process.exit(0);
 }
 
@@ -143,46 +142,65 @@ const server = createServer((req, res) => {
   res.end(template);
 });
 
+// Renders one route in headless Chrome and returns its full HTML, or null if
+// rendering failed or never actually mounted (see the root-markup check
+// below) — shared by the real routes and the dedicated 404 page.
+async function renderRoute(route) {
+  const url = `http://localhost:${PORT}${BASE_PATH}${route}`;
+  let html;
+  try {
+    const { stdout } = await execFileAsync(CHROME, [
+      '--headless=old', '--no-sandbox', '--disable-gpu', '--hide-scrollbars',
+      '--disable-dev-shm-usage', '--no-first-run', '--no-default-browser-check',
+      '--disable-background-networking', '--disable-background-timer-throttling',
+      '--disable-breakpad', '--disable-client-side-phishing-detection',
+      '--disable-component-update', '--disable-default-apps', '--disable-domain-reliability',
+      '--disable-extensions', '--disable-sync', '--metrics-recording-only', '--mute-audio',
+      '--no-pings', '--disable-features=Translate,BackForwardCache,MediaRouter,OptimizationHints',
+      `--user-data-dir=/tmp/te-prerender-profile`,
+      '--virtual-time-budget=7000', '--dump-dom', url,
+    ], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, timeout: 40000 });
+    html = stdout;
+  } catch (e) {
+    console.warn(`[prerender] ${route} failed (${e.message})`);
+    return null;
+  }
+  // Checking for the shell string alone isn't enough to prove React
+  // actually mounted into it — an empty, never-hydrated <div id="root">
+  // contains that exact string too, which is exactly how the base-path
+  // bug above went unnoticed (every route "succeeded" this check while
+  // writing a blank page). Require the root to actually have children.
+  if (!html || !html.includes('<div id="root">') || /<div id="root">\s*<\/div>/.test(html)) {
+    console.warn(`[prerender] ${route} produced no root markup`);
+    return null;
+  }
+  return html.startsWith('<!DOCTYPE') || html.startsWith('<!doctype') ? html : `<!doctype html>\n${html}`;
+}
+
 async function run() {
   await new Promise((r) => server.listen(PORT, r));
   console.log(`[prerender] serving dist/ on :${PORT} via ${CHROME}`);
 
   for (const route of routes) {
-    const url = `http://localhost:${PORT}${BASE_PATH}${route}`;
-    let html;
-    try {
-      const { stdout } = await execFileAsync(CHROME, [
-        '--headless=old', '--no-sandbox', '--disable-gpu', '--hide-scrollbars',
-        '--disable-dev-shm-usage', '--no-first-run', '--no-default-browser-check',
-        '--disable-background-networking', '--disable-background-timer-throttling',
-        '--disable-breakpad', '--disable-client-side-phishing-detection',
-        '--disable-component-update', '--disable-default-apps', '--disable-domain-reliability',
-        '--disable-extensions', '--disable-sync', '--metrics-recording-only', '--mute-audio',
-        '--no-pings', '--disable-features=Translate,BackForwardCache,MediaRouter,OptimizationHints',
-        `--user-data-dir=/tmp/te-prerender-profile`,
-        '--virtual-time-budget=7000', '--dump-dom', url,
-      ], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, timeout: 40000 });
-      html = stdout;
-    } catch (e) {
-      console.warn(`[prerender] ${route} failed (${e.message}) — leaving SPA fallback`);
-      continue;
-    }
-    // Checking for the shell string alone isn't enough to prove React
-    // actually mounted into it — an empty, never-hydrated <div id="root">
-    // contains that exact string too, which is exactly how the base-path
-    // bug above went unnoticed (every route "succeeded" this check while
-    // writing a blank page). Require the root to actually have children.
-    if (!html || !html.includes('<div id="root">') || /<div id="root">\s*<\/div>/.test(html)) {
-      console.warn(`[prerender] ${route} produced no root markup — skipped`);
-      continue;
-    }
-    const full = html.startsWith('<!DOCTYPE') || html.startsWith('<!doctype')
-      ? html
-      : `<!doctype html>\n${html}`;
+    const full = await renderRoute(route);
+    if (!full) { console.warn(`[prerender] ${route} — leaving SPA fallback`); continue; }
     const outDir = route === '/' ? DIST : join(DIST, route);
     mkdirSync(outDir, { recursive: true });
     writeFileSync(join(outDir, 'index.html'), full);
     console.log(`[prerender] ✓ ${route}`);
+  }
+
+  // Dedicated 404 page: "/404" isn't a registered route, so React Router's
+  // catch-all renders the real, branded NotFound component for it — the
+  // same markup a visitor would see, not the bare SPA shell. Written flat as
+  // dist/404.html (not dist/404/index.html) because that's the exact path
+  // both GitHub Pages' and Apache's (ErrorDocument 404) 404 handling expect.
+  const notFound = await renderRoute('/404');
+  if (notFound) {
+    writeFileSync(join(DIST, '404.html'), notFound);
+    console.log('[prerender] ✓ 404.html (branded NotFound page)');
+  } else {
+    console.warn('[prerender] 404 render failed — 404.html left as the bare SPA shell.');
   }
 
   server.close();
