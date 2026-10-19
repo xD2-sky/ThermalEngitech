@@ -23,6 +23,12 @@ Options -Indexes
   RewriteEngine On
   RewriteBase /
 
+  # www -> non-www, regardless of scheme — combined with the HTTPS rule
+  # below, http://www and https://www each reach the final https,
+  # non-www URL in a single hop instead of two separate redirects.
+  RewriteCond %{HTTP_HOST} ^www\.thermalengitech\.com$ [NC]
+  RewriteRule ^ https://thermalengitech.com%{REQUEST_URI} [R=301,L]
+
   # Force HTTPS
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
