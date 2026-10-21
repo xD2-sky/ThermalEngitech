@@ -11,6 +11,25 @@ export default defineConfig(() => {
     base: process.env.BASE_PATH || '/ThermalEngitech/',
     build: {
       outDir: process.env.OUT_DIR || 'dist',
+      rollupOptions: {
+        output: {
+          // Without this, Rollup's default heuristic lumps react/react-dom
+          // (needed immediately, every page) and motion/react (needed only
+          // by AboutIntro and the already-lazy Products/Manufacturing/
+          // ProductCategory pages) into one shared vendor chunk — and
+          // because that chunk also holds react/react-dom, it still gets
+          // fetched eagerly on every page load regardless, silently undoing
+          // the point of lazy-loading the motion-using pieces at all.
+          // Pulling react/react-dom into their own named chunk leaves
+          // motion/react reachable only through dynamic-import boundaries,
+          // so Rollup's own chunking correctly treats it as lazy.
+          manualChunks(id) {
+            if (/node_modules\/(react-dom|react|scheduler)\//.test(id)) {
+              return 'react-vendor';
+            }
+          },
+        },
+      },
     },
     plugins: [react(), tailwindcss()],
     resolve: {

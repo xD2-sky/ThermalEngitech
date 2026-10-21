@@ -3,17 +3,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { Suspense, lazy } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Hero from '../components/Hero';
-import AboutIntro from '../components/AboutIntro';
 import Reveal from '../components/Reveal';
 import RotatingGlobe from '../components/RotatingGlobe';
 import AnimatedCounter from '../components/AnimatedCounter';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import usePageAnimated from '../hooks/usePageAnimated';
 import { INDUSTRIES_SERVED } from '../data';
+// framer-motion's only remaining eager user on this page (scroll-linked
+// parallax, not a simple Reveal-able fade) — lazy so Home's own bundle
+// doesn't pay for the animation library just to paint the hero.
+const AboutIntro = lazy(() => import('../components/AboutIntro'));
 import {
   Factory,
   Wrench,
@@ -118,7 +119,6 @@ const PRODUCT_CATEGORIES = [
 
 export default function Home() {
   const navigate = useNavigate();
-  const alreadyAnimated = usePageAnimated();
 
   useDocumentMeta(
     'Industrial Steam Boilers & Thermic Fluid Heaters',
@@ -134,7 +134,9 @@ export default function Home() {
       />
 
       {/* About Us — logo-masked industrial photo on the left, company intro on the right. */}
-      <AboutIntro />
+      <Suspense fallback={<div className="bg-white min-h-[640px] lg:min-h-[520px]" aria-hidden="true" />}>
+        <AboutIntro />
+      </Suspense>
 
       {/* Our Core Product Range — editorial composition, not a card grid. Only the 4
           featured categories show here; the other 4 products live on the Products page.
@@ -180,16 +182,8 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {PRODUCT_CATEGORIES.map((c, i) => (
-              <motion.div
-                key={c.title}
-                {...(alreadyAnimated ? {} : {
-                  initial: { opacity: 0, y: 24 },
-                  whileInView: { opacity: 1, y: 0 },
-                  viewport: { once: true, margin: '-60px' },
-                  transition: { duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] },
-                })}
-                className="h-full"
-              >
+              <React.Fragment key={c.title}>
+              <Reveal y={24} duration={0.5} delay={i * 0.08} className="h-full">
                 {/* Bordered glass card floating on the section's own shared
                     background (not a full-bleed photo tile per card) — ghost
                     number + category tag up top, the product photo contained
@@ -243,7 +237,8 @@ export default function Home() {
                     </span>
                   </div>
                 </Link>
-              </motion.div>
+              </Reveal>
+              </React.Fragment>
             ))}
           </div>
 
@@ -432,21 +427,19 @@ export default function Home() {
             {INDUSTRIES_SERVED.map((ind, i) => {
               const Icon = INDUSTRY_ICONS[ind.icon] ?? Factory;
               return (
-                <motion.div
-                  key={i}
-                  {...(alreadyAnimated ? {} : {
-                    initial: { opacity: 0, y: 18 },
-                    whileInView: { opacity: 1, y: 0 },
-                    viewport: { once: true, margin: '-50px' },
-                    transition: { duration: 0.4, delay: (i % 5) * 0.05, ease: [0.16, 1, 0.3, 1] },
-                  })}
+                <React.Fragment key={i}>
+                <Reveal
+                  y={18}
+                  duration={0.4}
+                  delay={(i % 5) * 0.05}
                   className="rounded-xl bg-white/40 backdrop-blur-md shadow-[0_8px_24px_-14px_rgba(11,27,43,0.18)] p-6 flex flex-col items-center text-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:bg-white/60 hover:shadow-[0_15px_30px_-12px_rgba(28,92,168,0.25)]"
                 >
                   <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-white/50 backdrop-blur-sm text-[#1C5CA8]">
                     <Icon className="w-6 h-6" strokeWidth={1.75} />
                   </span>
                   <span className="font-heading font-bold text-sm text-[#0B1B2B] leading-tight">{ind.name}</span>
-                </motion.div>
+                </Reveal>
+                </React.Fragment>
               );
             })}
           </div>

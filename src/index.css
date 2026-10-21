@@ -1,5 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@800&display=swap');
 @import "tailwindcss";
+
+/* Self-hosted Manrope — previously loaded from Google Fonts via a
+   render-blocking stylesheet on fonts.googleapis.com (plus a second
+   connection to fonts.gstatic.com for the actual font file), which cost a
+   full extra round trip before any text could paint. One local variable
+   font file covers every weight used sitewide, so this now piggybacks on
+   the same connection and cache lifetime as the rest of the site's assets
+   instead of a third-party one. Inter was imported too but never actually
+   used anywhere in the codebase — dropped. */
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./assets/fonts/manrope-variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./assets/fonts/manrope-variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./assets/fonts/manrope-variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./assets/fonts/manrope-variable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("./assets/fonts/manrope-variable.woff2") format("woff2");
+}
 
 @theme {
   /* Manrope is the sitewide typeface — headings, body, nav, buttons, labels,
