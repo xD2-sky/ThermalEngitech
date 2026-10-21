@@ -106,6 +106,52 @@ code=$(status_code "$BASE/images/")
 [ "$code" = "403" ] && row PASS "/images/ directory listing blocked" "$code" || row FAIL "/images/ directory listing blocked" "got $code"
 
 # ---------------------------------------------------------------------------
+section "2b. Legacy .html / pre-WordPress URLs (found in Google/Wayback)"
+
+check_legacy() {
+  # check_legacy <path> <expected-final-path-suffix>
+  follow_chain "$BASE/$1"
+  if [ "$HOP_COUNT" -le 1 ] && [ "$FINAL_CODE" = "200" ] && [[ "$FINAL_URL" == *"$2" ]]; then
+    row PASS "/$1 -> $2" "${HOP_COUNT} hop(s), final $FINAL_CODE"
+  else
+    row FAIL "/$1 -> $2" "${HOP_COUNT} hop(s), final $FINAL_URL ($FINAL_CODE)"
+  fi
+}
+
+# WordPress-era slugs with a .html suffix (the slash variant already worked;
+# Google's cache/sitelinks still point at the .html variant too)
+check_legacy "contact-us.html" "/contact"
+check_legacy "products.html" "/products"
+check_legacy "about-us.html" "/about"
+check_legacy "our-profile.html" "/about"
+check_legacy "careers.html" "/contact"
+check_legacy "infrastructure.html" "/manufacturing"
+check_legacy "quality-assurance.html" "/manufacturing"
+check_legacy "boilers.html" "/products/category/steam-boilers"
+
+# Older, pre-WordPress ASP-era site (underscored slugs, .html/.aspx)
+check_legacy "homepage.html" "/"
+check_legacy "aboutus.html" "/about"
+check_legacy "contactus.aspx" "/contact"
+check_legacy "quality.html" "/manufacturing"
+check_legacy "air_pre_heater.html" "/products/air-pre-heater"
+check_legacy "combi_design_biomass_boiler.html" "/products/hybrid-combithermal"
+check_legacy "hot_water_generator.html" "/products/hot-water-generator-unit"
+check_legacy "multi_cyclone_dust_collector.html" "/products/multi-cyclone-dust-collector"
+check_legacy "pressure_reducing_station.html" "/products/pressure-reducing-station"
+check_legacy "thermal_max.html" "/products/category/steam-boilers"
+check_legacy "thermal_sib.html" "/products/category/steam-boilers"
+check_legacy "thermic_fluid_heater.html" "/products/category/thermic-fluid-heaters"
+check_legacy "v_thermic_fluid_heater.html" "/products/solid-fuel-4pass-vertical-heater"
+check_legacy "v4_thermic_fluid_heater.html" "/products/solid-fuel-4pass-vertical-heater"
+
+# Confirmed historical spam/defacement, not real content — must stay 404
+for u in "ast.html" "fonts/Boilers.asp"; do
+  code=$(status_code "$BASE/$u")
+  [ "$code" = "404" ] && row PASS "/$u stays 404 (spam artifact)" "$code" || row FAIL "/$u stays 404 (spam artifact)" "got $code"
+done
+
+# ---------------------------------------------------------------------------
 section "3. Protocol / host normalization"
 
 follow_chain "http://$HOST/"
