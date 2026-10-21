@@ -38,7 +38,7 @@ export default function AboutUs() {
 
   const leadership = [
     {
-      name: 'Chintant Parmar',
+      name: 'Chintan Parmar',
       role: 'Co-Founder',
     },
     {
