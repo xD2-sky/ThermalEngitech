@@ -1,0 +1,173 @@
+# ============================================================================
+#  Thermal Engitech — Apache config for Hostinger (static prerendered SPA)
+# ============================================================================
+
+# With DirectorySlash Off below, Apache would otherwise show a raw folder
+# listing for a directory request that has no index.html match (it
+# shouldn't happen — every real directory has one — but this is the
+# standard belt-and-braces default regardless).
+Options -Indexes
+
+# Apache's own mod_dir auto-redirects a URL that maps to a real directory
+# (e.g. /about, since dist/about/ exists) to add a trailing slash — before
+# the rewrite rules below get a chance to serve that directory's index.html
+# internally. Left on, every route would 301 to its slash variant (a second,
+# unwanted hop on top of any WordPress redirect above, and a mismatch with
+# the no-trailing-slash canonical/sitemap URLs). The directory-index rule
+# below handles serving index.html itself, so this default is unneeded.
+<IfModule mod_dir.c>
+  DirectorySlash Off
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # www -> non-www, regardless of scheme — combined with the HTTPS rule
+  # below, http://www and https://www each reach the final https,
+  # non-www URL in a single hop instead of two separate redirects.
+  RewriteCond %{HTTP_HOST} ^www\.thermalengitech\.com$ [NC]
+  RewriteRule ^ https://thermalengitech.com%{REQUEST_URI} [R=301,L]
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # ---- 301s: old WordPress site -> new site structure ----------------------
+  # Maps every real page from the old thermalengitech.com (WordPress, built
+  # on Hostinger) to its equivalent on this site, so existing search rankings
+  # and inbound links survive the swap instead of 404ing. Built from the old
+  # site's own wp-sitemap.xml plus the content of each page — not guessed
+  # from slugs alone. Targets have no trailing slash, matching the
+  # canonical/sitemap convention — the directory-index rule further down then
+  # serves the file internally, so this is the only visible redirect hop.
+  # Each pattern also accepts a trailing ".html" — Google still has
+  # sitelinks and indexed results pointing at the old WordPress theme's
+  # literal ".html" URLs (e.g. /about-us.html) alongside the directory-style
+  # ones (/about-us/) it also served for the same pages; only the slash
+  # variant used to redirect; the .html variant 404ed. Confirmed against a
+  # full Wayback Machine CDX listing of every URL this domain ever served
+  # with a 200.
+  RewriteRule ^about-us(\.html|/)?$ /about [R=301,L]
+  RewriteRule ^our-profile(\.html|/)?$ /about [R=301,L]
+  RewriteRule ^contact-us(\.html|/)?$ /contact [R=301,L]
+  RewriteRule ^infrastructure(\.html|/)?$ /manufacturing [R=301,L,NC]
+  RewriteRule ^quality-assurance(\.html|/)?$ /manufacturing [R=301,L]
+  RewriteRule ^equipments(\.html|/)?$ /products [R=301,L]
+  RewriteRule ^boilers(\.html|/)?$ /products/category/steam-boilers [R=301,L]
+  RewriteRule ^thermic-fluid-heater(\.html|/)?$ /products/category/thermic-fluid-heaters [R=301,L]
+  RewriteRule ^pollution-control-equipments(\.html|/)?$ /products/category/pollution-control-equipments [R=301,L]
+  RewriteRule ^other-equipments(\.html|/)?$ /products/category/other-equipments [R=301,L]
+  RewriteRule ^other-steam-boiler-thermic-fluid-heater-accessories(\.html|/)?$ /products/category/other-equipments [R=301,L]
+
+  RewriteRule ^oil-gas-fired-3-pass-fully-wet-back-steam-boiler(\.html|/)?$ /products/oil-gas-3pass-wetback [R=301,L]
+  RewriteRule ^solid-fuel-fired-3-pass-fully-wet-back-steam-boiler(\.html|/)?$ /products/solid-fuel-3pass-wetback [R=301,L]
+  RewriteRule ^multi-fuel-fired-smoke-cum-water-tube-water-membrane-type(\.html|/)?$ /products/smokecum-watertube-membrane [R=301,L]
+  RewriteRule ^hybrid-multi-fuel-fired-combi-thermal-type(\.html|/)?$ /products/hybrid-combithermal [R=301,L]
+  RewriteRule ^oil-gas-fired-3-pass-horizontal-thermic-fluid-heater(\.html|/)?$ /products/oil-gas-3pass-horizontal-heater [R=301,L]
+  RewriteRule ^wood-coal-fired-3-pass-horizontal-thermic-fluid-heater(\.html|/)?$ /products/solid-fuel-3pass-horizontal-heater [R=301,L]
+  RewriteRule ^hot-water-generator(\.html|/)?$ /products/hot-water-generator-unit [R=301,L]
+  RewriteRule ^hot-water-circulating-system(\.html|/)?$ /products/hot-water-generator-unit [R=301,L]
+  RewriteRule ^air-pre-heater(\.html|/)?$ /products/air-pre-heater [R=301,L]
+  RewriteRule ^pressure-reducing-station(\.html|/)?$ /products/pressure-reducing-station [R=301,L]
+  RewriteRule ^heat-exchangers(\.html|/)?$ /products/heat-exchanger-shelltube [R=301,L]
+
+  # Judgment calls — reviewed the old page content but there's no exact
+  # equivalent on the new site, so these route to the closest match rather
+  # than a guessed specific product. Confirm these before going live:
+  RewriteRule ^vertical-thermic-fluid-heater(\.html|/)?$ /products/solid-fuel-4pass-vertical-heater [R=301,L]
+  RewriteRule ^vertical-4-pass-thermic-fluid-heater(\.html|/)?$ /products/solid-fuel-4pass-vertical-heater [R=301,L]
+  RewriteRule ^wood-coal-fired-4-pass-vertical-thermic-fluid-heater-2(\.html|/)?$ /products/solid-fuel-4pass-vertical-heater [R=301,L]
+  RewriteRule ^combi-design-biomass-boiler(\.html|/)?$ /products/hybrid-combithermal [R=301,L]
+  RewriteRule ^thermal-sib(\.html|/)?$ /products/category/steam-boilers [R=301,L]
+  RewriteRule ^thermal-max(\.html|/)?$ /products/category/steam-boilers [R=301,L]
+  RewriteRule ^careers(\.html|/)?$ /contact [R=301,L]
+
+  # ---- 301s: even older ASP-era site (pre-WordPress) -> new site -----------
+  # A second, older generation of this domain (pre-2015, plain ASP/.html,
+  # underscored slugs) also still has indexed/archived URLs. Found via the
+  # Wayback Machine CDX API (every thermalengitech.com URL ever captured
+  # with a 200), cross-checked against what each page actually was.
+  RewriteRule ^homepage\.html$ / [R=301,L]
+  RewriteRule ^products\.html$ /products [R=301,L]
+  RewriteRule ^aboutus\.html$ /about [R=301,L]
+  RewriteRule ^contactus\.aspx$ /contact [R=301,L]
+  RewriteRule ^quality\.html$ /manufacturing [R=301,L]
+  RewriteRule ^air_pre_heater\.html$ /products/air-pre-heater [R=301,L]
+  RewriteRule ^combi_design_biomass_boiler\.html$ /products/hybrid-combithermal [R=301,L]
+  RewriteRule ^hot_water_generator\.html$ /products/hot-water-generator-unit [R=301,L]
+  RewriteRule ^multi_cyclone_dust_collector\.html$ /products/multi-cyclone-dust-collector [R=301,L]
+  RewriteRule ^pressure_reducing_station\.html$ /products/pressure-reducing-station [R=301,L]
+  RewriteRule ^thermal_max\.html$ /products/category/steam-boilers [R=301,L]
+  RewriteRule ^thermal_sib\.html$ /products/category/steam-boilers [R=301,L]
+  RewriteRule ^thermic_fluid_heater\.html$ /products/category/thermic-fluid-heaters [R=301,L]
+  RewriteRule ^v_thermic_fluid_heater\.html$ /products/solid-fuel-4pass-vertical-heater [R=301,L]
+  RewriteRule ^v4_thermic_fluid_heater\.html$ /products/solid-fuel-4pass-vertical-heater [R=301,L]
+  # /ast.html and /fonts/Boilers.asp are also in that CDX list but are not
+  # real pages — archived content shows the first is a 2014 site-defacement
+  # notice and the second a referrer-sniffing spam-redirect script, both
+  # from a historical compromise of the old site, not content ever worth
+  # sending anyone to. Left to 404 deliberately.
+
+  # ---- Old WordPress leftovers: gone for good, not redirected ---------------
+  # Demo/filler blog posts and taxonomy/post-format archives were never real
+  # company content — redirecting them to the homepage just trains crawlers
+  # to keep requesting dead weight. 410 (not 404) tells them it's
+  # intentionally, permanently gone, so it drops out of the index faster.
+  RewriteRule ^[0-9]{4}/.*$ - [G]
+  RewriteRule ^(type|category|tag|author)/.*$ - [G]
+
+  # Old sitemap paths, including WordPress's split/paginated variants (e.g.
+  # wp-sitemap-posts-post-1.xml) -> the one real sitemap.
+  RewriteRule ^wp-sitemap.*\.xml$ /sitemap.xml [R=301,L]
+
+  # Serve a prerendered directory index if it exists (e.g. /about -> /about/index.html)
+  RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI}/index.html -f
+  RewriteRule ^(.*)$ /$1/index.html [L]
+
+  # If the requested file or directory exists, serve it as-is
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Anything else is a genuinely unknown URL. All 34 real routes are already
+  # prerendered as actual files and matched above, so let this fall through
+  # to a real 404 (ErrorDocument below) instead of silently serving the SPA
+  # shell with a 200.
+</IfModule>
+
+# ---- Compression -----------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml
+</IfModule>
+
+# ---- Browser caching -------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Hashed, immutable build assets — cache hard
+  <FilesMatch "\.(js|css|woff2?|ttf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|avif|svg|ico|mp4)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  # HTML should always revalidate so new deploys show up immediately
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---- Security headers ------------------------------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Real, branded 404 page (scripts/prerender.mjs renders the actual NotFound
+# component to dist/404.html at build time) served with a genuine 404
+# status — not the SPA shell with a 200, so crawlers and uptime checks see
+# the correct status without needing to execute JS.
+ErrorDocument 404 /404.html
