@@ -443,15 +443,6 @@ export default function ProductDetails() {
           jsonLd: [
             {
               '@context': 'https://schema.org',
-              '@type': 'Product',
-              name: product.name,
-              category: product.category,
-              description: product.description,
-              brand: { '@type': 'Brand', name: 'Thermal Engitech Pvt. Ltd.' },
-              manufacturer: { '@type': 'Organization', name: 'Thermal Engitech Pvt. Ltd.' },
-            },
-            {
-              '@context': 'https://schema.org',
               '@type': 'BreadcrumbList',
               itemListElement: [
                 { '@type': 'ListItem', position: 1, name: 'Products', item: 'https://thermalengitech.com/products' },
